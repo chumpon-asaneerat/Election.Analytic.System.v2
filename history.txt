@@ -52,8 +52,9 @@ Election.Analytic.System.v2 - PPRP  #4
 Election.Analytic.System.v2 - PPRP  #3
 - 
 
+[commited]
 Election.Analytic.System.v2 - PPRP  #2
-- 
+- Port NLib project from v1
 
 [commited]
 Election.Analytic.System.v2 - PPRP  #1
