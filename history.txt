@@ -22,8 +22,9 @@ Election.Analytic.System.v2 - PPRP  #14
 Election.Analytic.System.v2 - PPRP  #13
 - 
 
+[commited]
 Election.Analytic.System.v2 - PPRP  #12
-- 
+- Rename PPRP.Excel.Imports project to PPRP.Excels
 
 [commited]
 Election.Analytic.System.v2 - PPRP  #11
