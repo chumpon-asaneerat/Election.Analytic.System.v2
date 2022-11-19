@@ -10,6 +10,8 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{7295E074-0CD7-40CC-A85F-21F880B8BE24}"
 	ProjectSection(SolutionItems) = preProject
 		history.txt = history.txt
+		README.md = README.md
+		Variable.Name.References.txt = Variable.Name.References.txt
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NLib.Reports", "00.NLib\NLib.Reports\NLib.Reports.csproj", "{5879D92A-F850-4A70-8D88-99D29F6A46F3}"
