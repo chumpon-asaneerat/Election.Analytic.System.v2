@@ -30,6 +30,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "05.Controls", "05.Controls"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PPRP.Controls", "05.Controls\PPRP.Controls\PPRP.Controls.csproj", "{58F5C806-9373-4672-9A64-8EE1589004C8}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "20.Samples", "20.Samples", "{451DB8A0-796E-490E-8F30-2EDFF88FA1E8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

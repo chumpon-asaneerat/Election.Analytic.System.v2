@@ -7,8 +7,9 @@ Election.Analytic.System.v2 - PPRP  #19
 Election.Analytic.System.v2 - PPRP  #18
 - 
 
+[commited]
 Election.Analytic.System.v2 - PPRP  #17
-- 
+- Add Samples Solution folders
 
 [commited]
 Election.Analytic.System.v2 - PPRP  #16
