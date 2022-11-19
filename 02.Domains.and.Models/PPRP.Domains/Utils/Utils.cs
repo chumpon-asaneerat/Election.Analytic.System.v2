@@ -22,8 +22,20 @@ using Newtonsoft.Json;
 
 namespace PPRP
 {
+    /// <summary>
+    /// The Byte Utils class.
+    /// </summary>
     public class ByteUtils
     {
+        #region Public Methods (static)
+
+        #region Buffers
+
+        /// <summary>
+        /// Gets Buffers from Full File Name.
+        /// </summary>
+        /// <param name="fileName">The Full File Name.</param>
+        /// <returns>Returns file buffer array.</returns>
         public static byte[] GetFileBuffer(string fileName)
         {
             MethodBase med = MethodBase.GetCurrentMethod();
@@ -60,7 +72,48 @@ namespace PPRP
 
             return buffers;
         }
+        /// <summary>
+        /// Convert Resource Uri Image to Buffers.
+        /// </summary>
+        /// <param name="resourceUri">The resource Uri.</param>
+        /// <returns>Returns ImageSource uri buffer in byte array.</returns>
+        public static byte[] GetResourceUriBuffer(Uri resourceUri)
+        {
+            MethodBase med = MethodBase.GetCurrentMethod();
 
+            byte[] ret = null;
+            if (null == resourceUri)
+            {
+                med.Err("Uri is null.");
+                return ret;
+            }
+            try
+            {
+
+                var info = Application.GetResourceStream(resourceUri);
+                var memoryStream = new MemoryStream();
+                info.Stream.CopyTo(memoryStream);
+                ret = memoryStream.ToArray();
+            }
+            catch (Exception ex)
+            {
+                ret = null;
+                //throw ex;
+                med.Err(ex);
+            }
+
+            return ret;
+        }
+
+        #endregion
+
+        #region Image Source
+
+        /// <summary>
+        /// Convert Buffers to Image source.
+        /// </summary>
+        /// <param name="buffers">The buffer array.</param>
+        /// <returns>Returns ImageSource instance.</returns>
         public static ImageSource GetImageSource(byte[] buffers /*, int decodePixelWidth = 0 */)
         {
             MethodBase med = MethodBase.GetCurrentMethod();
@@ -107,7 +160,11 @@ namespace PPRP
 
             return ret;
         }
-
+        /// <summary>
+        /// Convert Resourec Uri to Image source.
+        /// </summary>
+        /// <param name="resourceUri">The resource uri.</param>
+        /// <returns>Returns ImageSource instance.</returns>
         public static ImageSource GetImageSource(Uri resourceUri /*, int decodePixelWidth = 0 */)
         {
             MethodBase med = MethodBase.GetCurrentMethod();
@@ -142,34 +199,15 @@ namespace PPRP
             return ret;
         }
 
-        public static byte[] GetImageSourceBuffer(Uri resourceUri)
-        {
-            MethodBase med = MethodBase.GetCurrentMethod();
+        #endregion
 
-            byte[] ret = null;
-            if (null == resourceUri)
-            {
-                med.Err("Uri is null.");
-                return ret;
-            }
-            try
-            {
+        #region Json
 
-                var info = Application.GetResourceStream(resourceUri);
-                var memoryStream = new MemoryStream();
-                info.Stream.CopyTo(memoryStream);
-                ret = memoryStream.ToArray();
-            }
-            catch (Exception ex)
-            {
-                ret = null;
-                //throw ex;
-                med.Err(ex);
-            }
-
-            return ret;
-        }
-
+        /// <summary>
+        /// Gets Json String from Byte array.
+        /// </summary>
+        /// <param name="buffers">The Byte array.</param>
+        /// <returns>Returns Json data in string.</returns>
         public static string GetJsonString(byte[] buffers)
         {
             MethodBase med = MethodBase.GetCurrentMethod();
@@ -186,7 +224,11 @@ namespace PPRP
 
             return ret;
         }
-
+        /// <summary>
+        /// Format Json string.
+        /// </summary>
+        /// <param name="json">The json string.</param>
+        /// <returns>Return new formated json string</returns>
         public static string FormatJson(string json)
         {
             MethodBase med = MethodBase.GetCurrentMethod();
@@ -205,5 +247,9 @@ namespace PPRP
             }
             return ret;
         }
+
+        #endregion
+
+        #endregion
     }
 }

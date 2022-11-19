@@ -34,8 +34,9 @@ Election.Analytic.System.v2 - PPRP  #10
 Election.Analytic.System.v2 - PPRP  #9
 - 
 
+[commited]
 Election.Analytic.System.v2 - PPRP  #8
-- 
+- Rework PPRP.Domains project #1.
 
 [commited]
 Election.Analytic.System.v2 - PPRP  #7

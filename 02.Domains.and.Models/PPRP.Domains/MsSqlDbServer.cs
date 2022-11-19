@@ -21,8 +21,16 @@ namespace PPRP
 {
     #region Connection Config
 
+    /// <summary>
+    /// The PPRP SqlServer database config.
+    /// </summary>
     public class PPRPDbConfig
     {
+        #region Constructor
+
+        /// <summary>
+        /// Constructor.
+        /// </summary>
         public PPRPDbConfig() : base()
         {
             ServerName = "localhost";
@@ -32,11 +40,32 @@ namespace PPRP
             Password = "winnt123";
         }
 
+        #endregion
+
+        #region Public Properties
+
+        /// <summary>
+        /// Gets or sets ServerName or IP address.
+        /// </summary>
         public string ServerName { get; set; }
+        /// <summary>
+        /// Gets or sets DatabaseName.
+        /// </summary>
         public string DatabaseName { get; set; }
+        /// <summary>
+        /// Gets or sets Authentication mode.
+        /// </summary>
         public int Authentication { get; set; }
+        /// <summary>
+        /// Gets or sets User Name.
+        /// </summary>
         public string UserName { get; set; }
+        /// <summary>
+        /// Gets or sets Password.
+        /// </summary>
         public string Password { get; set; }
+
+        #endregion
     }
 
     #endregion
@@ -44,7 +73,7 @@ namespace PPRP
     #region DbServer
 
     /// <summary>
-    /// PPRP Db Server.
+    /// PPRP Db Server (SqlServer).
     /// </summary>
     public class DbServer : NSingelton<DbServer>
     {
