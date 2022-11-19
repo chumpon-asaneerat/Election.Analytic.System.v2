@@ -13,8 +13,10 @@ Election.Analytic.System.v2 - PPRP  #17
 Election.Analytic.System.v2 - PPRP  #16
 - 
 
+[commited]
 Election.Analytic.System.v2 - PPRP  #15
-- 
+- Update PPRP.Controls project
+  - Remve unused folders.
 
 [commited]
 Election.Analytic.System.v2 - PPRP  #14

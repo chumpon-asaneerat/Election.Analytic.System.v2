@@ -204,15 +204,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Pages\MPD\Note แบบแบ่งเขต.txt" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Pages\MPR\Note แบบบัญชีรายชื่อ.txt" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Pages\MP\Note ทั้งสองแบบ.txt" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Images\Logo\PPRPLogo.png" />
   </ItemGroup>
   <ItemGroup>
