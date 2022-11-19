@@ -37,11 +37,14 @@ Election.Analytic.System.v2 - PPRP  #9
 Election.Analytic.System.v2 - PPRP  #8
 - 
 
+[commited]
 Election.Analytic.System.v2 - PPRP  #7
-- 
+- Port PPRP.Domains project from v1
+  - update all reference dlls
 
 [commited]
 Election.Analytic.System.v2 - PPRP  #6
+- Port PPRP.Core project from v1
 - NLib.Reports project
   - Update App.Config related to Report Viewer.
 

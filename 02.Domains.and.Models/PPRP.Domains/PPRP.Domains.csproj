@@ -1,0 +1,107 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{454A7013-4FFD-44CB-B589-1E4CD7369DED}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>PPRP</RootNamespace>
+    <AssemblyName>PPRP.Domains</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\Executables\Production\Common\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Dapper">
+      <HintPath>..\..\References\Dapper.dll</HintPath>
+    </Reference>
+    <Reference Include="Dapper.Contrib">
+      <HintPath>..\..\References\Dapper.Contrib.dll</HintPath>
+    </Reference>
+    <Reference Include="Dapper.FluentMap">
+      <HintPath>..\..\References\Dapper.FluentMap.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\References\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Windows" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xaml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="DbServer.cs" />
+    <Compile Include="Domains\Common.cs" />
+    <Compile Include="Domains\Defaults.cs" />
+    <Compile Include="Domains\Enums.cs" />
+    <Compile Include="Domains\MAge.cs" />
+    <Compile Include="Domains\MContent.cs" />
+    <Compile Include="Domains\MDistrict.cs" />
+    <Compile Include="Domains\MEducation.cs" />
+    <Compile Include="Domains\MenuItem.cs" />
+    <Compile Include="Domains\MOccupation.cs" />
+    <Compile Include="Domains\MParty.cs" />
+    <Compile Include="Domains\MPD2562PollingUnitSummary.cs" />
+    <Compile Include="Domains\MPD2562VoteSummary.cs" />
+    <Compile Include="Domains\MPD2562x350UnitSummary.cs" />
+    <Compile Include="Domains\MPD2566PollingUnitSummary.cs" />
+    <Compile Include="Domains\MPDC2566.cs" />
+    <Compile Include="Domains\MPDPrintVoteSummary.cs" />
+    <Compile Include="Domains\MPerson.cs" />
+    <Compile Include="Domains\MProvince.cs" />
+    <Compile Include="Domains\MRegion.cs" />
+    <Compile Include="Domains\MSubdistrict.cs" />
+    <Compile Include="Domains\MTitle.cs" />
+    <Compile Include="Domains\PersonImage.cs" />
+    <Compile Include="Domains\PollingStation.cs" />
+    <Compile Include="Domains\Users.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utils\Utils.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\00.NLib\NLib\NLib.csproj">
+      <Project>{41a9d6c0-c833-403f-9bc1-eecdc246a428}</Project>
+      <Name>NLib</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\01.Core\PPRP.Core\PPRP.Core.csproj">
+      <Project>{25f76701-c7d6-4cc4-beb9-db40d2bbbd9d}</Project>
+      <Name>PPRP.Core</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Default\person.jpg" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
