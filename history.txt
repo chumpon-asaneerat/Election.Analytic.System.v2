@@ -40,8 +40,10 @@ Election.Analytic.System.v2 - PPRP  #8
 Election.Analytic.System.v2 - PPRP  #7
 - 
 
+[commited]
 Election.Analytic.System.v2 - PPRP  #6
-- 
+- NLib.Reports project
+  - Update App.Config related to Report Viewer.
 
 [commited]
 Election.Analytic.System.v2 - PPRP  #5
