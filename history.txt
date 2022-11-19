@@ -49,8 +49,9 @@ Election.Analytic.System.v2 - PPRP  #5
 Election.Analytic.System.v2 - PPRP  #4
 - 
 
+[commited]
 Election.Analytic.System.v2 - PPRP  #3
-- 
+- Remove all DLL in references folder.
 
 [commited]
 Election.Analytic.System.v2 - PPRP  #2
