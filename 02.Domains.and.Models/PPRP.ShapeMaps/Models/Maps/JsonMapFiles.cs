@@ -6,7 +6,7 @@ using PPRP;
 
 #endregion
 
-namespace PPRP.Models.Maps
+namespace PPRP.Models.ShapeFiles
 {
     #region Json Shape classes
 

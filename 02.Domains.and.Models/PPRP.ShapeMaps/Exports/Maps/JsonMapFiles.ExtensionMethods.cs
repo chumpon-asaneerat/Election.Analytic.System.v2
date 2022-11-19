@@ -9,11 +9,11 @@ using Newtonsoft.Json;
 using NLib;
 using PPRP;
 using PPRP.Imports.ShapeFiles;
-using PPRP.Models.Maps;
+using PPRP.Models.ShapeFiles;
 
 #endregion
 
-namespace PPRP.Exports.Maps
+namespace PPRP.Exports.ShapeFiles.Json
 {
     /// <summary>
     /// JsonMapFiles Extension Methods class.

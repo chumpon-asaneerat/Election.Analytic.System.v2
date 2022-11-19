@@ -5,13 +5,13 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("PPRP ShapeMap Imports Library")]
-[assembly: AssemblyDescription("The PPRP ShapeMap Imports assembly for Election Analytic system.")]
+[assembly: AssemblyTitle("PPRP ShapeMap Library")]
+[assembly: AssemblyDescription("The PPRP ShapeMap assembly for Election Analytic system.")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Softbase Co., Ltd.")]
-[assembly: AssemblyProduct("The PPRP ShapeMap Imports assembly for Election Analytic system.")]
+[assembly: AssemblyProduct("The PPRP ShapeMap assembly for Election Analytic system.")]
 [assembly: AssemblyCopyright("Copyright ©Softbase Co., Ltd. 2022")]
-[assembly: AssemblyTrademark("The PPRP ShapeMap Imports assembly for PPRP Election Analytic system.")]
+[assembly: AssemblyTrademark("The PPRP ShapeMap assembly for PPRP Election Analytic system.")]
 [assembly: AssemblyCulture("")]
 
 // Setting ComVisible to false makes the types in this assembly not visible

@@ -24,7 +24,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PPRP.Domains", "02.Domains.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PPRP.Excel.Imports", "02.Domains.and.Models\PPRP.Excel.Imports\PPRP.Excel.Imports.csproj", "{FC952ED6-0F73-4C65-A0E6-F516D94AD5DD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PPRP.ShapeMap.Imports", "02.Domains.and.Models\PPRP.ShapeMap.Imports\PPRP.ShapeMap.Imports.csproj", "{3AF94133-365F-4DA5-8EE5-0B2E0C959AC7}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PPRP.ShapeMaps", "02.Domains.and.Models\PPRP.ShapeMaps\PPRP.ShapeMaps.csproj", "{3AF94133-365F-4DA5-8EE5-0B2E0C959AC7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
