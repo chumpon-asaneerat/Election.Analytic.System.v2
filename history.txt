@@ -10,8 +10,10 @@ Election.Analytic.System.v2 - PPRP  #18
 Election.Analytic.System.v2 - PPRP  #17
 - 
 
+[commited]
 Election.Analytic.System.v2 - PPRP  #16
-- 
+- Update PPRP.Controls project
+  - Fixed invalid reference assemblies.
 
 [commited]
 Election.Analytic.System.v2 - PPRP  #15
