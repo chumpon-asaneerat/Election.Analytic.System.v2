@@ -46,8 +46,9 @@ Election.Analytic.System.v2 - PPRP  #6
 Election.Analytic.System.v2 - PPRP  #5
 - 
 
+[commited]
 Election.Analytic.System.v2 - PPRP  #4
-- 
+- Add lastest DLL in references folder.
 
 [commited]
 Election.Analytic.System.v2 - PPRP  #3
