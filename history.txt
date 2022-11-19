@@ -31,8 +31,10 @@ Election.Analytic.System.v2 - PPRP  #11
 Election.Analytic.System.v2 - PPRP  #10
 - 
 
+[commited]
 Election.Analytic.System.v2 - PPRP  #9
-- 
+- Port PPRP.Excel.Imports project from v1
+  - update all reference dlls
 
 [commited]
 Election.Analytic.System.v2 - PPRP  #8
