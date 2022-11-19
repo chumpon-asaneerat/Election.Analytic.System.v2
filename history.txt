@@ -19,8 +19,9 @@ Election.Analytic.System.v2 - PPRP  #15
 Election.Analytic.System.v2 - PPRP  #14
 - 
 
+[commited]
 Election.Analytic.System.v2 - PPRP  #13
-- 
+- Add Xceed.Wpf.Toolkit in Referencs directory.
 
 [commited]
 Election.Analytic.System.v2 - PPRP  #12

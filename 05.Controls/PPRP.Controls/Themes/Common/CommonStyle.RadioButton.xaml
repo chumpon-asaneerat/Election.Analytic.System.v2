@@ -1,0 +1,58 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:PresentationOptions="http://schemas.microsoft.com/winfx/2006/xaml/presentation/options"
+                    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                    xmlns:sys="clr-namespace:System;assembly=mscorlib"
+                    mc:Ignorable="PresentationOptions">
+    <ResourceDictionary.MergedDictionaries>
+        <!--  Force Merge related resource dictionary  -->
+        <ResourceDictionary Source="pack://application:,,,/PPRP.Controls;component/Themes/CommonStyle.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+
+    <!--  RADIO BUTTON RELATED SIZE  -->
+    <CornerRadius x:Key="CommonRadioButtonCornerRadius" PresentationOptions:Freeze="True">9</CornerRadius>
+
+    <!--  RADIO BUTTON STYLE  -->
+    <Style x:Key="CommonRadioButton" TargetType="{x:Type RadioButton}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type RadioButton}">
+                    <BulletDecorator VerticalAlignment="Center"
+                                     Background="Transparent"
+                                     Cursor="Hand">
+                        <BulletDecorator.Bullet>
+                            <Grid Width="{Binding RelativeSource={RelativeSource AncestorType=RadioButton}, Path=FontSize}"
+                                  Height="{Binding RelativeSource={RelativeSource AncestorType=RadioButton}, Path=FontSize}"
+                                  Margin="0,1">
+                                <!--  Define size of the Bullet  -->
+                                <!--  The two borders  -->
+                                <Border Name="RadioOuter"
+                                        Background="Transparent"
+                                        BorderBrush="{Binding RelativeSource={RelativeSource AncestorType=RadioButton}, Path=Foreground}"
+                                        BorderThickness="2"
+                                        CornerRadius="{DynamicResource CommonRadioButtonCornerRadius}" />
+                                <Border Name="RadioMark"
+                                        Margin="4"
+                                        Background="{Binding RelativeSource={RelativeSource AncestorType=RadioButton}, Path=Foreground}"
+                                        CornerRadius="{DynamicResource CommonRadioButtonCornerRadius}"
+                                        Visibility="Hidden" />
+                            </Grid>
+                        </BulletDecorator.Bullet>
+                        <!--  Content element  -->
+                        <ContentPresenter Margin="5,0"
+                                          HorizontalAlignment="Left"
+                                          VerticalAlignment="Center"
+                                          RecognizesAccessKey="True" />
+                    </BulletDecorator>
+                    <!--  If item is checked, trigger the visibility of the mark  -->
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsChecked" Value="true">
+                            <!--  If item is checked, trigger the visibility of the mark and change the color of the selected bullet into a darker gray for better highlighting  -->
+                            <Setter TargetName="RadioMark" Property="Visibility" Value="Visible" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>

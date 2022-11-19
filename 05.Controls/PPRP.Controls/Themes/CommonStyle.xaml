@@ -1,0 +1,165 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:PresentationOptions="http://schemas.microsoft.com/winfx/2006/xaml/presentation/options"
+                    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                    xmlns:sys="clr-namespace:System;assembly=mscorlib"
+                    mc:Ignorable="PresentationOptions">
+
+    <!--  COMMON MARGINS  -->
+    <Thickness x:Key="CommonMargin" PresentationOptions:Freeze="True">5</Thickness>
+    <GridLength x:Key="PageMargin" PresentationOptions:Freeze="True">5</GridLength>
+
+
+    <!--  COMMON FONT FAMILY (NOTE actual font name required to right click on font to preview from explorer)  -->
+    <FontFamily x:Key="THSarabun">pack://application:,,,/PPRP.Controls;Component/Fonts/#TH Sarabun</FontFamily>
+    <FontFamily x:Key="THSarabunNew">pack://application:,,,/PPRP.Controls;Component/Fonts/#TH Sarabun New</FontFamily>
+    <FontFamily x:Key="Puanpian">pack://application:,,,/PPRP.Controls;Component/Fonts/#iamsudyod2006-2puanpian</FontFamily>
+
+    <!--  COMMON FONT SIZE  -->
+    <sys:Double x:Key="FontSize14" PresentationOptions:Freeze="True">14</sys:Double>
+    <sys:Double x:Key="FontSize16" PresentationOptions:Freeze="True">16</sys:Double>
+    <sys:Double x:Key="FontSize18" PresentationOptions:Freeze="True">18</sys:Double>
+    <sys:Double x:Key="FontSize20" PresentationOptions:Freeze="True">20</sys:Double>
+    <sys:Double x:Key="FontSize24" PresentationOptions:Freeze="True">24</sys:Double>
+    <sys:Double x:Key="FontSize30" PresentationOptions:Freeze="True">30</sys:Double>
+    <sys:Double x:Key="FontSize36" PresentationOptions:Freeze="True">36</sys:Double>
+    <sys:Double x:Key="FontSize48" PresentationOptions:Freeze="True">48</sys:Double>
+    <sys:Double x:Key="FontSize64" PresentationOptions:Freeze="True">64</sys:Double>
+
+    <!--  DEFAULT FONT FAMILY/FONT SIZE  -->
+    <FontFamily x:Key="DefaultFontFamily">pack://application:,,,/PPRP.Controls;Component/Fonts/#TH Sarabun</FontFamily>
+    <sys:Double x:Key="DefaultFontSize" PresentationOptions:Freeze="True">18</sys:Double>
+
+    <!--  CUSTOM COLORS  -->
+    <Color x:Key="BlueLightColor" PresentationOptions:Freeze="True">#9DC3E6</Color>
+    <Color x:Key="BlueLightColor2" PresentationOptions:Freeze="True">#79ADDD</Color>
+    <Color x:Key="BlueLightColor3" PresentationOptions:Freeze="True">#7DB0DF</Color>
+    <Color x:Key="BlueMediumColor" PresentationOptions:Freeze="True">#599AD5</Color>
+    <Color x:Key="BlueHeavyColor" PresentationOptions:Freeze="True">#2E75B6</Color>
+    <Color x:Key="BlueHeavyColor2" PresentationOptions:Freeze="True">#1F4E79</Color>
+
+    <Color x:Key="BlackColor" PresentationOptions:Freeze="True">#000000</Color>
+    <Color x:Key="WhiteColor" PresentationOptions:Freeze="True">#EFEFEF</Color>
+    <Color x:Key="GrayColor" PresentationOptions:Freeze="True">#7F7F7F</Color>
+    <Color x:Key="TransparentColor" PresentationOptions:Freeze="True">Transparent</Color>
+
+    <!--  CUSTOM BRUSHS  -->
+    <SolidColorBrush x:Key="BlueLightBrush"
+                     PresentationOptions:Freeze="True"
+                     Color="{StaticResource BlueLightColor}" />
+    <SolidColorBrush x:Key="BlueLightBrush2"
+                     PresentationOptions:Freeze="True"
+                     Color="{StaticResource BlueLightColor2}" />
+    <SolidColorBrush x:Key="BlueLightBrush3"
+                     PresentationOptions:Freeze="True"
+                     Color="{StaticResource BlueLightColor3}" />
+    <SolidColorBrush x:Key="BlueMediumBrush"
+                     PresentationOptions:Freeze="True"
+                     Color="{StaticResource BlueMediumColor}" />
+    <SolidColorBrush x:Key="BlueHeavyBrush"
+                     PresentationOptions:Freeze="True"
+                     Color="{StaticResource BlueHeavyColor}" />
+    <SolidColorBrush x:Key="BlueHeavyBrush2"
+                     PresentationOptions:Freeze="True"
+                     Color="{StaticResource BlueHeavyColor2}" />
+
+    <SolidColorBrush x:Key="BlackBlush"
+                     PresentationOptions:Freeze="True"
+                     Color="{StaticResource BlackColor}" />
+    <SolidColorBrush x:Key="WhiteBrush"
+                     PresentationOptions:Freeze="True"
+                     Color="{StaticResource WhiteColor}" />
+    <SolidColorBrush x:Key="GrayBrush"
+                     PresentationOptions:Freeze="True"
+                     Color="{StaticResource GrayColor}" />
+    <SolidColorBrush x:Key="TransparentBrush"
+                     PresentationOptions:Freeze="True"
+                     Color="{StaticResource TransparentColor}" />
+
+    <!--  COMMON PAGE COLORS  -->
+    <SolidColorBrush x:Key="PageBG"
+                     PresentationOptions:Freeze="True"
+                     Color="{StaticResource BlueHeavyColor}" />
+
+    <!--  COMMON CAPTION COLORS/SIZE  -->
+    <SolidColorBrush x:Key="CaptionBackground"
+                     PresentationOptions:Freeze="True"
+                     Color="{StaticResource BlueHeavyColor}" />
+    <SolidColorBrush x:Key="CaptionBorderColor"
+                     PresentationOptions:Freeze="True"
+                     Color="{StaticResource BlueHeavyColor}" />
+    <SolidColorBrush x:Key="CaptionForeground"
+                     PresentationOptions:Freeze="True"
+                     Color="{StaticResource WhiteColor}" />
+
+    <Thickness x:Key="CaptionBorderThickness">1</Thickness>
+    <CornerRadius x:Key="CaptionBorderCornerRadius" PresentationOptions:Freeze="True">3</CornerRadius>
+    <GridLength x:Key="CaptionHeight" PresentationOptions:Freeze="True">40</GridLength>
+
+    <!--  COMMON DIALOGS COLORS THEMES  -->
+    <SolidColorBrush x:Key="DialogForeground"
+                     PresentationOptions:Freeze="True"
+                     Color="{StaticResource WhiteColor}" />
+    <SolidColorBrush x:Key="DialogBackground" PresentationOptions:Freeze="True">#7BD0BF</SolidColorBrush>
+
+    <!--  COMMON MENU COLORS THEMES  -->
+    <SolidColorBrush x:Key="MenuButtonForeground"
+                     PresentationOptions:Freeze="True"
+                     Color="{StaticResource BlueHeavyColor2}" />
+    <SolidColorBrush x:Key="MenuPanelBackground"
+                     PresentationOptions:Freeze="True"
+                     Color="{StaticResource BlueLightColor2}" />
+
+    <SolidColorBrush x:Key="MainMenuCaptionForeground"
+                     PresentationOptions:Freeze="True"
+                     Color="{StaticResource BlackColor}" />
+    <SolidColorBrush x:Key="MainMenuCaptionBackground"
+                     PresentationOptions:Freeze="True"
+                     Color="{StaticResource TransparentColor}" />
+
+    <SolidColorBrush x:Key="MainMenuItemForeground"
+                     PresentationOptions:Freeze="True"
+                     Color="{StaticResource WhiteColor}" />
+    <SolidColorBrush x:Key="MainMenuPanelBackground"
+                     PresentationOptions:Freeze="True"
+                     Color="{StaticResource BlueLightColor}" />
+
+    <SolidColorBrush x:Key="WorkPanelBackground"
+                     PresentationOptions:Freeze="True"
+                     Color="{StaticResource BlueLightColor}" />
+
+
+    <!--  COMMON FOR TEXT BOX, PASSWORD BOX COLORS  -->
+    <SolidColorBrush x:Key="TextBoxMouseOverBorderBrush"
+                     PresentationOptions:Freeze="True"
+                     Color="#7F2222FF" />
+    <SolidColorBrush x:Key="TextBoxFocusedBorderBrush"
+                     PresentationOptions:Freeze="True"
+                     Color="CornflowerBlue" />
+    <SolidColorBrush x:Key="TextBoxDisableForeground"
+                     PresentationOptions:Freeze="True"
+                     Color="Black" />
+    <SolidColorBrush x:Key="TextBoxDisableBackground"
+                     PresentationOptions:Freeze="True"
+                     Color="#7FFFFFFF" />
+
+    <!--  COMMON INPUT FONT SIZE  -->
+    <sys:Double x:Key="InputFontSize18" PresentationOptions:Freeze="True">18</sys:Double>
+
+    <!--  COMMON FOR TEXT BOX, PASSWORD BOX FONT SIZE  -->
+    <sys:Double x:Key="TextBlockFontSize18" PresentationOptions:Freeze="True">18</sys:Double>
+    <sys:Double x:Key="TextBlockFontSize20" PresentationOptions:Freeze="True">20</sys:Double>
+    <SolidColorBrush x:Key="TextBlockForegroundWhite"
+                     PresentationOptions:Freeze="True"
+                     Color="{StaticResource WhiteColor}" />
+    <SolidColorBrush x:Key="TextBlockForegroundBlack"
+                     PresentationOptions:Freeze="True"
+                     Color="{StaticResource BlackColor}" />
+
+    <!--  COMMON CONTROLS STYLES: TextBlock  -->
+    <Style TargetType="{x:Type TextBlock}">
+        <Setter Property="FontFamily" Value="{DynamicResource DefaultFontFamily}" />
+        <Setter Property="FontSize" Value="{StaticResource DefaultFontSize}" />
+        <Setter Property="Foreground" Value="{StaticResource TextBlockForegroundBlack}" />
+    </Style>
+</ResourceDictionary>
