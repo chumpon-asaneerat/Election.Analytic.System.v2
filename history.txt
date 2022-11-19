@@ -43,8 +43,10 @@ Election.Analytic.System.v2 - PPRP  #7
 Election.Analytic.System.v2 - PPRP  #6
 - 
 
+[commited]
 Election.Analytic.System.v2 - PPRP  #5
-- 
+- Port NLib.Reports project from v1
+  - update all reference dlls
 
 [commited]
 Election.Analytic.System.v2 - PPRP  #4
