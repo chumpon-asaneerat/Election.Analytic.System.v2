@@ -1,6 +1,7 @@
 ﻿#region Using
 
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
@@ -9,6 +10,18 @@ using System.Reflection;
 
 namespace PPRP.Models
 {
+    public class ExcelColumnMap<T>
+    {
+        public List<PropertyInfo> GetProperties<TAttr>() 
+            where TAttr: Attribute
+        {
+            var properties = typeof(T).GetProperties()
+                .Where(prop => prop.IsDefined(typeof(TAttr), false)).ToList();
+            return properties;
+        }
+    }
+
+
     public class LambdaMap<T>
     {
         public virtual PropertyInfo PropertyInfo<U>(Expression<Func<T, U>> expression)

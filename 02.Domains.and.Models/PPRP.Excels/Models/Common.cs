@@ -16,20 +16,26 @@ namespace PPRP.Models
 
     }
 
+    [AttributeUsage(AttributeTargets.Property)]
     public class ExcelColumnAttribute : Attribute
     {
-        public ExcelColumnAttribute(string displayName, [CallerMemberName] string properyName = null) : base()
+        public ExcelColumnAttribute(string headerText, [CallerMemberName] string properyName = null) : base()
         {
             this.PropertyName = properyName;
-            if (!string.IsNullOrWhiteSpace(displayName))
-                this.DisplayName = displayName;
-            else this.DisplayName = this.PropertyName;
+            if (!string.IsNullOrWhiteSpace(headerText))
+                this.HeaderText = headerText;
+            else this.HeaderText = this.PropertyName;
         }
-
-        public string DisplayName
+        /// <summary>
+        /// Gets or sets Column Header Text.
+        /// </summary>
+        public string HeaderText
         { 
             get; set; 
         }
+        /// <summary>
+        /// Gets the attach property.
+        /// </summary>
         public string PropertyName 
         { 
             get; 

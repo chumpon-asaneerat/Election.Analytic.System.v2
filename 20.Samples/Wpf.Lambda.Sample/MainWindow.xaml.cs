@@ -93,14 +93,21 @@ namespace Wpf.Lambda.Sample
             var attr = obj.GetAttribute<ExcelColumnAttribute, Test, string>((x) => x.Name);
             txtAttrInfo.Text = string.Format("DisplayText: {0}",  attr.DisplayName);
             */
-
+            /*
             var attr = obj.GetPropertyAttributes(x => x.FullName).GetFirst<ExcelColumnAttribute>();
-            txtAttrInfo.Text = string.Format("DisplayText: {0}, PropertyName: {1}", attr.DisplayName, attr.PropertyName);
-
+            txtAttrInfo.Text = string.Format("DisplayText: {0}, PropertyName: {1}", attr.HeaderText, attr.PropertyName);
+            */
             /*
             var map = new LambdaMap<Test>();
             txtAttrInfo.Text = string.Format("DisplayText: {0}", map.PropertyName((x) => x.FullName));
             */
+
+            var map = new ExcelColumnMap<Test>();
+            var props = map.GetProperties<ExcelColumnAttribute>();
+            foreach (var prop in props)
+            {
+                Console.WriteLine("Property: {0}", prop.Name);
+            }
 
         }
 
