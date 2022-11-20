@@ -13,7 +13,7 @@
             <DockPanel DockPanel.Dock="Left" LastChildFill="True" Margin="5, 3">
                 <TextBlock Text="Name:"/>
                 <TextBlock Width="5" />
-                <TextBox x:Name="txtName" Text="{Binding Name}" Width="150"/>
+                <TextBox x:Name="txtName" Text="{Binding FullName}" Width="150"/>
                 <TextBlock Width="5" />
                 <Button Content="Check" Width="100" />
                 <TextBlock Width="5" />

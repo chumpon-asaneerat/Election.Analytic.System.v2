@@ -10,6 +10,11 @@ using System.Threading.Tasks;
 
 namespace PPRP.Models
 {
+    public interface IExcelModel
+    {
+
+    }
+
     public class ExcelColumnAttribute : Attribute
     {
         public ExcelColumnAttribute() : base() 

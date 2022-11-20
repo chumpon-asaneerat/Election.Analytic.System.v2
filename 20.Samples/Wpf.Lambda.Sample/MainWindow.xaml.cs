@@ -38,21 +38,21 @@ namespace Wpf.Lambda.Sample
 
         #region Internal Class
 
-        class Test : NInpc
+        class Test : NInpc, IExcelModel
         {
-            private string _name;
+            private string _fullName;
 
             [ExcelColumn("ชื่อ")]
-            public string Name
+            public string FullName
             {
-                get { return _name; }
+                get { return _fullName; }
                 set 
                 {
-                    if (_name != value)
+                    if (_fullName != value)
                     {
-                        _name = value;
+                        _fullName = value;
                         // raise events
-                        Raise(() => this.Name);
+                        Raise(() => this.FullName);
                         Raise(() => this.Description);
                     }
                 }
@@ -61,7 +61,7 @@ namespace Wpf.Lambda.Sample
             [ExcelColumn("รายละเอียด")]
             public string Description 
             {
-                get { return string.Format("Your Name: {0}", _name); }
+                get { return string.Format("Your Name: {0}", _fullName); }
                 set { }
             }
         }
@@ -88,8 +88,14 @@ namespace Wpf.Lambda.Sample
             Test obj = new Test();
             this.DataContext = obj;
 
+            /*
             var attr = obj.GetAttribute<ExcelColumnAttribute, Test, string>((x) => x.Name);
             txtAttrInfo.Text = string.Format("DisplayText: {0}",  attr.DisplayName);
+            */
+
+            var attr = obj.GetPropertyAttributes(x => x.FullName).GetFirst<ExcelColumnAttribute>();
+            txtAttrInfo.Text = string.Format("DisplayText: {0}", attr.DisplayName);
+
         }
 
         #endregion

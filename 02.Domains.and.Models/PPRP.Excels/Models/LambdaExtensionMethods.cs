@@ -11,9 +11,10 @@ namespace PPRP.Models
 {
     public static class LambdaExtensionMethods
     {
-        public static TAttribute GetAttribute<TAttribute, TObj, TProperty>(this object inst,
+        public static TAttribute GetAttribute<TAttribute, TObj, TProperty>(this TObj inst,
             Expression<Func<TObj, TProperty>> propertyExpression)
-                 where TAttribute : Attribute
+                 where TAttribute: Attribute
+                 where TObj: IExcelModel
         {
             if (null == inst) return default;
             var body = propertyExpression.Body as MemberExpression;
@@ -23,9 +24,10 @@ namespace PPRP.Models
             return ret;
         }
 
-        public static object[] GetPropertyAttributes<TObject, TProperty>(
-            this TObject instance,
-            Expression<Func<TObject, TProperty>> propertySelector)
+        public static object[] GetPropertyAttributes<TObj, TProperty>(
+            this TObj instance,
+            Expression<Func<TObj, TProperty>> propertySelector)
+                 where TObj : IExcelModel
         {
             //consider handling exceptions and corner cases
             var propertyName = ((PropertyInfo)((MemberExpression)propertySelector.Body).Member).Name;
