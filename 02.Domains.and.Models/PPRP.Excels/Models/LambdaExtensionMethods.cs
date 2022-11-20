@@ -12,12 +12,19 @@ namespace PPRP.Models
 {
     public class ExcelColumnMap<T>
     {
+        private static Dictionary<Type, List<PropertyInfo>> Caches = new Dictionary<Type, List<PropertyInfo>>();
+
         public List<PropertyInfo> GetProperties<TAttr>() 
             where TAttr: Attribute
         {
-            var properties = typeof(T).GetProperties()
-                .Where(prop => prop.IsDefined(typeof(TAttr), false)).ToList();
-            return properties;
+            var t = typeof(T);
+            if (!Caches.ContainsKey(t))
+            {
+                var properties = typeof(T).GetProperties()
+                    .Where(prop => prop.IsDefined(typeof(TAttr), false)).ToList();
+                Caches.Add(t, properties);
+            }
+            return Caches[t];
         }
     }
 
