@@ -36,6 +36,37 @@ namespace Wpf.Lambda.Sample
 
         #endregion
 
+        #region Internal Class
+
+        class Test : NInpc
+        {
+            private string _name;
+
+            public string Name
+            {
+                get { return _name; }
+                set 
+                {
+                    if (_name != value)
+                    {
+                        _name = value;
+                        // raise events
+                        Raise(() => this.Name);
+                        Raise(() => this.Description);
+                    }
+                }
+
+            }
+
+            public string Description 
+            {
+                get { return string.Format("Your Name: {0}", _name); }
+                set { }
+            }
+        }
+
+        #endregion
+
         #region Loaded
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -52,6 +83,9 @@ namespace Wpf.Lambda.Sample
             ExcelImport import = new ExcelImport();
             if (null == import) return;
             import.Map();
+
+            Test obj = new Test();
+            this.DataContext = obj;
         }
 
         #endregion

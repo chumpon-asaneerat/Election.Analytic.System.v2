@@ -4,9 +4,32 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800"
+        Title="Lambda Sample" 
+        Height="450" Width="800"
         Loaded="Window_Loaded">
-    <Grid>
-        
-    </Grid>
+    <DockPanel LastChildFill="True" Margin="5">
+        <!-- NAME -->
+        <DockPanel DockPanel.Dock="Top" LastChildFill="True">
+            <DockPanel DockPanel.Dock="Left" LastChildFill="True" Margin="5, 3">
+                <TextBlock Text="Name:"/>
+                <TextBlock Width="5" />
+                <TextBox x:Name="txtName" Text="{Binding Name}" Width="150"/>
+                <TextBlock Width="5" />
+                <Button Content="Check" Width="100" />
+                <Grid/>
+            </DockPanel>
+            <Grid />
+        </DockPanel>
+        <!-- DESCRIPTION -->
+        <DockPanel DockPanel.Dock="Top" LastChildFill="True" Margin="5, 3">
+            <DockPanel DockPanel.Dock="Left" LastChildFill="True">
+                <TextBlock Text="Description:" />
+                <TextBlock Width="5" />
+                <TextBlock Text="{Binding Description}"/>
+                <Grid/>
+            </DockPanel>
+            <Grid />
+        </DockPanel>
+        <Grid />
+    </DockPanel>
 </Window>
