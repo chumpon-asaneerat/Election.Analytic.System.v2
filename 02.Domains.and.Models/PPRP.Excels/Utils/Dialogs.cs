@@ -1,11 +1,15 @@
-﻿using System;
+﻿#region Using
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace PPRP.Utils
+#endregion
+
+namespace PPRP.Excel.Utils
 {
     public class Dialogs
     {

@@ -8,7 +8,7 @@ using System.Reflection;
 
 #endregion
 
-namespace PPRP.Models
+namespace PPRP.Excel
 {
     public class ExcelColumnMap<T>
     {
