@@ -42,6 +42,7 @@ namespace Wpf.Lambda.Sample
         {
             private string _fullName;
 
+            //[ExcelColumn(DisplayName = "ชื่อ")]
             [ExcelColumn("ชื่อ")]
             public string FullName
             {
@@ -92,13 +93,14 @@ namespace Wpf.Lambda.Sample
             var attr = obj.GetAttribute<ExcelColumnAttribute, Test, string>((x) => x.Name);
             txtAttrInfo.Text = string.Format("DisplayText: {0}",  attr.DisplayName);
             */
-            /*
-            var attr = obj.GetPropertyAttributes(x => x.FullName).GetFirst<ExcelColumnAttribute>();
-            txtAttrInfo.Text = string.Format("DisplayText: {0}", attr.DisplayName);
-            */
 
+            var attr = obj.GetPropertyAttributes(x => x.FullName).GetFirst<ExcelColumnAttribute>();
+            txtAttrInfo.Text = string.Format("DisplayText: {0}, PropertyName: {1}", attr.DisplayName, attr.PropertyName);
+
+            /*
             var map = new LambdaMap<Test>();
             txtAttrInfo.Text = string.Format("DisplayText: {0}", map.PropertyName((x) => x.FullName));
+            */
 
         }
 

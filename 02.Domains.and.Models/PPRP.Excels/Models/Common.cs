@@ -3,6 +3,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -17,11 +18,9 @@ namespace PPRP.Models
 
     public class ExcelColumnAttribute : Attribute
     {
-        public ExcelColumnAttribute() : base() 
-        { 
-        }
-        public ExcelColumnAttribute(string displayName) : this()
+        public ExcelColumnAttribute(string displayName, [CallerMemberName] string properyName = null) : base()
         {
+            this.PropertyName = properyName;
             if (!string.IsNullOrWhiteSpace(displayName))
                 this.DisplayName = displayName;
             else this.DisplayName = this.PropertyName;
@@ -34,7 +33,7 @@ namespace PPRP.Models
         public string PropertyName 
         { 
             get; 
-            set; 
+            private set;
         }
     }
 }
