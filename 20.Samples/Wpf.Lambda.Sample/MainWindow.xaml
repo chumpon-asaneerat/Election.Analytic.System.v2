@@ -16,6 +16,8 @@
                 <TextBox x:Name="txtName" Text="{Binding Name}" Width="150"/>
                 <TextBlock Width="5" />
                 <Button Content="Check" Width="100" />
+                <TextBlock Width="5" />
+                <TextBlock x:Name="txtAttrInfo" Width="150"/>
                 <Grid/>
             </DockPanel>
             <Grid />

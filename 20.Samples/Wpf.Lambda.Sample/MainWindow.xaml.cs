@@ -42,6 +42,7 @@ namespace Wpf.Lambda.Sample
         {
             private string _name;
 
+            [ExcelColumn("ชื่อ")]
             public string Name
             {
                 get { return _name; }
@@ -57,7 +58,7 @@ namespace Wpf.Lambda.Sample
                 }
 
             }
-
+            [ExcelColumn("รายละเอียด")]
             public string Description 
             {
                 get { return string.Format("Your Name: {0}", _name); }
@@ -86,6 +87,9 @@ namespace Wpf.Lambda.Sample
 
             Test obj = new Test();
             this.DataContext = obj;
+
+            var attr = obj.GetAttribute<ExcelColumnAttribute, Test, string>((x) => x.Name);
+            txtAttrInfo.Text = string.Format("DisplayText: {0}",  attr.DisplayName);
         }
 
         #endregion
