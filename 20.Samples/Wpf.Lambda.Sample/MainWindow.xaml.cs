@@ -84,28 +84,25 @@ namespace Wpf.Lambda.Sample
 
         private void Run()
         {
-            ItemsControlSample();
             ListViewSample();
-            ExcalColumnSample();
         }
 
-
-        private void ItemsControlSample()
+        private void cmdResetMapProperty_Click(object sender, RoutedEventArgs e)
         {
-            model = new ExcelModel<Test>();
-            for (int i = 0; i < 10; ++i) 
+            var button = sender as Button;
+            var ctx = (null != button) ? button.DataContext : null;
+            var map = (null != ctx) ? ctx as NExcelMapProperty : null;
+            if (null != map)
             {
-                model.Items.Add(new Test() { FullName = "ทดสอบ " + i.ToString() });
+                map.SelectedColumn = null; // reset
             }
-            // bind to items control
-            list.DataContext = model;
-            list.ItemsSource = model.Items;
         }
 
         private void ListViewSample()
         {
             model = new ExcelModel<Test>();
 
+            // Simulate load Excel Columns from worksheet.
             var letters = new string[] 
             { 
                 "A", "B", "C", "D", "E", "F", "G", "H", "I", "J",
@@ -125,43 +122,16 @@ namespace Wpf.Lambda.Sample
                 });
             }
 
+            // bind to list view
+            lv.DataContext = model;
+            lv.ItemsSource = model.Mappings;
+
+            /*
             for (int iCnt = 0; iCnt < 10; ++iCnt)
             {
                 model.Items.Add(new Test() { FullName = "ทดสอบ " + iCnt.ToString() });
             }
-            // bind to items control
-            lv.DataContext = model;
-            lv.ItemsSource = model.Columns;
-        }
-
-        private void ExcalColumnSample()
-        {
-            ExcelImport import = new ExcelImport();
-            if (null == import) return;
-            import.Map();
-
-            Test obj = new Test();
-            this.DataContext = obj;
-
-            /*
-            var attr = obj.GetAttribute<ExcelColumnAttribute, Test, string>((x) => x.Name);
-            txtAttrInfo.Text = string.Format("DisplayText: {0}",  attr.DisplayName);
             */
-            /*
-            var attr = obj.GetPropertyAttributes(x => x.FullName).GetFirst<ExcelColumnAttribute>();
-            txtAttrInfo.Text = string.Format("DisplayText: {0}, PropertyName: {1}", attr.HeaderText, attr.PropertyName);
-            */
-            /*
-            var map = new LambdaMap<Test>();
-            txtAttrInfo.Text = string.Format("DisplayText: {0}", map.PropertyName((x) => x.FullName));
-            */
-
-            var map = new ExcelColumnMap<Test>();
-            var props = map.GetProperties<ExcelColumnAttribute>();
-            foreach (var prop in props)
-            {
-                Console.WriteLine("Property: {0}", prop.Name);
-            }
         }
 
         #endregion

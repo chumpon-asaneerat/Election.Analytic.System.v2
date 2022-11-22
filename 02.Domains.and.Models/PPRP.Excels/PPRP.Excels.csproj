@@ -86,7 +86,6 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Models\Common.cs" />
     <Compile Include="Models\LambdaExtensionMethods.cs" />
     <Compile Include="Models\ExcelModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

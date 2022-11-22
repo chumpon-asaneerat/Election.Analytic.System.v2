@@ -9,101 +9,47 @@
         Width="800"
         Loaded="Window_Loaded">
     <TabControl>
-        <TabItem Header="Test ItemsControl">
-            <ItemsControl x:Name="list">
-                <ItemsControl.ItemsPanel>
-                    <ItemsPanelTemplate>
-                        <!--
-                        <UniformGrid Columns="2"/>
-                        <StackPanel Orientation="Horizontal" Margin="5" />
-                        -->
-                        <WrapPanel Orientation="Horizontal" />
-                    </ItemsPanelTemplate>
-                </ItemsControl.ItemsPanel>
-                <ItemsControl.ItemTemplate>
-                    <DataTemplate>
-                        <Grid Margin="5">
-                            <DockPanel LastChildFill="True" Margin="5">
-                                <!--  NAME  -->
-                                <DockPanel DockPanel.Dock="Top" LastChildFill="True">
-                                    <DockPanel DockPanel.Dock="Left"
-                                               LastChildFill="True"
-                                               Margin="5,3">
-                                        <TextBlock Text="Name:" />
-                                        <TextBlock Width="5" />
-                                        <TextBlock x:Name="txtName"
-                                                 Text="{Binding FullName}"
-                                                 Width="150" />
-                                        <TextBlock Width="5" />
-                                        <TextBlock x:Name="txtAttrInfo" />
-                                        <Grid />
-                                    </DockPanel>
-                                    <Grid />
-                                </DockPanel>
-                                <!--  DESCRIPTION  -->
-                                <DockPanel DockPanel.Dock="Top"
-                                           LastChildFill="True"
-                                           Margin="5,3">
-                                    <DockPanel DockPanel.Dock="Left" LastChildFill="True">
-                                        <TextBlock Text="Description:" />
-                                        <TextBlock Width="5" />
-                                        <TextBlock Text="{Binding Description}" />
-                                        <Grid />
-                                    </DockPanel>
-                                    <Grid />
-                                </DockPanel>
-                                <Grid />
-                            </DockPanel>
-                        </Grid>
-                    </DataTemplate>
-                </ItemsControl.ItemTemplate>
-            </ItemsControl>
-        </TabItem>
-        <TabItem Header="Test ListView">
+        <TabItem Header="Test ListView Map Excel Columns">
             <ListView x:Name="lv">
                 <ListView.View>
                     <GridView>
+                        <!--
                         <GridViewColumn Header="Name" Width="100" DisplayMemberBinding="{Binding ColumnName}" />
                         <GridViewColumn Header="Letter" Width="100" DisplayMemberBinding="{Binding ColumnLetter}" />
                         <GridViewColumn Header="Index" Width="100" DisplayMemberBinding="{Binding ColummIndex}" />
+                        -->
+                        <GridViewColumn Header="ชื่อข้อมูล"
+                                        Width="Auto"
+                                        DisplayMemberBinding="{Binding DisplayText}" />
+                        <GridViewColumn Header="นำเข้าจากคอลัมน์" Width="215">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <ComboBox x:Name="cbColumns"
+                                              Width="200"
+                                              HorizontalAlignment="Stretch"
+                                              ItemsSource="{Binding Columns}"
+                                              DisplayMemberPath="ColumnName"
+                                              SelectedItem="{Binding SelectedColumn}" />
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn Header="" Width="65">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Button x:Name="cmdResetMapProperty"
+                                            Width="50"
+                                            Foreground="Red"
+                                            Content="X" 
+                                            Click="cmdResetMapProperty_Click"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn Header="Debug"
+                                        Width="300"
+                                        DisplayMemberBinding="{Binding DebugInfo}" />
                     </GridView>
                 </ListView.View>
             </ListView>
-        </TabItem>
-        <TabItem Header="Test Excel Column">
-            <DockPanel LastChildFill="True" Margin="5">
-                <!--  NAME  -->
-                <DockPanel DockPanel.Dock="Top" LastChildFill="True">
-                    <DockPanel DockPanel.Dock="Left"
-                               LastChildFill="True"
-                               Margin="5,3">
-                        <TextBlock Text="Name:" />
-                        <TextBlock Width="5" />
-                        <TextBox x:Name="txtName"
-                                 Text="{Binding FullName}"
-                                 Width="150" />
-                        <TextBlock Width="5" />
-                        <Button Content="Check" Width="100" />
-                        <TextBlock Width="5" />
-                        <TextBlock x:Name="txtAttrInfo" />
-                        <Grid />
-                    </DockPanel>
-                    <Grid />
-                </DockPanel>
-                <!--  DESCRIPTION  -->
-                <DockPanel DockPanel.Dock="Top"
-                           LastChildFill="True"
-                           Margin="5,3">
-                    <DockPanel DockPanel.Dock="Left" LastChildFill="True">
-                        <TextBlock Text="Description:" />
-                        <TextBlock Width="5" />
-                        <TextBlock Text="{Binding Description}" />
-                        <Grid />
-                    </DockPanel>
-                    <Grid />
-                </DockPanel>
-                <Grid />
-            </DockPanel>
         </TabItem>
     </TabControl>
 </Window>

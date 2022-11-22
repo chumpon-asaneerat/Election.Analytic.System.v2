@@ -10,25 +10,6 @@ using System.Reflection;
 
 namespace PPRP.Models.Excel
 {
-    public class ExcelColumnMap<T>
-    {
-        private static Dictionary<Type, List<PropertyInfo>> Caches = new Dictionary<Type, List<PropertyInfo>>();
-
-        public List<PropertyInfo> GetProperties<TAttr>() 
-            where TAttr: Attribute
-        {
-            var t = typeof(T);
-            if (!Caches.ContainsKey(t))
-            {
-                var properties = typeof(T).GetProperties()
-                    .Where(prop => prop.IsDefined(typeof(TAttr), false)).ToList();
-                Caches.Add(t, properties);
-            }
-            return Caches[t];
-        }
-    }
-
-
     public class LambdaMap<T>
     {
         public virtual PropertyInfo PropertyInfo<U>(Expression<Func<T, U>> expression)

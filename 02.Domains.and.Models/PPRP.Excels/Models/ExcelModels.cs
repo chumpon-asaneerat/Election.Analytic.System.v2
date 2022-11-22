@@ -3,6 +3,8 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
+using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
@@ -62,6 +64,14 @@ namespace PPRP.Models.Excel
         public string PropertyName { get; private set; }
 
         #endregion
+    }
+
+    #endregion
+
+    #region ExcelColumnMap
+
+    public class ExcelColumnMap
+    {
     }
 
     #endregion
@@ -160,30 +170,182 @@ namespace PPRP.Models.Excel
 
     #endregion
 
+    #region NExcelMapProperty
+
+    /// <summary>
+    /// The NExcelMapProperty class. Use to map class' property to Excel column index.
+    /// </summary>
+    public class NExcelMapProperty : NInpc
+    {
+        #region Internal Variables
+
+        private int _ColumnIndex = -1;
+        private string _ColumnLetter = string.Empty;
+
+        private NExcelColumn _SelectedColumn;
+
+        #endregion
+
+        #region Constructor and Destructor
+
+        /// <summary>
+        /// Constructor (default disable).
+        /// </summary>
+        private NExcelMapProperty() : base() { }
+        /// <summary>
+        /// Constructor.
+        /// </summary>
+        public NExcelMapProperty(ExcelModel model) : base() 
+        {
+            this.Model = model;
+            this.Columns = new List<NExcelColumn>();
+        }
+        /// <summary>
+        /// Destructor.
+        /// </summary>
+        ~NExcelMapProperty()
+        {
+            if (null != this.Columns)
+            {
+                lock (this)
+                {
+                    this.Columns.Clear();
+                    this.Columns = null;
+                }
+            }
+        }
+
+        #endregion
+
+        #region Public Properties
+
+        /// <summary>
+        /// Gets or sets Target property name.
+        /// </summary>
+        public string PropertyName { get; set; }
+        /// <summary>
+        /// Gets or sets Target Display Text.
+        /// </summary>
+        public string DisplayText { get; set; }
+        /// <summary>
+        /// Gets or sets Excel column'name like 'A', 'B', 'C', etc.
+        /// </summary>
+        public string ColumnLetter
+        {
+            get { return _ColumnLetter; }
+            set
+            {
+                if (_ColumnLetter != value)
+                {
+                    _ColumnLetter = value;
+                    this.Raise(() => this.ColumnLetter);
+                    this.Raise(() => this.DebugInfo);
+                }
+            }
+        }
+        /// <summary>
+        /// Gets or sets Column Index.
+        /// </summary>
+        public int ColumnIndex
+        {
+            get { return _ColumnIndex; }
+            set
+            {
+                if (_ColumnIndex != value)
+                {
+                    _ColumnIndex = value;
+                    this.Raise(() => this.ColumnIndex);
+                    this.Raise(() => this.DebugInfo);
+                }
+            }
+        }
+        /// <summary>Gets Instance degug data.</summary>
+        public string DebugInfo
+        {
+            get 
+            {
+                string msg = string.Format("'{0}' => Letter: '{1}', Index: '{2}'", 
+                    PropertyName, _ColumnLetter, _ColumnIndex);
+                return msg;
+            }
+            set { }
+        }
+
+        #endregion
+
+        #region Public Properties (For binding Map Columns)
+
+        /// <summary>
+        /// Gets Excel Model.
+        /// </summary>
+        public ExcelModel Model { get; protected set; }
+        /// <summary>
+        /// Gets or sets all avaliable excel Columns.
+        /// </summary>
+        public List<NExcelColumn> Columns
+        {
+            get { return (null != Model) ? Model.Columns : null; }
+            set { }
+        }
+        /// <summary>
+        /// The selected column for lookup bindings (like ComboBox.SelectedItem).
+        /// </summary>
+        public NExcelColumn SelectedColumn
+        {
+            get { return _SelectedColumn; }
+            set
+            {
+                if (_SelectedColumn != value)
+                {
+                    _SelectedColumn = value;
+                    this.ColumnLetter = (null != _SelectedColumn) ? _SelectedColumn.ColumnLetter : string.Empty;
+                    this.ColumnIndex = (null != _SelectedColumn) ? _SelectedColumn.ColumnIndex : -1;
+                    // Raise Event
+                    this.Raise(() => this.SelectedColumn);
+                }
+            }
+        }
+
+        #endregion
+    }
+
+    #endregion
+
+
     #region ExcelModel
 
     /// <summary>
     /// The Excel Model class.
     /// </summary>
-    /// <typeparam name="T">The target item type.</typeparam>
-    public class ExcelModel<T>
-        where T : class
+    public class ExcelModel
     {
         #region Constructor and Destructor
 
         /// <summary>
         /// Constructor.
         /// </summary>
-        public ExcelModel() : base() 
+        public ExcelModel() : base()
         {
+            // prepare mapping column collections.
             this.Columns = new List<NExcelColumn>();
-            this.Items = new List<T>();
+            // Auto load mapping from target class.
+            this.Mappings = new List<NExcelMapProperty>();
+            InitialMapProperties();
         }
         /// <summary>
         /// Destructor.
         /// </summary>
-        ~ExcelModel() 
+        ~ExcelModel()
         {
+            // Free Mappings.
+            if (null != this.Mappings)
+            {
+                lock (this)
+                {
+                    this.Mappings.Clear();
+                    this.Mappings = null;
+                }
+            }
             // Free Columns.
             if (null != this.Columns)
             {
@@ -193,6 +355,107 @@ namespace PPRP.Models.Excel
                     this.Columns = null;
                 }
             }
+        }
+
+        #endregion
+
+        #region Internal Methods
+
+        protected internal virtual void InitialMapProperties()
+        {
+
+        }
+
+        #endregion
+
+        #region Public Properties
+
+        /// <summary>
+        /// Gets Mappings.
+        /// </summary>
+        public List<NExcelMapProperty> Mappings { get; protected set; }
+        /// <summary>
+        /// Gets or sets all avaliable excel Columns.
+        /// </summary>
+        public List<NExcelColumn> Columns { get; protected set; }
+
+        #endregion
+    }
+
+    #endregion
+
+    #region ExcelModel<T>
+
+    /// <summary>
+    /// The Excel Model class.
+    /// </summary>
+    /// <typeparam name="T">The target item type.</typeparam>
+    public class ExcelModel<T> : ExcelModel
+        where T : class
+    {
+        #region Reflection Utils class
+
+        /// <summary>
+        /// The Reflection Utils class.
+        /// </summary>
+        protected class Utils
+        {
+            #region Static Variable
+
+            private static Dictionary<Type, List<PropertyInfo>> Caches = new Dictionary<Type, List<PropertyInfo>>();
+
+            #endregion
+
+            #region Public Static Methods
+
+            /// <summary>
+            /// Gets Properties of target type.
+            /// </summary>
+            /// <typeparam name="T">The target type.</typeparam>
+            /// <returns>Returns all property that has attribute ExcelColumnAttribute.</returns>
+            public static List<PropertyInfo> GetProperties<T>()
+                where T : class
+            {
+                var t = typeof(T);
+                if (!Caches.ContainsKey(t))
+                {
+                    var properties = typeof(T).GetProperties()
+                        .Where(prop => prop.IsDefined(typeof(ExcelColumnAttribute), false)).ToList();
+                    Caches.Add(t, properties);
+                }
+                return Caches[t];
+            }
+            /// <summary>
+            /// Gets ExcelColumnAttribute from target property.
+            /// </summary>
+            /// <param name="prop">The PropertyInfo instance.</param>
+            /// <returns>Returns instance of ExcelColumnAttribute.</returns>
+            public static ExcelColumnAttribute GetAttribute(PropertyInfo prop)
+            {
+                if (null == prop) return null;
+                return (ExcelColumnAttribute)prop.GetCustomAttributes(typeof(ExcelColumnAttribute), false).First();
+            }
+
+            #endregion
+        }
+
+        #endregion
+
+        #region Constructor and Destructor
+
+        /// <summary>
+        /// Constructor.
+        /// </summary>
+        public ExcelModel() : base() 
+        {
+            // prepare ouput items
+            this.Items = new List<T>();
+        }
+        /// <summary>
+        /// Destructor.
+        /// </summary>
+        ~ExcelModel() 
+        {
             // Free Items.
             if (null != this.Items)
             {
@@ -206,16 +469,37 @@ namespace PPRP.Models.Excel
 
         #endregion
 
+        #region Internal Methods
+
+        /// <summary>
+        /// Initial Map Properties.
+        /// </summary>
+        protected internal override void InitialMapProperties() 
+        {
+            var props = Utils.GetProperties<T>();
+            foreach (var prop in props)
+            {
+                var attr = Utils.GetAttribute(prop);
+                string propertyName = attr.PropertyName;
+                string displayText = attr.HeaderText;
+
+                this.Mappings.Add(new NExcelMapProperty(this)
+                {
+                    PropertyName = propertyName,
+                    DisplayText = displayText,
+                    ColumnLetter = null,
+                    ColumnIndex = -1
+                });
+            }
+        }
+
+        #endregion
+
         #region Public Methods
 
         #endregion
 
         #region Public Properties
-
-        /// <summary>
-        /// Gets Excel Columns.
-        /// </summary>
-        public List<NExcelColumn> Columns { get; protected set; }
 
         /// <summary>
         /// Gets Items.
