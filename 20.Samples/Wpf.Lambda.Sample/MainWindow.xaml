@@ -61,7 +61,13 @@
         </TabItem>
         <TabItem Header="Test ListView">
             <ListView x:Name="lv">
-                
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="Name" Width="100" DisplayMemberBinding="{Binding ColumnName}" />
+                        <GridViewColumn Header="Letter" Width="100" DisplayMemberBinding="{Binding ColumnLetter}" />
+                        <GridViewColumn Header="Index" Width="100" DisplayMemberBinding="{Binding ColummIndex}" />
+                    </GridView>
+                </ListView.View>
             </ListView>
         </TabItem>
         <TabItem Header="Test Excel Column">

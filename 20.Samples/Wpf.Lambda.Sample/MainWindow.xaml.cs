@@ -119,7 +119,7 @@ namespace Wpf.Lambda.Sample
             {
                 model.Columns.Add(new NExcelColumn() 
                 { 
-                    ColumnName="Col" + iCol.ToString(), 
+                    ColumnName = "Col" + iCol.ToString(), 
                     ColumnLetter = letters[iCol],
                     ColumnIndex = iCol + 1 
                 });
