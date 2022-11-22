@@ -68,6 +68,8 @@ namespace Wpf.Lambda.Sample
             }
         }
 
+        private ExcelModel<Test> model;
+
         #endregion
 
         #region Loaded
@@ -82,6 +84,25 @@ namespace Wpf.Lambda.Sample
         #region Private Methods
 
         private void Run()
+        {
+            ItemsControlSample();
+            ExcalColumnSample();
+        }
+
+
+        private void ItemsControlSample()
+        {
+            model = new ExcelModel<Test>();
+            for (int i = 0; i < 10; ++i) 
+            {
+                model.Items.Add(new Test() { FullName = "ทดสอบ " + i.ToString() });
+            }
+            // bind to items control
+            list.DataContext = model;
+            list.ItemsSource = model.Items;
+        }
+
+        private void ExcalColumnSample()
         {
             ExcelImport import = new ExcelImport();
             if (null == import) return;
@@ -109,7 +130,6 @@ namespace Wpf.Lambda.Sample
             {
                 Console.WriteLine("Property: {0}", prop.Name);
             }
-
         }
 
         #endregion
