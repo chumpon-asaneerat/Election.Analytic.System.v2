@@ -413,8 +413,7 @@ namespace PPRP.Models.Excel
             /// </summary>
             /// <typeparam name="T">The target type.</typeparam>
             /// <returns>Returns all property that has attribute ExcelColumnAttribute.</returns>
-            public static List<PropertyInfo> GetProperties<T>()
-                where T : class
+            public static List<PropertyInfo> GetProperties()
             {
                 var t = typeof(T);
                 if (!Caches.ContainsKey(t))
@@ -476,7 +475,7 @@ namespace PPRP.Models.Excel
         /// </summary>
         protected internal override void InitialMapProperties() 
         {
-            var props = Utils.GetProperties<T>();
+            var props = Utils.GetProperties();
             foreach (var prop in props)
             {
                 var attr = Utils.GetAttribute(prop);
