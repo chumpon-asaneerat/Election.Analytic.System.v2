@@ -41,8 +41,8 @@ namespace Wpf.Lambda.Sample
         class Test : NInpc, IExcelModel
         {
             private string _fullName;
+            private int _age;
 
-            //[ExcelColumn(DisplayName = "ชื่อ")]
             [ExcelColumn("ชื่อ")]
             public string FullName
             {
@@ -59,10 +59,27 @@ namespace Wpf.Lambda.Sample
                 }
 
             }
-            [ExcelColumn("รายละเอียด")]
+
+            [ExcelColumn("อายุ")]
+            public int Age
+            {
+                get { return _age; }
+                set
+                {
+                    if (_age != value)
+                    {
+                        _age = value;
+                        // raise events
+                        Raise(() => this.Age);
+                        Raise(() => this.Description);
+                    }
+                }
+            }
+
+            //[ExcelColumn("รายละเอียด")]
             public string Description 
             {
-                get { return string.Format("Your Name: {0}", _fullName); }
+                get { return string.Format("Your Name: {0}, Age: {1}", _fullName, _age); }
                 set { }
             }
         }
