@@ -19,11 +19,14 @@ Election.Analytic.System.v2 - PPRP  #45
 Election.Analytic.System.v2 - PPRP  #44
 - 
 
+[commited]
 Election.Analytic.System.v2 - PPRP  #43
-- 
+- Update PPRP.ShapeFileToSqlLite.App project #1.
+- Remove PPRP.ShapeMaps project -> already exists.
 
+[commited]
 Election.Analytic.System.v2 - PPRP  #42
-- 
+- Add PPRP.ShapeFileToSqlLite.App project.
 
 [commited]
 Election.Analytic.System.v2 - PPRP  #41
