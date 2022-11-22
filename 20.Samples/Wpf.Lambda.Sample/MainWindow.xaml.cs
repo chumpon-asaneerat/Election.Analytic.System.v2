@@ -86,6 +86,7 @@ namespace Wpf.Lambda.Sample
         private void Run()
         {
             ItemsControlSample();
+            ListViewSample();
             ExcalColumnSample();
         }
 
@@ -100,6 +101,18 @@ namespace Wpf.Lambda.Sample
             // bind to items control
             list.DataContext = model;
             list.ItemsSource = model.Items;
+        }
+
+        private void ListViewSample()
+        {
+            model = new ExcelModel<Test>();
+            for (int i = 0; i < 10; ++i)
+            {
+                model.Items.Add(new Test() { FullName = "ทดสอบ " + i.ToString() });
+            }
+            // bind to items control
+            lv.DataContext = model;
+            lv.ItemsSource = model.Items;
         }
 
         private void ExcalColumnSample()

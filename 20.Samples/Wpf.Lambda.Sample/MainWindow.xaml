@@ -32,8 +32,8 @@
                                         <TextBlock Text="Name:" />
                                         <TextBlock Width="5" />
                                         <TextBlock x:Name="txtName"
-                                                   Text="{Binding FullName}"
-                                                   Width="150" />
+                                                 Text="{Binding FullName}"
+                                                 Width="150" />
                                         <TextBlock Width="5" />
                                         <TextBlock x:Name="txtAttrInfo" />
                                         <Grid />
@@ -58,6 +58,11 @@
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
             </ItemsControl>
+        </TabItem>
+        <TabItem Header="Test ListView">
+            <ListView x:Name="lv">
+                
+            </ListView>
         </TabItem>
         <TabItem Header="Test Excel Column">
             <DockPanel LastChildFill="True" Margin="5">
