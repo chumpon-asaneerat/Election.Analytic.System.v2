@@ -36,6 +36,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "20.Samples", "20.Samples", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wpf.Lambda.Sample", "20.Samples\Wpf.Lambda.Sample\Wpf.Lambda.Sample.csproj", "{8D57437C-8E65-491F-BB0B-38B5445DC40D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PPRP.ShapeMaps", "PPRP.ShapeMaps\PPRP.ShapeMaps.csproj", "{67F2D6E6-BEE4-431D-99A9-60269CEC6105}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -74,6 +76,10 @@ Global
 		{8D57437C-8E65-491F-BB0B-38B5445DC40D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8D57437C-8E65-491F-BB0B-38B5445DC40D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8D57437C-8E65-491F-BB0B-38B5445DC40D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{67F2D6E6-BEE4-431D-99A9-60269CEC6105}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{67F2D6E6-BEE4-431D-99A9-60269CEC6105}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{67F2D6E6-BEE4-431D-99A9-60269CEC6105}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{67F2D6E6-BEE4-431D-99A9-60269CEC6105}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

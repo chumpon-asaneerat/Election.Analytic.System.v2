@@ -25,8 +25,9 @@ Election.Analytic.System.v2 - PPRP  #43
 Election.Analytic.System.v2 - PPRP  #42
 - 
 
+[commited]
 Election.Analytic.System.v2 - PPRP  #41
-- 
+- Add PPRP.ShapeMaps project.
 
 [commited]
 Election.Analytic.System.v2 - PPRP  #40
