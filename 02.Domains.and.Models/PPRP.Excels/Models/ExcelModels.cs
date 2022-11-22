@@ -10,7 +10,7 @@ using OfficeOpenXml;
 
 #endregion
 
-namespace PPRP.Models
+namespace PPRP.Models.Excel
 {
     #region ExcelModel
 
@@ -28,13 +28,24 @@ namespace PPRP.Models
         /// </summary>
         public ExcelModel() : base() 
         {
+            this.Columns = new List<NExcelColumn>();
             this.Items = new List<T>();
         }
         /// <summary>
         /// Destructor.
         /// </summary>
         ~ExcelModel() 
-        { 
+        {
+            // Free Columns.
+            if (null != this.Columns)
+            {
+                lock (this)
+                {
+                    this.Columns.Clear();
+                    this.Columns = null;
+                }
+            }
+            // Free Items.
             if (null != this.Items)
             {
                 lock (this)
@@ -47,7 +58,16 @@ namespace PPRP.Models
 
         #endregion
 
+        #region Public Methods
+
+        #endregion
+
         #region Public Properties
+
+        /// <summary>
+        /// Gets Excel Columns.
+        /// </summary>
+        public List<NExcelColumn> Columns { get; protected set; }
 
         /// <summary>
         /// Gets Items.

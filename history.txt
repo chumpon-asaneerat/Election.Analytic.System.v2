@@ -16,8 +16,9 @@ Election.Analytic.System.v2 - PPRP  #36
 Election.Analytic.System.v2 - PPRP  #35
 - 
 
+[commited]
 Election.Analytic.System.v2 - PPRP  #34
-- 
+- Implements Wpf.Lambda.Sample project #13.
 
 [commited]
 Election.Analytic.System.v2 - PPRP  #33

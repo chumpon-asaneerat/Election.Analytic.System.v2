@@ -18,8 +18,7 @@ using System.Windows.Shapes;
 #endregion
 
 using PPRP;
-using PPRP.Excel;
-using PPRP.Models;
+using PPRP.Models.Excel;
 
 namespace Wpf.Lambda.Sample
 {
@@ -106,13 +105,33 @@ namespace Wpf.Lambda.Sample
         private void ListViewSample()
         {
             model = new ExcelModel<Test>();
-            for (int i = 0; i < 10; ++i)
+
+            var letters = new string[] 
+            { 
+                "A", "B", "C", "D", "E", "F", "G", "H", "I", "J",
+                "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T",
+                "U", "V", "W", "X", "Y", "Z"
+            };
+
+            int iMax = 20;
+
+            for (int iCol = 0; iCol < iMax; ++iCol)
             {
-                model.Items.Add(new Test() { FullName = "ทดสอบ " + i.ToString() });
+                model.Columns.Add(new NExcelColumn() 
+                { 
+                    ColumnName="Col" + iCol.ToString(), 
+                    ColumnLetter = letters[iCol],
+                    ColumnIndex = iCol + 1 
+                });
+            }
+
+            for (int iCnt = 0; iCnt < 10; ++iCnt)
+            {
+                model.Items.Add(new Test() { FullName = "ทดสอบ " + iCnt.ToString() });
             }
             // bind to items control
             lv.DataContext = model;
-            lv.ItemsSource = model.Items;
+            lv.ItemsSource = model.Columns;
         }
 
         private void ExcalColumnSample()

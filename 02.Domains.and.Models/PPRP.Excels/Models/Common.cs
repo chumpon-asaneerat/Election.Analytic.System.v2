@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 #endregion
 
-namespace PPRP.Excel
+namespace PPRP.Models.Excel
 {
     #region Interface
 
