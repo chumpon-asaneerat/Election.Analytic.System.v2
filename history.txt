@@ -16,8 +16,10 @@ Election.Analytic.System.v2 - PPRP  #46
 Election.Analytic.System.v2 - PPRP  #45
 - 
 
+[commited]
 Election.Analytic.System.v2 - PPRP  #44
-- 
+- Implements Wpf.Lambda.Sample project #19.
+  - Test Generic property.
 
 [commited]
 Election.Analytic.System.v2 - PPRP  #43
