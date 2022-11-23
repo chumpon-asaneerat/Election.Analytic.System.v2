@@ -13,8 +13,10 @@ Election.Analytic.System.v2 - PPRP  #47
 Election.Analytic.System.v2 - PPRP  #46
 - 
 
+[commited]
 Election.Analytic.System.v2 - PPRP  #45
-- 
+- PPRP.Core project update
+  - Update NJson class.
 
 [commited]
 Election.Analytic.System.v2 - PPRP  #44

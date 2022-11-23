@@ -477,6 +477,16 @@ namespace PPRP
             return result;
         }
         /// <summary>
+        /// Gets application path name.
+        /// </summary>
+        public static string AppPath
+        {
+            get { return Folders.Assemblies.CurrentExecutingAssembly; }
+        }
+
+        #region Unused
+        /*
+        /// <summary>
         /// Gets local data json folder path name.
         /// </summary>
         public static string LocalDataFolder
@@ -551,6 +561,8 @@ namespace PPRP
             string localFile = NJson.LocalConfigFile(fileName);
             return Files.Exists(localFile);
         }
+        */
+        #endregion
     }
 
     #endregion
