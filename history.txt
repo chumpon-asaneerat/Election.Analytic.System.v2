@@ -10,8 +10,10 @@ Election.Analytic.System.v2 - PPRP  #58
 Election.Analytic.System.v2 - PPRP  #57
 - 
 
+[commited]
 Election.Analytic.System.v2 - PPRP  #56
-- 
+- PPRP.Excels project
+  - Remove exceed line spaces
 
 [commited]
 Election.Analytic.System.v2 - PPRP  #55
