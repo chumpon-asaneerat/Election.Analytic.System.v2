@@ -25,8 +25,10 @@ Election.Analytic.System.v2 - PPRP  #53
 Election.Analytic.System.v2 - PPRP  #52
 - 
 
+[commited]
 Election.Analytic.System.v2 - PPRP  #51
-- 
+- PPRP.Domains project
+  - Implements Person & Party classes #1.
 
 [commited]
 Election.Analytic.System.v2 - PPRP  #50
