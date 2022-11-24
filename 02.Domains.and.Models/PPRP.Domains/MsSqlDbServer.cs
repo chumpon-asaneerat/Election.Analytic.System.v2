@@ -126,12 +126,24 @@ namespace PPRP
 
         #region Private Methods
 
+        private bool ConfigExists(string filename)
+        {
+            string configPath = Path.Combine(NJson.AppPath, "Configs");
+            if (!Directory.Exists(configPath))
+            {
+                Directory.CreateDirectory(configPath);
+            }
+
+            string fullFileName = Path.Combine(configPath, filename);
+            return (!File.Exists(fullFileName));
+        }
+
         private PPRPDbConfig GetConfig()
         {
             PPRPDbConfig cfg;
 
             string fileName = Path.Combine(ConfigFolder, "PPRPDbServer.json");
-            if (!NJson.ConfigExists(fileName))
+            if (!ConfigExists(fileName))
             {
                 // create new one and save.
                 cfg = new PPRPDbConfig();

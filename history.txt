@@ -16,8 +16,10 @@ Election.Analytic.System.v2 - PPRP  #56
 Election.Analytic.System.v2 - PPRP  #55
 - 
 
+[commited]
 Election.Analytic.System.v2 - PPRP  #54
-- 
+- PPRP.Domains project
+  - Update code in MsSqlDbServer class.
 
 [commited]
 Election.Analytic.System.v2 - PPRP  #53
