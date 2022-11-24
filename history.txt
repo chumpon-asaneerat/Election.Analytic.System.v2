@@ -4,8 +4,10 @@
 Election.Analytic.System.v2 - PPRP  #49
 - 
 
+[commited]
 Election.Analytic.System.v2 - PPRP  #48
-- 
+- PPRP.ShapeFileToSqlite.App project
+  - Update references.
 
 [commited]
 Election.Analytic.System.v2 - PPRP  #47
