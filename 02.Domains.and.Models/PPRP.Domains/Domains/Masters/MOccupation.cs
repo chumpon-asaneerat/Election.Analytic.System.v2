@@ -25,6 +25,36 @@ namespace PPRP.Domains
     /// </summary>
     public class MOccupation
     {
+        #region Internal Variables
+
+        #endregion
+
+        #region Constructor and Destructor
+
+        /// <summary>
+        /// Constructor.
+        /// </summary>
+        public MOccupation() : base()
+        {
+
+        }
+        /// <summary>
+        /// Destructor.
+        /// </summary>
+        ~MOccupation()
+        {
+
+        }
+
+        #endregion
+
+        #region Public Properties
+
+        #endregion
+
+        #region Static Methods
+
+        #endregion
     }
 
     #endregion

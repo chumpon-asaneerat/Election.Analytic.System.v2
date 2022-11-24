@@ -25,6 +25,36 @@ namespace PPRP.Domains
     /// </summary>
     public class MTitle
     {
+        #region Internal Variables
+
+        #endregion
+
+        #region Constructor and Destructor
+
+        /// <summary>
+        /// Constructor.
+        /// </summary>
+        public MTitle() : base()
+        {
+
+        }
+        /// <summary>
+        /// Destructor.
+        /// </summary>
+        ~MTitle()
+        {
+
+        }
+
+        #endregion
+
+        #region Public Properties
+
+        #endregion
+
+        #region Static Methods
+
+        #endregion
     }
 
     #endregion

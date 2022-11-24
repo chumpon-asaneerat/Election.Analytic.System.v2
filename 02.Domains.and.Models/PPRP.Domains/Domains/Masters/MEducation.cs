@@ -25,6 +25,36 @@ namespace PPRP.Domains
     /// </summary>
     public class MEducation
     {
+        #region Internal Variables
+
+        #endregion
+
+        #region Constructor and Destructor
+
+        /// <summary>
+        /// Constructor.
+        /// </summary>
+        public MEducation() : base()
+        {
+
+        }
+        /// <summary>
+        /// Destructor.
+        /// </summary>
+        ~MEducation()
+        {
+
+        }
+
+        #endregion
+
+        #region Public Properties
+
+        #endregion
+
+        #region Static Methods
+
+        #endregion
     }
 
     #endregion

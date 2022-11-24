@@ -25,6 +25,36 @@ namespace PPRP.Domains
     /// </summary>
     public class MGender
     {
+        #region Internal Variables
+
+        #endregion
+
+        #region Constructor and Destructor
+
+        /// <summary>
+        /// Constructor.
+        /// </summary>
+        public MGender() : base()
+        {
+
+        }
+        /// <summary>
+        /// Destructor.
+        /// </summary>
+        ~MGender()
+        {
+
+        }
+
+        #endregion
+
+        #region Public Properties
+
+        #endregion
+
+        #region Static Methods
+
+        #endregion
     }
 
     #endregion

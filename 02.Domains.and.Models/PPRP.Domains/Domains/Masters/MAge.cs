@@ -25,6 +25,36 @@ namespace PPRP.Domains
     /// </summary>
     public class MAge
     {
+        #region Internal Variables
+
+        #endregion
+
+        #region Constructor and Destructor
+
+        /// <summary>
+        /// Constructor.
+        /// </summary>
+        public MAge() : base()
+        {
+
+        }
+        /// <summary>
+        /// Destructor.
+        /// </summary>
+        ~MAge()
+        {
+
+        }
+
+        #endregion
+
+        #region Public Properties
+
+        #endregion
+
+        #region Static Methods
+
+        #endregion
     }
 
     #endregion
