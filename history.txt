@@ -22,8 +22,10 @@ Election.Analytic.System.v2 - PPRP  #54
 Election.Analytic.System.v2 - PPRP  #53
 - 
 
+[commited]
 Election.Analytic.System.v2 - PPRP  #52
-- 
+- PPRP.Domains project
+  - Implements Masters classes #1.
 
 [commited]
 Election.Analytic.System.v2 - PPRP  #51

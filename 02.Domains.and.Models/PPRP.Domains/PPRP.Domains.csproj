@@ -66,6 +66,13 @@
     <Compile Include="Domains\Areas\MProvince.cs" />
     <Compile Include="Domains\Areas\MRegion.cs" />
     <Compile Include="Domains\Areas\MSubdistrict.cs" />
+    <Compile Include="Domains\Masters\MAge.cs" />
+    <Compile Include="Domains\Masters\MEducation.cs" />
+    <Compile Include="Domains\Masters\MGender.cs" />
+    <Compile Include="Domains\Masters\MOccupation.cs" />
+    <Compile Include="Domains\Masters\MTitle.cs" />
+    <Compile Include="Domains\Masters\UserInfo.cs" />
+    <Compile Include="Domains\Masters\UserRole.cs" />
     <Compile Include="Domains\Parson.And.Party\MParty.cs" />
     <Compile Include="Domains\Parson.And.Party\MPerson.cs" />
     <Compile Include="MsSqlDbServer.cs" />
@@ -87,8 +94,6 @@
   <ItemGroup>
     <Resource Include="Images\Default\person.jpg" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Domains\Masters\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
