@@ -7,8 +7,10 @@ Election.Analytic.System.v2 - PPRP  #59
 Election.Analytic.System.v2 - PPRP  #58
 - 
 
+[commited]
 Election.Analytic.System.v2 - PPRP  #57
-- 
+- PPRP Domain and Models implements #1
+  - Implements MAge class #1.
 
 [commited]
 Election.Analytic.System.v2 - PPRP  #56
