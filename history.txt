@@ -22,8 +22,10 @@ Election.Analytic.System.v2 - PPRP  #64
 Election.Analytic.System.v2 - PPRP  #63
 - 
 
+[commited]
 Election.Analytic.System.v2 - PPRP  #62
-- 
+- PPRP Domain and Models implements #5
+  - Implements MTitle class #1.
 
 [commited]
 Election.Analytic.System.v2 - PPRP  #61
