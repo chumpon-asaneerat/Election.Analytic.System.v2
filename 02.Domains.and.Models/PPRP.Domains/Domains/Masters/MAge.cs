@@ -27,6 +27,7 @@ namespace PPRP.Domains
     {
         #region Internal Variables
 
+        private int _AgeId = 0;
         private int _AgeMin = 0;
         private int _AgeMax = 150;
         private string _Description = string.Empty;
@@ -56,6 +57,22 @@ namespace PPRP.Domains
 
         #region Public Properties
 
+        /// <summary>
+        /// Gets or sets AgeId.
+        /// </summary>
+        public int AgeId
+        {
+            get { return _AgeId; }
+            set
+            {
+                if (_AgeId != value)
+                {
+                    _AgeId = value;
+                    // Raise Event
+                    Raise(() => AgeId);
+                }
+            }
+        }
         /// <summary>
         /// Gets or sets min age range.
         /// </summary>
