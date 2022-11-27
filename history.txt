@@ -1,8 +1,10 @@
 ﻿Election.Analytic.System.v2 - PPRP  #60
 - 
 
+[commited]
 Election.Analytic.System.v2 - PPRP  #59
-- 
+- PPRP Domain and Models implements #3
+  - Implements MEducation class #1.
 
 [commited]
 Election.Analytic.System.v2 - PPRP  #58
