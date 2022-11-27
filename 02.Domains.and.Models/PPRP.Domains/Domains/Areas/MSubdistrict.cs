@@ -18,12 +18,53 @@ using Newtonsoft.Json;
 
 namespace PPRP.Domains
 {
+    #region MADM3
+
+    /// <summary>
+    /// The MADM3 class.
+    /// </summary>
+    public class MADM3 : NInpc
+    {
+        #region Internal Variables
+
+        #endregion
+
+        #region Constructor and Destructor
+
+        /// <summary>
+        /// Constructor.
+        /// </summary>
+        public MADM3() : base()
+        {
+
+        }
+        /// <summary>
+        /// Destructor.
+        /// </summary>
+        ~MADM3()
+        {
+
+        }
+
+        #endregion
+
+        #region Public Properties
+
+        #endregion
+
+        #region Static Methods
+
+        #endregion
+    }
+
+    #endregion
+
     #region MSubdistrict
 
     /// <summary>
     /// The MSubdistrict class.
     /// </summary>
-    public class MSubdistrict : NInpc
+    public class MSubdistrict : MADM3
     {
         #region Internal Variables
 

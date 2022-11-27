@@ -10,8 +10,10 @@ Election.Analytic.System.v2 - PPRP  #68
 Election.Analytic.System.v2 - PPRP  #67
 - 
 
+[commited]
 Election.Analytic.System.v2 - PPRP  #66
-- 
+- PPRP Domain and Models implements #9
+  - Implements MADM3 class #1.
 
 [commited]
 Election.Analytic.System.v2 - PPRP  #65
