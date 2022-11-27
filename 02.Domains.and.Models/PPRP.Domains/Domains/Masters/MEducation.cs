@@ -128,12 +128,12 @@ namespace PPRP.Domains
         /// Gets.
         /// </summary>
         /// <param name="active">The filter active status. Default is 1.</param>
-        /// <returns>Returns list of MOccupation instance.</returns>
-        public static NDbResult<List<MOccupation>> Gets(int active = 1)
+        /// <returns>Returns list of MEducation instance.</returns>
+        public static NDbResult<List<MEducation>> Gets(int active = 1)
         {
             MethodBase med = MethodBase.GetCurrentMethod();
 
-            NDbResult<List<MOccupation>> rets = new NDbResult<List<MOccupation>>();
+            NDbResult<List<MEducation>> rets = new NDbResult<List<MEducation>>();
 
             IDbConnection cnn = DbServer.Instance.Db;
             if (null == cnn || !DbServer.Instance.Connected)
@@ -153,7 +153,7 @@ namespace PPRP.Domains
 
             try
             {
-                rets.Value = cnn.Query<MOccupation>("GetMEducations", p,
+                rets.Value = cnn.Query<MEducation>("GetMEducations", p,
                     commandType: CommandType.StoredProcedure).ToList();
             }
             catch (Exception ex)
@@ -167,7 +167,7 @@ namespace PPRP.Domains
             if (null == rets.Value)
             {
                 // create empty list.
-                rets.Value = new List<MOccupation>();
+                rets.Value = new List<MEducation>();
             }
 
             return rets;
