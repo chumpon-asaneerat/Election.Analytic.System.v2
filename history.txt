@@ -19,8 +19,10 @@ Election.Analytic.System.v2 - PPRP  #65
 Election.Analytic.System.v2 - PPRP  #64
 - 
 
+[commited]
 Election.Analytic.System.v2 - PPRP  #63
-- 
+- PPRP Domain and Models implements #6
+  - Implements MRegion class #1.
 
 [commited]
 Election.Analytic.System.v2 - PPRP  #62
