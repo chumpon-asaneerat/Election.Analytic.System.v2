@@ -1,8 +1,39 @@
-﻿Election.Analytic.System.v2 - PPRP  #90
+﻿Election.Analytic.System.v2 - PPRP  #100
 - 
 
-Election.Analytic.System.v2 - PPRP  #89
+Election.Analytic.System.v2 - PPRP  #99
 - 
+
+Election.Analytic.System.v2 - PPRP  #98
+- 
+
+Election.Analytic.System.v2 - PPRP  #97
+- 
+
+Election.Analytic.System.v2 - PPRP  #96
+- 
+
+Election.Analytic.System.v2 - PPRP  #95
+- 
+
+Election.Analytic.System.v2 - PPRP  #94
+- 
+
+Election.Analytic.System.v2 - PPRP  #93
+- 
+
+Election.Analytic.System.v2 - PPRP  #92
+- 
+
+Election.Analytic.System.v2 - PPRP  #91
+- 
+
+Election.Analytic.System.v2 - PPRP  #90
+- 
+
+[commited]
+Election.Analytic.System.v2 - PPRP  #89
+- Prepare history.txt
 
 [commited]
 Election.Analytic.System.v2 - PPRP  #88
