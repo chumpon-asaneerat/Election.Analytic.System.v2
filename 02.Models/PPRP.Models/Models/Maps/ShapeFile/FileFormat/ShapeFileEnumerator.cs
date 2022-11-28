@@ -14,7 +14,7 @@ using System.Text;
 
 #endregion
 
-namespace PPRP.Imports.ShapeFiles
+namespace PPRP.Models.ShapeFiles
 {
     #region ShapeFileEnumerator
 

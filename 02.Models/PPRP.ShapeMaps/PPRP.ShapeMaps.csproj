@@ -90,21 +90,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Exports\Maps\JsonMapFiles.ExtensionMethods.cs" />
-    <Compile Include="Imports\ShapeMaps\ShapeFile\Converter\EndianBitConverter.cs" />
-    <Compile Include="Imports\ShapeMaps\ShapeFile\FileFormat\Header.cs" />
-    <Compile Include="Imports\ShapeMaps\ShapeFile\Structs\PointD.cs" />
-    <Compile Include="Imports\ShapeMaps\ShapeFile\Structs\RectangleD.cs" />
-    <Compile Include="Imports\ShapeMaps\ShapeFile\Shapes\Shape.cs" />
-    <Compile Include="Imports\ShapeMaps\ShapeFile\FileFormat\ShapeFactory.cs" />
-    <Compile Include="Imports\ShapeMaps\ShapeFile\Shapefile.cs" />
-    <Compile Include="Imports\ShapeMaps\ShapeFile\FileFormat\ShapeFileEnumerator.cs" />
-    <Compile Include="Imports\ShapeMaps\ShapeFile\Shapes\ShapeMultiPoint.cs" />
-    <Compile Include="Imports\ShapeMaps\ShapeFile\Shapes\ShapePoint.cs" />
-    <Compile Include="Imports\ShapeMaps\ShapeFile\Shapes\ShapePolygon.cs" />
-    <Compile Include="Imports\ShapeMaps\ShapeFile\Shapes\ShapePolyLine.cs" />
-    <Compile Include="Imports\ShapeMaps\ShapeFile\Shapes\ShapePolyLineM.cs" />
-    <Compile Include="Models\Maps\JsonMapFiles.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -116,6 +101,10 @@
       <Project>{25f76701-c7d6-4cc4-beb9-db40d2bbbd9d}</Project>
       <Name>PPRP.Core</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Exports\" />
+    <Folder Include="Imports\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

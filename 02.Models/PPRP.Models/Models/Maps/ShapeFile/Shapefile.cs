@@ -15,7 +15,7 @@ using System.Data.OleDb;
 
 #endregion
 
-namespace PPRP.Imports.ShapeFiles
+namespace PPRP.Models.ShapeFiles
 {
     /// <summary>
     /// Provides a readonly IEnumerable interface to an ERSI Shapefile.

@@ -9,7 +9,7 @@ using System;
 
 #endregion
 
-namespace PPRP.Imports.ShapeFiles
+namespace PPRP.Models.ShapeFiles
 {
     #region PointD Struct
 
