@@ -136,6 +136,18 @@
     <Compile Include="Windows\ImportMDistrictWindow.xaml.cs">
       <DependentUpon>ImportMDistrictWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Windows\ImportMPD2562PollingUnitWindow.xaml.cs">
+      <DependentUpon>ImportMPD2562PollingUnitWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\ImportMPD2562VoteSummaryWindow.xaml.cs">
+      <DependentUpon>ImportMPD2562VoteSummaryWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\ImportMPD2562x350UnitSummaryWindow.xaml.cs">
+      <DependentUpon>ImportMPD2562x350UnitSummaryWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\ImportMPD2566PollingUnitWindow.xaml.cs">
+      <DependentUpon>ImportMPD2566PollingUnitWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\ImportMProvinceWindow.xaml.cs">
       <DependentUpon>ImportMProvinceWindow.xaml</DependentUpon>
     </Compile>
@@ -206,6 +218,22 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Windows\ImportMDistrictWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\ImportMPD2562PollingUnitWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\ImportMPD2562VoteSummaryWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\ImportMPD2562x350UnitSummaryWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\ImportMPD2566PollingUnitWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
