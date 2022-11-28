@@ -16,20 +16,23 @@ using Newtonsoft.Json;
 
 #endregion
 
-namespace PPRP.Domains
+namespace PPRP.Models
 {
-    #region MTitle
+    #region MAge
 
     /// <summary>
-    /// The MTitle class.
+    /// The MAge class.
     /// </summary>
-    public class MTitle : NInpc
+    public class MAge : NInpc
     {
         #region Internal Variables
 
-        private int _TitleId = 0;
+        private int _AgeId = 0;
+        private int _AgeMin = 0;
+        private int _AgeMax = 150;
         private string _Description = string.Empty;
-        private int? _GenderId = new int?();
+        private int _SortOrder = 0;
+        private int _Active = 0;
 
         #endregion
 
@@ -38,14 +41,14 @@ namespace PPRP.Domains
         /// <summary>
         /// Constructor.
         /// </summary>
-        public MTitle() : base()
+        public MAge() : base()
         {
 
         }
         /// <summary>
         /// Destructor.
         /// </summary>
-        ~MTitle()
+        ~MAge()
         {
 
         }
@@ -55,18 +58,50 @@ namespace PPRP.Domains
         #region Public Properties
 
         /// <summary>
-        /// Gets or sets TitleId.
+        /// Gets or sets AgeId.
         /// </summary>
-        public int TitleId
+        public int AgeId
         {
-            get { return _TitleId; }
+            get { return _AgeId; }
             set
             {
-                if (_TitleId != value)
+                if (_AgeId != value)
                 {
-                    _TitleId = value;
+                    _AgeId = value;
                     // Raise Event
-                    Raise(() => TitleId);
+                    Raise(() => AgeId);
+                }
+            }
+        }
+        /// <summary>
+        /// Gets or sets min age range.
+        /// </summary>
+        public int AgeMin
+        {
+            get { return _AgeMin; }
+            set
+            {
+                if (_AgeMin != value)
+                {
+                    _AgeMin = value;
+                    // Raise Event
+                    Raise(() => AgeMin);
+                }
+            }
+        }
+        /// <summary>
+        /// Gets or sets max age range.
+        /// </summary>
+        public int AgeMax
+        {
+            get { return _AgeMax; }
+            set
+            {
+                if (_AgeMax != value)
+                {
+                    _AgeMax = value;
+                    // Raise Event
+                    Raise(() => AgeMax);
                 }
             }
         }
@@ -87,18 +122,34 @@ namespace PPRP.Domains
             }
         }
         /// <summary>
-        /// Gets or sets GenderId.
+        /// Gets or sets sort order.
         /// </summary>
-        public int? GenderId
+        public int SortOrder
         {
-            get { return _GenderId; }
+            get { return _SortOrder; }
             set
             {
-                if (_GenderId != value)
+                if (_SortOrder != value)
                 {
-                    _GenderId = value;
+                    _SortOrder = value;
                     // Raise Event
-                    Raise(() => GenderId);
+                    Raise(() => SortOrder);
+                }
+            }
+        }
+        /// <summary>
+        /// Gets or sets Active status.
+        /// </summary>
+        public int Active
+        {
+            get { return _Active; }
+            set
+            {
+                if (_Active != value)
+                {
+                    _Active = value;
+                    // Raise Event
+                    Raise(() => Active);
                 }
             }
         }
@@ -110,14 +161,13 @@ namespace PPRP.Domains
         /// <summary>
         /// Gets.
         /// </summary>
-        /// <param name="description">The filter description.</param>
-        /// <param name="genderId">The filter genderid.</param>
-        /// <returns>Returns list of MTitle instance.</returns>
-        public static NDbResult<List<MTitle>> Gets(string description = null, int? genderId = new int?())
+        /// <param name="active">The filter active status. Default is 1.</param>
+        /// <returns>Returns list of MAge instance.</returns>
+        public static NDbResult<List<MAge>> Gets(int active = 1)
         {
             MethodBase med = MethodBase.GetCurrentMethod();
 
-            NDbResult<List<MTitle>> rets = new NDbResult<List<MTitle>>();
+            NDbResult<List<MAge>> rets = new NDbResult<List<MAge>>();
 
             IDbConnection cnn = DbServer.Instance.Db;
             if (null == cnn || !DbServer.Instance.Connected)
@@ -133,12 +183,11 @@ namespace PPRP.Domains
 
             var p = new DynamicParameters();
 
-            p.Add("@description", description);
-            p.Add("@genderId", genderId);
+            p.Add("@active", active);
 
             try
             {
-                rets.Value = cnn.Query<MTitle>("GetMTitles", p,
+                rets.Value = cnn.Query<MAge>("GetMAges", p,
                     commandType: CommandType.StoredProcedure).ToList();
             }
             catch (Exception ex)
@@ -152,7 +201,7 @@ namespace PPRP.Domains
             if (null == rets.Value)
             {
                 // create empty list.
-                rets.Value = new List<MTitle>();
+                rets.Value = new List<MAge>();
             }
 
             return rets;

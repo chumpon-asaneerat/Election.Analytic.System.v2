@@ -15,7 +15,7 @@ using NLib;
 
 #endregion
 
-namespace PPRP.Domains
+namespace PPRP.Models
 {
     /// <summary>
     /// The Defaults Utilities class.

@@ -11,7 +11,7 @@ using Newtonsoft.Json;
 
 #endregion
 
-namespace PPRP.Domains
+namespace PPRP.Models
 {
     #region NDbResult
 

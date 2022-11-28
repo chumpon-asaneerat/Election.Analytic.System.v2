@@ -118,4 +118,9 @@
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>xcopy "$(SolutionDir)References\runtimes\*.*" "$(TargetDir)\..\PPRP\runtimes\*.*" /Y/D/E
+xcopy "$(SolutionDir)References\runtimes\*.*" "$(TargetDir)\..\Tools\runtimes\*.*" /Y/D/E
+</PostBuildEvent>
+  </PropertyGroup>
 </Project>

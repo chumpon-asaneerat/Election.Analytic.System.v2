@@ -16,21 +16,20 @@ using Newtonsoft.Json;
 
 #endregion
 
-namespace PPRP.Domains
+namespace PPRP.Models
 {
-    #region MEducation
+    #region MTitle
 
     /// <summary>
-    /// The MEducation class.
+    /// The MTitle class.
     /// </summary>
-    public class MEducation : NInpc
+    public class MTitle : NInpc
     {
         #region Internal Variables
 
-        private int _EducationId = 0;
+        private int _TitleId = 0;
         private string _Description = string.Empty;
-        private int _SortOrder = 0;
-        private int _Active = 0;
+        private int? _GenderId = new int?();
 
         #endregion
 
@@ -39,14 +38,14 @@ namespace PPRP.Domains
         /// <summary>
         /// Constructor.
         /// </summary>
-        public MEducation() : base()
+        public MTitle() : base()
         {
 
         }
         /// <summary>
         /// Destructor.
         /// </summary>
-        ~MEducation()
+        ~MTitle()
         {
 
         }
@@ -56,18 +55,18 @@ namespace PPRP.Domains
         #region Public Properties
 
         /// <summary>
-        /// Gets or sets EducationId.
+        /// Gets or sets TitleId.
         /// </summary>
-        public int EducationId
+        public int TitleId
         {
-            get { return _EducationId; }
+            get { return _TitleId; }
             set
             {
-                if (_EducationId != value)
+                if (_TitleId != value)
                 {
-                    _EducationId = value;
+                    _TitleId = value;
                     // Raise Event
-                    Raise(() => EducationId);
+                    Raise(() => TitleId);
                 }
             }
         }
@@ -88,34 +87,18 @@ namespace PPRP.Domains
             }
         }
         /// <summary>
-        /// Gets or sets sort order.
+        /// Gets or sets GenderId.
         /// </summary>
-        public int SortOrder
+        public int? GenderId
         {
-            get { return _SortOrder; }
+            get { return _GenderId; }
             set
             {
-                if (_SortOrder != value)
+                if (_GenderId != value)
                 {
-                    _SortOrder = value;
+                    _GenderId = value;
                     // Raise Event
-                    Raise(() => SortOrder);
-                }
-            }
-        }
-        /// <summary>
-        /// Gets or sets Active status.
-        /// </summary>
-        public int Active
-        {
-            get { return _Active; }
-            set
-            {
-                if (_Active != value)
-                {
-                    _Active = value;
-                    // Raise Event
-                    Raise(() => Active);
+                    Raise(() => GenderId);
                 }
             }
         }
@@ -127,13 +110,14 @@ namespace PPRP.Domains
         /// <summary>
         /// Gets.
         /// </summary>
-        /// <param name="active">The filter active status. Default is 1.</param>
-        /// <returns>Returns list of MEducation instance.</returns>
-        public static NDbResult<List<MEducation>> Gets(int active = 1)
+        /// <param name="description">The filter description.</param>
+        /// <param name="genderId">The filter genderid.</param>
+        /// <returns>Returns list of MTitle instance.</returns>
+        public static NDbResult<List<MTitle>> Gets(string description = null, int? genderId = new int?())
         {
             MethodBase med = MethodBase.GetCurrentMethod();
 
-            NDbResult<List<MEducation>> rets = new NDbResult<List<MEducation>>();
+            NDbResult<List<MTitle>> rets = new NDbResult<List<MTitle>>();
 
             IDbConnection cnn = DbServer.Instance.Db;
             if (null == cnn || !DbServer.Instance.Connected)
@@ -149,11 +133,12 @@ namespace PPRP.Domains
 
             var p = new DynamicParameters();
 
-            p.Add("@active", active);
+            p.Add("@description", description);
+            p.Add("@genderId", genderId);
 
             try
             {
-                rets.Value = cnn.Query<MEducation>("GetMEducations", p,
+                rets.Value = cnn.Query<MTitle>("GetMTitles", p,
                     commandType: CommandType.StoredProcedure).ToList();
             }
             catch (Exception ex)
@@ -167,7 +152,7 @@ namespace PPRP.Domains
             if (null == rets.Value)
             {
                 // create empty list.
-                rets.Value = new List<MEducation>();
+                rets.Value = new List<MTitle>();
             }
 
             return rets;

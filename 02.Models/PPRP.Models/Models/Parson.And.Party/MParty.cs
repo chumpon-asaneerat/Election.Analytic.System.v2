@@ -16,14 +16,14 @@ using Newtonsoft.Json;
 
 #endregion
 
-namespace PPRP.Domains
+namespace PPRP.Models
 {
-    #region UserRole
+    #region  MPerson
 
     /// <summary>
-    /// The UserRole class.
+    /// The MPerson class.
     /// </summary>
-    public class UserRole
+    public class MParty : NInpc
     {
         #region Internal Variables
 
@@ -34,14 +34,14 @@ namespace PPRP.Domains
         /// <summary>
         /// Constructor.
         /// </summary>
-        public UserRole() : base()
+        public MParty() : base()
         {
 
         }
         /// <summary>
         /// Destructor.
         /// </summary>
-        ~UserRole()
+        ~MParty()
         {
 
         }

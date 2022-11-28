@@ -176,15 +176,15 @@
       <Project>{25f76701-c7d6-4cc4-beb9-db40d2bbbd9d}</Project>
       <Name>PPRP.Core</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\02.Domains.and.Models\PPRP.Domains\PPRP.Domains.csproj">
-      <Project>{454a7013-4ffd-44cb-b589-1e4cd7369ded}</Project>
-      <Name>PPRP.Domains</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\02.Domains.and.Models\PPRP.Excels\PPRP.Excels.csproj">
+    <ProjectReference Include="..\..\02.Models\PPRP.Excels\PPRP.Excels.csproj">
       <Project>{fc952ed6-0f73-4c65-a0e6-f516d94ad5dd}</Project>
       <Name>PPRP.Excels</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\02.Domains.and.Models\PPRP.ShapeMaps\PPRP.ShapeMaps.csproj">
+    <ProjectReference Include="..\..\02.Models\PPRP.Models\PPRP.Models.csproj">
+      <Project>{454a7013-4ffd-44cb-b589-1e4cd7369ded}</Project>
+      <Name>PPRP.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\02.Models\PPRP.ShapeMaps\PPRP.ShapeMaps.csproj">
       <Project>{3af94133-365f-4da5-8ee5-0b2e0c959ac7}</Project>
       <Name>PPRP.ShapeMaps</Name>
     </ProjectReference>

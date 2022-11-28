@@ -6,7 +6,7 @@ using System.Reflection;
 
 using NLib;
 
-using PPRP.Domains;
+using PPRP.Models;
 
 #endregion
 

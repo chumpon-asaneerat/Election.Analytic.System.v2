@@ -4,8 +4,9 @@
 Election.Analytic.System.v2 - PPRP  #79
 - 
 
+[commited]
 Election.Analytic.System.v2 - PPRP  #78
-- 
+- Restructure project files #1.
 
 [commited]
 Election.Analytic.System.v2 - PPRP  #77

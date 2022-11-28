@@ -16,19 +16,21 @@ using Newtonsoft.Json;
 
 #endregion
 
-namespace PPRP.Domains
+namespace PPRP.Models
 {
-    #region MGender
+    #region MOccupation
 
     /// <summary>
-    /// The MGender class.
+    /// The MOccupation class.
     /// </summary>
-    public class MGender : NInpc
+    public class MOccupation : NInpc
     {
         #region Internal Variables
 
-        private int _GenderId = 0;
+        private int _OccupationId = 0;
         private string _Description = string.Empty;
+        private int _SortOrder = 0;
+        private int _Active = 0;
 
         #endregion
 
@@ -37,14 +39,14 @@ namespace PPRP.Domains
         /// <summary>
         /// Constructor.
         /// </summary>
-        public MGender() : base()
+        public MOccupation() : base()
         {
 
         }
         /// <summary>
         /// Destructor.
         /// </summary>
-        ~MGender()
+        ~MOccupation()
         {
 
         }
@@ -54,18 +56,18 @@ namespace PPRP.Domains
         #region Public Properties
 
         /// <summary>
-        /// Gets or sets GenderId.
+        /// Gets or sets OccupationId.
         /// </summary>
-        public int GenderId
+        public int OccupationId
         {
-            get { return _GenderId; }
+            get { return _OccupationId; }
             set
             {
-                if (_GenderId != value)
+                if (_OccupationId != value)
                 {
-                    _GenderId = value;
+                    _OccupationId = value;
                     // Raise Event
-                    Raise(() => GenderId);
+                    Raise(() => OccupationId);
                 }
             }
         }
@@ -85,6 +87,38 @@ namespace PPRP.Domains
                 }
             }
         }
+        /// <summary>
+        /// Gets or sets sort order.
+        /// </summary>
+        public int SortOrder
+        {
+            get { return _SortOrder; }
+            set
+            {
+                if (_SortOrder != value)
+                {
+                    _SortOrder = value;
+                    // Raise Event
+                    Raise(() => SortOrder);
+                }
+            }
+        }
+        /// <summary>
+        /// Gets or sets Active status.
+        /// </summary>
+        public int Active
+        {
+            get { return _Active; }
+            set
+            {
+                if (_Active != value)
+                {
+                    _Active = value;
+                    // Raise Event
+                    Raise(() => Active);
+                }
+            }
+        }
 
         #endregion
 
@@ -93,12 +127,13 @@ namespace PPRP.Domains
         /// <summary>
         /// Gets.
         /// </summary>
-        /// <returns>Returns list of MGender instance.</returns>
-        public static NDbResult<List<MGender>> Gets()
+        /// <param name="active">The filter active status. Default is 1.</param>
+        /// <returns>Returns list of MOccupation instance.</returns>
+        public static NDbResult<List<MOccupation>> Gets(int active = 1)
         {
             MethodBase med = MethodBase.GetCurrentMethod();
 
-            NDbResult<List<MGender>> rets = new NDbResult<List<MGender>>();
+            NDbResult<List<MOccupation>> rets = new NDbResult<List<MOccupation>>();
 
             IDbConnection cnn = DbServer.Instance.Db;
             if (null == cnn || !DbServer.Instance.Connected)
@@ -114,9 +149,11 @@ namespace PPRP.Domains
 
             var p = new DynamicParameters();
 
+            p.Add("@active", active);
+
             try
             {
-                rets.Value = cnn.Query<MGender>("GetMGenders", p,
+                rets.Value = cnn.Query<MOccupation>("GetMOccupations", p,
                     commandType: CommandType.StoredProcedure).ToList();
             }
             catch (Exception ex)
@@ -130,7 +167,7 @@ namespace PPRP.Domains
             if (null == rets.Value)
             {
                 // create empty list.
-                rets.Value = new List<MGender>();
+                rets.Value = new List<MOccupation>();
             }
 
             return rets;

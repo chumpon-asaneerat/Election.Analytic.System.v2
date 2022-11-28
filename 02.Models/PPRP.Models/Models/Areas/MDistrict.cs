@@ -16,14 +16,14 @@ using Newtonsoft.Json;
 
 #endregion
 
-namespace PPRP.Domains
+namespace PPRP.Models
 {
-    #region MADM3
+    #region MADM2
 
     /// <summary>
-    /// The MADM3 class.
+    /// The MADM2 class.
     /// </summary>
-    public class MADM3 : NInpc
+    public class MADM2 : NInpc
     {
         #region Internal Variables
 
@@ -34,14 +34,14 @@ namespace PPRP.Domains
         /// <summary>
         /// Constructor.
         /// </summary>
-        public MADM3() : base()
+        public MADM2() : base()
         {
 
         }
         /// <summary>
         /// Destructor.
         /// </summary>
-        ~MADM3()
+        ~MADM2()
         {
 
         }
@@ -59,12 +59,12 @@ namespace PPRP.Domains
 
     #endregion
 
-    #region MSubdistrict
+    #region MDistrict
 
     /// <summary>
-    /// The MSubdistrict class.
+    /// The MDistrict class.
     /// </summary>
-    public class MSubdistrict : MADM3
+    public class MDistrict : MADM2
     {
         #region Internal Variables
 
@@ -75,14 +75,14 @@ namespace PPRP.Domains
         /// <summary>
         /// Constructor.
         /// </summary>
-        public MSubdistrict() : base()
+        public MDistrict() : base()
         {
-            
+
         }
         /// <summary>
         /// Destructor.
         /// </summary>
-        ~MSubdistrict()
+        ~MDistrict()
         {
 
         }

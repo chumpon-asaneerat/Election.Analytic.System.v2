@@ -16,20 +16,18 @@ using Newtonsoft.Json;
 
 #endregion
 
-namespace PPRP.Domains
+namespace PPRP.Models
 {
-    #region MAge
+    #region MEducation
 
     /// <summary>
-    /// The MAge class.
+    /// The MEducation class.
     /// </summary>
-    public class MAge : NInpc
+    public class MEducation : NInpc
     {
         #region Internal Variables
 
-        private int _AgeId = 0;
-        private int _AgeMin = 0;
-        private int _AgeMax = 150;
+        private int _EducationId = 0;
         private string _Description = string.Empty;
         private int _SortOrder = 0;
         private int _Active = 0;
@@ -41,14 +39,14 @@ namespace PPRP.Domains
         /// <summary>
         /// Constructor.
         /// </summary>
-        public MAge() : base()
+        public MEducation() : base()
         {
 
         }
         /// <summary>
         /// Destructor.
         /// </summary>
-        ~MAge()
+        ~MEducation()
         {
 
         }
@@ -58,50 +56,18 @@ namespace PPRP.Domains
         #region Public Properties
 
         /// <summary>
-        /// Gets or sets AgeId.
+        /// Gets or sets EducationId.
         /// </summary>
-        public int AgeId
+        public int EducationId
         {
-            get { return _AgeId; }
+            get { return _EducationId; }
             set
             {
-                if (_AgeId != value)
+                if (_EducationId != value)
                 {
-                    _AgeId = value;
+                    _EducationId = value;
                     // Raise Event
-                    Raise(() => AgeId);
-                }
-            }
-        }
-        /// <summary>
-        /// Gets or sets min age range.
-        /// </summary>
-        public int AgeMin
-        {
-            get { return _AgeMin; }
-            set
-            {
-                if (_AgeMin != value)
-                {
-                    _AgeMin = value;
-                    // Raise Event
-                    Raise(() => AgeMin);
-                }
-            }
-        }
-        /// <summary>
-        /// Gets or sets max age range.
-        /// </summary>
-        public int AgeMax
-        {
-            get { return _AgeMax; }
-            set
-            {
-                if (_AgeMax != value)
-                {
-                    _AgeMax = value;
-                    // Raise Event
-                    Raise(() => AgeMax);
+                    Raise(() => EducationId);
                 }
             }
         }
@@ -162,12 +128,12 @@ namespace PPRP.Domains
         /// Gets.
         /// </summary>
         /// <param name="active">The filter active status. Default is 1.</param>
-        /// <returns>Returns list of MAge instance.</returns>
-        public static NDbResult<List<MAge>> Gets(int active = 1)
+        /// <returns>Returns list of MEducation instance.</returns>
+        public static NDbResult<List<MEducation>> Gets(int active = 1)
         {
             MethodBase med = MethodBase.GetCurrentMethod();
 
-            NDbResult<List<MAge>> rets = new NDbResult<List<MAge>>();
+            NDbResult<List<MEducation>> rets = new NDbResult<List<MEducation>>();
 
             IDbConnection cnn = DbServer.Instance.Db;
             if (null == cnn || !DbServer.Instance.Connected)
@@ -187,7 +153,7 @@ namespace PPRP.Domains
 
             try
             {
-                rets.Value = cnn.Query<MAge>("GetMAges", p,
+                rets.Value = cnn.Query<MEducation>("GetMEducations", p,
                     commandType: CommandType.StoredProcedure).ToList();
             }
             catch (Exception ex)
@@ -201,7 +167,7 @@ namespace PPRP.Domains
             if (null == rets.Value)
             {
                 // create empty list.
-                rets.Value = new List<MAge>();
+                rets.Value = new List<MEducation>();
             }
 
             return rets;
