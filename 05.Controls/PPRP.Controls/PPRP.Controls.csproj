@@ -62,6 +62,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Controls\Excels\ExcelColumnMapControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\Excels\ExcelDataViewControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\SignIn\SignInPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -159,6 +167,12 @@
     <Compile Include="Controls\Buttons\ImageButton.xaml.cs">
       <DependentUpon>ImageButton.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\Excels\ExcelColumnMapControl.xaml.cs">
+      <DependentUpon>ExcelColumnMapControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Excels\ExcelDataViewControl.xaml.cs">
+      <DependentUpon>ExcelDataViewControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\Wizards\WizardProgressBar.cs" />
     <Compile Include="Pages\SignIn\SignInPage.xaml.cs">
       <DependentUpon>SignInPage.xaml</DependentUpon>
@@ -250,5 +264,6 @@
       <Name>PPRP.ShapeMaps</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
