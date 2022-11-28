@@ -18,7 +18,7 @@ using System.Windows.Shapes;
 #endregion
 
 using PPRP;
-using PPRP.Models.Excel;
+using PPRP.Models;
 
 namespace Wpf.Lambda.Sample
 {

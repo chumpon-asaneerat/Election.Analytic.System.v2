@@ -66,6 +66,7 @@
     <Compile Include="Models\Areas\MProvince.cs" />
     <Compile Include="Models\Areas\MRegion.cs" />
     <Compile Include="Models\Areas\MSubdistrict.cs" />
+    <Compile Include="Models\Excels\ExcelModels.cs" />
     <Compile Include="Models\Masters\MAge.cs" />
     <Compile Include="Models\Masters\MEducation.cs" />
     <Compile Include="Models\Masters\MGender.cs" />
