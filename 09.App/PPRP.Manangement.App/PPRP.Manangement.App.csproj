@@ -99,10 +99,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Pages\GeoLocation\MDistrictManagePage.xaml.cs">
+    <Compile Include="Pages\Maps\MDistrictManagePage.xaml.cs">
       <DependentUpon>MDistrictManagePage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\MPDC2566ManagePage.xaml.cs">
+    <Compile Include="Pages\MPD\2566\MPDC2566ManagePage.xaml.cs">
       <DependentUpon>MPDC2566ManagePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\MPD\2562\MPD2562PollingUnitManagePage.xaml.cs">
@@ -117,10 +117,10 @@
     <Compile Include="Pages\MPD\2566\MPD2566PollingUnitManagePage.xaml.cs">
       <DependentUpon>MPD2566PollingUnitManagePage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\GeoLocation\MProvinceManagePage.xaml.cs">
+    <Compile Include="Pages\Maps\MProvinceManagePage.xaml.cs">
       <DependentUpon>MProvinceManagePage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\GeoLocation\MSubdistrictManagePage.xaml.cs">
+    <Compile Include="Pages\Maps\MSubdistrictManagePage.xaml.cs">
       <DependentUpon>MSubdistrictManagePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\Party\PartyManagePage.xaml.cs">
@@ -148,7 +148,7 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Pages\GeoLocation\MDistrictManagePage.xaml">
+    <Page Include="Pages\Maps\MDistrictManagePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -156,7 +156,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\MPDC2566ManagePage.xaml">
+    <Page Include="Pages\MPD\2566\MPDC2566ManagePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -176,11 +176,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\GeoLocation\MProvinceManagePage.xaml">
+    <Page Include="Pages\Maps\MProvinceManagePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\GeoLocation\MSubdistrictManagePage.xaml">
+    <Page Include="Pages\Maps\MSubdistrictManagePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -244,7 +244,6 @@
   <ItemGroup>
     <Folder Include="Controls\" />
     <Folder Include="Pages\Preview\" />
-    <Folder Include="Pages\SignIn\" />
     <Folder Include="Reports\" />
     <Folder Include="Windows\Excels\Geolocation\" />
     <Folder Include="Windows\Excels\MPDC\" />
