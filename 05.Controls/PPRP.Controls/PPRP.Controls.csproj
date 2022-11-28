@@ -151,7 +151,7 @@
     <Compile Include="Controls\Buttons\ImageButton.xaml.cs">
       <DependentUpon>ImageButton.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\WizardProgressBar.cs" />
+    <Compile Include="Controls\Wizards\WizardProgressBar.cs" />
     <Compile Include="Pages\SignIn\SignInPage.xaml.cs">
       <DependentUpon>SignInPage.xaml</DependentUpon>
     </Compile>

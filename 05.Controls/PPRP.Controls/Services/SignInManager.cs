@@ -6,10 +6,29 @@ using System.Reflection;
 
 using NLib;
 
+using PPRP.Domains;
+
 #endregion
 
 namespace PPRP.Services
 {
+    #region SignInStatus Enum
+
+    /// <summary>
+    /// SignInStatus Enum
+    /// </summary>
+    public enum SignInStatus
+    {
+        /// <summary>Success.</summary>
+        Success = 0,
+        /// <summary>UserName Not Found.</summary>
+        UserNotFound = 1,
+        /// <summary>Invalid Password.</summary>
+        InvalidPassword = 2
+    }
+
+    #endregion
+
     #region SignInManager
 
     /// <summary>
@@ -46,7 +65,19 @@ namespace PPRP.Services
         /// <returns>Returns True if signin success.</returns>
         public bool SignIn(string userName, string password)
         {
-            User = new object();
+            UserInfo oUser = default;
+            var Users = UserInfo.Gets(userName: userName).Value;
+            if (null != Users && Users.Count > 0)
+            {
+                oUser = Users[0];
+            }
+
+            if (null == oUser)
+            {
+                // user not exists.
+            }
+
+            User = UserInfo.Get(userName, password).Value;
             bool success = (null != User);
             if (success)
             {
@@ -72,7 +103,7 @@ namespace PPRP.Services
         /// <summary>
         /// Gets current user.
         /// </summary>
-        public object User { get; private set; }
+        public UserInfo User { get; private set; }
 
         #endregion
 
