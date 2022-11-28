@@ -118,21 +118,33 @@ namespace PPRP.Pages
         private void GotoPullingUnit2562Manage()
         {
             // ข้อมูลหน่วยเลือกตั้งแบบแบ่งเขต ปี 2562 - MPD Polling Unit summary.
+            var page = PPRPApp.Pages.MPD2562PollingUnitManage;
+            page.Setup();
+            PageContentManager.Instance.Current = page;
         }
 
         private void GotoPullingUnit2566Manage()
         {
             // ข้อมูลหน่วยเลือกตั้งแบบแบ่งเขต ปี 2566 - MPD Polling Unit summary.
+            var page = PPRPApp.Pages.MPD2566PollingUnitManage;
+            page.Setup();
+            PageContentManager.Instance.Current = page;
         }
 
         private void GotoMPD2562VoteSummaryManage()
         {
             // ข้อมูลผู้สมัครรับเลือกตั้งสมาชิกสภาผู้แทน แบบแบ่งเขต ปี 2562 - MPD (summary)
+            var page = PPRPApp.Pages.MPD2562VoteSummaryManage;
+            page.Setup();
+            PageContentManager.Instance.Current = page;
         }
 
         private void GotoMPD2562UserStatSummaryManage()
         {
             // ข้อมูลผู้ใช้สิทธิ 350 เขต ปี 2562 - MPD 350 Unit(summary)
+            var page = PPRPApp.Pages.MPD2562x350UnitSummaryManage;
+            page.Setup();
+            PageContentManager.Instance.Current = page;
         }
 
         private void GotoMPDC2566Manage()
@@ -147,16 +159,25 @@ namespace PPRP.Pages
         private void GotoADM1Manage()
         {
             // ข้อมูลจังหวัด (MProvince-ADM1)
+            var page = PPRPApp.Pages.MProvinceManage;
+            page.Setup();
+            PageContentManager.Instance.Current = page;
         }
 
         private void GotoADM2Manage()
         {
             // ข้อมูลอำเภอ (MDistrict-ADM2)
+            var page = PPRPApp.Pages.MDistrictManage;
+            page.Setup();
+            PageContentManager.Instance.Current = page;
         }
 
         private void GotoADM3Manage()
         {
             // ข้อมูลตำบล (MSubdistrict-ADM3)
+            var page = PPRPApp.Pages.MSubdistrictManage;
+            page.Setup();
+            PageContentManager.Instance.Current = page;
         }
 
         #endregion
@@ -166,11 +187,17 @@ namespace PPRP.Pages
         private void GotoPartyImageManage()
         {
             // ข้อมูลพรรคการเมือง
+            var page = PPRPApp.Pages.PartyManage;
+            page.Setup();
+            PageContentManager.Instance.Current = page;
         }
 
         private void GotoPersonImageManage()
         {
             // ข้อมูลรูปผู้สมัคร-ว่าที่ผู้สมัคร
+            var page = PPRPApp.Pages.PersonImageManage;
+            page.Setup();
+            PageContentManager.Instance.Current = page;
         }
 
         #endregion
