@@ -10,8 +10,11 @@ Election.Analytic.System.v2 - PPRP  #78
 Election.Analytic.System.v2 - PPRP  #77
 - 
 
+[commited]
 Election.Analytic.System.v2 - PPRP  #76
-- 
+- Implements Signin process #6.
+  - Update SignInPage #2.
+  - Update MainWindow (PPRP.Analytic.App)
 
 [commited]
 Election.Analytic.System.v2 - PPRP  #75

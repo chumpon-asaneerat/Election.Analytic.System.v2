@@ -36,7 +36,27 @@ namespace PPRP.Pages
         private void txtSignIn_Click(object sender, RoutedEventArgs e)
         {
             string userName = txtUserName.Text;
+            if (string.IsNullOrWhiteSpace(userName))
+            {
+                var win = PPRPWindows.Windows.MessageBox;
+                win.Setup("กรุณาป้อน ชื่อบัญชีผู้ใช้", "PPRP");
+                win.ShowDialog();
+
+                FocusControl(txtUserName);
+                return;
+            }
+
             string password = txtPassword.Password;
+            if (string.IsNullOrWhiteSpace(password))
+            {
+                var win = PPRPWindows.Windows.MessageBox;
+                win.Setup("กรุณาป้อน รหัสผ่าน", "PPRP");
+                win.ShowDialog();
+
+                FocusControl(txtPassword);
+                return;
+            }
+
             SignInStatus status = SignInManager.Instance.SignIn(userName, password);
 
             bool success = false;
@@ -60,9 +80,53 @@ namespace PPRP.Pages
                 var win = PPRPWindows.Windows.MessageBox;
                 win.Setup(msg, "PPRP");
                 win.ShowDialog();
+
+                if (status == SignInStatus.InvalidPassword)
+                    FocusControl(txtPassword);
+                else FocusControl(txtUserName);
+
                 return;
             }
             // login success.
+        }
+
+        #endregion
+
+        #region Private Methods
+
+        private void FocusControl(TextBox ctrl)
+        {
+            if (null == ctrl)
+                return;
+            // Set focus to text box this invoked when the application has rendered
+            Dispatcher.BeginInvoke(new Action(() =>
+            {
+                ctrl.SelectAll();
+                ctrl.Focus();
+            }), System.Windows.Threading.DispatcherPriority.Render);
+        }
+        private void FocusControl(PasswordBox ctrl)
+        {
+            if (null == ctrl)
+                return;
+            // Set focus to text box this invoked when the application has rendered
+            Dispatcher.BeginInvoke(new Action(() =>
+            {
+                ctrl.SelectAll();
+                ctrl.Focus();
+            }), System.Windows.Threading.DispatcherPriority.Render);
+        }
+
+        #endregion
+
+        #region Public Methods
+
+        /// <summary>
+        /// Setup.
+        /// </summary>
+        public void Setup()
+        {
+            FocusControl(txtUserName);
         }
 
         #endregion
