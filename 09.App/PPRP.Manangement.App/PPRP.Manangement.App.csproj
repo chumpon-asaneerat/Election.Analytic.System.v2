@@ -133,25 +133,25 @@
     <Compile Include="Windows\Common\ProgressWindow.xaml.cs">
       <DependentUpon>ProgressWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Windows\ImportMDistrictWindow.xaml.cs">
+    <Compile Include="Windows\Excels\Maps\ImportMDistrictWindow.xaml.cs">
       <DependentUpon>ImportMDistrictWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Windows\ImportMPD2562PollingUnitWindow.xaml.cs">
+    <Compile Include="Windows\Excels\MPD\2562\ImportMPD2562PollingUnitWindow.xaml.cs">
       <DependentUpon>ImportMPD2562PollingUnitWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Windows\ImportMPD2562VoteSummaryWindow.xaml.cs">
+    <Compile Include="Windows\Excels\MPD\2562\ImportMPD2562VoteSummaryWindow.xaml.cs">
       <DependentUpon>ImportMPD2562VoteSummaryWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Windows\ImportMPD2562x350UnitSummaryWindow.xaml.cs">
+    <Compile Include="Windows\Excels\MPD\2562\ImportMPD2562x350UnitSummaryWindow.xaml.cs">
       <DependentUpon>ImportMPD2562x350UnitSummaryWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Windows\ImportMPD2566PollingUnitWindow.xaml.cs">
+    <Compile Include="Windows\Excels\MPD\2566\ImportMPD2566PollingUnitWindow.xaml.cs">
       <DependentUpon>ImportMPD2566PollingUnitWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Windows\ImportMProvinceWindow.xaml.cs">
+    <Compile Include="Windows\Excels\Maps\ImportMProvinceWindow.xaml.cs">
       <DependentUpon>ImportMProvinceWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Windows\ImportMSubdistrictWindow.xaml.cs">
+    <Compile Include="Windows\Excels\Maps\ImportMSubdistrictWindow.xaml.cs">
       <DependentUpon>ImportMSubdistrictWindow.xaml</DependentUpon>
     </Compile>
     <None Include="Properties\DataSources\PPRP.Domains.MPD2562PrintVoteSummary.datasource" />
@@ -217,31 +217,31 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Windows\ImportMDistrictWindow.xaml">
+    <Page Include="Windows\Excels\Maps\ImportMDistrictWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Windows\ImportMPD2562PollingUnitWindow.xaml">
+    <Page Include="Windows\Excels\MPD\2562\ImportMPD2562PollingUnitWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Windows\ImportMPD2562VoteSummaryWindow.xaml">
+    <Page Include="Windows\Excels\MPD\2562\ImportMPD2562VoteSummaryWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Windows\ImportMPD2562x350UnitSummaryWindow.xaml">
+    <Page Include="Windows\Excels\MPD\2562\ImportMPD2562x350UnitSummaryWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Windows\ImportMPD2566PollingUnitWindow.xaml">
+    <Page Include="Windows\Excels\MPD\2566\ImportMPD2566PollingUnitWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Windows\ImportMProvinceWindow.xaml">
+    <Page Include="Windows\Excels\Maps\ImportMProvinceWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Windows\ImportMSubdistrictWindow.xaml">
+    <Page Include="Windows\Excels\Maps\ImportMSubdistrictWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -294,12 +294,10 @@
     <Folder Include="Controls\" />
     <Folder Include="Pages\Preview\" />
     <Folder Include="Reports\" />
-    <Folder Include="Windows\Excels\Maps\" />
-    <Folder Include="Windows\Excels\MPDC\" />
-    <Folder Include="Windows\Excels\MPD\" />
-    <Folder Include="Windows\Images\" />
-    <Folder Include="Windows\MPDC\" />
-    <Folder Include="Windows\MPD\" />
+    <Folder Include="Windows\Images\Party\" />
+    <Folder Include="Windows\Images\Person\" />
+    <Folder Include="Windows\MPD\2562\" />
+    <Folder Include="Windows\MPD\2566\" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\Logo\PPRPLogo.png" />
