@@ -28,8 +28,10 @@ Election.Analytic.System.v2 - PPRP  #72
 Election.Analytic.System.v2 - PPRP  #71
 - 
 
+[commited]
 Election.Analytic.System.v2 - PPRP  #70
-- 
+- PPRP.Controls project
+  - Remove PakListBox, ProvinceListBox
 
 [commited]
 Election.Analytic.System.v2 - PPRP  #69

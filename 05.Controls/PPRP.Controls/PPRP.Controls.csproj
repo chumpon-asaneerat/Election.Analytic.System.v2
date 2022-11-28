@@ -58,14 +58,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Page Include="Controls\Areas\PakListBox.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Controls\Areas\ProvinceListBox.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Controls\Buttons\ImageButton.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -156,12 +148,6 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Controls\Areas\PakListBox.xaml.cs">
-      <DependentUpon>PakListBox.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Controls\Areas\ProvinceListBox.xaml.cs">
-      <DependentUpon>ProvinceListBox.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Controls\Buttons\ImageButton.xaml.cs">
       <DependentUpon>ImageButton.xaml</DependentUpon>
     </Compile>
