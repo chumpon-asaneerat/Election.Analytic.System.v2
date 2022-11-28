@@ -54,7 +54,6 @@ namespace PPRP
 
             // Sign In.
             var page = PPRPApp.Pages.SignIn;
-            page.Setup();
             PageContentManager.Instance.Current = page;
         }
 
@@ -91,12 +90,14 @@ namespace PPRP
             {
                 // Signout - show Sign In page.
                 var page = PPRPApp.Pages.SignIn;
-                page.Setup();
                 PageContentManager.Instance.Current = page;
             }
             else
             {
-
+                // SignIn OK - show thailand page.
+                //var page = PPRPApp.Pages.Thailand;
+                //page.Setup();
+                //PageContentManager.Instance.Current = page;
             }
         }
 

@@ -57,22 +57,12 @@ namespace PPRP.Pages
             if (!success)
             {
                 // login failed show message.
-                MessageBox.Show(msg);
+                var win = PPRPWindows.Windows.MessageBox;
+                win.Setup(msg, "PPRP");
+                win.ShowDialog();
                 return;
             }
             // login success.
-        }
-
-        #endregion
-
-        #region Public Methods
-
-        /// <summary>
-        /// Setup.
-        /// </summary>
-        public void Setup()
-        {
-
         }
 
         #endregion
