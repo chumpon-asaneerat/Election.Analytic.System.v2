@@ -42,6 +42,7 @@ namespace Wpf.Lambda.Sample
         {
             private string _fullName;
             private int _age;
+            private DateTime _DOB;
 
             [ExcelColumn("ชื่อ")]
             public string FullName
@@ -60,7 +61,7 @@ namespace Wpf.Lambda.Sample
 
             }
 
-            [ExcelColumn("อายุ")]
+            [ExcelColumn("อายุ", ExcelColumnMode.Import)]
             public int Age
             {
                 get { return _age; }
@@ -69,6 +70,22 @@ namespace Wpf.Lambda.Sample
                     if (_age != value)
                     {
                         _age = value;
+                        // raise events
+                        Raise(() => this.Age);
+                        Raise(() => this.Description);
+                    }
+                }
+            }
+
+            [ExcelColumn("วันเดือนปีเกิด", ExcelColumnMode.Export)]
+            public DateTime DOB
+            {
+                get { return _DOB; }
+                set
+                {
+                    if (_DOB != value)
+                    {
+                        _DOB = value;
                         // raise events
                         Raise(() => this.Age);
                         Raise(() => this.Description);
@@ -138,6 +155,10 @@ namespace Wpf.Lambda.Sample
                     ColumnIndex = iCol + 1 
                 });
             }
+
+            //model.Mode = ExcelColumnMode.Import;
+            model.Mode = ExcelColumnMode.Export;
+            model.MapColumns(); // call for update colimn mappings
 
             // bind to list view
             lv.DataContext = model;

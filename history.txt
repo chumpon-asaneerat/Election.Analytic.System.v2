@@ -7,8 +7,10 @@ Election.Analytic.System.v2 - PPRP  #79
 Election.Analytic.System.v2 - PPRP  #78
 - 
 
+[commited]
 Election.Analytic.System.v2 - PPRP  #77
-- 
+- PPRP.Excels project
+  - Update Excel Model classes #1.
 
 [commited]
 Election.Analytic.System.v2 - PPRP  #76

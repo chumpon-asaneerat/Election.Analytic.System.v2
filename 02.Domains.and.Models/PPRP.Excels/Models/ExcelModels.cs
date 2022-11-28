@@ -15,6 +15,29 @@ using OfficeOpenXml;
 
 namespace PPRP.Models.Excel
 {
+    #region ExcelColumnMode
+
+    /// <summary>
+    /// The ExcelColumnMode Enum.
+    /// </summary>
+    public enum ExcelColumnMode
+    {
+        /// <summary>
+        /// Import and Export.
+        /// </summary>
+        Both = 0,
+        /// <summary>
+        /// Import Only.
+        /// </summary>
+        Import = 1,
+        /// <summary>
+        /// Export Only.
+        /// </summary>
+        Export = 2
+    }
+
+    #endregion
+
     #region Interface
 
     /// <summary>
@@ -41,10 +64,14 @@ namespace PPRP.Models.Excel
         /// Constructor.
         /// </summary>
         /// <param name="headerText">The excel column header's text.</param>
+        /// <param name="mode">The excel column mode.</param>
         /// <param name="properyName">The target class's property name (Optional).</param>
-        public ExcelColumnAttribute(string headerText, [CallerMemberName] string properyName = null) : base()
+        public ExcelColumnAttribute(string headerText, ExcelColumnMode mode = ExcelColumnMode.Both, [CallerMemberName] string properyName = null) : base()
         {
             this.PropertyName = properyName;
+
+            this.Mode = mode;
+
             if (!string.IsNullOrWhiteSpace(headerText))
                 this.HeaderText = headerText;
             else this.HeaderText = this.PropertyName;
@@ -58,6 +85,10 @@ namespace PPRP.Models.Excel
         /// Gets or sets Column Header Text.
         /// </summary>
         public string HeaderText { get; set; }
+        /// <summary>
+        /// Gets or sets Column Mode.
+        /// </summary>
+        public ExcelColumnMode Mode { get; private set; }
         /// <summary>
         /// Gets the attach property.
         /// </summary>
@@ -329,7 +360,6 @@ namespace PPRP.Models.Excel
             this.Columns = new List<NExcelColumn>();
             // Auto load mapping from target class.
             this.Mappings = new List<NExcelMapProperty>();
-            InitialMapProperties();
         }
         /// <summary>
         /// Destructor.
@@ -367,6 +397,18 @@ namespace PPRP.Models.Excel
 
         #endregion
 
+        #region Public Methods
+
+        /// <summary>
+        /// Refresh mapping columns
+        /// </summary>
+        public void MapColumns()
+        {
+            InitialMapProperties();
+        }
+
+        #endregion
+
         #region Public Properties
 
         /// <summary>
@@ -377,6 +419,10 @@ namespace PPRP.Models.Excel
         /// Gets or sets all avaliable excel Columns.
         /// </summary>
         public List<NExcelColumn> Columns { get; protected set; }
+        /// <summary>
+        /// Gets or sets ExcelColumnMode.
+        /// </summary>
+        public ExcelColumnMode Mode { get; set; }
 
         #endregion
     }
@@ -481,6 +527,17 @@ namespace PPRP.Models.Excel
                 string propertyName = attr.PropertyName;
                 string displayText = attr.HeaderText;
 
+                if (Mode == ExcelColumnMode.Import)
+                {
+                    if (attr.Mode == ExcelColumnMode.Export)
+                        continue; // mismatch mode
+                }
+                else if (Mode == ExcelColumnMode.Export)
+                {
+                    if (attr.Mode == ExcelColumnMode.Import)
+                        continue; // mismatch mode
+                }
+
                 this.Mappings.Add(new NExcelMapProperty(this)
                 {
                     PropertyName = propertyName,
@@ -509,6 +566,11 @@ namespace PPRP.Models.Excel
 
     #endregion
 
+    #region ExcelImport
+
+    /// <summary>
+    /// The ExcelImport class.
+    /// </summary>
     public class ExcelImport
     {
         #region Constructor (Static)
@@ -539,4 +601,6 @@ namespace PPRP.Models.Excel
 
         #endregion
     }
+
+    #endregion
 }
