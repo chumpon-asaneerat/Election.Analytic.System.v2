@@ -13,8 +13,10 @@ Election.Analytic.System.v2 - PPRP  #77
 Election.Analytic.System.v2 - PPRP  #76
 - 
 
+[commited]
 Election.Analytic.System.v2 - PPRP  #75
-- 
+- Implements Signin process #5.
+  - Add MessageBox, MessageBoxOKCancel Windows #2.
 
 [commited]
 Election.Analytic.System.v2 - PPRP  #74
