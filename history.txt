@@ -4,8 +4,10 @@
 Election.Analytic.System.v2 - PPRP  #69
 - 
 
+[commited]
 Election.Analytic.System.v2 - PPRP  #68
-- 
+- Port PPRP.Analytic.App project from v1
+  - remove all code.
 
 [commited]
 Election.Analytic.System.v2 - PPRP  #67

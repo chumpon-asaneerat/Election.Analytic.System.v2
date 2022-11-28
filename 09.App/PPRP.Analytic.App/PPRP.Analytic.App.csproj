@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{8B37F7E2-FBC1-4F0F-93D2-2A859557ABA8}</ProjectGuid>
+    <ProjectGuid>{4CA977FB-5C3A-45D1-8D3D-E190AB2D0864}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <RootNamespace>PPRP</RootNamespace>
-    <AssemblyName>PPRP.Manangement.App</AssemblyName>
+    <AssemblyName>PPRP.Analytic.App</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -76,8 +76,6 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
-    <Reference Include="System.Drawing" />
-    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -90,9 +88,6 @@
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
-    <Reference Include="Xceed.Wpf.Toolkit">
-      <HintPath>..\..\References\Xceed.Wpf.Toolkit.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
@@ -100,12 +95,6 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Services\PPRPApp.cs" />
-    <Compile Include="Windows\Common\ProgressWindow.xaml.cs">
-      <DependentUpon>ProgressWindow.xaml</DependentUpon>
-    </Compile>
-    <None Include="Properties\DataSources\PPRP.Domains.MPD2562PrintVoteSummary.datasource" />
-    <None Include="Properties\DataSources\PPRP.Domains.MPD2562x350PrintUnitSummary.datasource" />
-    <None Include="Properties\DataSources\PPRP.Domains.MPDC2566PrintSummary.datasource" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -118,19 +107,8 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Pages\Menu\MainMenuPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Windows\Common\ProgressWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Pages\Menu\MainMenuPage.xaml.cs">
-      <DependentUpon>MainMenuPage.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -149,6 +127,7 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <None Include="app.manifest" />
+    <None Include="Properties\DataSources\PPRP.Domains.MPDPrintVoteSummary.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -158,41 +137,31 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\Cards\Card-Black.png" />
-    <Resource Include="Images\Cards\Card-Blue.png" />
-    <Resource Include="Images\Cards\Card-Gray.png" />
-    <Resource Include="Images\Cards\Card-Green.png" />
-    <Resource Include="Images\Cards\Card-Purple.png" />
-    <Resource Include="Images\Cards\Card-Red.png" />
-    <Resource Include="Images\Colors\Gray.png" />
-    <Resource Include="Images\Colors\GrayLarge.png" />
-    <Resource Include="Images\Colors\Green.png" />
-    <Resource Include="Images\Colors\GreenLarge.png" />
-    <Resource Include="Images\Users\online-user.png" />
-    <Resource Include="Images\Users\red-user.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Controls\" />
-    <Folder Include="Pages\GeoLocation\" />
-    <Folder Include="Pages\MPDC\" />
-    <Folder Include="Pages\MPD\" />
-    <Folder Include="Pages\Party\" />
-    <Folder Include="Pages\Person\" />
-    <Folder Include="Pages\Preview\" />
-    <Folder Include="Pages\SignIn\" />
-    <Folder Include="Reports\" />
-    <Folder Include="Windows\Excels\Geolocation\" />
-    <Folder Include="Windows\Excels\MPDC\" />
-    <Folder Include="Windows\Excels\MPD\" />
-    <Folder Include="Windows\Images\" />
-    <Folder Include="Windows\MPDC\" />
-    <Folder Include="Windows\MPD\" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Images\Logo\PPRPLogo.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="app.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Maps\Pak1.jpg" />
+    <Resource Include="Images\Maps\Pak10.jpg" />
+    <Resource Include="Images\Maps\Pak2.jpg" />
+    <Resource Include="Images\Maps\Pak3.jpg" />
+    <Resource Include="Images\Maps\Pak4.jpg" />
+    <Resource Include="Images\Maps\Pak5.jpg" />
+    <Resource Include="Images\Maps\Pak6.jpg" />
+    <Resource Include="Images\Maps\Pak7.jpg" />
+    <Resource Include="Images\Maps\Pak8.jpg" />
+    <Resource Include="Images\Maps\Pak9.jpg" />
+    <Resource Include="Images\Maps\Thailand.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Controls\" />
+    <Folder Include="Pages\Areas\" />
+    <Folder Include="Pages\MPD\" />
+    <Folder Include="Pages\Preview\" />
+    <Folder Include="Reports\" />
+    <Folder Include="Windows\MPDC\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\00.NLib\NLib.Reports\NLib.Reports.csproj">
