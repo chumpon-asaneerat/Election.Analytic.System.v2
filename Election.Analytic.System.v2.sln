@@ -40,6 +40,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "10.Tools", "10.Tools", "{F9
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PPRP.ShapeFileToSqlite.App", "10.Tools\PPRP.ShapeFileToSqlite.App\PPRP.ShapeFileToSqlite.App.csproj", "{D498ADDE-905E-4899-A89F-A767EE545A37}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "09.App", "09.App", "{E166F2CA-8024-46DB-BD36-1147C7912D93}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PPRP.Manangement.App", "09.App\PPRP.Manangement.App\PPRP.Manangement.App.csproj", "{8B37F7E2-FBC1-4F0F-93D2-2A859557ABA8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -82,6 +86,10 @@ Global
 		{D498ADDE-905E-4899-A89F-A767EE545A37}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D498ADDE-905E-4899-A89F-A767EE545A37}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D498ADDE-905E-4899-A89F-A767EE545A37}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8B37F7E2-FBC1-4F0F-93D2-2A859557ABA8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8B37F7E2-FBC1-4F0F-93D2-2A859557ABA8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8B37F7E2-FBC1-4F0F-93D2-2A859557ABA8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8B37F7E2-FBC1-4F0F-93D2-2A859557ABA8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -96,6 +104,7 @@ Global
 		{58F5C806-9373-4672-9A64-8EE1589004C8} = {1B87B283-DD2A-473B-8165-15C11F3FDCBA}
 		{8D57437C-8E65-491F-BB0B-38B5445DC40D} = {451DB8A0-796E-490E-8F30-2EDFF88FA1E8}
 		{D498ADDE-905E-4899-A89F-A767EE545A37} = {F97C7A2D-C19F-492B-9E22-E4232CA46C7D}
+		{8B37F7E2-FBC1-4F0F-93D2-2A859557ABA8} = {E166F2CA-8024-46DB-BD36-1147C7912D93}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {FED4ECF3-40B5-4470-B84E-1E2C421EF10F}
