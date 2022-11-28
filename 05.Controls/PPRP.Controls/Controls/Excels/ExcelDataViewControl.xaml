@@ -8,7 +8,9 @@
              d:DesignWidth="500"
              Loaded="UserControl_Loaded"
              Unloaded="UserControl_Unloaded">
-    <Grid>
-            
-    </Grid>
+    <ListView x:Name="lvMapPreview">
+        <ListView.View>
+            <GridView x:Name="lvMapGridView" />
+        </ListView.View>
+    </ListView>
 </UserControl>

@@ -133,6 +133,15 @@
     <Compile Include="Windows\Common\ProgressWindow.xaml.cs">
       <DependentUpon>ProgressWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Windows\ImportMDistrictWindow.xaml.cs">
+      <DependentUpon>ImportMDistrictWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\ImportMProvinceWindow.xaml.cs">
+      <DependentUpon>ImportMProvinceWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\ImportMSubdistrictWindow.xaml.cs">
+      <DependentUpon>ImportMSubdistrictWindow.xaml</DependentUpon>
+    </Compile>
     <None Include="Properties\DataSources\PPRP.Domains.MPD2562PrintVoteSummary.datasource" />
     <None Include="Properties\DataSources\PPRP.Domains.MPD2562x350PrintUnitSummary.datasource" />
     <None Include="Properties\DataSources\PPRP.Domains.MPDC2566PrintSummary.datasource" />
@@ -196,6 +205,18 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Windows\ImportMDistrictWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\ImportMProvinceWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\ImportMSubdistrictWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Pages\Menu\MainMenuPage.xaml.cs">
@@ -245,7 +266,7 @@
     <Folder Include="Controls\" />
     <Folder Include="Pages\Preview\" />
     <Folder Include="Reports\" />
-    <Folder Include="Windows\Excels\Geolocation\" />
+    <Folder Include="Windows\Excels\Maps\" />
     <Folder Include="Windows\Excels\MPDC\" />
     <Folder Include="Windows\Excels\MPD\" />
     <Folder Include="Windows\Images\" />
