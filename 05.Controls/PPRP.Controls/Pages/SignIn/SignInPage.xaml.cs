@@ -37,9 +37,27 @@ namespace PPRP.Pages
         {
             string userName = txtUserName.Text;
             string password = txtPassword.Password;
-            if (!SignInManager.Instance.SignIn(userName, password))
+            SignInStatus status = SignInManager.Instance.SignIn(userName, password);
+
+            bool success = false;
+            string msg = string.Empty;
+            switch (status)
             {
-                // login failed.
+                case SignInStatus.UserNotFound:
+                    msg = "ไม่พบข้อมูล ชื่อผู้ใช้งาน กรุณาตรวจสอบ";
+                    break;
+                case SignInStatus.InvalidPassword:
+                    msg = "รหัสผ่านไม่ถูกต้อง กรุณาตรวจสอบ";
+                    break;
+                case SignInStatus.Success:
+                    success = true;
+                    break;
+            }
+
+            if (!success)
+            {
+                // login failed show message.
+                MessageBox.Show(msg);
                 return;
             }
             // login success.

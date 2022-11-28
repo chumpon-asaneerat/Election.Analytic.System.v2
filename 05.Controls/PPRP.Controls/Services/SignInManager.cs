@@ -62,8 +62,8 @@ namespace PPRP.Services
         /// </summary>
         /// <param name="userName">The user name.</param>
         /// <param name="password">The password.</param>
-        /// <returns>Returns True if signin success.</returns>
-        public bool SignIn(string userName, string password)
+        /// <returns>Returns SignIn Status.</returns>
+        public SignInStatus SignIn(string userName, string password)
         {
             UserInfo oUser = default;
             var Users = UserInfo.Gets(userName: userName).Value;
@@ -75,16 +75,21 @@ namespace PPRP.Services
             if (null == oUser)
             {
                 // user not exists.
+                return SignInStatus.UserNotFound;
             }
 
             User = UserInfo.Get(userName, password).Value;
-            bool success = (null != User);
-            if (success)
+
+            if (null != User)
             {
                 // Raise Event.
                 UserChanged.Call(this, EventArgs.Empty);
+                return SignInStatus.Success;
             }
-            return success;
+            else
+            {
+                return SignInStatus.InvalidPassword;
+            }
         }
         /// <summary>
         /// Signout.
