@@ -174,7 +174,7 @@ namespace PPRP
             #endregion
 
             #region MPDC 2566
-            /*
+
             private static MPDC2566ManagePage _MPDC2566Manage;
 
             /// <summary>Gets MPDC 2566 Manage Page.</summary>
@@ -192,7 +192,7 @@ namespace PPRP
                     return _MPDC2566Manage;
                 }
             }
-            */
+
             #endregion
 
             #region ADM1 - Province

@@ -99,31 +99,34 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Pages\MDistrictManagePage.xaml.cs">
+    <Compile Include="Pages\GeoLocation\MDistrictManagePage.xaml.cs">
       <DependentUpon>MDistrictManagePage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\MPD2562PollingUnitManagePage.xaml.cs">
+    <Compile Include="Pages\MPDC2566ManagePage.xaml.cs">
+      <DependentUpon>MPDC2566ManagePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\MPD\2562\MPD2562PollingUnitManagePage.xaml.cs">
       <DependentUpon>MPD2562PollingUnitManagePage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\MPD2562VoteSummaryManagePage.xaml.cs">
+    <Compile Include="Pages\MPD\2562\MPD2562VoteSummaryManagePage.xaml.cs">
       <DependentUpon>MPD2562VoteSummaryManagePage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\MPD2562x350UnitSummaryManagePage.xaml.cs">
+    <Compile Include="Pages\MPD\2562\MPD2562x350UnitSummaryManagePage.xaml.cs">
       <DependentUpon>MPD2562x350UnitSummaryManagePage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\MPD2566PollingUnitManagePage.xaml.cs">
+    <Compile Include="Pages\MPD\2566\MPD2566PollingUnitManagePage.xaml.cs">
       <DependentUpon>MPD2566PollingUnitManagePage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\MProvinceManagePage.xaml.cs">
+    <Compile Include="Pages\GeoLocation\MProvinceManagePage.xaml.cs">
       <DependentUpon>MProvinceManagePage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\MSubdistrictManagePage.xaml.cs">
+    <Compile Include="Pages\GeoLocation\MSubdistrictManagePage.xaml.cs">
       <DependentUpon>MSubdistrictManagePage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\PartyManagePage.xaml.cs">
+    <Compile Include="Pages\Party\PartyManagePage.xaml.cs">
       <DependentUpon>PartyManagePage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\PersonImageManagePage.xaml.cs">
+    <Compile Include="Pages\Person\PersonImageManagePage.xaml.cs">
       <DependentUpon>PersonImageManagePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Services\PPRPApp.cs" />
@@ -145,7 +148,7 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Pages\MDistrictManagePage.xaml">
+    <Page Include="Pages\GeoLocation\MDistrictManagePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -153,35 +156,39 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\MPD2562PollingUnitManagePage.xaml">
+    <Page Include="Pages\MPDC2566ManagePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\MPD2562VoteSummaryManagePage.xaml">
+    <Page Include="Pages\MPD\2562\MPD2562PollingUnitManagePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\MPD2562x350UnitSummaryManagePage.xaml">
+    <Page Include="Pages\MPD\2562\MPD2562VoteSummaryManagePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\MPD2566PollingUnitManagePage.xaml">
+    <Page Include="Pages\MPD\2562\MPD2562x350UnitSummaryManagePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\MProvinceManagePage.xaml">
+    <Page Include="Pages\MPD\2566\MPD2566PollingUnitManagePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\MSubdistrictManagePage.xaml">
+    <Page Include="Pages\GeoLocation\MProvinceManagePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\PartyManagePage.xaml">
+    <Page Include="Pages\GeoLocation\MSubdistrictManagePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\PersonImageManagePage.xaml">
+    <Page Include="Pages\Party\PartyManagePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Person\PersonImageManagePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -236,11 +243,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Controls\" />
-    <Folder Include="Pages\GeoLocation\" />
-    <Folder Include="Pages\MPDC\" />
-    <Folder Include="Pages\MPD\" />
-    <Folder Include="Pages\Party\" />
-    <Folder Include="Pages\Person\" />
     <Folder Include="Pages\Preview\" />
     <Folder Include="Pages\SignIn\" />
     <Folder Include="Reports\" />

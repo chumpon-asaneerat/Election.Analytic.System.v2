@@ -150,6 +150,9 @@ namespace PPRP.Pages
         private void GotoMPDC2566Manage()
         {
             // ข้อมูลว่าที่ผู้สมัครรับเลือกตั้งสมาชิกสภาผู้แทน แบบแบ่งเขต ปี 2566 - MPD (candidate)
+            var page = PPRPApp.Pages.MPDC2566Manage;
+            page.Setup();
+            PageContentManager.Instance.Current = page;
         }
 
         #endregion
