@@ -28,7 +28,6 @@ namespace PPRP.Models
         #region Internal Variables
 
         private string _ADM1Code = null;
-
         private string _ProvinceNameEN = null;
         private string _ProvinceNameTH = null;
         private decimal _ProvinceAreaM2 = decimal.Zero;
@@ -198,16 +197,20 @@ namespace PPRP.Models
     /// <summary>
     /// The MProvince class.
     /// </summary>
-    public class MProvince : MADM1
+    public class MProvince : NInpc
     {
         #region Internal Variables
 
-        private int? _ProvinceId = new int?();
-
-        private int _RegionId = 0;
+        private string _RegionId = null;
         private string _RegionName = null;
         private string _GeoGroup = null;
         private string _GeoSubGroup = null;
+
+        private string _ADM1Code = null;
+        private string _ProvinceId = null;
+        private string _ProvinceNameEN = null;
+        private string _ProvinceNameTH = null;
+        private decimal _ProvinceAreaM2 = decimal.Zero;
 
         #endregion
 
@@ -232,10 +235,27 @@ namespace PPRP.Models
 
         #region Public Properties
 
+        #region Province
+
+        /// <summary>
+        /// Gets or sets ADM1 Code.
+        /// </summary>
+        public string ADM1Code
+        {
+            get { return _ADM1Code; }
+            set
+            {
+                if (_ADM1Code != value)
+                {
+                    _ADM1Code = value;
+                    Raise(() => ADM1Code);
+                }
+            }
+        }
         /// <summary>
         /// Gets or sets ProvinceId.
         /// </summary>
-        public int? ProvinceId
+        public string ProvinceId
         {
             get { return _ProvinceId; }
             set
@@ -249,9 +269,60 @@ namespace PPRP.Models
             }
         }
         /// <summary>
+        /// Gets or sets Province Name (EN).
+        /// </summary>
+        public string ProvinceNameEN
+        {
+            get { return _ProvinceNameEN; }
+            set
+            {
+                if (_ProvinceNameEN != value)
+                {
+                    _ProvinceNameEN = value;
+                    Raise(() => ProvinceNameEN);
+                }
+            }
+        }
+        /// <summary>
+        /// Gets or sets Province Name (TH).
+        /// </summary>
+        public string ProvinceNameTH
+        {
+            get { return _ProvinceNameTH; }
+            set
+            {
+                if (_ProvinceNameTH != value)
+                {
+                    _ProvinceNameTH = value;
+                    Raise(() => ProvinceNameTH);
+                }
+            }
+        }
+        /// <summary>
+        /// Gets or sets Province Area M2.
+        /// </summary>
+        public decimal ProvinceAreaM2
+        {
+            get { return _ProvinceAreaM2; }
+            set
+            {
+                if (_ProvinceAreaM2 != value)
+                {
+                    _ProvinceAreaM2 = value;
+                    // Raise Event
+                    Raise(() => ProvinceAreaM2);
+                }
+            }
+        }
+
+        #endregion
+
+        #region Region
+
+        /// <summary>
         /// Gets or sets RegionId.
         /// </summary>
-        public int RegionId
+        public string RegionId
         {
             get { return _RegionId; }
             set
@@ -312,6 +383,8 @@ namespace PPRP.Models
                 }
             }
         }
+
+        #endregion
 
         #endregion
 

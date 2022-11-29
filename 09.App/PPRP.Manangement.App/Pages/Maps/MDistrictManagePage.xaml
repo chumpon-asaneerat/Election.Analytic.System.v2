@@ -51,8 +51,40 @@
                     <!--  FILTER BAR  -->
                     <DockPanel LastChildFill="True"
                                DockPanel.Dock="Top"
-                               Visibility="Collapsed"
                                Height="40">
+                        <TextBlock Text="ภาค"
+                                   DockPanel.Dock="Left"
+                                   VerticalAlignment="Center"
+                                   TextAlignment="Right"
+                                   Width="100"
+                                   Foreground="WhiteSmoke" />
+                        <TextBlock Width="10" DockPanel.Dock="Left" />
+                        <ComboBox x:Name="cbRegion"
+                                  Width="300"
+                                  FontFamily="{StaticResource THSarabunNew}"
+                                  FontSize="{StaticResource FontSize18}"
+                                  Margin="3"
+                                  VerticalContentAlignment="Center"
+                                  IsSynchronizedWithCurrentItem="False"
+                                  DisplayMemberPath="RegionName"
+                                  SelectionChanged="cbRegion_SelectionChanged" />
+                        <TextBlock Width="10" DockPanel.Dock="Left" />
+                        <TextBlock Text="จังหวัด"
+                                   DockPanel.Dock="Left"
+                                   VerticalAlignment="Center"
+                                   TextAlignment="Right"
+                                   Width="100"
+                                   Foreground="WhiteSmoke" />
+                        <TextBlock Width="10" DockPanel.Dock="Left" />
+                        <ComboBox x:Name="cbProvince"
+                                  Width="300"
+                                  FontFamily="{StaticResource THSarabunNew}"
+                                  FontSize="{StaticResource FontSize18}"
+                                  Margin="3"
+                                  VerticalContentAlignment="Center"
+                                  IsSynchronizedWithCurrentItem="False"
+                                  DisplayMemberPath="ProvinceNameTH"
+                                  SelectionChanged="cbProvince_SelectionChanged" />
                         <Grid />
                     </DockPanel>
                     <!--  BUTTONS BAR  -->
@@ -61,6 +93,7 @@
                                Height="40">
                         <!--  Add New  -->
                         <Button x:Name="cmdAddNew"
+                                Visibility="Collapsed"
                                 DockPanel.Dock="Left"
                                 Style="{StaticResource InlineButton}"
                                 Margin="5,0"
@@ -79,6 +112,7 @@
                                 Click="cmdImport_Click" />
                         <!--  EXPORT  -->
                         <Button x:Name="cmdExport"
+                                Visibility="Collapsed"
                                 DockPanel.Dock="Left"
                                 Style="{StaticResource InlineButton}"
                                 Margin="5,0"
@@ -98,7 +132,66 @@
                         <Grid />
                     </DockPanel>
                     <!--  ITEMS  -->
-                    <Grid />
+                    <ListView x:Name="lvDistricts" Style="{StaticResource SingleSelectListView}">
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn Header="จังหวัด">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Width="200"
+                                                       Text="{Binding ProvinceNameTH}"
+                                                       TextAlignment="Left" />
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                                <GridViewColumn Header="อำเภอ">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Width="200"
+                                                       Text="{Binding DistrictNameTH}"
+                                                       TextAlignment="Left" />
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                                <GridViewColumn Header="จังหวัด (EN)">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Width="Auto"
+                                                       Text="{Binding ProvinceNameEN}"
+                                                       TextAlignment="Left" />
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                                <GridViewColumn Header="อำเภอ (EN)">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Width="Auto"
+                                                       Text="{Binding DistrictNameEN}"
+                                                       TextAlignment="Left" />
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                                <GridViewColumn Header="รหัส ADM2">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding ADM2Code}"
+                                                       TextAlignment="Center"
+                                                       Width="100" />
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                                <GridViewColumn Header="ขนาดพื้นที่ (ตารางเมตร)">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding DistrictAreaM2, StringFormat={}{0:n2}}"
+                                                       TextAlignment="Right"
+                                                       Width="180" />
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
                 </DockPanel>
             </DockPanel>
         </Grid>

@@ -88,7 +88,7 @@ namespace PPRP.Pages
             {
                 return;
             }
-            //LoadRegions();
+            LoadRegions();
         }
 
         private void Export()
