@@ -74,6 +74,36 @@ namespace PPRP
             public static Window MainWindow { get { return Application.Current.MainWindow; } }
 
             #endregion
+
+            #region MessageBox
+
+            /// <summary>Gets MessageBox Window.</summary>
+            public static PPRP.Windows.MessageBoxWindow MessageBox
+            {
+                get
+                {
+                    var ret = new PPRP.Windows.MessageBoxWindow();
+                    ret.Owner = Application.Current.MainWindow;
+                    return ret;
+                }
+            }
+
+            #endregion
+
+            #region MessageBoxOKCancel
+
+            /// <summary>Gets MessageBoxOkCancel Window.</summary>
+            public static PPRP.Windows.MessageBoxOKCancelWindow MessageBoxOKCancel
+            {
+                get
+                {
+                    var ret = new PPRP.Windows.MessageBoxOKCancelWindow();
+                    ret.Owner = Application.Current.MainWindow;
+                    return ret;
+                }
+            }
+
+            #endregion
         }
     }
 }

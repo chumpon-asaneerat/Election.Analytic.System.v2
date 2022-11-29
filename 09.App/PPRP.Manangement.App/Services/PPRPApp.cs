@@ -129,7 +129,7 @@ namespace PPRP
 
             #endregion
 
-            #region MPD 2562 Vote, User Stat
+            #region MPD 2562 Vote Summary
 
             private static MPD2562VoteSummaryManagePage _MPD2562VoteSummaryManage;
 
@@ -317,6 +317,36 @@ namespace PPRP
 
             #endregion
 
+            #region MessageBox
+
+            /// <summary>Gets MessageBox Window.</summary>
+            public static PPRP.Windows.MessageBoxWindow MessageBox
+            {
+                get
+                {
+                    var ret = new PPRP.Windows.MessageBoxWindow();
+                    ret.Owner = Application.Current.MainWindow;
+                    return ret;
+                }
+            }
+
+            #endregion
+
+            #region MessageBoxOKCancel
+
+            /// <summary>Gets MessageBoxOkCancel Window.</summary>
+            public static PPRP.Windows.MessageBoxOKCancelWindow MessageBoxOKCancel
+            {
+                get
+                {
+                    var ret = new PPRP.Windows.MessageBoxOKCancelWindow();
+                    ret.Owner = Application.Current.MainWindow;
+                    return ret;
+                }
+            }
+
+            #endregion
+
             #region Common Progress Dialog
 
             /// <summary>Gets Common Progress Dialog Window.</summary>
@@ -325,6 +355,126 @@ namespace PPRP
                 get
                 {
                     var ret = new PPRP.Windows.ProgressWindow();
+                    ret.Owner = Application.Current.MainWindow;
+                    return ret;
+                }
+            }
+
+            #endregion
+
+            #region Import Polling Unit 2562
+
+            /// <summary>Gets MPD2562 Polling Unit Summary Import Window.</summary>
+            public static PPRP.Windows.ImportMPD2562PollingUnitWindow ImportMPD2562PollingUnit
+            {
+                get
+                {
+                    var ret = new PPRP.Windows.ImportMPD2562PollingUnitWindow();
+                    ret.Owner = Application.Current.MainWindow;
+                    return ret;
+                }
+            }
+
+            #endregion
+
+            #region Import Polling Unit 2566
+
+            /// <summary>Gets MPD2566 Polling Unit Summary Import Window.</summary>
+            public static PPRP.Windows.ImportMPD2566PollingUnitWindow ImportMPD2566PollingUnit
+            {
+                get
+                {
+                    var ret = new PPRP.Windows.ImportMPD2566PollingUnitWindow();
+                    ret.Owner = Application.Current.MainWindow;
+                    return ret;
+                }
+            }
+
+            #endregion
+
+            #region Import MPD 2562 Vote Summary
+
+            /// <summary>Gets MPD2562 Vote Summary Import Window.</summary>
+            public static PPRP.Windows.ImportMPD2562VoteSummaryWindow ImportMPD2562VoteSummary
+            {
+                get
+                {
+                    var ret = new PPRP.Windows.ImportMPD2562VoteSummaryWindow();
+                    ret.Owner = Application.Current.MainWindow;
+                    return ret;
+                }
+            }
+
+            #endregion
+
+            #region Import MPD 2562 User Stat (350 units)
+
+            /// <summary>Gets MPD2562 350 Unit Summary Import Window.</summary>
+            public static PPRP.Windows.ImportMPD2562x350UnitSummaryWindow ImportMPD2562x350UnitSummary
+            {
+                get
+                {
+                    var ret = new PPRP.Windows.ImportMPD2562x350UnitSummaryWindow();
+                    ret.Owner = Application.Current.MainWindow;
+                    return ret;
+                }
+            }
+
+            #endregion
+
+            #region Import MPDC 2566
+
+            /// <summary>Gets MPDC 2566 Import Window.</summary>
+            public static PPRP.Windows.ImportMPDC2566Window ImportMPDC2566
+            {
+                get
+                {
+                    var ret = new PPRP.Windows.ImportMPDC2566Window();
+                    ret.Owner = Application.Current.MainWindow;
+                    return ret;
+                }
+            }
+
+            #endregion
+
+            #region Import ADM1 - MProvince
+
+            /// <summary>Gets MProvince Import Window.</summary>
+            public static PPRP.Windows.ImportMProvinceWindow ImportMProvince
+            {
+                get
+                {
+                    var ret = new PPRP.Windows.ImportMProvinceWindow();
+                    ret.Owner = Application.Current.MainWindow;
+                    return ret;
+                }
+            }
+
+            #endregion
+
+            #region Import ADM2 - MDistrict
+
+            /// <summary>Gets MDistrict Import Window.</summary>
+            public static PPRP.Windows.ImportMDistrictWindow ImportMDistrict
+            {
+                get
+                {
+                    var ret = new PPRP.Windows.ImportMDistrictWindow();
+                    ret.Owner = Application.Current.MainWindow;
+                    return ret;
+                }
+            }
+
+            #endregion
+
+            #region Import ADM3 - MSubdistrict
+
+            /// <summary>Gets MSubdistrict Import Window.</summary>
+            public static PPRP.Windows.ImportMSubdistrictWindow ImportMSubdistrict
+            {
+                get
+                {
+                    var ret = new PPRP.Windows.ImportMSubdistrictWindow();
                     ret.Owner = Application.Current.MainWindow;
                     return ret;
                 }
