@@ -13,6 +13,11 @@
                    Foreground="{StaticResource TextBlockForegroundWhite}"
                    Text="กรุณาเลือก worksheet:"
                    Margin="2,5" />
+        <ComboBox x:Name="cbSheets"
+                  DockPanel.Dock="Top"
+                  Margin="3,0"
+                  DisplayMemberPath="SheetName"
+                  SelectionChanged="cbSheets_SelectionChanged" />
         <DockPanel DockPanel.Dock="Top"
                    LastChildFill="True"
                    Height="Auto">
@@ -24,14 +29,10 @@
                     Style="{StaticResource InlineButton}"
                     Content="อ่านข้อมูลตัวอย่าง"
                     Click="cmdLoadExcelData_Click" />
-            <ComboBox x:Name="cbSheets"
-                      DisplayMemberPath="SheetName"
-                      SelectionChanged="cbSheets_SelectionChanged" />
+            <TextBlock Foreground="{StaticResource TextBlockForegroundWhite}"
+                       Text="รายละเอียดข้อมูลนำเข้า:"
+                       Margin="2,5" />
         </DockPanel>
-        <TextBlock DockPanel.Dock="Top"
-                   Foreground="{StaticResource TextBlockForegroundWhite}"
-                   Text="รายละเอียดข้อมูลนำเข้า:"
-                   Margin="2,5" />
         <ListView x:Name="lvMaps" Style="{StaticResource SingleSelectListView}">
             <ListView.View>
                 <GridView>
