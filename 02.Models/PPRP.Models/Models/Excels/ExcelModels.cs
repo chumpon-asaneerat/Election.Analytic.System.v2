@@ -8,10 +8,13 @@ using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
+
+using OfficeOpenXml;
 
 #endregion
 
-namespace PPRP.Models
+namespace PPRP.Models.Excel
 {
     #region ExcelColumnMode
 
@@ -224,9 +227,9 @@ namespace PPRP.Models
         /// <summary>
         /// Constructor.
         /// </summary>
-        public NExcelMapProperty(ExcelModel model) : base() 
+        public NExcelMapProperty(NExcelWorksheet sheet) : base() 
         {
-            this.Model = model;
+            this.Sheet = sheet;
             this.Columns = new List<NExcelColumn>();
         }
         /// <summary>
@@ -305,15 +308,15 @@ namespace PPRP.Models
         #region Public Properties (For binding Map Columns)
 
         /// <summary>
-        /// Gets Excel Model.
+        /// Gets Excel Worksheet.
         /// </summary>
-        public ExcelModel Model { get; protected set; }
+        public NExcelWorksheet Sheet { get; protected set; }
         /// <summary>
         /// Gets or sets all avaliable excel Columns.
         /// </summary>
         public List<NExcelColumn> Columns
         {
-            get { return (null != Model) ? Model.Columns : null; }
+            get { return (null != Sheet) ? Sheet.Columns : null; }
             set { }
         }
         /// <summary>
@@ -340,101 +343,12 @@ namespace PPRP.Models
 
     #endregion
 
-    #region ExcelModel
+    #region NExcelWorksheet
 
     /// <summary>
-    /// The Excel Model class.
+    /// The NExcelWorksheet class.
     /// </summary>
-    public class ExcelModel
-    {
-        #region Constructor and Destructor
-
-        /// <summary>
-        /// Constructor.
-        /// </summary>
-        public ExcelModel() : base()
-        {
-            // prepare mapping column collections.
-            this.Columns = new List<NExcelColumn>();
-            // Auto load mapping from target class.
-            this.Mappings = new List<NExcelMapProperty>();
-        }
-        /// <summary>
-        /// Destructor.
-        /// </summary>
-        ~ExcelModel()
-        {
-            // Free Mappings.
-            if (null != this.Mappings)
-            {
-                lock (this)
-                {
-                    this.Mappings.Clear();
-                    this.Mappings = null;
-                }
-            }
-            // Free Columns.
-            if (null != this.Columns)
-            {
-                lock (this)
-                {
-                    this.Columns.Clear();
-                    this.Columns = null;
-                }
-            }
-        }
-
-        #endregion
-
-        #region Internal Methods
-
-        protected internal virtual void InitialMapProperties()
-        {
-
-        }
-
-        #endregion
-
-        #region Public Methods
-
-        /// <summary>
-        /// Refresh mapping columns
-        /// </summary>
-        public void MapColumns()
-        {
-            InitialMapProperties();
-        }
-
-        #endregion
-
-        #region Public Properties
-
-        /// <summary>
-        /// Gets Mappings.
-        /// </summary>
-        public List<NExcelMapProperty> Mappings { get; protected set; }
-        /// <summary>
-        /// Gets or sets all avaliable excel Columns.
-        /// </summary>
-        public List<NExcelColumn> Columns { get; protected set; }
-        /// <summary>
-        /// Gets or sets ExcelColumnMode.
-        /// </summary>
-        public ExcelColumnMode Mode { get; set; }
-
-        #endregion
-    }
-
-    #endregion
-
-    #region ExcelModel<T>
-
-    /// <summary>
-    /// The Excel Model class.
-    /// </summary>
-    /// <typeparam name="T">The target item type.</typeparam>
-    public class ExcelModel<T> : ExcelModel
-        where T : class
+    public class NExcelWorksheet
     {
         #region Reflection Utils class
 
@@ -456,7 +370,8 @@ namespace PPRP.Models
             /// </summary>
             /// <typeparam name="T">The target type.</typeparam>
             /// <returns>Returns all property that has attribute ExcelColumnAttribute.</returns>
-            public static List<PropertyInfo> GetProperties()
+            public static List<PropertyInfo> GetProperties<T>()
+                where T : class
             {
                 var t = typeof(T);
                 if (!Caches.ContainsKey(t))
@@ -488,37 +403,100 @@ namespace PPRP.Models
         /// <summary>
         /// Constructor.
         /// </summary>
-        public ExcelModel() : base() 
+        private NExcelWorksheet() : base() 
         {
-            // prepare ouput items
-            this.Items = new List<T>();
+            // prepare mapping column collections.
+            this.Columns = new List<NExcelColumn>();
+            // Auto load mapping from target class.
+            this.Mappings = new List<NExcelMapProperty>();
+        }
+        /// <summary>
+        /// Constructor.
+        /// </summary>
+        /// <param name="model">The Excel Models</param>
+        public NExcelWorksheet(ExcelModel model) : this()
+        {
+            this.Model = model;
         }
         /// <summary>
         /// Destructor.
         /// </summary>
-        ~ExcelModel() 
+        ~NExcelWorksheet() 
         {
-            // Free Items.
-            if (null != this.Items)
+            // Free Mappings.
+            if (null != this.Mappings)
             {
                 lock (this)
                 {
-                    this.Items.Clear();
-                    this.Items = null;
+                    this.Mappings.Clear();
+                    this.Mappings = null;
+                }
+            }
+            // Free Columns.
+            if (null != this.Columns)
+            {
+                lock (this)
+                {
+                    this.Columns.Clear();
+                    this.Columns = null;
                 }
             }
         }
 
         #endregion
 
-        #region Internal Methods
+        #region Override Methods
+
+        /// <summary>
+        /// Equals.
+        /// </summary>
+        /// <param name="obj">The target object instance.</param>
+        /// <returns>Returns true if target instance is equal to current instance</returns>
+        public override bool Equals(object obj)
+        {
+            if (null == obj) return false;
+            var curr = this.GetHashCode();
+            var target = obj.GetHashCode();
+            return curr.Equals(target);
+        }
+        /// <summary>
+        /// GetHashCode.
+        /// </summary>
+        /// <returns>Returns hash code of object instance.</returns>
+        public override int GetHashCode()
+        {
+            string sVal = this.ToString();
+            return sVal.GetHashCode();
+        }
+        /// <summary>
+        /// ToString.
+        /// </summary>
+        /// <returns>Returns string that represents object instance.</returns>
+        public override string ToString()
+        {
+            string code;
+            //int colCnt = (null == this.Columns) ? -1 : this.Columns.Count;
+            //code = string.Format("{0}_{1}",
+            //  string.IsNullOrWhiteSpace(this.SheetName) ? null : this.SheetName.Trim(), 
+            //  colCnt);
+
+            code = string.Format("{0}",
+                string.IsNullOrWhiteSpace(this.SheetName) ? string.Empty : this.SheetName.Trim());
+
+            return code.ToString();
+        }
+
+        #endregion
+
+        #region Protected Methods
 
         /// <summary>
         /// Initial Map Properties.
         /// </summary>
-        protected internal override void InitialMapProperties() 
+        protected void InitialMapProperties<T>()
+            where T : class
         {
-            var props = Utils.GetProperties();
+            var props = Utils.GetProperties<T>();
             foreach (var prop in props)
             {
                 var attr = Utils.GetAttribute(prop);
@@ -550,14 +528,265 @@ namespace PPRP.Models
 
         #region Public Methods
 
+        /// <summary>
+        /// Refresh mapping columns
+        /// </summary>
+        /// <typeparam name="T">The target class.</typeparam>
+        public void MapColumns<T>()
+            where T : class
+        {
+            InitialMapProperties<T>();
+        }
+
         #endregion
 
         #region Public Properties
 
         /// <summary>
-        /// Gets Items.
+        /// Gets Excel Model.
         /// </summary>
-        public List<T> Items { get; protected set; }
+        public ExcelModel Model { get; private set; }
+        /// <summary>
+        /// Gets or sets excel worksheet name.
+        /// </summary>
+        public string SheetName { get; set; }
+        /// <summary>
+        /// Gets Mappings.
+        /// </summary>
+        public List<NExcelMapProperty> Mappings { get; protected set; }
+        /// <summary>
+        /// Gets or sets all avaliable excel Columns.
+        /// </summary>
+        public List<NExcelColumn> Columns { get; protected set; }
+        /// <summary>
+        /// Gets or sets ExcelColumnMode.
+        /// </summary>
+        public ExcelColumnMode Mode { get; set; }
+
+        #endregion
+    }
+
+    #endregion
+
+    #region ExcelModel
+
+    /// <summary>
+    /// The Excel Model class.
+    /// </summary>
+    public class ExcelModel
+    {
+        #region Dialog class
+
+        /// <summary>
+        /// Dialogs utils class
+        /// </summary>
+        public class Dialogs
+        {
+            #region Show Open Excel Dialog
+
+            /// <summary>
+            /// Show Open Excel File Dialog.
+            /// </summary>
+            /// <param name="title">The Dialog Title.</param>
+            /// <param name="initDir">The initial directory path.</param>
+            /// <returns>Returns FileName if user choose file otherwise return null.</returns>
+            public static string OpenDialog(string title = "กรุณาเลือก excel file ที่ต้องการนำเข้าข้อมูล",
+                string initDir = null)
+            {
+                return OpenDialog(null, title, initDir);
+            }
+            /// <summary>
+            /// Show Open Excel File Dialog.
+            /// </summary>
+            /// <param name="owner">The owner window.</param>
+            /// <param name="title">The Dialog Title.</param>
+            /// <param name="initDir">The initial directory path.</param>
+            /// <returns>Returns FileName if user choose file otherwise return null.</returns>
+            public static string OpenDialog(Window owner,
+                string title = "กรุณาเลือก excel file ที่ต้องการนำเข้าข้อมูล",
+                string initDir = null)
+            {
+                string fileName = null;
+
+                // setup dialog options
+                var od = new Microsoft.Win32.OpenFileDialog();
+                od.Multiselect = false;
+                od.InitialDirectory = initDir;
+                od.Title = string.IsNullOrEmpty(title) ? "กรุณาเลือก excel file ที่ต้องการนำเข้าข้อมูล" : title;
+                od.Filter = "Excel Files(*.xls, *.xlsx)|*.xls;*.xlsx";
+
+                var ret = od.ShowDialog(owner) == true;
+                if (ret)
+                {
+                    // assigned to FileName
+                    fileName = od.FileName;
+                }
+                od = null;
+
+                return fileName;
+            }
+
+            #endregion
+
+            #region Show Save Excel Dialog
+
+            /// <summary>
+            /// Show Save Excel File Dialog.
+            /// </summary>
+            /// <param name="defaultFileName">The Default File Name.</param>
+            /// <returns>Returns FileName if user choose file otherwise return null.</returns>
+            public static string SaveDialog(string defaultFileName)
+            {
+                return SaveDialog(null, null, "กรุณาระบุขื่อ excel file ที่ต้องการนำส่งออกข้อมูล", defaultFileName);
+            }
+            /// <summary>
+            /// Show Save Excel File Dialog.
+            /// </summary>
+            /// <param name="title">The Dialog Title.</param>
+            /// <param name="initDir">The initial directory path.</param>
+            /// <returns>Returns FileName if user choose file otherwise return null.</returns>
+            public static string SaveDialog(string title = "กรุณาระบุขื่อ excel file ที่ต้องการนำส่งออกข้อมูล",
+                string initDir = null)
+            {
+                return SaveDialog(null, title, initDir);
+            }
+            /// <summary>
+            /// Show Save Excel File Dialog.
+            /// </summary>
+            /// <param name="owner">The owner window.</param>
+            /// <param name="title">The Dialog Title.</param>
+            /// <param name="initDir">The initial directory path.</param>
+            /// <param name="defaultFileName">The Default File Name.</param>
+            /// <returns>Returns FileName if user choose file otherwise return null.</returns>
+            public static string SaveDialog(Window owner,
+                string title = "กรุณาเลือก excel file ที่ต้องการนำเข้าข้อมูล",
+                string initDir = null,
+                string defaultFileName = "")
+            {
+                string fileName = null;
+
+                // setup dialog options
+                var sd = new Microsoft.Win32.SaveFileDialog();
+                sd.InitialDirectory = initDir;
+                sd.Title = string.IsNullOrEmpty(title) ? "กรุณาระบุขื่อ excel file ที่ต้องการนำส่งออกข้อมูล" : title;
+                sd.Filter = "Excel Files(*.xls, *.xlsx)|*.xls;*.xlsx";
+                sd.FileName = defaultFileName;
+                var ret = sd.ShowDialog(owner) == true;
+                if (ret)
+                {
+                    // assigned to FileName
+                    fileName = sd.FileName;
+                }
+                sd = null;
+
+                return fileName;
+            }
+
+            #endregion
+        }
+
+        #endregion
+
+        #region Constructor and Destructor
+
+        /// <summary>
+        /// Constructor.
+        /// </summary>
+        public ExcelModel() : base()
+        {
+            // Create worksheet list.
+            this.Worksheets = new List<NExcelWorksheet>();
+        }
+        /// <summary>
+        /// Destructor.
+        /// </summary>
+        ~ExcelModel()
+        {
+            // Free worksheets
+            if (null != this.Worksheets)
+            {
+                lock (this)
+                {
+                    this.Worksheets.Clear();
+                    this.Worksheets = null;
+                }
+            }
+        }
+
+        #endregion
+
+        #region Private Methods
+
+        private void LaodWorksheets()
+        {
+
+        }
+
+        #endregion
+
+        #region Public Methods
+
+        #region Open
+
+        /// <summary>
+        /// Open File.
+        /// </summary>
+        /// <returns>Returns true if file selected</returns>
+        public bool Open()
+        {
+            bool ret = false;
+
+            string file = Dialogs.OpenDialog();
+            if (!string.IsNullOrWhiteSpace(file))
+            {
+                FileName = file;
+                LaodWorksheets();
+            }
+
+            return ret;
+        }
+
+        #endregion
+
+        #region Save
+
+        /// <summary>
+        /// Save File as.
+        /// </summary>
+        /// <returns>Returns true if file selected</returns>
+        public bool SaveAs()
+        {
+            bool ret = false;
+
+            string file = Dialogs.SaveDialog();
+            if (!string.IsNullOrWhiteSpace(file))
+            {
+                FileName = file;
+                // need create worksheet function.
+            }
+
+            return ret;
+        }
+
+        #endregion
+
+        #endregion
+
+        #region Public Properties
+
+        /// <summary>
+        /// Gets File Name.
+        /// </summary>
+        public string FileName { get; set; }
+
+        #endregion
+
+        #region Public Properties
+
+        /// <summary>
+        /// Gets Excel Worksheets.
+        /// </summary>
+        public List<NExcelWorksheet> Worksheets { get; protected set; }
 
         #endregion
     }

@@ -20,9 +20,7 @@ namespace PPRP.Models.Excel
     /// <summary>
     /// The ExcelExport class.
     /// </summary>
-    /// <typeparam name="T">The target item iype paramter.</typeparam>
-    public class ExcelExport<T> : ExcelModel<T>
-        where T : class
+    public class ExcelExport : ExcelModel
     {
         #region Constructor (Static)
 
@@ -46,39 +44,11 @@ namespace PPRP.Models.Excel
 
         #endregion
 
-        #region Private Methods
-
-        #endregion
-
         #region Public Methods
 
-        /// <summary>
-        /// Save File as.
-        /// </summary>
-        /// <returns>Returns true if file selected</returns>
-        public bool SaveAs() 
-        {
-            bool ret = false;
-
-            string file = Dialogs.SaveDialog();
-            if (!string.IsNullOrWhiteSpace(file))
-            {
-                FileName = file;
-            }
-
-            return ret;
-        }
 
         #endregion
 
-        #region Public Properties
-
-        /// <summary>
-        /// Gets File Name.
-        /// </summary>
-        public string FileName { get; protected set; }
-
-        #endregion
     }
 
     #endregion
