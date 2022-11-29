@@ -261,6 +261,28 @@ namespace PPRP
 
             #endregion
 
+            #region ADMPak - Pak
+            /*
+            private static MSubdistrictManagePage _MSubdistrictManage;
+
+            /// <summary>Gets MSubdistrict Manage Page.</summary>
+            public static MSubdistrictManagePage MSubdistrictManage
+            {
+                get
+                {
+                    if (null == _MSubdistrictManage)
+                    {
+                        lock (typeof(PPRPApp))
+                        {
+                            _MSubdistrictManage = new MSubdistrictManagePage();
+                        }
+                    }
+                    return _MSubdistrictManage;
+                }
+            }
+            */
+            #endregion
+
             #region Party Image
 
             private static PartyManagePage _PartyManage;
@@ -475,6 +497,21 @@ namespace PPRP
                 get
                 {
                     var ret = new PPRP.Windows.ImportMSubdistrictWindow();
+                    ret.Owner = Application.Current.MainWindow;
+                    return ret;
+                }
+            }
+
+            #endregion
+
+            #region Import ADMPak - Pak
+
+            /// <summary>Gets ADM Pak Import Window.</summary>
+            public static PPRP.Windows.ImportADMPakWindow ImportADMPak
+            {
+                get
+                {
+                    var ret = new PPRP.Windows.ImportADMPakWindow();
                     ret.Owner = Application.Current.MainWindow;
                     return ret;
                 }
