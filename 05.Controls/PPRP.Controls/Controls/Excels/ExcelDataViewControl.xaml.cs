@@ -66,7 +66,7 @@ namespace PPRP.Controls.Excels
         private void LoadItems<T>()
             where T : class, new()
         {
-            var items = _sheet.LoadItems<T>();
+            Items = _sheet.LoadItems<T>();
             var maps = _sheet.Mappings;
 
             if (null == maps || maps.Count <= 0)
@@ -75,6 +75,7 @@ namespace PPRP.Controls.Excels
                 this.lvMapPreview.ItemsSource = null;
                 // Clear exist columns
                 this.lvMapGridView.Columns.Clear();
+
                 return;
             }
 
@@ -99,9 +100,18 @@ namespace PPRP.Controls.Excels
                 }
 
                 // set new ItemsSource
-                this.lvMapPreview.ItemsSource = items;
+                this.lvMapPreview.ItemsSource = Items;
             }
         }
+
+        #endregion
+
+        #region Public Properties
+
+        /// <summary>
+        /// Gets Items.
+        /// </summary>
+        public System.Collections.IList Items { get; private set; }
 
         #endregion
     }

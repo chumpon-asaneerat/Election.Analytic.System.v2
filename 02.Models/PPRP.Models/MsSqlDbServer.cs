@@ -135,7 +135,7 @@ namespace PPRP
             }
 
             string fullFileName = Path.Combine(configPath, filename);
-            return (!File.Exists(fullFileName));
+            return File.Exists(fullFileName);
         }
 
         private PPRPDbConfig GetConfig()

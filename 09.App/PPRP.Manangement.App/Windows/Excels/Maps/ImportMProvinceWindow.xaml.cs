@@ -76,7 +76,7 @@ namespace PPRP.Windows
 
         #endregion
 
-        #region NExcelImport Handlers
+        #region ExcelModel Handlers
 
         private void Model_SheetItemChanges(object sender, ExcelWorksheetArgs evt)
         {
@@ -103,7 +103,22 @@ namespace PPRP.Windows
 
         private void Imports()
         {
+            var items = lvMapPreview.Items;
+            if (null == items || items.Count <= 0) 
+                return; // No items
 
+            var prog = PPRPApp.Windows.ProgressDialog;
+            prog.Owner = this;
+            prog.Setup(items.Count);
+            prog.Show();
+
+            foreach (var item in items)
+            {
+                MADM1.ImportADM1(item as MADM1);
+                prog.Increment();
+            }
+            // Close progress dialog.
+            prog.Close();
         }
 
         #endregion

@@ -875,13 +875,15 @@ namespace PPRP.Models
 
         #region Private Methods
 
-        private void LaodWorksheets()
+        private bool LaodWorksheets()
         {
             MethodBase med = MethodBase.GetCurrentMethod();
 
+            bool ret = false;
+
             if (string.IsNullOrWhiteSpace(FileName))
             {
-                return;
+                return ret;
             }
 
             if (null == Worksheets) Worksheets = new List<NExcelWorksheet>();
@@ -924,6 +926,8 @@ namespace PPRP.Models
                         // Append to list.
                         Worksheets.Add(nSheet);
                     }
+
+                    ret = true;
                 }
                 catch (Exception ex)
                 {
@@ -938,6 +942,8 @@ namespace PPRP.Models
                     }
                 }
             }
+
+            return ret;
         }
 
         #endregion
@@ -973,7 +979,7 @@ namespace PPRP.Models
             if (!string.IsNullOrWhiteSpace(file))
             {
                 FileName = file;
-                LaodWorksheets();
+                ret = LaodWorksheets();
             }
 
             return ret;
