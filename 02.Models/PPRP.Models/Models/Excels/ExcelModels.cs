@@ -10,6 +10,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 
+using NLib;
+using NLib.Reflection;
 using OfficeOpenXml;
 
 #endregion
@@ -719,7 +721,67 @@ namespace PPRP.Models.Excel
 
         private void LaodWorksheets()
         {
+            MethodBase med = MethodBase.GetCurrentMethod();
 
+            if (string.IsNullOrWhiteSpace(FileName))
+            {
+                return;
+            }
+
+            if (null == Worksheets) Worksheets = new List<NExcelWorksheet>();
+            Worksheets.Clear(); // clear exists worksheets
+
+            using (var package = new ExcelPackage(FileName))
+            {
+                try
+                {
+                    var xlsSheets = package.Workbook.Worksheets;
+                    foreach (var xlsSheet in xlsSheets)
+                    {
+                        // Create new NExcelWorksheet.
+                        var nSheet = new NExcelWorksheet(this) { SheetName = xlsSheet.Name };
+                        // Extract columns into new NExcelWorksheet.
+                        if (null != xlsSheet &&
+                            null != xlsSheet.Dimension &&
+                            null != xlsSheet.Dimension.End &&
+                            xlsSheet.Dimension.End.Column > 0)
+                        {
+                            // row always 1
+                            int iRow = 1;
+                            for (int iCol = 1; iCol <= xlsSheet.Dimension.End.Column; iCol++)
+                            {
+                                // get column value
+                                var oVal = xlsSheet.Cells[iRow, iCol].Value;
+                                if (null != oVal)
+                                {
+                                    var nColumn = new NExcelColumn()
+                                    {
+                                        ColumnName = oVal.ToString(),
+                                        ColumnIndex = iCol,
+                                        ColumnLetter = ExcelCellAddress.GetColumnLetter(iCol)
+                                    };
+                                    // Add to column list
+                                    nSheet.Columns.Add(nColumn);
+                                }
+                            }
+                        }
+                        // Append to list.
+                        Worksheets.Add(nSheet);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    med.Err(ex);
+                    try
+                    {
+                        if (null != package) package.Dispose();
+                    }
+                    catch
+                    {
+                        Console.WriteLine("package dispose error.");
+                    }
+                }
+            }
         }
 
         #endregion
@@ -778,11 +840,6 @@ namespace PPRP.Models.Excel
         /// Gets File Name.
         /// </summary>
         public string FileName { get; set; }
-
-        #endregion
-
-        #region Public Properties
-
         /// <summary>
         /// Gets Excel Worksheets.
         /// </summary>
