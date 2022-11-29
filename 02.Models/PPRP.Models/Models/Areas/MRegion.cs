@@ -18,6 +18,175 @@ using Newtonsoft.Json;
 
 namespace PPRP.Models
 {
+    #region MADMPak
+
+    /// <summary>
+    /// The MADMPak class
+    /// </summary>
+    public class MADMPak : NInpc
+    {
+        #region Internal Variables
+
+        private string _RegionName = null;
+
+        private string _ProvinceId = null;
+        private string _ProvinceNameTH = null;
+
+        private string _DistrictId = null;
+        private string _DistrictNameTH = null;
+        
+        private string _SubDistrictId = null;
+        private string _SubDistrictNameTH = null;
+
+        #endregion
+
+        #region Constructor and Destructor
+
+        /// <summary>
+        /// Constructor.
+        /// </summary>
+        public MADMPak() : base()
+        {
+
+        }
+        /// <summary>
+        /// Destructor.
+        /// </summary>
+        ~MADMPak()
+        {
+
+        }
+
+        #endregion
+
+        #region Public Properties
+
+        /// <summary>
+        /// Gets or sets Region Name.
+        /// </summary>
+        [ExcelColumn("ภาค")]
+        public string RegionName
+        {
+            get { return _RegionName; }
+            set
+            {
+                if (_RegionName != value)
+                {
+                    _RegionName = value;
+                    // Raise Event
+                    Raise(() => RegionName);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets Province Id.
+        /// </summary>
+        [ExcelColumn("รหัสจังหวัด")]
+        public string ProvinceId
+        {
+            get { return _ProvinceId; }
+            set
+            {
+                if (_ProvinceId != value)
+                {
+                    _ProvinceId = value;
+                    Raise(() => ProvinceId);
+                }
+            }
+        }
+        /// <summary>
+        /// Gets or sets Province Name (TH).
+        /// </summary>
+        [ExcelColumn("จังหวัด")]
+        public string ProvinceNameTH
+        {
+            get { return _ProvinceNameTH; }
+            set
+            {
+                if (_ProvinceNameTH != value)
+                {
+                    _ProvinceNameTH = value;
+                    Raise(() => ProvinceNameTH);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets Sub District Id.
+        /// </summary>
+        [ExcelColumn("รหัสอำเภอ")]
+        public string DistrictId
+        {
+            get { return _DistrictId; }
+            set
+            {
+                if (_DistrictId != value)
+                {
+                    _DistrictId = value;
+                    Raise(() => DistrictId);
+                }
+            }
+        }
+        /// <summary>
+        /// Gets or sets District Name (TH).
+        /// </summary>
+        [ExcelColumn("อำเภอ")]
+        public string DistrictNameTH
+        {
+            get { return _DistrictNameTH; }
+            set
+            {
+                if (_DistrictNameTH != value)
+                {
+                    _DistrictNameTH = value;
+                    Raise(() => DistrictNameTH);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets Sub District Id.
+        /// </summary>
+        [ExcelColumn("รหัสตำบล")]
+        public string SubDistrictId
+        {
+            get { return _SubDistrictId; }
+            set
+            {
+                if (_SubDistrictId != value)
+                {
+                    _SubDistrictId = value;
+                    Raise(() => SubDistrictId);
+                }
+            }
+        }
+        /// <summary>
+        /// Gets or sets Sub District Name (TH).
+        /// </summary>
+        [ExcelColumn("ตำบล")]
+        public string SubDistrictNameTH
+        {
+            get { return _SubDistrictNameTH; }
+            set
+            {
+                if (_SubDistrictNameTH != value)
+                {
+                    _SubDistrictNameTH = value;
+                    Raise(() => SubDistrictNameTH);
+                }
+            }
+        }
+
+        #endregion
+
+        #region Static Methods
+
+        #endregion
+    }
+
+    #endregion
+
     #region MRegion
 
     /// <summary>
