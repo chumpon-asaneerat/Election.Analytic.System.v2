@@ -36,13 +36,6 @@ namespace PPRP.Pages
 
         #region Private Methods
 
-        private void GotoMainMenuPage()
-        {
-            var page = PPRPApp.Pages.MainMenu;
-            page.Setup();
-            PageContentManager.Instance.Current = page;
-        }
-
         private void GotoPak(PakMenuItem pak)
         {
             AreaNavi.Instance.Current = pak; // set current.

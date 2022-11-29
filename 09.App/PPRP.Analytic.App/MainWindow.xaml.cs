@@ -97,9 +97,9 @@ namespace PPRP
             else
             {
                 // SignIn OK - show thailand page.
-                //var page = PPRPApp.Pages.Thailand;
-                //page.Setup();
-                //PageContentManager.Instance.Current = page;
+                var page = PPRPApp.Pages.Thailand;
+                page.Setup();
+                PageContentManager.Instance.Current = page;
             }
         }
 

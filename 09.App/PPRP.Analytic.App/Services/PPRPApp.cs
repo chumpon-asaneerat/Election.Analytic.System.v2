@@ -264,6 +264,29 @@ namespace PPRP
             }
 
             #endregion
+
+            #region MPD2562VoteSummary
+
+
+            private static MPD2562VoteSummaryPage _MPD2562VoteSummaryPage;
+
+            /// <summary>Gets MPD2562VoteSummary Page.</summary>
+            public static MPD2562VoteSummaryPage MPD2562VoteSummary
+            {
+                get
+                {
+                    if (null == _MPD2562VoteSummaryPage)
+                    {
+                        lock (typeof(MPD2562VoteSummaryPage))
+                        {
+                            _MPD2562VoteSummaryPage = new MPD2562VoteSummaryPage();
+                        }
+                    }
+                    return _MPD2562VoteSummaryPage;
+                }
+            }
+
+            #endregion
         }
         /// <summary>
         /// Windows Static class.
