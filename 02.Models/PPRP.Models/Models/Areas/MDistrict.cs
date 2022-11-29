@@ -141,7 +141,7 @@ namespace PPRP.Models
             }
         }
         /// <summary>
-        /// Gets or sets Sub District Area M2.
+        /// Gets or sets District Area M2.
         /// </summary>
         [ExcelColumn("AREA_M2")]
         public decimal DistrictAreaM2
@@ -342,7 +342,7 @@ namespace PPRP.Models
             }
         }
         /// <summary>
-        /// Gets or sets Sub District Area M2.
+        /// Gets or sets District Area M2.
         /// </summary>
         public decimal DistrictAreaM2
         {

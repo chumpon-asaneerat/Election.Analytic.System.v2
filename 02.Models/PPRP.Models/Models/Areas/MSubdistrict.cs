@@ -272,9 +272,31 @@ namespace PPRP.Models
     /// <summary>
     /// The MSubdistrict class.
     /// </summary>
-    public class MSubdistrict : MADM3
+    public class MSubdistrict : NInpc
     {
         #region Internal Variables
+
+        private string _RegionId = null;
+        private string _RegionName = null;
+        private string _GeoGroup = null;
+        private string _GeoSubGroup = null;
+
+        private string _ADM1Code = null;
+        private string _ProvinceId = null;
+        private string _ProvinceNameEN = null;
+        private string _ProvinceNameTH = null;
+
+        private string _ADM2Code = null;
+        private string _DistrictId = null;
+        private string _DistrictNameEN = null;
+        private string _DistrictNameTH = null;
+
+        private string _ADM3Code = null;
+        private string _SubdistrictId = null;
+        private string _SubdistrictNameEN = null;
+        private string _SubdistrictNameTH = null;
+
+        private decimal _SubdistrictAreaM2 = decimal.Zero;
 
         #endregion
 
@@ -299,9 +321,362 @@ namespace PPRP.Models
 
         #region Public Properties
 
+        #region Subdistrict
+
+        /// <summary>
+        /// Gets or sets ADM3 Code.
+        /// </summary>
+        public string ADM3Code
+        {
+            get { return _ADM3Code; }
+            set
+            {
+                if (_ADM3Code != value)
+                {
+                    _ADM3Code = value;
+                    Raise(() => ADM3Code);
+                }
+            }
+        }
+        /// <summary>
+        /// Gets or sets Subdistrict Id.
+        /// </summary>
+        public string SubdistrictId
+        {
+            get { return _SubdistrictId; }
+            set
+            {
+                if (_SubdistrictId != value)
+                {
+                    _SubdistrictId = value;
+                    Raise(() => SubdistrictId);
+                }
+            }
+        }
+        /// <summary>
+        /// Gets or sets Subdistrict Name (EN).
+        /// </summary>
+        public string SubdistrictNameEN
+        {
+            get { return _SubdistrictNameEN; }
+            set
+            {
+                if (_SubdistrictNameEN != value)
+                {
+                    _SubdistrictNameEN = value;
+                    Raise(() => SubdistrictNameEN);
+                }
+            }
+        }
+        /// <summary>
+        /// Gets or sets Subdistrict Name (TH).
+        /// </summary>
+        public string SubdistrictNameTH
+        {
+            get { return _SubdistrictNameTH; }
+            set
+            {
+                if (_SubdistrictNameTH != value)
+                {
+                    _SubdistrictNameTH = value;
+                    Raise(() => SubdistrictNameTH);
+                }
+            }
+        }
+        /// <summary>
+        /// Gets or sets Sub District Area M2.
+        /// </summary>
+        public decimal SubdistrictAreaM2
+        {
+            get { return _SubdistrictAreaM2; }
+            set
+            {
+                if (_SubdistrictAreaM2 != value)
+                {
+                    _SubdistrictAreaM2 = value;
+                    // Raise Event
+                    Raise(() => SubdistrictAreaM2);
+                }
+            }
+        }
+
+        #endregion
+
+        #region District
+
+        /// <summary>
+        /// Gets or sets ADM2 Code.
+        /// </summary>
+        public string ADM2Code
+        {
+            get { return _ADM2Code; }
+            set
+            {
+                if (_ADM2Code != value)
+                {
+                    _ADM2Code = value;
+                    Raise(() => ADM2Code);
+                }
+            }
+        }
+        /// <summary>
+        /// Gets or sets District Id.
+        /// </summary>
+        public string DistrictId
+        {
+            get { return _DistrictId; }
+            set
+            {
+                if (_DistrictId != value)
+                {
+                    _DistrictId = value;
+                    Raise(() => DistrictId);
+                }
+            }
+        }
+        /// <summary>
+        /// Gets or sets District Name (EN).
+        /// </summary>
+        public string DistrictNameEN
+        {
+            get { return _DistrictNameEN; }
+            set
+            {
+                if (_DistrictNameEN != value)
+                {
+                    _DistrictNameEN = value;
+                    Raise(() => DistrictNameEN);
+                }
+            }
+        }
+        /// <summary>
+        /// Gets or sets District Name (TH).
+        /// </summary>
+        public string DistrictNameTH
+        {
+            get { return _DistrictNameTH; }
+            set
+            {
+                if (_DistrictNameTH != value)
+                {
+                    _DistrictNameTH = value;
+                    Raise(() => DistrictNameTH);
+                }
+            }
+        }
+
+        #endregion
+
+        #region Province
+
+        /// <summary>
+        /// Gets or sets ADM1 Code.
+        /// </summary>
+        public string ADM1Code
+        {
+            get { return _ADM1Code; }
+            set
+            {
+                if (_ADM1Code != value)
+                {
+                    _ADM1Code = value;
+                    Raise(() => ADM1Code);
+                }
+            }
+        }
+        /// <summary>
+        /// Gets or sets ProvinceId.
+        /// </summary>
+        public string ProvinceId
+        {
+            get { return _ProvinceId; }
+            set
+            {
+                if (_ProvinceId != value)
+                {
+                    _ProvinceId = value;
+                    // Raise Event
+                    Raise(() => ProvinceId);
+                }
+            }
+        }
+        /// <summary>
+        /// Gets or sets Province Name (EN).
+        /// </summary>
+        public string ProvinceNameEN
+        {
+            get { return _ProvinceNameEN; }
+            set
+            {
+                if (_ProvinceNameEN != value)
+                {
+                    _ProvinceNameEN = value;
+                    Raise(() => ProvinceNameEN);
+                }
+            }
+        }
+        /// <summary>
+        /// Gets or sets Province Name (TH).
+        /// </summary>
+        public string ProvinceNameTH
+        {
+            get { return _ProvinceNameTH; }
+            set
+            {
+                if (_ProvinceNameTH != value)
+                {
+                    _ProvinceNameTH = value;
+                    Raise(() => ProvinceNameTH);
+                }
+            }
+        }
+
+        #endregion
+
+        #region Region
+
+        /// <summary>
+        /// Gets or sets RegionId.
+        /// </summary>
+        public string RegionId
+        {
+            get { return _RegionId; }
+            set
+            {
+                if (_RegionId != value)
+                {
+                    _RegionId = value;
+                    // Raise Event
+                    Raise(() => RegionId);
+                }
+            }
+        }
+        /// <summary>
+        /// Gets or sets Region Name.
+        /// </summary>
+        public string RegionName
+        {
+            get { return _RegionName; }
+            set
+            {
+                if (_RegionName != value)
+                {
+                    _RegionName = value;
+                    // Raise Event
+                    Raise(() => RegionName);
+                }
+            }
+        }
+        /// <summary>
+        /// Gets or sets Geo Group.
+        /// </summary>
+        public string GeoGroup
+        {
+            get { return _GeoGroup; }
+            set
+            {
+                if (_GeoGroup != value)
+                {
+                    _GeoGroup = value;
+                    // Raise Event
+                    Raise(() => GeoGroup);
+                }
+            }
+        }
+        /// <summary>
+        /// Gets or sets Geo SubGroup.
+        /// </summary>
+        public string GeoSubGroup
+        {
+            get { return _GeoSubGroup; }
+            set
+            {
+                if (_GeoSubGroup != value)
+                {
+                    _GeoSubGroup = value;
+                    // Raise Event
+                    Raise(() => GeoSubGroup);
+                }
+            }
+        }
+
+        #endregion
+
         #endregion
 
         #region Static Methods
+
+        /// <summary>
+        /// Gets.
+        /// </summary>
+        /// <param name="adm3Code"></param>
+        /// <param name="subdistrictNameTH"></param>
+        /// <param name="adm2Code"></param>
+        /// <param name="districtNameTH"></param>
+        /// <param name="adm1Code"></param>
+        /// <param name="provinceNameTH"></param>
+        /// <param name="regionId"></param>
+        /// <param name="regionName"></param>
+        /// <param name="geoGroup"></param>
+        /// <param name="geoSubGroup"></param>
+        /// <returns></returns>
+        public static NDbResult<List<MSubdistrict>> Gets(
+            string adm3Code = null, string subdistrictNameTH = null,
+            string adm2Code = null, string districtNameTH = null,
+            string adm1Code = null, string provinceNameTH = null,
+            string regionId = null, string regionName = null,
+            string geoGroup = null, string geoSubGroup = null)
+        {
+            MethodBase med = MethodBase.GetCurrentMethod();
+
+            NDbResult<List<MSubdistrict>> rets = new NDbResult<List<MSubdistrict>>();
+
+            IDbConnection cnn = DbServer.Instance.Db;
+            if (null == cnn || !DbServer.Instance.Connected)
+            {
+                string msg = "Connection is null or cannot connect to database server.";
+                med.Err(msg);
+                // Set error number/message
+                rets.ErrNum = 8000;
+                rets.ErrMsg = msg;
+
+                return rets;
+            }
+
+            var p = new DynamicParameters();
+
+            p.Add("@ADM3Code", adm3Code);
+            p.Add("@SubdistrictNameTH", subdistrictNameTH);
+            p.Add("@ADM2Code", adm2Code);
+            p.Add("@DistrictNameTH", districtNameTH);
+            p.Add("@ADM1Code", adm1Code);
+            p.Add("@ProvinceNameTH", provinceNameTH);
+            p.Add("@RegionId", regionId);
+            p.Add("@RegionName", regionName);
+            p.Add("@GeoGroup", geoGroup);
+            p.Add("@GeoSubGroup", geoSubGroup);
+
+            try
+            {
+                rets.Value = cnn.Query<MSubdistrict>("GetMSubdistricts", p,
+                    commandType: CommandType.StoredProcedure).ToList();
+            }
+            catch (Exception ex)
+            {
+                med.Err(ex);
+                // Set error number/message
+                rets.ErrNum = 9999;
+                rets.ErrMsg = ex.Message;
+            }
+
+            if (null == rets.Value)
+            {
+                // create empty list.
+                rets.Value = new List<MSubdistrict>();
+            }
+
+            return rets;
+        }
 
         #endregion
     }
