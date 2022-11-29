@@ -260,7 +260,7 @@ namespace PPRP.Models
     {
         #region Internal Variables
 
-        private int _RegionId = 0;
+        private string _RegionId = null;
         private string _RegionName = null;
         private string _GeoGroup = null;
         private string _GeoSubGroup = null;
@@ -291,7 +291,7 @@ namespace PPRP.Models
         /// <summary>
         /// Gets or sets RegionId.
         /// </summary>
-        public int RegionId
+        public string RegionId
         {
             get { return _RegionId; }
             set
