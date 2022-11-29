@@ -57,6 +57,7 @@ namespace PPRP.Models
         #endregion
 
         #region Public Properties
+
         /// <summary>
         /// Gets or sets ADM1 Code.
         /// </summary>
@@ -158,6 +159,69 @@ namespace PPRP.Models
         #endregion
 
         #region Static Methods
+
+        /// <summary>
+        /// Import ADM3.
+        /// </summary>
+        /// <param name="value">The ADM3 value.</param>
+        /// <returns>Returns NDbResult instance.</returns>
+        public static NDbResult ImportADM3(MADM3 value)
+        {
+            MethodBase med = MethodBase.GetCurrentMethod();
+
+            NDbResult ret = new NDbResult();
+
+            IDbConnection cnn = DbServer.Instance.Db;
+            if (null == cnn || !DbServer.Instance.Connected)
+            {
+                string msg = "Connection is null or cannot connect to database server.";
+                med.Err(msg);
+                // Set error number/message
+                ret.ErrNum = 8000;
+                ret.ErrMsg = msg;
+
+                return ret;
+            }
+
+            if (null == value)
+            {
+                string msg = "Value is null.";
+                med.Err(msg);
+                // Set error number/message
+                ret.ErrNum = 8000;
+                ret.ErrMsg = msg;
+
+                return ret;
+            }
+
+            var p = new DynamicParameters();
+            p.Add("@ADM3Code", value.ADM3Code);
+            p.Add("@SubDistrictNameTH", value.SubDistrictNameTH);
+            p.Add("@SubDistrictNameEN", value.SubDistrictNameEN);
+            p.Add("@AreaM2", value.SubDistrictAreaM2);
+            p.Add("@ADM1Code", value.ADM1Code);
+            p.Add("@ADM2Code", value.ADM2Code);
+
+            p.Add("@errNum", dbType: DbType.Int32, direction: ParameterDirection.Output);
+            p.Add("@errMsg", dbType: DbType.String, direction: ParameterDirection.Output, size: -1);
+
+            try
+            {
+                cnn.Execute("ImportADM3", p, commandType: CommandType.StoredProcedure);
+                // Set error number/message
+                ret.ErrNum = p.Get<int>("@errNum");
+                ret.ErrMsg = p.Get<string>("@errMsg");
+            }
+            catch (Exception ex)
+            {
+                med.Err(ex);
+                // Set error number/message
+                ret.ErrNum = 9999;
+                ret.ErrMsg = ex.Message;
+            }
+
+            return ret;
+        }
 
         #endregion
     }
