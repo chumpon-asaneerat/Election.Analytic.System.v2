@@ -20,7 +20,9 @@ namespace PPRP.Models.Excel
     /// <summary>
     /// The ExcelImport class.
     /// </summary>
-    public class ExcelImport
+    /// <typeparam name="T">The target item iype paramter.</typeparam>
+    public class ExcelImport<T> : ExcelModel<T>
+        where T: class
     {
         #region Constructor (Static)
 
@@ -44,9 +46,37 @@ namespace PPRP.Models.Excel
 
         #endregion
 
+        #region Private Methods
+
+        #endregion
+
         #region Public Methods
 
-        public void Map() { }
+        /// <summary>
+        /// Open File.
+        /// </summary>
+        /// <returns>Returns true if file selected</returns>
+        public bool Open() 
+        {
+            bool ret = false;
+
+            string file = Dialogs.OpenDialog();
+            if (!string.IsNullOrWhiteSpace(file))
+            {
+                FileName = file;
+            }
+
+            return ret;
+        }
+
+        #endregion
+
+        #region Public Properties
+
+        /// <summary>
+        /// Gets File Name.
+        /// </summary>
+        public string FileName { get; protected set; }
 
         #endregion
     }

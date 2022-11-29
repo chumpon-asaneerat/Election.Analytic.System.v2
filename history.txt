@@ -19,8 +19,10 @@ Election.Analytic.System.v2 - PPRP  #105
 Election.Analytic.System.v2 - PPRP  #104
 - 
 
+[commited]
 Election.Analytic.System.v2 - PPRP  #103
-- 
+- PPRP.Manangement.App project
+  - Implements UI #16.
 
 [commited]
 Election.Analytic.System.v2 - PPRP  #102

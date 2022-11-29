@@ -40,6 +40,8 @@ namespace PPRP.Windows
 
         #region Internal Variables
 
+        private ExcelImport<MADM1> model = new ExcelImport<MADM1>();
+
         #endregion
 
         #region Loaded/Unloaded
@@ -102,7 +104,12 @@ namespace PPRP.Windows
 
         private void ChooseExcelFile()
         {
+            if (model.Open())
+            {
+                
+            }
 
+            txtFileName.Text = model.FileName;
         }
 
         private void Imports()

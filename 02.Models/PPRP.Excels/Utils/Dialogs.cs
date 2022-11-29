@@ -9,7 +9,7 @@ using System.Windows;
 
 #endregion
 
-namespace PPRP.Excel.Utils
+namespace PPRP.Models.Excel
 {
     public class Dialogs
     {
@@ -76,7 +76,7 @@ namespace PPRP.Excel.Utils
         /// <param name="title">The Dialog Title.</param>
         /// <param name="initDir">The initial directory path.</param>
         /// <returns>Returns FileName if user choose file otherwise return null.</returns>
-        public static string ShowDialog(string title = "กรุณาระบุขื่อ excel file ที่ต้องการนำส่งออกข้อมูล",
+        public static string SaveDialog(string title = "กรุณาระบุขื่อ excel file ที่ต้องการนำส่งออกข้อมูล",
             string initDir = null)
         {
             return SaveDialog(null, title, initDir);
