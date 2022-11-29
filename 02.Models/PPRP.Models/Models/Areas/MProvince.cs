@@ -59,6 +59,7 @@ namespace PPRP.Models
         /// <summary>
         /// Gets or sets ADM1 Code.
         /// </summary>
+        [ExcelColumn("ADM1_CODE")]
         public string ADM1Code
         {
             get { return _ADM1Code; }
@@ -75,6 +76,7 @@ namespace PPRP.Models
         /// <summary>
         /// Gets or sets Province Name (EN).
         /// </summary>
+        [ExcelColumn("ADM1_EN")]
         public string ProvinceNameEN
         {
             get { return _ProvinceNameEN; }
@@ -90,6 +92,7 @@ namespace PPRP.Models
         /// <summary>
         /// Gets or sets Province Name (TH).
         /// </summary>
+        [ExcelColumn("ADM1_TH")]
         public string ProvinceNameTH
         {
             get { return _ProvinceNameTH; }
@@ -105,6 +108,7 @@ namespace PPRP.Models
         /// <summary>
         /// Gets or sets Province Area M2.
         /// </summary>
+        [ExcelColumn("AREA_M2")]
         public decimal ProvinceAreaM2
         {
             get { return _ProvinceAreaM2; }

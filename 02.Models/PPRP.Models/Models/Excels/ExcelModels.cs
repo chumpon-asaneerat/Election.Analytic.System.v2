@@ -16,7 +16,7 @@ using OfficeOpenXml;
 
 #endregion
 
-namespace PPRP.Models.Excel
+namespace PPRP.Models
 {
     #region ExcelColumnMode
 
@@ -370,19 +370,19 @@ namespace PPRP.Models.Excel
             /// <summary>
             /// Gets Properties of target type.
             /// </summary>
-            /// <typeparam name="T">The target type.</typeparam>
+            /// <param name="targetType">The Target type.</param>
             /// <returns>Returns all property that has attribute ExcelColumnAttribute.</returns>
-            public static List<PropertyInfo> GetProperties<T>()
-                where T : class
+            public static List<PropertyInfo> GetProperties(Type targetType)
             {
-                var t = typeof(T);
-                if (!Caches.ContainsKey(t))
+                if (null == targetType)
+                    return null;
+                if (!Caches.ContainsKey(targetType))
                 {
-                    var properties = typeof(T).GetProperties()
+                    var properties = targetType.GetProperties()
                         .Where(prop => prop.IsDefined(typeof(ExcelColumnAttribute), false)).ToList();
-                    Caches.Add(t, properties);
+                    Caches.Add(targetType, properties);
                 }
-                return Caches[t];
+                return Caches[targetType];
             }
             /// <summary>
             /// Gets ExcelColumnAttribute from target property.
@@ -490,15 +490,15 @@ namespace PPRP.Models.Excel
 
         #endregion
 
-        #region Protected Methods
+        #region Private Methods
 
         /// <summary>
-        /// Initial Map Properties.
+        /// Map Columns and Properties.
         /// </summary>
-        protected void InitialMapProperties<T>()
-            where T : class
+        /// <param name="targetType">The Target type.</param>
+        private void MapColumnsProperties(Type targetType)
         {
-            var props = Utils.GetProperties<T>();
+            var props = Utils.GetProperties(targetType);
             foreach (var prop in props)
             {
                 var attr = Utils.GetAttribute(prop);
@@ -531,13 +531,125 @@ namespace PPRP.Models.Excel
         #region Public Methods
 
         /// <summary>
+        /// Call to invoke SheetItemChanges event. 
+        /// </summary>
+        public void RefrehsWorksheet()
+        {
+            if (null != Model)
+                Model.RefrehsWorksheet(this);
+        }
+        /// <summary>
         /// Refresh mapping columns
         /// </summary>
-        /// <typeparam name="T">The target class.</typeparam>
-        public void MapColumns<T>()
-            where T : class
+        /// <param name="targetType">The Target type.</param>
+        public void MapColumns(Type targetType)
         {
-            InitialMapProperties<T>();
+            MapColumnsProperties(targetType);
+        }
+        /// <summary>
+        /// Load Items.
+        /// </summary>
+        /// <typeparam name="T">The target item type.</typeparam>
+        /// <returns>
+        /// Returns List of target item with data that read from worksheet.
+        /// </returns>
+        public List<T> LoadItems<T>()
+            where T : class, new()
+        {
+            MethodBase med = MethodBase.GetCurrentMethod();
+
+            var results = new List<T>();
+
+            #region Checking
+
+            try
+            {
+                if (null == Model ||
+                    string.IsNullOrWhiteSpace(Model.FileName) ||
+                    string.IsNullOrWhiteSpace(SheetName) ||
+                    null == Mappings || Mappings.Count <= 0)
+                {
+                    // something is missing.
+                    return results;
+                }
+            }
+            catch (Exception ex1)
+            {
+                med.Err(ex1);
+
+                return results; // Error so exit.
+            }
+
+            #endregion
+
+            #region Create local mappings
+
+            Dictionary<string, int> columns = new Dictionary<string, int>();
+            foreach (var map in Mappings)
+            {
+                if (map.ColumnIndex < 1)
+                    continue; // ignore if column < 1
+
+                if (!columns.ContainsKey(map.PropertyName))
+                    columns.Add(map.PropertyName, map.ColumnIndex);
+                else columns[map.PropertyName] = map.ColumnIndex;
+            }
+
+            #endregion
+
+            #region Load data
+
+            using (var package = new ExcelPackage(Model.FileName))
+            {
+                try
+                {
+                    var sheet = package.Workbook.Worksheets[SheetName];
+                    if (null != sheet)
+                    {
+                        int colCount = sheet.Dimension.End.Column;  // get Column Count
+                        int rowCount = sheet.Dimension.End.Row;     // get row count
+                        // start row at position 2.
+                        for (int row = 2; row <= rowCount; row++)
+                        {
+                            var inst = new T(); // create instance.
+
+                            foreach (var key in columns.Keys)
+                            {
+                                int colIdx = columns[key];
+                                if (colIdx < 1) continue;
+                                try
+                                {
+                                    object oVal = sheet.Cells[row, columns[key]].Value;
+                                    DynamicAccess<T>.Set(inst, key, oVal);
+                                }
+                                catch (Exception ex)
+                                {
+                                    //Console.WriteLine(ex);
+                                    med.Err(ex);
+                                }
+                            }
+                            // append to result list
+                            results.Add(inst);
+                        }
+                    }
+                }
+                catch (Exception ex2)
+                {
+                    med.Err(ex2);
+                }
+            }
+
+            #endregion
+
+            #region Clear local mappings
+
+            if (null != columns)
+                columns.Clear();
+            columns = null;
+
+            #endregion
+
+            return results;
         }
 
         #endregion
@@ -567,6 +679,48 @@ namespace PPRP.Models.Excel
 
         #endregion
     }
+
+    #endregion
+
+    #region ExcelModel Event Handlers and Event Args
+
+    /// <summary>
+    /// The ExcelWorksheetArgs class.
+    /// </summary>
+    public class ExcelWorksheetArgs
+    {
+        #region Constructor
+
+        /// <summary>
+        /// Constructor.
+        /// </summary>
+        public ExcelWorksheetArgs() : base() { }
+        /// <summary>
+        /// Constructor.
+        /// </summary>
+        /// <param name="sheet"></param>
+        public ExcelWorksheetArgs(NExcelWorksheet sheet) : this()
+        {
+            Sheet = sheet;
+        }
+
+        #endregion
+
+        #region Public Properties
+
+        /// <summary>
+        /// Gets or sets Worksheet.
+        /// </summary>
+        public NExcelWorksheet Sheet { get; set;}
+
+        #endregion
+    }
+    /// <summary>
+    /// The ExcelWorksheetItemsChanges delegate.
+    /// </summary>
+    /// <param name="sender">The sender object.</param>
+    /// <param name="evt">The ExcelWorksheetArgs instance.</param>
+    public delegate void ExcelWorksheetItemsChanges(object sender, ExcelWorksheetArgs evt);
 
     #endregion
 
@@ -788,6 +942,21 @@ namespace PPRP.Models.Excel
 
         #region Public Methods
 
+        #region Event Raisers
+
+        /// <summary>
+        /// Call to invoke SheetItemChanges event. 
+        /// </summary>
+        /// <param name="sheet">The target Worksheet.</param>
+        public void RefrehsWorksheet(NExcelWorksheet sheet)
+        {
+            if (null == sheet)
+                return; // no worksheet so ignore.
+            SheetItemChanges.Call(this, new ExcelWorksheetArgs(sheet));
+        }
+
+        #endregion
+
         #region Open
 
         /// <summary>
@@ -844,6 +1013,15 @@ namespace PPRP.Models.Excel
         /// Gets Excel Worksheets.
         /// </summary>
         public List<NExcelWorksheet> Worksheets { get; protected set; }
+
+        #endregion
+
+        #region Public Events
+
+        /// <summary>
+        /// The SheetItemChanges event.
+        /// </summary>
+        public event ExcelWorksheetItemsChanges SheetItemChanges;
 
         #endregion
     }

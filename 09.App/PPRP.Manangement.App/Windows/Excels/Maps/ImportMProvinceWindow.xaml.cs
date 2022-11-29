@@ -15,7 +15,6 @@ using NLib.Reflection;
 using NLib.Services;
 
 using PPRP.Models;
-using PPRP.Models.Excel;
 
 #endregion
 
@@ -40,7 +39,7 @@ namespace PPRP.Windows
 
         #region Internal Variables
 
-        private ExcelImport<MADM1> model = new ExcelImport<MADM1>();
+        private ExcelModel model = new ExcelModel();
 
         #endregion
 
@@ -48,12 +47,11 @@ namespace PPRP.Windows
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
-            //import.OnSampleDataChanged += Import_OnSampleDataChanged;
+            model.SheetItemChanges += Model_SheetItemChanges;
         }
-
         private void UserControl_Unloaded(object sender, RoutedEventArgs e)
         {
-            //import.OnSampleDataChanged -= Import_OnSampleDataChanged;
+            model.SheetItemChanges -= Model_SheetItemChanges;
         }
 
         #endregion
@@ -80,12 +78,12 @@ namespace PPRP.Windows
 
         #region NExcelImport Handlers
 
-        private void Import_OnSampleDataChanged(object sender, EventArgs e)
+        private void Model_SheetItemChanges(object sender, ExcelWorksheetArgs evt)
         {
-            /*
-            if (null != wsMap && null != wsMap.ImportModel)
+            if (null != evt && null != evt.Sheet)
             {
-                var model = wsMap.ImportModel;
+                var sheet = evt.Sheet;
+                /*
                 lvMapPreview.Setup(import);
 
                 items = XlsMProvince.LoadWorksheetTable(import, model.Worksheet.SheetName, model.Maps);
@@ -94,8 +92,8 @@ namespace PPRP.Windows
 
                 }
                 lvMapPreview.UpdateItems(model.Maps, items);
+                */
             }
-            */
         }
 
         #endregion
@@ -106,7 +104,7 @@ namespace PPRP.Windows
         {
             if (model.Open())
             {
-                
+                wsMap.Setup<MADM1>(model);
             }
 
             txtFileName.Text = model.FileName;
