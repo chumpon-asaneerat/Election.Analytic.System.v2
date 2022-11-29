@@ -39,18 +39,19 @@ namespace PPRP.Windows
 
         #region Internal Variables
 
+        private ExcelModel model = new ExcelModel();
+
         #endregion
 
         #region Loaded/Unloaded
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
-            //import.OnSampleDataChanged += Import_OnSampleDataChanged;
+            model.SheetItemChanges += Model_SheetItemChanges;
         }
-
         private void UserControl_Unloaded(object sender, RoutedEventArgs e)
         {
-            //import.OnSampleDataChanged -= Import_OnSampleDataChanged;
+            model.SheetItemChanges -= Model_SheetItemChanges;
         }
 
         #endregion
@@ -75,24 +76,15 @@ namespace PPRP.Windows
 
         #endregion
 
-        #region NExcelImport Handlers
+        #region ExcelModel Handlers
 
-        private void Import_OnSampleDataChanged(object sender, EventArgs e)
+        private void Model_SheetItemChanges(object sender, ExcelWorksheetArgs evt)
         {
-            /*
-            if (null != wsMap && null != wsMap.ImportModel)
+            if (null != evt && null != evt.Sheet)
             {
-                var model = wsMap.ImportModel;
-                lvMapPreview.Setup(import);
-
-                items = XlsMProvince.LoadWorksheetTable(import, model.Worksheet.SheetName, model.Maps);
-                if (null != items)
-                {
-
-                }
-                lvMapPreview.UpdateItems(model.Maps, items);
+                var sheet = evt.Sheet;
+                lvMapPreview.Setup<PollingUnit>(sheet);
             }
-            */
         }
 
         #endregion
@@ -101,12 +93,38 @@ namespace PPRP.Windows
 
         private void ChooseExcelFile()
         {
+            if (model.Open())
+            {
+                wsMap.Setup<PollingUnit>(model);
+            }
 
+            txtFileName.Text = model.FileName;
         }
 
         private void Imports()
         {
+            var items = lvMapPreview.Items;
+            if (null == items || items.Count <= 0)
+                return; // No items
 
+            var prog = PPRPApp.Windows.ProgressDialog;
+            prog.Owner = this;
+            prog.Setup(items.Count);
+            prog.Show();
+
+            int year = 2562;
+            foreach (var item in items)
+            {
+                var obj = item as PollingUnit;
+                if (null != obj)
+                {
+                    obj.ThaiYear = year;
+                    PollingUnit.ImportPollingUnit(obj);
+                }
+                prog.Increment();
+            }
+            // Close progress dialog.
+            prog.Close();
         }
 
         #endregion

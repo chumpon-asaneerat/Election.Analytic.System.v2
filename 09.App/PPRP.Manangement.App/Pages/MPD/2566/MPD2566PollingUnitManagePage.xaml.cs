@@ -57,6 +57,15 @@ namespace PPRP.Pages
 
         #endregion
 
+        #region ComboBox Handlers
+
+        private void cbProvince_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            RefreshList();
+        }
+
+        #endregion
+
         #region Private Methods
 
         private void GotoMainMenuPage()
@@ -68,12 +77,49 @@ namespace PPRP.Pages
 
         private void Import()
         {
-
+            var win = PPRPApp.Windows.ImportMPD2566PollingUnit;
+            win.Setup();
+            if (win.ShowDialog() == false)
+            {
+                return;
+            }
+            LoadProvinces();
         }
 
         private void Export()
         {
 
+        }
+
+        private void LoadProvinces()
+        {
+            cbProvince.ItemsSource = null;
+            var provinces = MProvince.Gets().Value;
+            if (null != provinces)
+            {
+                provinces.Insert(0, new MProvince { ProvinceNameTH = "ทุกจังหวัด" });
+            }
+            cbProvince.ItemsSource = (null != provinces) ? provinces : new List<MProvince>();
+            if (null != provinces)
+            {
+                cbProvince.SelectedIndex = 0;
+            }
+        }
+
+        private void RefreshList()
+        {
+            // Check province.
+            var province = cbProvince.SelectedItem as MProvince;
+            string provinceName = (null != province) ? province.ProvinceNameTH : null;
+            if (null != provinceName && provinceName.Contains("ทุกจังหวัด"))
+            {
+                provinceName = null;
+            }
+
+            lvPollingUnits.ItemsSource = null;
+            int year = 2566;
+            var summaries = PollingUnit.Gets(thaiYear: year, provinceNameTH: provinceName);
+            lvPollingUnits.ItemsSource = (null != summaries) ? summaries.Value : new List<PollingUnit>();
         }
 
         #endregion
@@ -88,7 +134,7 @@ namespace PPRP.Pages
         {
             if (reload)
             {
-
+                LoadProvinces();
             }
         }
 
