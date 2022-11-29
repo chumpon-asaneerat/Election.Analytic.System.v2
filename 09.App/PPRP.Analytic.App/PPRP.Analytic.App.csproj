@@ -66,7 +66,18 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Controls\ThailandMenuControl.xaml.cs">
+      <DependentUpon>ThailandMenuControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Areas\ThailandPage.xaml.cs">
+      <DependentUpon>ThailandPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Services\AreaNavigator.cs" />
     <Compile Include="Services\PPRPApp.cs" />
+    <Page Include="Controls\ThailandMenuControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -79,6 +90,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Pages\Areas\ThailandPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -128,8 +143,6 @@
     <Resource Include="Images\Maps\Thailand.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Controls\" />
-    <Folder Include="Pages\Areas\" />
     <Folder Include="Pages\MPD\" />
     <Folder Include="Pages\Preview\" />
     <Folder Include="Reports\" />

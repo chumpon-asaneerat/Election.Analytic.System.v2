@@ -1,0 +1,106 @@
+﻿<UserControl x:Class="PPRP.Controls.ThailandMenuControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             d:DesignHeight="450"
+             d:DesignWidth="800"
+             mc:Ignorable="d">
+    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+        <ItemsControl ItemsSource="{Binding}"
+                      VirtualizingPanel.IsVirtualizing="True"
+                      VirtualizingPanel.VirtualizationMode="Recycling">
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <Expander Style="{StaticResource ExpanderRightToggleStyle}" IsExpanded="True">
+                        <Expander.Header>
+                            <Grid Width="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Expander}}, Path=ActualWidth}">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="30" />
+                                </Grid.ColumnDefinitions>
+                                <StackPanel Orientation="Horizontal" Grid.Column="0">
+                                    <TextBlock Width="10" />
+                                    <TextBlock>
+                                        <Hyperlink x:Name="cmdPak"
+                                                   Click="cmdPak_Click"
+                                                   Cursor="Hand">
+                                            <Hyperlink.Style>
+                                                <Style TargetType="{x:Type Hyperlink}">
+                                                    <Setter Property="TextDecorations" Value="None" />
+                                                    <Style.Triggers>
+                                                        <Trigger Property="IsMouseOver" Value="True">
+                                                            <Setter Property="TextDecorations">
+                                                                <Setter.Value>
+                                                                    <TextDecorationCollection>
+                                                                        <TextDecoration Location="Underline">
+                                                                            <TextDecoration.Pen>
+                                                                                <Pen Brush="{StaticResource BlueHeavyBrush2}" Thickness="2" />
+                                                                            </TextDecoration.Pen>
+                                                                        </TextDecoration>
+                                                                    </TextDecorationCollection>
+                                                                </Setter.Value>
+                                                            </Setter>
+                                                        </Trigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </Hyperlink.Style>
+                                            <TextBlock Text="{Binding DisplayText}"
+                                                       FontSize="{StaticResource FontSize30}"
+                                                       Foreground="{StaticResource BlueHeavyBrush2}" />
+                                        </Hyperlink>
+                                    </TextBlock>
+                                    <TextBlock Width="10" />
+                                </StackPanel>
+                            </Grid>
+                        </Expander.Header>
+                        <ListBox ItemsSource="{Binding Provinces}"
+                                 Margin="5,2"
+                                 HorizontalContentAlignment="Stretch"
+                                 ItemContainerStyle="{StaticResource BASEListBoxItemContainer}"
+                                 Style="{StaticResource SingleSelectWrapListBox}"
+                                 BorderThickness="0">
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Width="10" />
+                                        <TextBlock>
+                                            <Hyperlink x:Name="cmdProvince"
+                                                       Click="cmdProvince_Click"
+                                                       Cursor="Hand">
+                                                <Hyperlink.Style>
+                                                    <Style TargetType="{x:Type Hyperlink}">
+                                                        <Setter Property="TextDecorations" Value="None" />
+                                                        <Style.Triggers>
+                                                            <Trigger Property="IsMouseOver" Value="True">
+                                                                <Setter Property="TextDecorations">
+                                                                    <Setter.Value>
+                                                                        <TextDecorationCollection>
+                                                                            <TextDecoration Location="Underline">
+                                                                                <TextDecoration.Pen>
+                                                                                    <Pen Brush="{StaticResource BlueHeavyBrush2}" Thickness="2" />
+                                                                                </TextDecoration.Pen>
+                                                                            </TextDecoration>
+                                                                        </TextDecorationCollection>
+                                                                    </Setter.Value>
+                                                                </Setter>
+                                                            </Trigger>
+                                                        </Style.Triggers>
+                                                    </Style>
+                                                </Hyperlink.Style>
+                                                <TextBlock Text="{Binding ProvinceText}"
+                                                           FontSize="{StaticResource FontSize24}"
+                                                           Foreground="{StaticResource BlueHeavyBrush2}" />
+                                            </Hyperlink>
+                                        </TextBlock>
+                                        <TextBlock Width="10" />
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+                    </Expander>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+    </ScrollViewer>
+</UserControl>

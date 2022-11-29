@@ -124,6 +124,7 @@
     <Compile Include="Models\Masters\PollingUnit.cs" />
     <Compile Include="Models\Masters\UserInfo.cs" />
     <Compile Include="Models\Masters\UserRole.cs" />
+    <Compile Include="Models\MenuItems\MenuItem.cs" />
     <Compile Include="Models\Parson.And.Party\MParty.cs" />
     <Compile Include="Models\Parson.And.Party\MPerson.cs" />
     <Compile Include="MsSqlDbServer.cs" />
