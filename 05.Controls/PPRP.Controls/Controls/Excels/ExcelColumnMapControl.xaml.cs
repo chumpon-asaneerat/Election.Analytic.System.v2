@@ -147,9 +147,5 @@ namespace PPRP.Controls.Excels
         }
 
         #endregion
-
-        #region Public Properties
-
-        #endregion
     }
 }
