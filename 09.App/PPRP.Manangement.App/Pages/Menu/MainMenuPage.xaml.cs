@@ -93,6 +93,11 @@ namespace PPRP.Pages
             GotoADM3Manage();
         }
 
+        private void mnuADMPakManage_Click(object sender, RoutedEventArgs e)
+        {
+            GotoADMPakManage();
+        }
+
         #endregion
 
         #region Group 4 - ข้อมูลหลัก
@@ -157,7 +162,7 @@ namespace PPRP.Pages
 
         #endregion
 
-        #region ADM1-ADM3 Import
+        #region ADM1-ADM3, ADMPak Import
 
         private void GotoADM1Manage()
         {
@@ -179,6 +184,14 @@ namespace PPRP.Pages
         {
             // ข้อมูลตำบล (MSubdistrict-ADM3)
             var page = PPRPApp.Pages.MSubdistrictManage;
+            page.Setup();
+            PageContentManager.Instance.Current = page;
+        }
+
+        private void GotoADMPakManage()
+        {
+            // ข้อมูลภาค (ADM Pak)
+            var page = PPRPApp.Pages.ADMPakManage;
             page.Setup();
             PageContentManager.Instance.Current = page;
         }

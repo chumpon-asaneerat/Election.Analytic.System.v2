@@ -71,7 +71,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Pages\ADMPakManagePage.xaml.cs">
+    <Compile Include="Pages\Maps\ADMPakManagePage.xaml.cs">
       <DependentUpon>ADMPakManagePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\Maps\MDistrictManagePage.xaml.cs">
@@ -150,7 +150,7 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Pages\ADMPakManagePage.xaml">
+    <Page Include="Pages\Maps\ADMPakManagePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

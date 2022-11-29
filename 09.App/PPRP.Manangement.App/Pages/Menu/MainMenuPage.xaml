@@ -177,6 +177,17 @@
                                             ข้อมูลพื้นที่ (ตำบล/แขวง ESRI-ADM3)
                                         </Hyperlink>
                                     </TextBlock>
+                                    <!-- PAK (ADM PAK)  -->
+                                    <TextBlock FontFamily="{DynamicResource THSarabun}"
+                                               FontSize="{StaticResource FontSize18}"
+                                               Margin="15,5,5,5"
+                                               Cursor="Hand">
+                                        <Hyperlink x:Name="mnuADMPakManage"
+                                                   Click="mnuADMPakManage_Click"
+                                                   Foreground="{StaticResource MainMenuItemForeground}">
+                                            ข้อมูลภาค (ESRI-ADM PAK)
+                                        </Hyperlink>
+                                    </TextBlock>
                                 </StackPanel>
                                 <!--  ข้อมูลหลัก  -->
                                 <StackPanel Orientation="Vertical" Margin="5">
