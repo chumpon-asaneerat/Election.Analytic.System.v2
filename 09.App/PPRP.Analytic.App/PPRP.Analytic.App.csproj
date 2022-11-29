@@ -69,8 +69,41 @@
     <Compile Include="Controls\ThailandMenuControl.xaml.cs">
       <DependentUpon>ThailandMenuControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\Areas\Pak01Page.xaml.cs">
+      <DependentUpon>Pak01Page.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Areas\Pak02Page.xaml.cs">
+      <DependentUpon>Pak02Page.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Areas\Pak03Page.xaml.cs">
+      <DependentUpon>Pak03Page.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Areas\Pak04Page.xaml.cs">
+      <DependentUpon>Pak04Page.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Areas\Pak05Page.xaml.cs">
+      <DependentUpon>Pak05Page.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Areas\Pak06Page.xaml.cs">
+      <DependentUpon>Pak06Page.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Areas\Pak07Page.xaml.cs">
+      <DependentUpon>Pak07Page.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Areas\Pak08Page.xaml.cs">
+      <DependentUpon>Pak08Page.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Areas\Pak09Page.xaml.cs">
+      <DependentUpon>Pak09Page.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Areas\Pak10Page.xaml.cs">
+      <DependentUpon>Pak10Page.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\Areas\ThailandPage.xaml.cs">
       <DependentUpon>ThailandPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Menu\MainMenuPage.xaml.cs">
+      <DependentUpon>MainMenuPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Services\AreaNavigator.cs" />
     <Compile Include="Services\PPRPApp.cs" />
@@ -90,7 +123,51 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Pages\Areas\Pak01Page.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\Areas\Pak02Page.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\Areas\Pak03Page.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\Areas\Pak04Page.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\Areas\Pak05Page.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\Areas\Pak06Page.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\Areas\Pak07Page.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\Areas\Pak08Page.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\Areas\Pak09Page.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\Areas\Pak10Page.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Pages\Areas\ThailandPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\Menu\MainMenuPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
