@@ -7,8 +7,11 @@ Election.Analytic.System.v2 - PPRP  #109
 Election.Analytic.System.v2 - PPRP  #108
 - 
 
+[commited]
 Election.Analytic.System.v2 - PPRP  #107
-- 
+- PPRP.Manangement.App project
+  - Implements UI #20.
+  - Note. Microsoft.IO.RecyclableMemoryStream.dll v2.2.0 not work. use old version like v1.4.1 instead.
 
 [commited]
 Election.Analytic.System.v2 - PPRP  #106

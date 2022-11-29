@@ -41,18 +41,6 @@ namespace PPRP.Models
 
     #endregion
 
-    #region Interface
-
-    /// <summary>
-    /// The IExcelModel interface.
-    /// </summary>
-    public interface IExcelModel
-    {
-
-    }
-
-    #endregion
-
     #region ExcelColumnAttribute
 
     /// <summary>
@@ -843,6 +831,18 @@ namespace PPRP.Models
 
         #endregion
 
+        #region Static Methods - Register License
+
+        /// <summary>
+        /// Register License.
+        /// </summary>
+        public static void RegisterLicense()
+        {
+            ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
+        }
+
+        #endregion
+
         #region Constructor and Destructor
 
         /// <summary>
@@ -850,6 +850,8 @@ namespace PPRP.Models
         /// </summary>
         public ExcelModel() : base()
         {
+            // Register license.
+            RegisterLicense();
             // Create worksheet list.
             this.Worksheets = new List<NExcelWorksheet>();
         }

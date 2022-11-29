@@ -83,16 +83,7 @@ namespace PPRP.Windows
             if (null != evt && null != evt.Sheet)
             {
                 var sheet = evt.Sheet;
-                /*
-                lvMapPreview.Setup(import);
-
-                items = XlsMProvince.LoadWorksheetTable(import, model.Worksheet.SheetName, model.Maps);
-                if (null != items)
-                {
-
-                }
-                lvMapPreview.UpdateItems(model.Maps, items);
-                */
+                lvMapPreview.Setup<MADM1>(sheet);
             }
         }
 
