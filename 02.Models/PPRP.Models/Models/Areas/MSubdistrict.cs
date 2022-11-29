@@ -27,12 +27,17 @@ namespace PPRP.Models
     {
         #region Internal Variables
 
-        private string _ADM1Code = null;
-        private string _ADM2Code = null;
         private string _ADM3Code = null;
 
         private string _SubDistrictNameEN = null;
         private string _SubDistrictNameTH = null;
+
+        private string _DistrictNameEN = null;
+        private string _DistrictNameTH = null;
+
+        private string _ProvinceNameEN = null;
+        private string _ProvinceNameTH = null;
+
         private decimal _SubDistrictAreaM2 = decimal.Zero;
 
         #endregion
@@ -58,38 +63,6 @@ namespace PPRP.Models
 
         #region Public Properties
 
-        /// <summary>
-        /// Gets or sets ADM1 Code.
-        /// </summary>
-        [ExcelColumn("ADM1_CODE")]
-        public string ADM1Code
-        {
-            get { return _ADM1Code; }
-            set
-            {
-                if (_ADM1Code != value)
-                {
-                    _ADM1Code = value;
-                    Raise(() => ADM1Code);
-                }
-            }
-        }
-        /// <summary>
-        /// Gets or sets ADM2 Code.
-        /// </summary>
-        [ExcelColumn("ADM2_CODE")]
-        public string ADM2Code
-        {
-            get { return _ADM2Code; }
-            set
-            {
-                if (_ADM2Code != value)
-                {
-                    _ADM2Code = value;
-                    Raise(() => ADM2Code);
-                }
-            }
-        }
         /// <summary>
         /// Gets or sets ADM3 Code.
         /// </summary>
@@ -135,6 +108,70 @@ namespace PPRP.Models
                 {
                     _SubDistrictNameTH = value;
                     Raise(() => SubDistrictNameTH);
+                }
+            }
+        }
+        /// <summary>
+        /// Gets or sets District Name (EN).
+        /// </summary>
+        [ExcelColumn("ADM2_EN")]
+        public string DistrictNameEN
+        {
+            get { return _DistrictNameEN; }
+            set
+            {
+                if (_DistrictNameEN != value)
+                {
+                    _DistrictNameEN = value;
+                    Raise(() => DistrictNameEN);
+                }
+            }
+        }
+        /// <summary>
+        /// Gets or sets District Name (TH).
+        /// </summary>
+        [ExcelColumn("ADM2_TH")]
+        public string DistrictNameTH
+        {
+            get { return _DistrictNameTH; }
+            set
+            {
+                if (_DistrictNameTH != value)
+                {
+                    _DistrictNameTH = value;
+                    Raise(() => DistrictNameTH);
+                }
+            }
+        }
+        /// <summary>
+        /// Gets or sets Province Name (EN).
+        /// </summary>
+        [ExcelColumn("ADM1_EN")]
+        public string ProvinceNameEN
+        {
+            get { return _ProvinceNameEN; }
+            set
+            {
+                if (_ProvinceNameEN != value)
+                {
+                    _ProvinceNameEN = value;
+                    Raise(() => ProvinceNameEN);
+                }
+            }
+        }
+        /// <summary>
+        /// Gets or sets Province Name (TH).
+        /// </summary>
+        [ExcelColumn("ADM1_TH")]
+        public string ProvinceNameTH
+        {
+            get { return _ProvinceNameTH; }
+            set
+            {
+                if (_ProvinceNameTH != value)
+                {
+                    _ProvinceNameTH = value;
+                    Raise(() => ProvinceNameTH);
                 }
             }
         }
@@ -198,9 +235,11 @@ namespace PPRP.Models
             p.Add("@ADM3Code", value.ADM3Code);
             p.Add("@SubDistrictNameTH", value.SubDistrictNameTH);
             p.Add("@SubDistrictNameEN", value.SubDistrictNameEN);
+            p.Add("@DistrictNameTH", value.DistrictNameTH);
+            p.Add("@DistrictNameEN", value.DistrictNameEN);
+            p.Add("@ProvinceNameTH", value.ProvinceNameTH);
+            p.Add("@ProvinceNameEN", value.ProvinceNameEN);
             p.Add("@AreaM2", value.SubDistrictAreaM2);
-            p.Add("@ADM1Code", value.ADM1Code);
-            p.Add("@ADM2Code", value.ADM2Code);
 
             p.Add("@errNum", dbType: DbType.Int32, direction: ParameterDirection.Output);
             p.Add("@errMsg", dbType: DbType.String, direction: ParameterDirection.Output, size: -1);
