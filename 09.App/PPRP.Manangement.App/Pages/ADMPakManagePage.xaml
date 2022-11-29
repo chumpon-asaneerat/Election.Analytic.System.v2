@@ -1,0 +1,106 @@
+﻿<UserControl x:Class="PPRP.Pages.ADMPakManagePage"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
+             d:DesignHeight="450"
+             d:DesignWidth="800"
+             mc:Ignorable="d">
+    <UserControl.Resources>
+        <!--  PAGE TITLE  -->
+        <sys:String x:Key="PageTitle">ข้อมูลตำบล (ESRI - ADM3)</sys:String>
+    </UserControl.Resources>
+    <Grid Background="{StaticResource PageBG}">
+        <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="{StaticResource PageMargin}" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="{StaticResource PageMargin}" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="{StaticResource PageMargin}" />
+                <RowDefinition Height="{StaticResource CaptionHeight}" />
+                <RowDefinition Height="{StaticResource PageMargin}" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="{StaticResource PageMargin}" />
+            </Grid.RowDefinitions>
+            <!--  CAPTION AREA  -->
+            <Border Grid.Column="1"
+                    Grid.ColumnSpan="1"
+                    Grid.Row="1"
+                    Grid.RowSpan="1"
+                    Background="{StaticResource CaptionBackground}"
+                    BorderBrush="{StaticResource CaptionBorderColor}"
+                    BorderThickness="{StaticResource CaptionBorderThickness}"
+                    CornerRadius="{StaticResource CaptionBorderCornerRadius}">
+                <TextBlock Foreground="{StaticResource CaptionForeground}"
+                           FontSize="{StaticResource FontSize30}"
+                           Margin="0,2"
+                           TextAlignment="Center"
+                           Text="{StaticResource PageTitle}" />
+            </Border>
+            <!--  CLIENT AREA  -->
+            <DockPanel Grid.Column="1"
+                       Grid.ColumnSpan="1"
+                       Grid.Row="3"
+                       Grid.RowSpan="1"
+                       LastChildFill="True">
+                <!--  WORK AREA  -->
+                <DockPanel LastChildFill="True">
+                    <!--  FILTER BAR  -->
+                    <DockPanel LastChildFill="True"
+                               DockPanel.Dock="Top"
+                               Visibility="Collapsed"
+                               Height="40">
+                        <Grid />
+                    </DockPanel>
+                    <!--  BUTTONS BAR  -->
+                    <DockPanel LastChildFill="True"
+                               DockPanel.Dock="Bottom"
+                               Height="40">
+                        <!--  Add New  -->
+                        <Button x:Name="cmdAddNew"
+                                DockPanel.Dock="Left"
+                                Style="{StaticResource InlineButton}"
+                                Margin="5,0"
+                                Width="150"
+                                Height="30"
+                                Content="เพิ่มข้อมูล"
+                                Click="cmdAddNew_Click" />
+                        <!--  IMPORT  -->
+                        <Button x:Name="cmdImport"
+                                DockPanel.Dock="Left"
+                                Style="{StaticResource InlineButton}"
+                                Margin="5,0"
+                                Width="150"
+                                Height="30"
+                                Content="นำเข้าข้อมูล"
+                                Click="cmdImport_Click" />
+                        <!--  EXPORT  -->
+                        <Button x:Name="cmdExport"
+                                DockPanel.Dock="Left"
+                                Style="{StaticResource InlineButton}"
+                                Margin="5,0"
+                                Width="150"
+                                Height="30"
+                                Content="ส่งออกข้อมูล"
+                                Click="cmdExport_Click" />
+                        <!--  BACK  -->
+                        <Button x:Name="cmdHome"
+                                DockPanel.Dock="Right"
+                                Style="{StaticResource InlineButton}"
+                                Margin="5,0"
+                                Width="150"
+                                Height="30"
+                                Content="กลับสู่หน้าจอหลัก"
+                                Click="cmdHome_Click" />
+                        <Grid />
+                    </DockPanel>
+                    <!--  ITEMS  -->
+                    <Grid />
+                </DockPanel>
+            </DockPanel>
+        </Grid>
+    </Grid>
+</UserControl>

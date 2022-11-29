@@ -262,25 +262,25 @@ namespace PPRP
             #endregion
 
             #region ADMPak - Pak
-            /*
-            private static MSubdistrictManagePage _MSubdistrictManage;
+
+            private static ADMPakManagePage _ADMPakManage;
 
             /// <summary>Gets MSubdistrict Manage Page.</summary>
-            public static MSubdistrictManagePage MSubdistrictManage
+            public static ADMPakManagePage ADMPakManage
             {
                 get
                 {
-                    if (null == _MSubdistrictManage)
+                    if (null == _ADMPakManage)
                     {
                         lock (typeof(PPRPApp))
                         {
-                            _MSubdistrictManage = new MSubdistrictManagePage();
+                            _ADMPakManage = new ADMPakManagePage();
                         }
                     }
-                    return _MSubdistrictManage;
+                    return _ADMPakManage;
                 }
             }
-            */
+
             #endregion
 
             #region Party Image
