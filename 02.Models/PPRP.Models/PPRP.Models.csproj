@@ -121,6 +121,7 @@
     <Compile Include="Models\Masters\MGender.cs" />
     <Compile Include="Models\Masters\MOccupation.cs" />
     <Compile Include="Models\Masters\MTitle.cs" />
+    <Compile Include="Models\Masters\PollingUnit.cs" />
     <Compile Include="Models\Masters\UserInfo.cs" />
     <Compile Include="Models\Masters\UserRole.cs" />
     <Compile Include="Models\Parson.And.Party\MParty.cs" />
