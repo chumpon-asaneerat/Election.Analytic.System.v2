@@ -129,6 +129,9 @@
     <Compile Include="Windows\Excels\MPD\2566\ImportMPDC2566Window.xaml.cs">
       <DependentUpon>ImportMPDC2566Window.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Windows\ImportADMPakWindow.xaml.cs">
+      <DependentUpon>ImportADMPakWindow.xaml</DependentUpon>
+    </Compile>
     <None Include="Properties\DataSources\PPRP.Domains.MPD2562PrintVoteSummary.datasource" />
     <None Include="Properties\DataSources\PPRP.Domains.MPD2562x350PrintUnitSummary.datasource" />
     <None Include="Properties\DataSources\PPRP.Domains.MPDC2566PrintSummary.datasource" />
@@ -223,6 +226,10 @@
     <Page Include="Windows\Excels\MPD\2566\ImportMPDC2566Window.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Windows\ImportADMPakWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>
