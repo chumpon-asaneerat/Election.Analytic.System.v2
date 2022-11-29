@@ -154,7 +154,7 @@
     <Compile Include="Windows\Excels\Maps\ImportMSubdistrictWindow.xaml.cs">
       <DependentUpon>ImportMSubdistrictWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Windows\ImportMPDC2566Window.xaml.cs">
+    <Compile Include="Windows\Excels\MPD\2566\ImportMPDC2566Window.xaml.cs">
       <DependentUpon>ImportMPDC2566Window.xaml</DependentUpon>
     </Compile>
     <None Include="Properties\DataSources\PPRP.Domains.MPD2562PrintVoteSummary.datasource" />
@@ -248,7 +248,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Windows\ImportMPDC2566Window.xaml">
+    <Page Include="Windows\Excels\MPD\2566\ImportMPDC2566Window.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
