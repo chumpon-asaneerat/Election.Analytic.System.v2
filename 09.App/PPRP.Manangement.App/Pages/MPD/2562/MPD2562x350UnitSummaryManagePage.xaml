@@ -43,23 +43,11 @@
                     BorderBrush="{StaticResource CaptionBorderColor}"
                     BorderThickness="{StaticResource CaptionBorderThickness}"
                     CornerRadius="{StaticResource CaptionBorderCornerRadius}">
-                <DockPanel LastChildFill="True">
-                    <!--  REFRESH (FontAwesome)  -->
-                    <Button x:Name="cmdRefresh"
-                            Visibility="Collapsed"
-                            DockPanel.Dock="Right"
-                            Style="{StaticResource InlineButton}"
-                            Height="30"
-                            Width="30"
-                            Click="cmdRefresh_Click">
-                        <TextBlock Style="{StaticResource fa-refresh}" />
-                    </Button>
-                    <TextBlock Foreground="{StaticResource CaptionForeground}"
-                               FontSize="{StaticResource FontSize30}"
-                               Margin="0,2"
-                               TextAlignment="Center"
-                               Text="{StaticResource PageTitle}" />
-                </DockPanel>
+                <TextBlock Foreground="{StaticResource CaptionForeground}"
+                           FontSize="{StaticResource FontSize30}"
+                           Margin="0,2"
+                           TextAlignment="Center"
+                           Text="{StaticResource PageTitle}" />
             </Border>
             <!--  CLIENT AREA  -->
             <DockPanel Grid.Column="1"
