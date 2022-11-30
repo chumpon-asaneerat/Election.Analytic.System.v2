@@ -10,8 +10,10 @@ Election.Analytic.System.v2 - PPRP  #148
 Election.Analytic.System.v2 - PPRP  #147
 - 
 
+[commited]
 Election.Analytic.System.v2 - PPRP  #146
-- 
+  - Implements UI #53 (on progress).
+    - Need implements SP ImportMPDVoteSummary
 
 [commited]
 Election.Analytic.System.v2 - PPRP  #145
