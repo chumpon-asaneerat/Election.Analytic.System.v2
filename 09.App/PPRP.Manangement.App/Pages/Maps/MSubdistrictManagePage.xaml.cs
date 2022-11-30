@@ -60,6 +60,11 @@ namespace PPRP.Pages
             Refresh();
         }
 
+        private void cmdSearch_Click(object sender, RoutedEventArgs e)
+        {
+            Search();
+        }
+
         #endregion
 
         #region ComboBox Handlers
@@ -102,6 +107,11 @@ namespace PPRP.Pages
         }
 
         private void Refresh()
+        {
+
+        }
+
+        private void Search()
         {
 
         }

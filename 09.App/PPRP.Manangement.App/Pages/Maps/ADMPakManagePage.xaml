@@ -10,6 +10,15 @@
     <UserControl.Resources>
         <!--  PAGE TITLE  -->
         <sys:String x:Key="PageTitle">ข้อมูลภาค (ESRI - PAK)</sys:String>
+        <!--  FILTER BAR VISIBLE STATES  -->
+        <Visibility x:Key="FilterBarVisible">Collapsed</Visibility>
+        <Visibility x:Key="RefreshButtonVisible">Visible</Visibility>
+        <Visibility x:Key="SearchButtonVisible">Collapsed</Visibility>
+        <!--  BOTTONS BAR VISIBLE STATES  -->
+        <Visibility x:Key="HomeButtonVisible">Visible</Visibility>
+        <Visibility x:Key="ImportButtonVisible">Visible</Visibility>
+        <Visibility x:Key="ExportButtonVisible">Collapsed</Visibility>
+        <Visibility x:Key="AddNewButtonVisible">Collapsed</Visibility>
     </UserControl.Resources>
     <Grid Background="{StaticResource PageBG}">
         <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
@@ -34,23 +43,11 @@
                     BorderBrush="{StaticResource CaptionBorderColor}"
                     BorderThickness="{StaticResource CaptionBorderThickness}"
                     CornerRadius="{StaticResource CaptionBorderCornerRadius}">
-                <DockPanel LastChildFill="True">
-                    <!--  REFRESH (FontAwesome)  -->
-                    <Button x:Name="cmdRefresh"
-                            Visibility="Collapsed"
-                            DockPanel.Dock="Right"
-                            Style="{StaticResource InlineButton}"
-                            Height="30"
-                            Width="30"
-                            Click="cmdRefresh_Click">
-                        <TextBlock Style="{StaticResource fa-refresh}" />
-                    </Button>
-                    <TextBlock Foreground="{StaticResource CaptionForeground}"
-                               FontSize="{StaticResource FontSize30}"
-                               Margin="0,2"
-                               TextAlignment="Center"
-                               Text="{StaticResource PageTitle}" />
-                </DockPanel>
+                <TextBlock Foreground="{StaticResource CaptionForeground}"
+                           FontSize="{StaticResource FontSize30}"
+                           Margin="0,2"
+                           TextAlignment="Center"
+                           Text="{StaticResource PageTitle}" />
             </Border>
             <!--  CLIENT AREA  -->
             <DockPanel Grid.Column="1"
@@ -63,8 +60,28 @@
                     <!--  FILTER BAR  -->
                     <DockPanel LastChildFill="True"
                                DockPanel.Dock="Top"
-                               Visibility="Collapsed"
+                               Visibility="{StaticResource FilterBarVisible}"
                                Height="40">
+                        <!--  REFRESH  -->
+                        <Button x:Name="cmdRefresh"
+                                Visibility="{StaticResource RefreshButtonVisible}"
+                                DockPanel.Dock="Right"
+                                Style="{StaticResource InlineButton}"
+                                Height="30"
+                                Width="30"
+                                Click="cmdRefresh_Click">
+                            <TextBlock Style="{StaticResource fa-refresh}" />
+                        </Button>
+                        <!--  SEARCH  -->
+                        <Button x:Name="cmdSearch"
+                                Visibility="{StaticResource SearchButtonVisible}"
+                                DockPanel.Dock="Right"
+                                Style="{StaticResource InlineButton}"
+                                Height="30"
+                                Width="30"
+                                Click="cmdSearch_Click">
+                            <TextBlock Style="{StaticResource fa-refresh}" />
+                        </Button>
                         <Grid />
                     </DockPanel>
                     <!--  BUTTONS BAR  -->
@@ -73,7 +90,7 @@
                                Height="40">
                         <!--  Add New  -->
                         <Button x:Name="cmdAddNew"
-                                Visibility="Collapsed"
+                                Visibility="{StaticResource AddNewButtonVisible}"
                                 DockPanel.Dock="Left"
                                 Style="{StaticResource InlineButton}"
                                 Margin="5,0"
@@ -91,7 +108,7 @@
                         </Button>
                         <!--  IMPORT  -->
                         <Button x:Name="cmdImport"
-                                Visibility="Visible"
+                                Visibility="{StaticResource ImportButtonVisible}"
                                 DockPanel.Dock="Left"
                                 Style="{StaticResource InlineButton}"
                                 Margin="5,0"
@@ -109,7 +126,7 @@
                         </Button>
                         <!--  EXPORT  -->
                         <Button x:Name="cmdExport"
-                                Visibility="Collapsed"
+                                Visibility="{StaticResource ExportButtonVisible}"
                                 DockPanel.Dock="Left"
                                 Style="{StaticResource InlineButton}"
                                 Margin="5,0"
@@ -127,7 +144,7 @@
                         </Button>
                         <!--  BACK  -->
                         <Button x:Name="cmdHome"
-                                Visibility="Visible"
+                                Visibility="{StaticResource HomeButtonVisible}"
                                 DockPanel.Dock="Right"
                                 Style="{StaticResource InlineButton}"
                                 Margin="5,0"
