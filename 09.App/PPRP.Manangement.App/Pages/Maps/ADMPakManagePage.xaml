@@ -11,9 +11,9 @@
         <!--  PAGE TITLE  -->
         <sys:String x:Key="PageTitle">ข้อมูลภาค (ESRI - PAK)</sys:String>
         <!--  FILTER BAR VISIBLE STATES  -->
-        <Visibility x:Key="FilterBarVisible">Collapsed</Visibility>
+        <Visibility x:Key="FilterBarVisible">Visible</Visibility>
         <Visibility x:Key="RefreshButtonVisible">Visible</Visibility>
-        <Visibility x:Key="SearchButtonVisible">Collapsed</Visibility>
+        <Visibility x:Key="SearchButtonVisible">Visible</Visibility>
         <!--  BOTTONS BAR VISIBLE STATES  -->
         <Visibility x:Key="HomeButtonVisible">Visible</Visibility>
         <Visibility x:Key="ImportButtonVisible">Visible</Visibility>
@@ -80,7 +80,7 @@
                                 Height="30"
                                 Width="30"
                                 Click="cmdSearch_Click">
-                            <TextBlock Style="{StaticResource fa-refresh}" />
+                            <TextBlock Style="{StaticResource fa-search}" />
                         </Button>
                         <Grid />
                     </DockPanel>

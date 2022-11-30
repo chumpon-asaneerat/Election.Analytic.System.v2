@@ -80,7 +80,7 @@
                                 Height="30"
                                 Width="30"
                                 Click="cmdSearch_Click">
-                            <TextBlock Style="{StaticResource fa-refresh}" />
+                            <TextBlock Style="{StaticResource fa-search}" />
                         </Button>
                         <Grid />
                     </DockPanel>
