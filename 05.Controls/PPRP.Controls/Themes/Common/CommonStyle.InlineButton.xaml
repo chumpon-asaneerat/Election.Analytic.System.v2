@@ -16,7 +16,7 @@
 
     <SolidColorBrush x:Key="InlineButtonHoverForground"
                      PresentationOptions:Freeze="True"
-                     Color="Navy" />
+                     Color="DarkBlue" />
 
     <SolidColorBrush x:Key="InlineButtonPressedForground"
                      PresentationOptions:Freeze="True"
