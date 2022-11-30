@@ -33,6 +33,13 @@ namespace PPRP.Pages
 
         #endregion
 
+        #region Internal Variables
+
+        private string sFullNameFilter = string.Empty;
+        private string sPartyNameFilter = string.Empty;
+
+        #endregion
+
         #region Button Handlers
 
         private void cmdAddNew_Click(object sender, RoutedEventArgs e)
@@ -65,6 +72,63 @@ namespace PPRP.Pages
             Search();
         }
 
+        private void cmdView_Click(object sender, RoutedEventArgs e)
+        {
+            var btn = sender as Button;
+            if (null == btn) return;
+            /*
+            var item = btn.DataContext as MPD2562VoteSummary;
+            ViewDetail(item);
+            */
+        }
+
+        #endregion
+
+        #region ComboBox Handlers
+
+        private void cbProvince_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            RefreshList();
+        }
+
+        #endregion
+
+        #region TextBox Handlers
+
+        private void txtPartyNameFilter_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            if (e.Key == System.Windows.Input.Key.Enter)
+            {
+                e.Handled = true; // mark as handled
+                // search
+                Search();
+            }
+            else if (e.Key == System.Windows.Input.Key.Escape)
+            {
+                e.Handled = true; // mark as handled
+                // reset filter and search
+                txtPartyNameFilter.Text = string.Empty;
+                Search();
+            }
+        }
+
+        private void txtFullNameFilter_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            if (e.Key == System.Windows.Input.Key.Enter)
+            {
+                e.Handled = true; // mark as handled
+                // search
+                Search();
+            }
+            else if (e.Key == System.Windows.Input.Key.Escape)
+            {
+                e.Handled = true; // mark as handled
+                // reset filter and search
+                txtFullNameFilter.Text = string.Empty;
+                Search();
+            }
+        }
+
         #endregion
 
         #region Private Methods
@@ -78,7 +142,13 @@ namespace PPRP.Pages
 
         private void Import()
         {
-
+            var win = PPRPApp.Windows.ImportMPD2562VoteSummary;
+            win.Setup();
+            if (win.ShowDialog() == false)
+            {
+                return;
+            }
+            LoadProvinces();
         }
 
         private void Export()
@@ -92,6 +162,54 @@ namespace PPRP.Pages
         }
 
         private void Search()
+        {
+            if (sPartyNameFilter.Trim() != txtPartyNameFilter.Text.Trim())
+            {
+                sPartyNameFilter = txtPartyNameFilter.Text.Trim();
+                RefreshList();
+            }
+            if (sFullNameFilter.Trim() != txtFullNameFilter.Text.Trim())
+            {
+                sFullNameFilter = txtFullNameFilter.Text.Trim();
+                RefreshList();
+            }
+        }
+
+        private void LoadProvinces()
+        {
+            cbProvince.ItemsSource = null;
+            var provinces = MProvince.Gets().Value;
+            if (null != provinces)
+            {
+                provinces.Insert(0, new MProvince { ProvinceNameTH = "ทุกจังหวัด" });
+            }
+            cbProvince.ItemsSource = (null != provinces) ? provinces : new List<MProvince>();
+            if (null != provinces)
+            {
+                cbProvince.SelectedIndex = 0;
+            }
+        }
+
+        private void RefreshList()
+        {
+            // Check province.
+            var province = cbProvince.SelectedItem as MProvince;
+            string provinceName = (null != province) ? province.ProvinceNameTH : null;
+            if (null != provinceName && provinceName.Contains("ทุกจังหวัด"))
+            {
+                provinceName = null;
+            }
+
+            lvMPDSummaries.ItemsSource = null;
+            /*
+            var summaries = MPDVoteSummary.Gets(provinceName, sPartyNameFilter, sFullNameFilter).Value;
+            lvMPDSummaries.ItemsSource = (null != summaries) ? summaries : new List<MPD2562VoteSummary>();
+            */
+        }
+
+        private void ViewDetail(
+            //MPD2562VoteSummary item
+            )
         {
 
         }
@@ -108,7 +226,9 @@ namespace PPRP.Pages
         {
             if (reload)
             {
-
+                sPartyNameFilter = string.Empty;
+                sFullNameFilter = string.Empty;
+                LoadProvinces();
             }
         }
 

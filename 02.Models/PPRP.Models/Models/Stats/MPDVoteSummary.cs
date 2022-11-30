@@ -66,6 +66,10 @@ namespace PPRP.Models
         /// Gets or sets RevoteNo.
         /// </summary>
         public int RevoteNo { get; set; }
+        /// <summary>
+        /// Gets or sets RankNo.
+        /// </summary>
+        public int RankNo { get; set; }
 
         #endregion
 

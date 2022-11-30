@@ -16,9 +16,15 @@ Election.Analytic.System.v2 - PPRP  #146
 Election.Analytic.System.v2 - PPRP  #145
 - 
 
+[commited]
 Election.Analytic.System.v2 - PPRP  #144
-- 
-
+- PPRP.Manangement.App project
+  - Implements UI #51 (on progress).
+    - Need implements SP SaveMPerson, SaveMParty.
+    - Need implements SP GetMPerson, GetMParty.
+    - Need implements SP GetMPersonImage, GetMPartyImage.
+    - Need implements SP SaveMPersonImage, SaveMPartyImage.
+   
 [commited]
 Election.Analytic.System.v2 - PPRP  #143
 - PPRP.Manangement.App project
