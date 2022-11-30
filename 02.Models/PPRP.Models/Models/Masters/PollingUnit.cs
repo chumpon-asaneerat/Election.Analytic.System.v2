@@ -342,7 +342,7 @@ namespace PPRP.Models
         /// </summary>
         /// <param name="value">The PollingUnit value.</param>
         /// <returns>Returns NDbResult instance.</returns>
-        public static NDbResult ImportPollingUnit(PollingUnit value)
+        public static NDbResult Import(PollingUnit value)
         {
             MethodBase med = MethodBase.GetCurrentMethod();
 

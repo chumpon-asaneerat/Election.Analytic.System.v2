@@ -119,7 +119,7 @@ namespace PPRP.Windows
                 if (null != obj)
                 {
                     obj.ThaiYear = year;
-                    PollingUnit.ImportPollingUnit(obj);
+                    PollingUnit.Import(obj);
                 }
                 prog.Increment();
             }

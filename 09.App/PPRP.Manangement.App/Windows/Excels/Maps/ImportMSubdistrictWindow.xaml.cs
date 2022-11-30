@@ -114,7 +114,7 @@ namespace PPRP.Windows
 
             foreach (var item in items)
             {
-                MADM3.ImportADM3(item as MADM3);
+                MADM3.Import(item as MADM3);
                 prog.Increment();
             }
             // Close progress dialog.

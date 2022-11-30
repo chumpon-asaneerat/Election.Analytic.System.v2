@@ -114,7 +114,7 @@ namespace PPRP.Windows
 
             foreach (var item in items)
             {
-                MADMPak.ImportADMPak(item as MADMPak);
+                MADMPak.Import(item as MADMPak);
                 prog.Increment();
             }
             // Close progress dialog.

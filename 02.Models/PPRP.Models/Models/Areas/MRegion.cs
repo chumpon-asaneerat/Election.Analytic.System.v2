@@ -187,7 +187,7 @@ namespace PPRP.Models
         /// </summary>
         /// <param name="value">The MADMPak value.</param>
         /// <returns>Returns NDbResult instance.</returns>
-        public static NDbResult ImportADMPak(MADMPak value)
+        public static NDbResult Import(MADMPak value)
         {
             MethodBase med = MethodBase.GetCurrentMethod();
 

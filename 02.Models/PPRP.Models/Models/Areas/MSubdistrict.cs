@@ -202,7 +202,7 @@ namespace PPRP.Models
         /// </summary>
         /// <param name="value">The ADM3 value.</param>
         /// <returns>Returns NDbResult instance.</returns>
-        public static NDbResult ImportADM3(MADM3 value)
+        public static NDbResult Import(MADM3 value)
         {
             MethodBase med = MethodBase.GetCurrentMethod();
 
