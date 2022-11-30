@@ -170,9 +170,16 @@
     <Style x:Key="fa-base" TargetType="TextBlock">
         <Setter Property="Margin" Value="3,0" />
         <Setter Property="VerticalAlignment" Value="Center" />
+        <!--
         <Setter Property="Foreground" Value="{StaticResource BlackBlush}" />
+        -->
         <Setter Property="FontFamily" Value="{StaticResource FontAwesome}" />
         <Setter Property="FontSize" Value="{StaticResource FontSize16}" />
+        <Style.Triggers>
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="Foreground" Value="{StaticResource GrayColor}" />
+            </Trigger>
+        </Style.Triggers>
     </Style>
     <!--  HOME  -->
     <Style x:Key="fa-home"
@@ -211,4 +218,28 @@
         <Setter Property="Text" Value="&#xf2f9;" />
     </Style>
 
+    <!--  GO FIRST  -->
+    <Style x:Key="fa-go-first"
+           TargetType="TextBlock"
+           BasedOn="{StaticResource fa-base}">
+        <Setter Property="Text" Value="&#xf049;" />
+    </Style>
+    <!--  GO PREV  -->
+    <Style x:Key="fa-go-prev"
+           TargetType="TextBlock"
+           BasedOn="{StaticResource fa-base}">
+        <Setter Property="Text" Value="&#xf048;" />
+    </Style>
+    <!--  GO NEXT  -->
+    <Style x:Key="fa-go-next"
+           TargetType="TextBlock"
+           BasedOn="{StaticResource fa-base}">
+        <Setter Property="Text" Value="&#xf051;" />
+    </Style>
+    <!--  GO LAST  -->
+    <Style x:Key="fa-go-last"
+           TargetType="TextBlock"
+           BasedOn="{StaticResource fa-base}">
+        <Setter Property="Text" Value="&#xf050;" />
+    </Style>
 </ResourceDictionary>

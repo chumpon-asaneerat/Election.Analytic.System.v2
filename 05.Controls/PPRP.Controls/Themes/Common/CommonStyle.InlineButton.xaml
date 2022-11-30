@@ -14,6 +14,10 @@
                      PresentationOptions:Freeze="True"
                      Color="Black" />
 
+    <SolidColorBrush x:Key="InlineButtonHoverForground"
+                     PresentationOptions:Freeze="True"
+                     Color="Navy" />
+
     <SolidColorBrush x:Key="InlineButtonPressedForground"
                      PresentationOptions:Freeze="True"
                      Color="WhiteSmoke" />
@@ -143,6 +147,7 @@
                 <Trigger.ExitActions>
                     <BeginStoryboard x:Name="MouseOver_BeginStoryboard" Storyboard="{StaticResource Timeline2}" />
                 </Trigger.ExitActions>
+                <Setter Property="Foreground" Value="{StaticResource InlineButtonHoverForground}" />
             </Trigger>
             <Trigger Property="IsEnabled" Value="False">
                 <Setter TargetName="shine" Property="Visibility" Value="Hidden" />
