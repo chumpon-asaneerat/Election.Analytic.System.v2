@@ -10,6 +10,15 @@
     <UserControl.Resources>
         <!--  PAGE TITLE  -->
         <sys:String x:Key="PageTitle">ข้อมูลว่าที่ผู้สมัครสมาชิกสภาผู้แทน แบบแบ่งเขต ปี 2566</sys:String>
+        <!--  FILTER BAR VISIBLE STATES  -->
+        <Visibility x:Key="FilterBarVisible">Collapsed</Visibility>
+        <Visibility x:Key="RefreshButtonVisible">Collapsed</Visibility>
+        <Visibility x:Key="SearchButtonVisible">Collapsed</Visibility>
+        <!--  BOTTONS BAR VISIBLE STATES  -->
+        <Visibility x:Key="HomeButtonVisible">Visible</Visibility>
+        <Visibility x:Key="ImportButtonVisible">Visible</Visibility>
+        <Visibility x:Key="ExportButtonVisible">Collapsed</Visibility>
+        <Visibility x:Key="AddNewButtonVisible">Collapsed</Visibility>
     </UserControl.Resources>
     <Grid Background="{StaticResource PageBG}">
         <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
