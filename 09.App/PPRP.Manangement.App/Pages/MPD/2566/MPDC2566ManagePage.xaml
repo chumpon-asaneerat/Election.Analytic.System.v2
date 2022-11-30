@@ -90,7 +90,7 @@
                                Height="40">
                         <!--  Add New  -->
                         <Button x:Name="cmdAddNew"
-                                Visibility="Collapsed"
+                                Visibility="{StaticResource AddNewButtonVisible}"
                                 DockPanel.Dock="Left"
                                 Style="{StaticResource InlineButton}"
                                 Margin="5,0"
@@ -108,7 +108,7 @@
                         </Button>
                         <!--  IMPORT  -->
                         <Button x:Name="cmdImport"
-                                Visibility="Visible"
+                                Visibility="{StaticResource ImportButtonVisible}"
                                 DockPanel.Dock="Left"
                                 Style="{StaticResource InlineButton}"
                                 Margin="5,0"
@@ -126,7 +126,7 @@
                         </Button>
                         <!--  EXPORT  -->
                         <Button x:Name="cmdExport"
-                                Visibility="Collapsed"
+                                Visibility="{StaticResource ExportButtonVisible}"
                                 DockPanel.Dock="Left"
                                 Style="{StaticResource InlineButton}"
                                 Margin="5,0"
@@ -144,7 +144,7 @@
                         </Button>
                         <!--  BACK  -->
                         <Button x:Name="cmdHome"
-                                Visibility="Visible"
+                                Visibility="{StaticResource HomeButtonVisible}"
                                 DockPanel.Dock="Right"
                                 Style="{StaticResource InlineButton}"
                                 Margin="5,0"
