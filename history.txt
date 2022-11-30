@@ -13,8 +13,14 @@ Election.Analytic.System.v2 - PPRP  #147
 Election.Analytic.System.v2 - PPRP  #146
 - 
 
+[commited]
 Election.Analytic.System.v2 - PPRP  #145
-- 
+  - Implements UI #52 (on progress).
+    - Implements SP SaveMPerson, SaveMParty - OK.
+    - Implements SP GetMPerson, GetMParty - OK.
+    - Implements SP GetMPersonImage, GetMPartyImage - OK.
+    - Implements SP SaveMPersonImage, SaveMPartyImage - OK.
+    - Implements SP ImportMPartyImage, ImportMPersonImage - OK.
 
 [commited]
 Election.Analytic.System.v2 - PPRP  #144
