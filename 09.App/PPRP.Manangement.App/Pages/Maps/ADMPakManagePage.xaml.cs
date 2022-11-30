@@ -55,6 +55,11 @@ namespace PPRP.Pages
             GotoMainMenuPage();
         }
 
+        private void cmdRefresh_Click(object sender, RoutedEventArgs e)
+        {
+            Refresh();
+        }
+
         #endregion
 
         #region Private Methods
@@ -78,6 +83,11 @@ namespace PPRP.Pages
         }
 
         private void Export()
+        {
+
+        }
+
+        private void Refresh()
         {
 
         }

@@ -37,14 +37,13 @@
                 <DockPanel LastChildFill="True">
                     <!--  REFRESH (FontAwesome)  -->
                     <Button x:Name="cmdRefresh"
-                            DockPanel.Dock="Right"
                             Visibility="Collapsed"
+                            DockPanel.Dock="Right"
                             Style="{StaticResource InlineButton}"
                             Height="30"
-                            Width="30">
-                        <TextBox FontFamily="{DynamicResource FontAwesome}"
-                                 Text="&#xf2f9;"
-                                 Background="Transparent" />
+                            Width="30"
+                            Click="cmdRefresh_Click">
+                        <TextBlock Style="{StaticResource fa-refresh}" />
                     </Button>
                     <TextBlock Foreground="{StaticResource CaptionForeground}"
                                FontSize="{StaticResource FontSize30}"
@@ -82,12 +81,7 @@
                                 Height="30"
                                 Click="cmdAddNew_Click">
                             <StackPanel Orientation="Horizontal">
-                                <TextBlock Margin="3,0"
-                                           Foreground="DarkGreen"
-                                           FontFamily="{StaticResource FontAwesome}"
-                                           FontSize="{StaticResource FontSize16}"
-                                           Text="&#xf055;"
-                                           VerticalAlignment="Center" />
+                                <TextBlock Style="{StaticResource fa-addnew}" />
                                 <TextBlock Margin="3,0"
                                            FontFamily="{StaticResource THSarabun}"
                                            FontSize="{StaticResource FontSize16}"
@@ -97,6 +91,7 @@
                         </Button>
                         <!--  IMPORT  -->
                         <Button x:Name="cmdImport"
+                                Visibility="Visible"
                                 DockPanel.Dock="Left"
                                 Style="{StaticResource InlineButton}"
                                 Margin="5,0"
@@ -104,12 +99,7 @@
                                 Height="30"
                                 Click="cmdImport_Click">
                             <StackPanel Orientation="Horizontal">
-                                <TextBlock Margin="3,0"
-                                           Foreground="DarkRed"
-                                           FontFamily="{StaticResource FontAwesome}"
-                                           FontSize="{StaticResource FontSize16}"
-                                           Text="&#xf56f;"
-                                           VerticalAlignment="Center" />
+                                <TextBlock Style="{StaticResource fa-import}" />
                                 <TextBlock Margin="3,0"
                                            FontFamily="{StaticResource THSarabun}"
                                            FontSize="{StaticResource FontSize16}"
@@ -127,12 +117,7 @@
                                 Height="30"
                                 Click="cmdExport_Click">
                             <StackPanel Orientation="Horizontal">
-                                <TextBlock Margin="3,0"
-                                           Foreground="DarkRed"
-                                           FontFamily="{StaticResource FontAwesome}"
-                                           FontSize="{StaticResource FontSize16}"
-                                           Text="&#xf56e;"
-                                           VerticalAlignment="Center" />
+                                <TextBlock Style="{StaticResource fa-export}" />
                                 <TextBlock Margin="3,0"
                                            FontFamily="{StaticResource THSarabun}"
                                            FontSize="{StaticResource FontSize16}"
@@ -142,6 +127,7 @@
                         </Button>
                         <!--  BACK  -->
                         <Button x:Name="cmdHome"
+                                Visibility="Visible"
                                 DockPanel.Dock="Right"
                                 Style="{StaticResource InlineButton}"
                                 Margin="5,0"
@@ -149,12 +135,7 @@
                                 Height="30"
                                 Click="cmdHome_Click">
                             <StackPanel Orientation="Horizontal">
-                                <TextBlock Margin="3,0"
-                                           Foreground="Navy"
-                                           FontFamily="{StaticResource FontAwesome}"
-                                           FontSize="{StaticResource FontSize16}"
-                                           Text="&#xf015;"
-                                           VerticalAlignment="Center" />
+                                <TextBlock Style="{StaticResource fa-home}" />
                                 <TextBlock Margin="3,0"
                                            FontFamily="{StaticResource THSarabun}"
                                            FontSize="{StaticResource FontSize16}"

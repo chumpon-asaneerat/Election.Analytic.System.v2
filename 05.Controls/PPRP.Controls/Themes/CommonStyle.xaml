@@ -164,4 +164,51 @@
         <Setter Property="FontSize" Value="{StaticResource DefaultFontSize}" />
         <Setter Property="Foreground" Value="{StaticResource TextBlockForegroundBlack}" />
     </Style>
+
+
+    <!--  FONTAWESOME TextBlock Styles  -->
+    <Style x:Key="fa-base" TargetType="TextBlock">
+        <Setter Property="Margin" Value="3,0" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="Foreground" Value="{StaticResource BlackBlush}" />
+        <Setter Property="FontFamily" Value="{StaticResource FontAwesome}" />
+        <Setter Property="FontSize" Value="{StaticResource FontSize16}" />
+    </Style>
+    <!--  HOME  -->
+    <Style x:Key="fa-home"
+           TargetType="TextBlock"
+           BasedOn="{StaticResource fa-base}">
+        <Setter Property="Text" Value="&#xf015;" />
+    </Style>
+    <!--  IMPORT  -->
+    <Style x:Key="fa-import"
+           TargetType="TextBlock"
+           BasedOn="{StaticResource fa-base}">
+        <Setter Property="Text" Value="&#xf56f;" />
+    </Style>
+    <!--  EXPORT  -->
+    <Style x:Key="fa-export"
+           TargetType="TextBlock"
+           BasedOn="{StaticResource fa-base}">
+        <Setter Property="Text" Value="&#xf56e;" />
+    </Style>
+    <!--  ADDNEW  -->
+    <Style x:Key="fa-addnew"
+           TargetType="TextBlock"
+           BasedOn="{StaticResource fa-base}">
+        <Setter Property="Text" Value="&#xf055;" />
+    </Style>
+    <!--  SEARCH  -->
+    <Style x:Key="fa-search"
+           TargetType="TextBlock"
+           BasedOn="{StaticResource fa-base}">
+        <Setter Property="Text" Value="&#xf002;" />
+    </Style>
+    <!--  REFRESH  -->
+    <Style x:Key="fa-refresh"
+           TargetType="TextBlock"
+           BasedOn="{StaticResource fa-base}">
+        <Setter Property="Text" Value="&#xf2f9;" />
+    </Style>
+
 </ResourceDictionary>
