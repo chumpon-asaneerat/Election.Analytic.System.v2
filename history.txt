@@ -7,8 +7,10 @@ Election.Analytic.System.v2 - PPRP  #149
 Election.Analytic.System.v2 - PPRP  #148
 - 
 
+[commited]
 Election.Analytic.System.v2 - PPRP  #147
-- 
+  - Implements UI #53 (on progress).
+    - Implements SP DeleteMPerson, DeleteMParty - OK.
 
 [commited]
 Election.Analytic.System.v2 - PPRP  #146
