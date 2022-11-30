@@ -60,7 +60,7 @@
                     <!--  FILTER BAR  -->
                     <DockPanel LastChildFill="True"
                                DockPanel.Dock="Top"
-                               Visibility="Collapsed"
+                               Visibility="{StaticResource FilterBarVisible}"
                                Height="40">
                         <Grid />
                     </DockPanel>

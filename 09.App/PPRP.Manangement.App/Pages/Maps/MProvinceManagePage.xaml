@@ -60,6 +60,7 @@
                     <!--  FILTER BAR  -->
                     <DockPanel LastChildFill="True"
                                DockPanel.Dock="Top"
+                               Visibility="{StaticResource FilterBarVisible}"
                                Height="40">
                         <TextBlock Text="ภาค"
                                    DockPanel.Dock="Left"
