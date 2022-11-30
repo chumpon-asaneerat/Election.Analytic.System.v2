@@ -28,8 +28,13 @@ Election.Analytic.System.v2 - PPRP  #152
 Election.Analytic.System.v2 - PPRP  #151
 - 
 
+[commited]
 Election.Analytic.System.v2 - PPRP  #150
-- 
+- PPRP.Manangement.App project
+  - Implements UI #55 (on progress).
+    - Note -> Peson, Party Image cannot remove if already exists in VoteSummary, Candidate
+    - Note2 -> SaveMPerson SP need to check if prefix is null so keep last value.
+            -> DeleteMParty, DeleteMPerson need to add checks if data is used in another table shold skip.
 
 [commited]
 Election.Analytic.System.v2 - PPRP  #149
