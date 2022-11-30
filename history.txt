@@ -4,21 +4,27 @@
 Election.Analytic.System.v2 - PPRP  #149
 - 
 
+[commited]
 Election.Analytic.System.v2 - PPRP  #148
-- 
+- PPRP.Manangement.App project
+  - Implements UI #54 (on progress).
+    - Note -> Peson, Party Image cannot remove if already exists in VoteSummary, Candidate
 
 [commited]
 Election.Analytic.System.v2 - PPRP  #147
+- PPRP.Manangement.App project
   - Implements UI #53 (on progress).
     - Implements SP DeleteMPerson, DeleteMParty - OK.
 
 [commited]
 Election.Analytic.System.v2 - PPRP  #146
+- PPRP.Manangement.App project
   - Implements UI #53 (on progress).
     - Need implements SP ImportMPDVoteSummary
 
 [commited]
 Election.Analytic.System.v2 - PPRP  #145
+- PPRP.Manangement.App project
   - Implements UI #52 (on progress).
     - Implements SP SaveMPerson, SaveMParty - OK.
     - Implements SP GetMPerson, GetMParty - OK.
