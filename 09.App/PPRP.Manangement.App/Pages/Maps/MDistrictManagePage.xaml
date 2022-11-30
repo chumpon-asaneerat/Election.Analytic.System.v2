@@ -34,11 +34,24 @@
                     BorderBrush="{StaticResource CaptionBorderColor}"
                     BorderThickness="{StaticResource CaptionBorderThickness}"
                     CornerRadius="{StaticResource CaptionBorderCornerRadius}">
-                <TextBlock Foreground="{StaticResource CaptionForeground}"
-                           FontSize="{StaticResource FontSize30}"
-                           Margin="0,2"
-                           TextAlignment="Center"
-                           Text="{StaticResource PageTitle}" />
+                <DockPanel LastChildFill="True">
+                    <!--  REFRESH (FontAwesome)  -->
+                    <Button x:Name="cmdRefresh"
+                            DockPanel.Dock="Right"
+                            Visibility="Collapsed"
+                            Style="{StaticResource InlineButton}"
+                            Height="30"
+                            Width="30">
+                        <TextBox FontFamily="{DynamicResource FontAwesome}"
+                                 Text="&#xf2f9;"
+                                 Background="Transparent" />
+                    </Button>
+                    <TextBlock Foreground="{StaticResource CaptionForeground}"
+                               FontSize="{StaticResource FontSize30}"
+                               Margin="0,2"
+                               TextAlignment="Center"
+                               Text="{StaticResource PageTitle}" />
+                </DockPanel>
             </Border>
             <!--  CLIENT AREA  -->
             <DockPanel Grid.Column="1"
@@ -99,8 +112,21 @@
                                 Margin="5,0"
                                 Width="150"
                                 Height="30"
-                                Content="เพิ่มข้อมูล"
-                                Click="cmdAddNew_Click" />
+                                Click="cmdAddNew_Click">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Margin="3,0"
+                                           Foreground="DarkGreen"
+                                           FontFamily="{StaticResource FontAwesome}"
+                                           FontSize="{StaticResource FontSize16}"
+                                           Text="&#xf055;"
+                                           VerticalAlignment="Center" />
+                                <TextBlock Margin="3,0"
+                                           FontFamily="{StaticResource THSarabun}"
+                                           FontSize="{StaticResource FontSize16}"
+                                           Text="เพิ่มข้อมูล"
+                                           VerticalAlignment="Center" />
+                            </StackPanel>
+                        </Button>
                         <!--  IMPORT  -->
                         <Button x:Name="cmdImport"
                                 DockPanel.Dock="Left"
@@ -108,8 +134,21 @@
                                 Margin="5,0"
                                 Width="150"
                                 Height="30"
-                                Content="นำเข้าข้อมูล"
-                                Click="cmdImport_Click" />
+                                Click="cmdImport_Click">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Margin="3,0"
+                                           Foreground="DarkRed"
+                                           FontFamily="{StaticResource FontAwesome}"
+                                           FontSize="{StaticResource FontSize16}"
+                                           Text="&#xf56f;"
+                                           VerticalAlignment="Center" />
+                                <TextBlock Margin="3,0"
+                                           FontFamily="{StaticResource THSarabun}"
+                                           FontSize="{StaticResource FontSize16}"
+                                           Text="นำเข้าข้อมูล"
+                                           VerticalAlignment="Center" />
+                            </StackPanel>
+                        </Button>
                         <!--  EXPORT  -->
                         <Button x:Name="cmdExport"
                                 Visibility="Collapsed"
@@ -118,8 +157,21 @@
                                 Margin="5,0"
                                 Width="150"
                                 Height="30"
-                                Content="ส่งออกข้อมูล"
-                                Click="cmdExport_Click" />
+                                Click="cmdExport_Click">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Margin="3,0"
+                                           Foreground="DarkRed"
+                                           FontFamily="{StaticResource FontAwesome}"
+                                           FontSize="{StaticResource FontSize16}"
+                                           Text="&#xf56e;"
+                                           VerticalAlignment="Center" />
+                                <TextBlock Margin="3,0"
+                                           FontFamily="{StaticResource THSarabun}"
+                                           FontSize="{StaticResource FontSize16}"
+                                           Text="ส่งออกข้อมูล"
+                                           VerticalAlignment="Center" />
+                            </StackPanel>
+                        </Button>
                         <!--  BACK  -->
                         <Button x:Name="cmdHome"
                                 DockPanel.Dock="Right"
@@ -127,8 +179,21 @@
                                 Margin="5,0"
                                 Width="150"
                                 Height="30"
-                                Content="กลับสู่หน้าจอหลัก"
-                                Click="cmdHome_Click" />
+                                Click="cmdHome_Click">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Margin="3,0"
+                                           Foreground="Navy"
+                                           FontFamily="{StaticResource FontAwesome}"
+                                           FontSize="{StaticResource FontSize16}"
+                                           Text="&#xf015;"
+                                           VerticalAlignment="Center" />
+                                <TextBlock Margin="3,0"
+                                           FontFamily="{StaticResource THSarabun}"
+                                           FontSize="{StaticResource FontSize16}"
+                                           Text="เมนูหลัก"
+                                           VerticalAlignment="Center" />
+                            </StackPanel>
+                        </Button>
                         <Grid />
                     </DockPanel>
                     <!--  ITEMS  -->

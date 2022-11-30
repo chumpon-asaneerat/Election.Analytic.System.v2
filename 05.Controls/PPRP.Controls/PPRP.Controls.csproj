@@ -202,6 +202,7 @@
     <Compile Include="Windows\MessageBoxWindow.xaml.cs">
       <DependentUpon>MessageBoxWindow.xaml</DependentUpon>
     </Compile>
+    <Resource Include="Fonts\FontAwesome.otf" />
     <None Include="Utils\MouseOptionsAttachedProperties.cs" />
     <Compile Include="Utils\IsLastItemConverter.cs" />
     <Compile Include="Utils\IsProgressedConverter.cs" />

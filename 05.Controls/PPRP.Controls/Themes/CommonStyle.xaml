@@ -14,6 +14,8 @@
     <FontFamily x:Key="THSarabun">pack://application:,,,/PPRP.Controls;Component/Fonts/#TH Sarabun</FontFamily>
     <FontFamily x:Key="THSarabunNew">pack://application:,,,/PPRP.Controls;Component/Fonts/#TH Sarabun New</FontFamily>
     <FontFamily x:Key="Puanpian">pack://application:,,,/PPRP.Controls;Component/Fonts/#iamsudyod2006-2puanpian</FontFamily>
+    <!--  FONTAWESOME FONT FAMILY  -->
+    <FontFamily x:Key="FontAwesome">pack://application:,,,/PPRP.Controls;Component/Fonts/FontAwesome.otf#Font Awesome 6 Free Solid</FontFamily>
 
     <!--  COMMON FONT SIZE  -->
     <sys:Double x:Key="FontSize14" PresentationOptions:Freeze="True">14</sys:Double>
