@@ -176,14 +176,14 @@ namespace PPRP.Pages
 
             // Check province.
             var province = cbProvince.SelectedItem as MProvince;
-            string provinceName = (null != province) ? province.ProvinceNameTH : null;
-            if (null != provinceName && provinceName.Contains("ทุกจังหวัด"))
+            string adm1Code = (null != province) ? province.ADM1Code : null;
+            if (string.IsNullOrWhiteSpace(adm1Code))
             {
-                provinceName = null;
+                adm1Code = null;
             }
 
             lvSubdistricts.ItemsSource = null;
-            var subdistricts = MSubdistrict.Gets(regionId: regionId, provinceNameTH: provinceName);
+            var subdistricts = MSubdistrict.Gets(regionId: regionId, adm1Code: adm1Code);
             lvSubdistricts.ItemsSource = (null != subdistricts) ? subdistricts.Value : new List<MSubdistrict>();
         }
 

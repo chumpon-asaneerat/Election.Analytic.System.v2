@@ -181,14 +181,14 @@ namespace PPRP.Pages
 
             // Check province
             var province = cbProvince.SelectedItem as MProvince;
-            string provinceNameTH = (null != province) ? province.ProvinceNameTH : null;
-            if (null != provinceNameTH && provinceNameTH.Contains("ทุกจังหวัด"))
+            string adm1Code = (null != province) ? province.ADM1Code : null;
+            if (string.IsNullOrWhiteSpace(adm1Code))
             {
-                provinceNameTH = null;
+                adm1Code = null;
             }
 
             cbDistrict.ItemsSource = null;
-            var districts = MDistrict.Gets(regionId: regionId, provinceNameTH: provinceNameTH).Value;
+            var districts = MDistrict.Gets(null, adm1Code, regionId).Value;
             if (null != districts)
             {
                 districts.Insert(0, new MDistrict { DistrictNameTH = "ทุกอำเภอ/เขต" } );
