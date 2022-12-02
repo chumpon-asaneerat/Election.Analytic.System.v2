@@ -29,6 +29,8 @@ namespace PPRP.Models
 
         private string _RegionId = null;
         private string _RegionName = null;
+        private string _GeoGroup = null;
+        private string _GeoSubGroup = null;
 
         private string _ADM1Code = null;
         private string _ADM2Code = null;
@@ -99,6 +101,38 @@ namespace PPRP.Models
                     _RegionName = value;
                     // Raise Event
                     Raise(() => RegionName);
+                }
+            }
+        }
+        /// <summary>
+        /// Gets or sets Geo Group.
+        /// </summary>
+        public string GeoGroup
+        {
+            get { return _GeoGroup; }
+            set
+            {
+                if (_GeoGroup != value)
+                {
+                    _GeoGroup = value;
+                    // Raise Event
+                    Raise(() => GeoGroup);
+                }
+            }
+        }
+        /// <summary>
+        /// Gets or sets Geo SubGroup.
+        /// </summary>
+        public string GeoSubGroup
+        {
+            get { return _GeoSubGroup; }
+            set
+            {
+                if (_GeoSubGroup != value)
+                {
+                    _GeoSubGroup = value;
+                    // Raise Event
+                    Raise(() => GeoSubGroup);
                 }
             }
         }
