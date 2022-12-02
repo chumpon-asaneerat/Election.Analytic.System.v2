@@ -131,7 +131,7 @@
                                         Style="{DynamicResource InlineButton}"
                                         Click="txtSignIn_Click">
                                     <StackPanel Orientation="Horizontal">
-                                        <TextBlock Style="{StaticResource fa-home}" />
+                                        <TextBlock Style="{StaticResource fa-login}" />
                                         <TextBlock Margin="3,0"
                                                    FontFamily="{StaticResource THSarabun}"
                                                    FontSize="{StaticResource IBFSize}"

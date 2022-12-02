@@ -183,6 +183,14 @@
             </Trigger>
         </Style.Triggers>
     </Style>
+
+    <!--  LOGIN  -->
+    <Style x:Key="fa-login"
+           TargetType="TextBlock"
+           BasedOn="{StaticResource fa-base}">
+        <Setter Property="Text" Value="&#xf084;" />
+    </Style>
+
     <!--  HOME  -->
     <Style x:Key="fa-home"
            TargetType="TextBlock"
