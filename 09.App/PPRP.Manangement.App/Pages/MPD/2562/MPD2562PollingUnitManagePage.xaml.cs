@@ -111,6 +111,11 @@ namespace PPRP.Pages
 
         }
 
+        private void Print()
+        {
+
+        }
+
         private void LoadProvinces()
         {
             cbProvince.ItemsSource = null;
