@@ -141,6 +141,12 @@
     <Compile Include="Windows\Excels\Maps\ImportADMPakWindow.xaml.cs">
       <DependentUpon>ImportADMPakWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Windows\ImportPartyImageWindow.xaml.cs">
+      <DependentUpon>ImportPartyImageWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\ImportPersonImageWindow.xaml.cs">
+      <DependentUpon>ImportPersonImageWindow.xaml</DependentUpon>
+    </Compile>
     <None Include="Properties\DataSources\PPRP.Domains.MPD2562PrintVoteSummary.datasource" />
     <None Include="Properties\DataSources\PPRP.Domains.MPD2562x350PrintUnitSummary.datasource" />
     <None Include="Properties\DataSources\PPRP.Domains.MPDC2566PrintSummary.datasource" />
@@ -249,6 +255,14 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Windows\Excels\Maps\ImportADMPakWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\ImportPartyImageWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\ImportPersonImageWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
