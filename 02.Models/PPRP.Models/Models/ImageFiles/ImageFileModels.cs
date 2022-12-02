@@ -91,6 +91,60 @@ namespace PPRP.Models
 
     #endregion
 
+    #region ImageFileSource
+
+    /// <summary>
+    /// The ImageFileSource class.
+    /// </summary>
+    public class ImageFileSource
+    {
+        #region Constructor and Destructor
+
+        /// <summary>
+        /// Constructor.
+        /// </summary>
+        public ImageFileSource() : base() 
+        {
+            this.Items = new List<ImageFile>();
+        }
+        /// <summary>
+        /// Destructor.
+        /// </summary>
+        ~ImageFileSource() { }
+
+        #endregion
+
+
+        #region Public Properties
+
+        /// <summary>
+        /// Gets or sets total record or file count.
+        /// </summary>
+        public int TotalRecords { get; internal set; }
+        /// <summary>
+        /// Gets or sets rows (or files) per page.
+        /// </summary>
+        public int RowsPerPage { get; internal set; }
+        /// <summary>
+        /// Gets or sets Max Pages.
+        /// </summary>
+        public int MaxPages { get; internal set; }
+        /// <summary>
+        /// Gets or sets current page number.
+        /// </summary>
+        public int PageNo { get; internal set; }
+
+        /// <summary>
+        /// Gets Items on current page.
+        /// </summary>
+        public List<ImageFile> Items { get; private set; }
+
+        #endregion
+    }
+
+    #endregion
+
+
     #region ImageFiles
 
     /// <summary>
@@ -117,6 +171,51 @@ namespace PPRP.Models
         {
             ImagePath = path;
             Directory.GetFiles(path, "", SearchOption.AllDirectories);
+        }
+
+        public ImageFileSource GetItems(int pageNo = 1, int rowsPerPage = 40)
+        {
+            ImageFileSource ret = null;
+
+            if (!Directory.Exists(ImagePath))
+                return ret;
+
+            DirectoryInfo di = new DirectoryInfo(ImagePath);
+
+            string searchPattern = "*.*";
+            var exts = new string[] { /*"*.png",*/ "*.jpg" };
+
+            List<string> allFiles = di.GetFiles(searchPattern, SearchOption.AllDirectories)
+                .Where(f => /*f.Extension == ".png" ||*/ f.Extension == ".jpg")
+                .Select(x => x.FullName)
+                .ToList();
+
+            int totalRows = allFiles.Count;
+            ret = new ImageFileSource();
+
+            int maxPages = Convert.ToInt32(Math.Floor((decimal)(totalRows / rowsPerPage)));
+            if ((maxPages * totalRows) < totalRows) maxPages++;
+
+            ret.TotalRecords = totalRows;
+            ret.MaxPages = maxPages;
+            ret.RowsPerPage = rowsPerPage;
+            ret.PageNo = pageNo;
+
+            var files = allFiles.Skip((pageNo - 1) * rowsPerPage).Take(rowsPerPage).ToList();
+
+            if (null != files && files.Count > 0)
+            {
+                files.ForEach(file => 
+                {
+                    var imgFile = new ImageFile(file);
+                    if (imgFile.Exist)
+                    {
+                        ret.Items.Add(imgFile);
+                    }
+                });
+            }
+
+            return ret;
         }
 
         #endregion
