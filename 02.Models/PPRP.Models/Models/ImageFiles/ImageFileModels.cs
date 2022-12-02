@@ -11,6 +11,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Forms;
+using System.Windows.Media;
 
 using NLib;
 using NLib.Reflection;
@@ -236,12 +237,12 @@ namespace PPRP.Models
         /// Open Folder Browser to choose selected folder.
         /// </summary>
         /// <returns>Returns ImageFiles instance of selected folder.</returns>
-        public static ImageFiles ChooseFolder()
+        public static ImageFiles ChooseFolder(Window owner)
         {
             string targetPath = string.Empty;
             FolderBrowserDialog fd = new FolderBrowserDialog();
             fd.Description = "กรูณาเลือกโฟลเดอร์รูป";
-            if (fd.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            if (fd.ShowDialog(owner.GetIWin32Window()) == System.Windows.Forms.DialogResult.OK)
             {
                 targetPath = fd.SelectedPath;
             }
@@ -256,6 +257,42 @@ namespace PPRP.Models
         }
 
         #endregion
+    }
+
+    #endregion
+
+    #region WpfExtensionMethods class
+
+    /// <summary>
+    /// Wpf Extension Methods.
+    /// </summary>
+    internal static class WpfExtensionMethods
+    {
+        public static IWin32Window GetIWin32Window(this Visual visual)
+        {
+            var source = PresentationSource.FromVisual(visual) as System.Windows.Interop.HwndSource;
+            IWin32Window win = new OldWindow(source.Handle);
+            return win;
+        }
+
+        private class OldWindow : IWin32Window
+        {
+            private readonly IntPtr _handle;
+
+            public OldWindow(IntPtr handle)
+            {
+                _handle = handle;
+            }
+
+            #region IWin32Window Members
+
+            IntPtr IWin32Window.Handle
+            {
+                get { return _handle; }
+            }
+
+            #endregion
+        }
     }
 
     #endregion
