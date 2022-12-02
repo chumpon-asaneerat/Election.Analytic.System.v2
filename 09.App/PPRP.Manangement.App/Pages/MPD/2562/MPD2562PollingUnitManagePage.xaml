@@ -118,7 +118,7 @@
                                 Height="30"
                                 Click="cmdAddNew_Click">
                             <StackPanel Orientation="Horizontal">
-                                <TextBlock Style="{StaticResource fa-addnew}" />
+                                <TextBlock Style="{StaticResource fa-addnew}" FontSize="{StaticResource IBFSize}" />
                                 <TextBlock Margin="3,0"
                                            FontFamily="{StaticResource THSarabun}"
                                            FontSize="{StaticResource IBFSize}"
@@ -136,7 +136,7 @@
                                 Height="30"
                                 Click="cmdImport_Click">
                             <StackPanel Orientation="Horizontal">
-                                <TextBlock Style="{StaticResource fa-import}" />
+                                <TextBlock Style="{StaticResource fa-import}" FontSize="{StaticResource IBFSize}" />
                                 <TextBlock Margin="3,0"
                                            FontFamily="{StaticResource THSarabun}"
                                            FontSize="{StaticResource IBFSize}"
@@ -154,7 +154,7 @@
                                 Height="30"
                                 Click="cmdExport_Click">
                             <StackPanel Orientation="Horizontal">
-                                <TextBlock Style="{StaticResource fa-export}" />
+                                <TextBlock Style="{StaticResource fa-export}" FontSize="{StaticResource IBFSize}" />
                                 <TextBlock Margin="3,0"
                                            FontFamily="{StaticResource THSarabun}"
                                            FontSize="{StaticResource IBFSize}"
@@ -172,7 +172,7 @@
                                 Height="30"
                                 Click="cmdPrint_Click">
                             <StackPanel Orientation="Horizontal">
-                                <TextBlock Style="{StaticResource fa-print}" />
+                                <TextBlock Style="{StaticResource fa-print}" FontSize="{StaticResource IBFSize}" />
                                 <TextBlock Margin="3,0"
                                            FontFamily="{StaticResource THSarabun}"
                                            FontSize="{StaticResource IBFSize}"
@@ -190,7 +190,7 @@
                                 Height="30"
                                 Click="cmdHome_Click">
                             <StackPanel Orientation="Horizontal">
-                                <TextBlock Style="{StaticResource fa-home}" />
+                                <TextBlock Style="{StaticResource fa-home}" FontSize="{StaticResource IBFSize}" />
                                 <TextBlock Margin="3,0"
                                            FontFamily="{StaticResource THSarabun}"
                                            FontSize="{StaticResource IBFSize}"
