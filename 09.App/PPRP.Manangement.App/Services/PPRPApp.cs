@@ -533,6 +533,36 @@ namespace PPRP
             }
 
             #endregion
+
+            #region Import Party Image
+
+            /// <summary>Gets Import Party Image Window.</summary>
+            public static PPRP.Windows.ImportPartyImageWindow ImportPartyImage
+            {
+                get
+                {
+                    var ret = new PPRP.Windows.ImportPartyImageWindow();
+                    ret.Owner = Application.Current.MainWindow;
+                    return ret;
+                }
+            }
+
+            #endregion
+
+            #region Import Person Image
+
+            /// <summary>Gets Person Image Import Window.</summary>
+            public static PPRP.Windows.ImportPersonImageWindow ImportPersonImage
+            {
+                get
+                {
+                    var ret = new PPRP.Windows.ImportPersonImageWindow();
+                    ret.Owner = Application.Current.MainWindow;
+                    return ret;
+                }
+            }
+
+            #endregion
         }
     }
 }
