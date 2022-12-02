@@ -116,9 +116,7 @@
                     </DockPanel>
                     <!--  ITEMS  -->
                     <ListView x:Name="lvItems"
-                              Style="{StaticResource SingleSelectListView}"
-                              VirtualizingPanel.IsVirtualizing="True"
-                              VirtualizingPanel.VirtualizationMode="Recycling">
+                              Style="{StaticResource SingleSelectListView}">
                         <ListView.ItemContainerStyle>
                             <Style TargetType="ListViewItem">
                                 <Setter Property="HorizontalContentAlignment" Value="Stretch" />
