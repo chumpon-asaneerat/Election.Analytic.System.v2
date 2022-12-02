@@ -65,6 +65,26 @@
                                DockPanel.Dock="Top"
                                Visibility="{StaticResource FilterBarVisible}"
                                Height="40">
+                        <!--  REFRESH  -->
+                        <Button x:Name="cmdRefresh"
+                                Visibility="{StaticResource RefreshButtonVisible}"
+                                DockPanel.Dock="Right"
+                                Style="{StaticResource InlineButton}"
+                                Height="30"
+                                Width="30"
+                                Click="cmdRefresh_Click">
+                            <TextBlock Style="{StaticResource fa-refresh}" FontSize="{StaticResource IBFSize}" />
+                        </Button>
+                        <!--  SEARCH  -->
+                        <Button x:Name="cmdSearch"
+                                Visibility="{StaticResource SearchButtonVisible}"
+                                DockPanel.Dock="Right"
+                                Style="{StaticResource InlineButton}"
+                                Height="30"
+                                Width="30"
+                                Click="cmdSearch_Click">
+                            <TextBlock Style="{StaticResource fa-search}" FontSize="{StaticResource IBFSize}" />
+                        </Button>
                         <!--  PROVINCE  -->
                         <TextBlock Text="จังหวัด"
                                    DockPanel.Dock="Left"
@@ -115,26 +135,6 @@
                                  VerticalContentAlignment="Center"
                                  KeyDown="txtFullNameFilter_KeyDown" />
                         <TextBlock Width="10" DockPanel.Dock="Left" />
-                        <!--  REFRESH  -->
-                        <Button x:Name="cmdRefresh"
-                                Visibility="{StaticResource RefreshButtonVisible}"
-                                DockPanel.Dock="Right"
-                                Style="{StaticResource InlineButton}"
-                                Height="30"
-                                Width="30"
-                                Click="cmdRefresh_Click">
-                            <TextBlock Style="{StaticResource fa-refresh}" />
-                        </Button>
-                        <!--  SEARCH  -->
-                        <Button x:Name="cmdSearch"
-                                Visibility="{StaticResource SearchButtonVisible}"
-                                DockPanel.Dock="Right"
-                                Style="{StaticResource InlineButton}"
-                                Height="30"
-                                Width="30"
-                                Click="cmdSearch_Click">
-                            <TextBlock Style="{StaticResource fa-search}" />
-                        </Button>
                         <Grid />
                     </DockPanel>
                     <!--  BUTTONS BAR  -->

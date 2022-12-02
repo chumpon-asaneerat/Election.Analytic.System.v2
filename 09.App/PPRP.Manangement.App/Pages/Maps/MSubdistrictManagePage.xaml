@@ -10,7 +10,7 @@
     <UserControl.Resources>
         <!--  PAGE TITLE  -->
         <sys:String x:Key="PageTitle">ข้อมูลตำบล (ESRI - ADM3)</sys:String>
-        <!--  INLINE BUTTON TEXT FONT SIZE -->
+        <!--  INLINE BUTTON TEXT FONT SIZE  -->
         <sys:Double x:Key="IBFSize">18</sys:Double>
         <!--  FILTER BAR VISIBLE STATES  -->
         <Visibility x:Key="FilterBarVisible">Visible</Visibility>
@@ -73,7 +73,7 @@
                                 Height="30"
                                 Width="30"
                                 Click="cmdRefresh_Click">
-                            <TextBlock Style="{StaticResource fa-refresh}" />
+                            <TextBlock Style="{StaticResource fa-refresh}" FontSize="{StaticResource IBFSize}" />
                         </Button>
                         <!--  SEARCH  -->
                         <Button x:Name="cmdSearch"
@@ -83,7 +83,7 @@
                                 Height="30"
                                 Width="30"
                                 Click="cmdSearch_Click">
-                            <TextBlock Style="{StaticResource fa-search}" />
+                            <TextBlock Style="{StaticResource fa-search}" FontSize="{StaticResource IBFSize}" />
                         </Button>
                         <!--  PAK  -->
                         <TextBlock Text="ภาค"
