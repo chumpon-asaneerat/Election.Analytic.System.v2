@@ -72,7 +72,7 @@
                                 Height="30"
                                 Click="cmdCancel_Click">
                             <StackPanel Orientation="Horizontal">
-                                <TextBlock Style="{StaticResource fa-cancel}" />
+                                <TextBlock Style="{StaticResource fa-cancel}" FontSize="{StaticResource IBFSize}" />
                                 <TextBlock Margin="3,0"
                                            FontFamily="{StaticResource THSarabun}"
                                            FontSize="{StaticResource IBFSize}"
@@ -89,7 +89,7 @@
                                 Height="30"
                                 Click="cmdFinish_Click">
                             <StackPanel Orientation="Horizontal">
-                                <TextBlock Style="{StaticResource fa-start}" />
+                                <TextBlock Style="{StaticResource fa-start}" FontSize="{StaticResource IBFSize}" />
                                 <TextBlock Margin="3,0"
                                            FontFamily="{StaticResource THSarabun}"
                                            FontSize="{StaticResource IBFSize}"
@@ -132,7 +132,7 @@
                                     Height="30"
                                     Click="cmdChooseExcel_Click">
                                 <StackPanel Orientation="Horizontal">
-                                    <TextBlock Style="{StaticResource fa-browse-file}" />
+                                    <TextBlock Style="{StaticResource fa-browse-file}" FontSize="{StaticResource IBFSize}" />
                                     <TextBlock Margin="3,0"
                                                FontFamily="{StaticResource THSarabun}"
                                                FontSize="{StaticResource IBFSize}"
