@@ -10,6 +10,7 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Forms;
 
 using NLib;
 using NLib.Reflection;
@@ -38,10 +39,15 @@ namespace PPRP.Models
         /// <param name="fullFileName"></param>
         public ImageFile(string fullFileName) : base()
         {
-            PathName = Path.GetDirectoryName(fullFileName);
-            FileName = Path.GetFileName(fullFileName);
-            FileNameOnly = Path.GetFileNameWithoutExtension(fullFileName);
-            Extension = Path.GetExtension(fullFileName);
+            Exist = Directory.Exists(fullFileName);
+            if (Exist)
+            {
+                FullFileName = fullFileName;
+                PathName = Path.GetDirectoryName(fullFileName);
+                FileName = Path.GetFileName(fullFileName);
+                FileNameOnly = Path.GetFileNameWithoutExtension(fullFileName);
+                Extension = Path.GetExtension(fullFileName);
+            }
         }
         /// <summary>
         /// Destructor.
@@ -56,14 +62,28 @@ namespace PPRP.Models
         #region Public Properties
 
         /// <summary>
+        /// Gets is directory is exists.
+        /// </summary>
+        public bool Exist { get; private set; }
+        /// <summary>
         /// Gets Path Name.
         /// </summary>
         public string PathName { get; private set; }
-
+        /// <summary>
+        /// Gets Full FileName.
+        /// </summary>
+        public string FullFileName { get; private set; }
+        /// <summary>
+        /// Gets FileName with extension.
+        /// </summary>
         public string FileName { get; private set; }
-
+        /// <summary>
+        /// Gets File Name only.
+        /// </summary>
         public string FileNameOnly { get; private set; }
-
+        /// <summary>
+        /// Gets File Extension.
+        /// </summary>
         public string Extension { get; private set; }
 
         #endregion
@@ -107,6 +127,34 @@ namespace PPRP.Models
         /// Gets current image path.
         /// </summary>
         public string ImagePath { get; protected set; }
+
+        #endregion
+
+        #region Static Methods
+
+
+        /// <summary>
+        /// Open Folder Browser to choose selected folder.
+        /// </summary>
+        /// <returns>Returns ImageFiles instance of selected folder.</returns>
+        public static ImageFiles ChooseFolder()
+        {
+            string targetPath = string.Empty;
+            FolderBrowserDialog fd = new FolderBrowserDialog();
+            fd.Description = "กรูณาเลือกโฟลเดอร์รูป";
+            if (fd.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                targetPath = fd.SelectedPath;
+            }
+            fd = null;
+
+            if (string.IsNullOrEmpty(targetPath))
+                return null;
+
+            ImageFiles ret = new ImageFiles();
+            ret.Setup(targetPath);
+            return ret;
+        }
 
         #endregion
     }
