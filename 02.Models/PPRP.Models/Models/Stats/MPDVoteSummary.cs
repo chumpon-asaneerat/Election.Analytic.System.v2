@@ -147,4 +147,8 @@ namespace PPRP.Models
     }
 
     #endregion
+
+    #region MPDVoteSummary
+
+    #endregion
 }
