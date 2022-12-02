@@ -40,7 +40,7 @@ namespace PPRP.Models
         /// <param name="fullFileName"></param>
         public ImageFile(string fullFileName) : base()
         {
-            Exist = Directory.Exists(fullFileName);
+            Exist = File.Exists(fullFileName);
             if (Exist)
             {
                 FullFileName = fullFileName;
@@ -146,7 +146,7 @@ namespace PPRP.Models
             int totalRows = allFiles.Count;
 
             int maxPages = Convert.ToInt32(Math.Floor((decimal)(totalRows / rowsPerPage)));
-            if ((maxPages * totalRows) < totalRows) maxPages++;
+            if ((maxPages * rowsPerPage) < totalRows) maxPages++;
 
             TotalRecords = totalRows;
             MaxPages = maxPages;

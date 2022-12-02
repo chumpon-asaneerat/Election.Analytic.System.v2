@@ -92,8 +92,10 @@ namespace PPRP.Windows
             source = ImageFileSource.ChooseFolder(this);
             if (null != source)
             {
-                
+                txtFolderName.Text = source.ImagePath;
             }
+            else txtFolderName.Text = string.Empty;
+
             RefreshList();
         }
 
