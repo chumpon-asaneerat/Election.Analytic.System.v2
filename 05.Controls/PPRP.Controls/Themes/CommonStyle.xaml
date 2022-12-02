@@ -254,6 +254,13 @@
            BasedOn="{StaticResource fa-base}">
         <Setter Property="Text" Value="&#xf65e;" />
     </Style>
+    <!--  START  -->
+    <Style x:Key="fa-start"
+           TargetType="TextBlock"
+           BasedOn="{StaticResource fa-base}">
+        <Setter Property="Text" Value="&#xf04b;" />
+        <Setter Property="Foreground" Value="Green" />
+    </Style>
 
     <!--  GO FIRST  -->
     <Style x:Key="fa-go-first"

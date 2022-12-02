@@ -11,6 +11,8 @@
     <UserControl.Resources>
         <!--  PAGE TITLE  -->
         <sys:String x:Key="PageTitle">เข้าสู่ระบบ</sys:String>
+        <!--  INLINE BUTTON TEXT FONT SIZE  -->
+        <sys:Double x:Key="IBFSize">18</sys:Double>
     </UserControl.Resources>
     <Grid Background="{StaticResource PageBG}">
         <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
@@ -91,6 +93,7 @@
                             Grid.Row="2"
                             Background="{StaticResource BlueLightBrush3}">
                         <DockPanel LastChildFill="True" Margin="75,15">
+                            <!--  USER NAME  -->
                             <TextBlock DockPanel.Dock="Top"
                                        Style="{StaticResource LabelText}"
                                        Foreground="{StaticResource TextBlockForegroundWhite}"
@@ -104,6 +107,7 @@
                                      util:KeyboardOptions.UpDownNavigation="True"
                                      Style="{StaticResource CommonTextBox}" />
                             <TextBlock DockPanel.Dock="Top" Height="5" />
+                            <!--  PASSWORD  -->
                             <TextBlock DockPanel.Dock="Top"
                                        Style="{StaticResource LabelText}"
                                        Foreground="{StaticResource TextBlockForegroundWhite}"
@@ -117,15 +121,24 @@
                                          util:KeyboardOptions.UpDownNavigation="True"
                                          Style="{StaticResource CommonPwdBox}" />
                             <TextBlock DockPanel.Dock="Top" Height="20" />
+                            <!--  SIGNIN BUTTON  -->
                             <Border DockPanel.Dock="Top">
                                 <Button x:Name="txtSignIn"
                                         Height="30"
                                         Width="200"
                                         HorizontalAlignment="Center"
                                         Cursor="Hand"
-                                        Content="เข้าสู่ระบบ"
                                         Style="{DynamicResource InlineButton}"
-                                        Click="txtSignIn_Click" />
+                                        Click="txtSignIn_Click">
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Style="{StaticResource fa-home}" />
+                                        <TextBlock Margin="3,0"
+                                                   FontFamily="{StaticResource THSarabun}"
+                                                   FontSize="{StaticResource IBFSize}"
+                                                   Text="เข้าสู่ระบบ"
+                                                   VerticalAlignment="Center" />
+                                    </StackPanel>
+                                </Button>
                             </Border>
                             <Grid />
                         </DockPanel>

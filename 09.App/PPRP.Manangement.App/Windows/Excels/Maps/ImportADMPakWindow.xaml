@@ -59,7 +59,7 @@
                        LastChildFill="True">
                 <!--  WORK AREA  -->
                 <DockPanel LastChildFill="True">
-                    <!--  BUTTON PREVIOUS/NEXT  -->
+                    <!--  BUTTON CANCEL/FINISH  -->
                     <DockPanel LastChildFill="True"
                                DockPanel.Dock="Bottom"
                                Height="40">
@@ -70,8 +70,16 @@
                                 Margin="5,0"
                                 Width="150"
                                 Height="30"
-                                Content="ยกเลิก"
-                                Click="cmdCancel_Click" />
+                                Click="cmdCancel_Click">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Style="{StaticResource fa-cancel}" />
+                                <TextBlock Margin="3,0"
+                                           FontFamily="{StaticResource THSarabun}"
+                                           FontSize="{StaticResource IBFSize}"
+                                           Text="ยกเลิก"
+                                           VerticalAlignment="Center" />
+                            </StackPanel>
+                        </Button>
                         <!--  FINISH  -->
                         <Button x:Name="cmdFinish"
                                 DockPanel.Dock="Right"
@@ -79,8 +87,16 @@
                                 Margin="5,0"
                                 Width="150"
                                 Height="30"
-                                Content="นำเข้าข้อมูล"
-                                Click="cmdFinish_Click" />
+                                Click="cmdFinish_Click">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Style="{StaticResource fa-start}" />
+                                <TextBlock Margin="3,0"
+                                           FontFamily="{StaticResource THSarabun}"
+                                           FontSize="{StaticResource IBFSize}"
+                                           Text="นำเข้าข้อมูล"
+                                           VerticalAlignment="Center" />
+                            </StackPanel>
+                        </Button>
                         <Grid />
                     </DockPanel>
                     <!--  WIZARD PAGES (ACTUAL CONTENT AREA)  -->
@@ -114,8 +130,16 @@
                                     Style="{StaticResource InlineButton}"
                                     Width="150"
                                     Height="30"
-                                    Content="เลือกไฟล์"
-                                    Click="cmdChooseExcel_Click" />
+                                    Click="cmdChooseExcel_Click">
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Style="{StaticResource fa-browse-file}" />
+                                    <TextBlock Margin="3,0"
+                                               FontFamily="{StaticResource THSarabun}"
+                                               FontSize="{StaticResource IBFSize}"
+                                               Text="เลือกไฟล์"
+                                               VerticalAlignment="Center" />
+                                </StackPanel>
+                            </Button>
                             <TextBlock DockPanel.Dock="Right" Width="5" />
                             <Grid />
                         </DockPanel>
