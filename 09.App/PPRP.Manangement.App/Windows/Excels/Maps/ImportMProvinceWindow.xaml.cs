@@ -110,7 +110,7 @@ namespace PPRP.Windows
             {
                 var mbox = PPRPApp.Windows.MessageBox;
                 mbox.Owner = this;
-                string msg = "กรุณาทำการ กดปุ่มอ่านข้อมูลตัวอย่าง" + Environment.NewLine + "และทำการตรวจสอบข้อมูล ก่อนทำการนำเข้าข้อมูล";
+                string msg = "กรุณาทำการ กดปุ่มอ่านข้อมูล และทำการตรวจสอบข้อมูล" + Environment.NewLine + "ก่อนทำการ กดปุ่มนำเข้าข้อมูล";
                 mbox.Setup(msg, "PPRP");
                 mbox.ShowDialog();
                 return false; // No items

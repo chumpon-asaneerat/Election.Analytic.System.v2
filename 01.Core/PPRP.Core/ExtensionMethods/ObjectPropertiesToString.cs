@@ -60,7 +60,23 @@ namespace PPRP
                 {
                     props.ForEach((prop) =>
                     {
-                        result += prop.Name + ": " + DynamicAccess.Get(value, prop.Name).ToString() + Environment.NewLine;
+                        string propName = prop.Name;
+                        try
+                        {
+                            object val = DynamicAccess.Get(value, propName);
+                            if (null != val)
+                            {
+                                result += propName + ": " + val.ToString() + Environment.NewLine;
+                            }
+                            else
+                            {
+                                result += propName + ": " + "(null)" + Environment.NewLine;
+                            }
+                        }
+                        catch (Exception)
+                        {
+                            result += propName + ": " + "(value error)" + Environment.NewLine;
+                        }
                     });
                 }
                 else result = "object has no property.";
