@@ -43,8 +43,16 @@
                             FontSize="{StaticResource FontSize20}"
                             Width="150"
                             Height="30"
-                            Content="ยกเลิก"
-                            Click="cmdCancel_Click" />
+                            Click="cmdCancel_Click">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Style="{StaticResource fa-cancel}" />
+                            <TextBlock Margin="3,0"
+                                           FontFamily="{StaticResource THSarabun}"
+                                           FontSize="{StaticResource FontSize16}"
+                                           Text="ยกเลิก"
+                                           VerticalAlignment="Center" />
+                        </StackPanel>
+                    </Button>
                     <Button x:Name="cmdOk"
                             Margin="10,0"
                             DockPanel.Dock="Right"
@@ -53,8 +61,16 @@
                             FontSize="{StaticResource FontSize20}"
                             Width="150"
                             Height="30"
-                            Content="ตกลง"
-                            Click="cmdOk_Click" />
+                            Click="cmdOk_Click">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Style="{StaticResource fa-ok}" />
+                            <TextBlock Margin="3,0"
+                                           FontFamily="{StaticResource THSarabun}"
+                                           FontSize="{StaticResource FontSize16}"
+                                           Text="ตกลง"
+                                           VerticalAlignment="Center" />
+                        </StackPanel>
+                    </Button>
                     <Grid />
                 </DockPanel>
                 <!--  WORK AREA  -->
