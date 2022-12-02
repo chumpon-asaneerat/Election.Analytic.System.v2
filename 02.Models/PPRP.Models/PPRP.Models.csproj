@@ -103,6 +103,7 @@
     <Compile Include="Models\Areas\MRegion.cs" />
     <Compile Include="Models\Areas\MSubdistrict.cs" />
     <Compile Include="Models\Excels\ExcelModels.cs" />
+    <Compile Include="Models\ImageFiles\ImageFileModels.cs" />
     <Compile Include="Models\Maps\JsonMapFiles.cs" />
     <Compile Include="Models\Maps\ShapeFile\Converter\EndianBitConverter.cs" />
     <Compile Include="Models\Maps\ShapeFile\FileFormat\Header.cs" />
