@@ -81,10 +81,8 @@ namespace PPRP.Pages
         {
             var btn = sender as Button;
             if (null == btn) return;
-            /*
-            var item = btn.DataContext as MPD2562VoteSummary;
+            var item = btn.DataContext as MPDVoteSummary;
             ViewDetail(item);
-            */
         }
 
         #endregion
@@ -210,16 +208,17 @@ namespace PPRP.Pages
                 provinceName = null;
             }
 
+            int thaiYear = 2562;
             lvMPDSummaries.ItemsSource = null;
-            /*
-            var summaries = MPDVoteSummary.Gets(provinceName, sPartyNameFilter, sFullNameFilter).Value;
-            lvMPDSummaries.ItemsSource = (null != summaries) ? summaries : new List<MPD2562VoteSummary>();
-            */
+            var summaries = MPDVoteSummary.Gets(
+                thaiYear: thaiYear,
+                provinceNameTH: provinceName, 
+                partyName: sPartyNameFilter, 
+                fullName: sFullNameFilter).Value;
+            lvMPDSummaries.ItemsSource = (null != summaries) ? summaries : new List<MPDVoteSummary>();
         }
 
-        private void ViewDetail(
-            //MPD2562VoteSummary item
-            )
+        private void ViewDetail(MPDVoteSummary item)
         {
 
         }

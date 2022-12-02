@@ -150,5 +150,142 @@ namespace PPRP.Models
 
     #region MPDVoteSummary
 
+    /// <summary>
+    /// The MPDVoteSummary class.
+    /// </summary>
+    public class MPDVoteSummary
+    {
+        #region Public Properties
+
+        /// <summary>
+        /// Gets or sets ThaiYear.
+        /// </summary>
+        public int ThaiYear { get; set; }
+
+        /// <summary>
+        /// Gets or sets RegionName.
+        /// </summary>
+        [ExcelColumn("ภาค")]
+        public string RegionName { get; set; }
+        /// <summary>
+        /// Gets or sets GeoGroup.
+        /// </summary>
+        public string GeoGroup { get; set; }
+        /// <summary>
+        /// Gets or sets GeoSubGroup.
+        /// </summary>
+        public string GeoSubGroup { get; set; }
+
+        /// <summary>
+        /// Gets or sets ProvinceNameTH.
+        /// </summary>
+        [ExcelColumn("จังหวัด")]
+        public string ProvinceNameTH { get; set; }
+        /// <summary>
+        /// Gets or sets PollingUnitNo.
+        /// </summary>
+        [ExcelColumn("เขตเลือกตั้ง")]
+        public int PollingUnitNo { get; set; }
+        /// <summary>
+        /// Gets or sets CandidateNo.
+        /// </summary>
+        [ExcelColumn("หมายเลขผู้สมัคร")]
+        public int CandidateNo { get; set; }
+        /// <summary>
+        /// Gets or sets PartyName.
+        /// </summary>
+        [ExcelColumn("ชื่อพรรค")]
+        public string PartyName { get; set; }
+        /// <summary>
+        /// Gets or sets FullName.
+        /// </summary>
+        [ExcelColumn("ชื่อผู้สมัคร")]
+        public string FullName { get; set; }
+        /// <summary>
+        /// Gets or sets VoteCount.
+        /// </summary>
+        [ExcelColumn("ผลคะแนน")]
+        public int VoteCount { get; set; }
+        /// <summary>
+        /// Gets or sets RowNo.
+        /// </summary>
+        public int RowNo { get; set; }
+        /// <summary>
+        /// Gets or sets RankNo.
+        /// </summary>
+        public int RankNo { get; set; }
+
+        #endregion
+
+        #region Static Methods
+
+        /// <summary>
+        /// Gets.
+        /// </summary>
+        /// <param name="thaiYear"></param>
+        /// <param name="regionId"></param>
+        /// <param name="regionName"></param>
+        /// <param name="provinceNameTH"></param>
+        /// <param name="partyName"></param>
+        /// <param name="fullName"></param>
+        /// <returns></returns>
+
+        public static NDbResult<List<MPDVoteSummary>> Gets(
+            int thaiYear,
+            string regionId = null, string regionName = null,
+            string provinceNameTH = null,
+            string partyName = null, 
+            string fullName = null)
+        {
+            MethodBase med = MethodBase.GetCurrentMethod();
+
+            NDbResult<List<MPDVoteSummary>> rets = new NDbResult<List<MPDVoteSummary>>();
+
+            IDbConnection cnn = DbServer.Instance.Db;
+            if (null == cnn || !DbServer.Instance.Connected)
+            {
+                string msg = "Connection is null or cannot connect to database server.";
+                med.Err(msg);
+                // Set error number/message
+                rets.ErrNum = 8000;
+                rets.ErrMsg = msg;
+
+                return rets;
+            }
+
+            var p = new DynamicParameters();
+
+            p.Add("@ThaiYear", thaiYear);
+            p.Add("@RegionId", regionId);
+            p.Add("@RegionName", regionName);
+            p.Add("@ProvinceNameTH", provinceNameTH);
+            p.Add("@PartyName", partyName);
+            p.Add("@FullName", fullName);
+
+            try
+            {
+                rets.Value = cnn.Query<MPDVoteSummary>("GetMPDVoteSummaries", p,
+                    commandType: CommandType.StoredProcedure).ToList();
+            }
+            catch (Exception ex)
+            {
+                med.Err(ex);
+                // Set error number/message
+                rets.ErrNum = 9999;
+                rets.ErrMsg = ex.Message;
+            }
+
+            if (null == rets.Value)
+            {
+                // create empty list.
+                rets.Value = new List<MPDVoteSummary>();
+            }
+
+            return rets;
+        }
+
+        #endregion
+    }
+
     #endregion
 }
