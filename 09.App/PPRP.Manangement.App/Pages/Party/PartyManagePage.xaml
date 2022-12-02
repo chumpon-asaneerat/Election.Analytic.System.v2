@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:sys="clr-namespace:System;assembly=mscorlib"
+             xmlns:ctrl="clr-namespace:PPRP.Controls"
              d:DesignHeight="450"
              d:DesignWidth="800"
              mc:Ignorable="d">
@@ -183,8 +184,73 @@
                         </Button>
                         <Grid />
                     </DockPanel>
+                    <!--  PAGING BAR  -->
+                    <Grid DockPanel.Dock="Bottom"
+                          Margin="1,0"
+                          Background="White">
+                        <StackPanel Height="40"
+                                    Orientation="Horizontal"
+                                    VerticalAlignment="Center"
+                                    HorizontalAlignment="Center">
+                            <ctrl:PagingControl x:Name="nav" PagingChanged="nav_PagingChanged" />
+                        </StackPanel>
+                    </Grid>
                     <!--  ITEMS  -->
-                    <Grid />
+                    <ListBox x:Name="lvParties"
+                             Background="White"
+                             ItemContainerStyle="{StaticResource BASEListBoxItemContainer}"
+                             Style="{StaticResource SingleSelectWrapListBox}">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <Border BorderBrush="Silver"
+                                        BorderThickness="1"
+                                        CornerRadius="3"
+                                        Margin="2"
+                                        Height="285"
+                                        Width="170"
+                                        ClipToBounds="True">
+                                    <DockPanel LastChildFill="True" Margin="2">
+                                        <StackPanel Orientation="Horizontal"
+                                                    DockPanel.Dock="Bottom"
+                                                    VerticalAlignment="Center"
+                                                    HorizontalAlignment="Center">
+                                            <Button x:Name="cmdEdit"
+                                                    Margin="2,1"
+                                                    Width="75"
+                                                    Height="25"
+                                                    Content="แก้ไข"
+                                                    Style="{StaticResource InlineButton}"
+                                                    Visibility="Collapsed"
+                                                    Click="cmdEdit_Click" />
+                                            <Button x:Name="cmdDelete"
+                                                    Margin="2,1"
+                                                    Width="75"
+                                                    Height="25"
+                                                    Content="ลบ"
+                                                    Style="{StaticResource InlineButton}"
+                                                    Click="cmdDelete_Click" />
+                                        </StackPanel>
+                                        <Grid DockPanel.Dock="Bottom"
+                                              Height="48"
+                                              VerticalAlignment="Center"
+                                              HorizontalAlignment="Center">
+                                            <TextBlock Text="{Binding PartyName}"
+                                                       Height="Auto"
+                                                       VerticalAlignment="Center"
+                                                       HorizontalAlignment="Center"
+                                                       TextAlignment="Center"
+                                                       TextWrapping="Wrap" />
+                                        </Grid>
+                                        <Image RenderOptions.BitmapScalingMode="LowQuality"
+                                               RenderOptions.EdgeMode="Aliased"
+                                               Source="{Binding Image}"
+                                               Width="Auto"
+                                               Height="270" />
+                                    </DockPanel>
+                                </Border>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
                 </DockPanel>
             </DockPanel>
         </Grid>
