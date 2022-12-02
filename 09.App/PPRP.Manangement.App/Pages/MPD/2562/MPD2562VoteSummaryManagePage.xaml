@@ -193,6 +193,24 @@
                                            VerticalAlignment="Center" />
                             </StackPanel>
                         </Button>
+                        <!--  PRINT  -->
+                        <Button x:Name="cmdPrint"
+                                Visibility="{StaticResource ExportButtonVisible}"
+                                DockPanel.Dock="Left"
+                                Style="{StaticResource InlineButton}"
+                                Margin="5,0"
+                                Width="150"
+                                Height="30"
+                                Click="cmdPrint_Click">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Style="{StaticResource fa-print}" />
+                                <TextBlock Margin="3,0"
+                                           FontFamily="{StaticResource THSarabun}"
+                                           FontSize="{StaticResource FontSize16}"
+                                           Text="พิมพ์"
+                                           VerticalAlignment="Center" />
+                            </StackPanel>
+                        </Button>
                         <!--  BACK  -->
                         <Button x:Name="cmdHome"
                                 Visibility="{StaticResource HomeButtonVisible}"
