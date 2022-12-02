@@ -205,10 +205,11 @@
         <Setter Property="Foreground" Value="DarkRed" />
     </Style>
     <!--  PRINT  -->
-    <Style x:Key="fa-pring"
+    <Style x:Key="fa-print"
            TargetType="TextBlock"
            BasedOn="{StaticResource fa-base}">
         <Setter Property="Text" Value="&#xf02f;" />
+        <Setter Property="Foreground" Value="WhiteSmoke" />
     </Style>
 
     <!--  IMPORT  -->

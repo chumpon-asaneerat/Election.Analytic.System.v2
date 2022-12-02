@@ -18,6 +18,7 @@
         <Visibility x:Key="HomeButtonVisible">Visible</Visibility>
         <Visibility x:Key="ImportButtonVisible">Visible</Visibility>
         <Visibility x:Key="ExportButtonVisible">Collapsed</Visibility>
+        <Visibility x:Key="PrintButtonVisible">Collapsed</Visibility>
         <Visibility x:Key="AddNewButtonVisible">Collapsed</Visibility>
     </UserControl.Resources>
     <Grid Background="{StaticResource PageBG}">
@@ -139,6 +140,24 @@
                                            FontFamily="{StaticResource THSarabun}"
                                            FontSize="{StaticResource FontSize16}"
                                            Text="ส่งออกข้อมูล"
+                                           VerticalAlignment="Center" />
+                            </StackPanel>
+                        </Button>
+                        <!--  PRINT  -->
+                        <Button x:Name="cmdPrint"
+                                Visibility="{StaticResource ExportButtonVisible}"
+                                DockPanel.Dock="Left"
+                                Style="{StaticResource InlineButton}"
+                                Margin="5,0"
+                                Width="150"
+                                Height="30"
+                                Click="cmdPrint_Click">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Style="{StaticResource fa-print}" />
+                                <TextBlock Margin="3,0"
+                                           FontFamily="{StaticResource THSarabun}"
+                                           FontSize="{StaticResource FontSize16}"
+                                           Text="พิมพ์"
                                            VerticalAlignment="Center" />
                             </StackPanel>
                         </Button>

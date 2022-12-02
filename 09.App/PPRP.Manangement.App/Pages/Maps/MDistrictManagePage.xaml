@@ -18,6 +18,7 @@
         <Visibility x:Key="HomeButtonVisible">Visible</Visibility>
         <Visibility x:Key="ImportButtonVisible">Visible</Visibility>
         <Visibility x:Key="ExportButtonVisible">Collapsed</Visibility>
+        <Visibility x:Key="PrintButtonVisible">Collapsed</Visibility>
         <Visibility x:Key="AddNewButtonVisible">Collapsed</Visibility>
     </UserControl.Resources>
     <Grid Background="{StaticResource PageBG}">
