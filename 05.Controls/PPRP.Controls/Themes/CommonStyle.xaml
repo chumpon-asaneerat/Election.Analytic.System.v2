@@ -189,6 +189,28 @@
            BasedOn="{StaticResource fa-base}">
         <Setter Property="Text" Value="&#xf015;" />
     </Style>
+
+    <!--  OK  -->
+    <Style x:Key="fa-ok"
+           TargetType="TextBlock"
+           BasedOn="{StaticResource fa-base}">
+        <Setter Property="Text" Value="&#xf00c;" />
+        <Setter Property="Foreground" Value="Green" />
+    </Style>
+    <!--  CANCEL  -->
+    <Style x:Key="fa-cancel"
+           TargetType="TextBlock"
+           BasedOn="{StaticResource fa-base}">
+        <Setter Property="Text" Value="&#xf00d;" />
+        <Setter Property="Foreground" Value="DarkRed" />
+    </Style>
+    <!--  PRINT  -->
+    <Style x:Key="fa-pring"
+           TargetType="TextBlock"
+           BasedOn="{StaticResource fa-base}">
+        <Setter Property="Text" Value="&#xf02f;" />
+    </Style>
+
     <!--  IMPORT  -->
     <Style x:Key="fa-import"
            TargetType="TextBlock"
