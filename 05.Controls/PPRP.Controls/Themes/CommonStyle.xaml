@@ -262,6 +262,12 @@
            BasedOn="{StaticResource fa-base}">
         <Setter Property="Text" Value="&#xf65e;" />
     </Style>
+    <!--  SCAN  -->
+    <Style x:Key="fa-scan"
+           TargetType="TextBlock"
+           BasedOn="{StaticResource fa-base}">
+        <Setter Property="Text" Value="&#xf0ae;" />
+    </Style>
     <!--  START  -->
     <Style x:Key="fa-start"
            TargetType="TextBlock"
