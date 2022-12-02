@@ -64,8 +64,10 @@ namespace PPRP.Windows
 
         private void cmdFinish_Click(object sender, RoutedEventArgs e)
         {
-            Imports();
-            DialogResult = true;
+            if (Imports())
+            {
+                DialogResult = true;
+            }
         }
 
         private void cmdChooseExcel_Click(object sender, RoutedEventArgs e)
@@ -104,9 +106,10 @@ namespace PPRP.Windows
 
         }
 
-        private void Imports()
+        private bool Imports()
         {
 
+            return true;
         }
 
         #endregion

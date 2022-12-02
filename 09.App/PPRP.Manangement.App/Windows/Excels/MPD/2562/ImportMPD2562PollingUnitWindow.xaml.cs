@@ -65,8 +65,10 @@ namespace PPRP.Windows
 
         private void cmdFinish_Click(object sender, RoutedEventArgs e)
         {
-            Imports();
-            DialogResult = true;
+            if (Imports())
+            {
+                DialogResult = true;
+            }
         }
 
         private void cmdChooseExcel_Click(object sender, RoutedEventArgs e)
@@ -101,7 +103,7 @@ namespace PPRP.Windows
             txtFileName.Text = model.FileName;
         }
 
-        private void Imports()
+        private bool Imports()
         {
             var items = lvMapPreview.Items;
             if (null == items || items.Count <= 0)
@@ -114,7 +116,7 @@ namespace PPRP.Windows
                 msg += "ก่อนทำการนำเข้าข้อมูล";
                 mbox.Setup(msg, "PPRP");
                 mbox.ShowDialog();
-                return; // No items
+                return false; // No items
             }
 
             var errors = new List<ImportError>();
@@ -160,6 +162,8 @@ namespace PPRP.Windows
                 errWin.Setup(errors);
                 errWin.ShowDialog();
             }
+
+            return true;
         }
 
         #endregion

@@ -40,17 +40,17 @@
                             DockPanel.Dock="Left"
                             Style="{StaticResource InlineButton}"
                             FontFamily="{StaticResource THSarabun}"
-                            FontSize="{StaticResource FontSize20}"
+                            FontSize="{StaticResource FontSize16}"
                             Width="150"
                             Height="30"
                             Click="cmdCancel_Click">
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Style="{StaticResource fa-cancel}" />
                             <TextBlock Margin="3,0"
-                                           FontFamily="{StaticResource THSarabun}"
-                                           FontSize="{StaticResource FontSize16}"
-                                           Text="ยกเลิก"
-                                           VerticalAlignment="Center" />
+                                       FontFamily="{StaticResource THSarabun}"
+                                       FontSize="{StaticResource FontSize16}"
+                                       Text="ยกเลิก"
+                                       VerticalAlignment="Center" />
                         </StackPanel>
                     </Button>
                     <Button x:Name="cmdOk"
@@ -58,17 +58,17 @@
                             DockPanel.Dock="Right"
                             Style="{StaticResource InlineButton}"
                             FontFamily="{StaticResource THSarabun}"
-                            FontSize="{StaticResource FontSize20}"
+                            FontSize="{StaticResource FontSize16}"
                             Width="150"
                             Height="30"
                             Click="cmdOk_Click">
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Style="{StaticResource fa-ok}" />
                             <TextBlock Margin="3,0"
-                                           FontFamily="{StaticResource THSarabun}"
-                                           FontSize="{StaticResource FontSize16}"
-                                           Text="ตกลง"
-                                           VerticalAlignment="Center" />
+                                       FontFamily="{StaticResource THSarabun}"
+                                       FontSize="{StaticResource FontSize16}"
+                                       Text="ตกลง"
+                                       VerticalAlignment="Center" />
                         </StackPanel>
                     </Button>
                     <Grid />
