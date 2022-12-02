@@ -536,13 +536,13 @@ namespace PPRP.Models
             var p = new DynamicParameters();
 
             p.Add("@ADM2Code", adm2Code);
-            p.Add("@DistrictNameTH", districtNameTH);
+            //p.Add("@DistrictNameTH", districtNameTH);
             p.Add("@ADM1Code", adm1Code);
-            p.Add("@ProvinceNameTH", provinceNameTH);
+            //p.Add("@ProvinceNameTH", provinceNameTH);
             p.Add("@RegionId", regionId);
-            p.Add("@RegionName", regionName);
-            p.Add("@GeoGroup", geoGroup);
-            p.Add("@GeoSubGroup", geoSubGroup);
+            //p.Add("@RegionName", regionName);
+            //p.Add("@GeoGroup", geoGroup);
+            //p.Add("@GeoSubGroup", geoSubGroup);
 
             try
             {
