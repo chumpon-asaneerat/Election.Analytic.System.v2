@@ -105,7 +105,6 @@ namespace PPRP.Pages
 
         private void txtPartyNameFilter_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
         {
-            /*
             if (e.Key == System.Windows.Input.Key.Enter)
             {
                 e.Handled = true; // mark as handled
@@ -119,7 +118,6 @@ namespace PPRP.Pages
                 txtPartyNameFilter.Text = string.Empty;
                 Search();
             }
-            */
         }
 
         #endregion
@@ -128,10 +126,8 @@ namespace PPRP.Pages
 
         private void nav_PagingChanged(object sender, EventArgs e)
         {
-            /*
             iPageNo = nav.PageNo;
             RefreshList();
-            */
         }
 
         #endregion
@@ -241,13 +237,11 @@ namespace PPRP.Pages
         {
             if (reload)
             {
-                /*
                 sPartyNameFilter = string.Empty;
                 iPageNo = 1;
                 iMaxPage = 1;
 
                 RefreshList();
-                */
             }
         }
 
