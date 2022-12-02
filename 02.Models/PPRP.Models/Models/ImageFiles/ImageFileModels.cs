@@ -104,8 +104,15 @@ namespace PPRP.Models
         /// <summary>
         /// Constructor.
         /// </summary>
-        public ImageFileSource() : base() 
+        private ImageFileSource() : base() { }
+        /// <summary>
+        /// Constructor.
+        /// </summary>
+        /// <param name="imagePath"></param>
+        public ImageFileSource(string imagePath) : base() 
         {
+            this.ImagePath = imagePath;
+
             this.Items = new List<ImageFile>();
         }
         /// <summary>
@@ -115,9 +122,60 @@ namespace PPRP.Models
 
         #endregion
 
+        #region Public Methods
+
+        public void LoadItems(int pageNo = 1, int rowsPerPage = 40)
+        {
+            if (null != Items)
+            {
+                Items.Clear();
+            }
+            if (!Directory.Exists(ImagePath))
+                return;
+
+            DirectoryInfo di = new DirectoryInfo(ImagePath);
+
+            string searchPattern = "*.*";
+            var exts = new string[] { /*"*.png",*/ "*.jpg" };
+
+            List<string> allFiles = di.GetFiles(searchPattern, SearchOption.AllDirectories)
+                .Where(f => /*f.Extension == ".png" ||*/ f.Extension == ".jpg")
+                .Select(x => x.FullName)
+                .ToList();
+
+            int totalRows = allFiles.Count;
+
+            int maxPages = Convert.ToInt32(Math.Floor((decimal)(totalRows / rowsPerPage)));
+            if ((maxPages * totalRows) < totalRows) maxPages++;
+
+            TotalRecords = totalRows;
+            MaxPages = maxPages;
+            RowsPerPage = rowsPerPage;
+            PageNo = pageNo;
+
+            var files = allFiles.Skip((pageNo - 1) * rowsPerPage).Take(rowsPerPage).ToList();
+
+            if (null != files && files.Count > 0)
+            {
+                files.ForEach(file =>
+                {
+                    var imgFile = new ImageFile(file);
+                    if (imgFile.Exist)
+                    {
+                        Items.Add(imgFile);
+                    }
+                });
+            }
+        }
+
+        #endregion
 
         #region Public Properties
 
+        /// <summary>
+        /// Gets current image path.
+        /// </summary>
+        public string ImagePath { get; protected set; }
         /// <summary>
         /// Gets or sets total record or file count.
         /// </summary>
@@ -141,94 +199,6 @@ namespace PPRP.Models
         public List<ImageFile> Items { get; private set; }
 
         #endregion
-    }
-
-    #endregion
-
-
-    #region ImageFiles
-
-    /// <summary>
-    /// The ImageFiles class.
-    /// </summary>
-    public class ImageFiles
-    {
-        #region Constructor and Destructor
-
-        /// <summary>
-        /// Constructor.
-        /// </summary>
-        public ImageFiles() : base() { }
-        /// <summary>
-        /// Destructor.
-        /// </summary>
-        ~ImageFiles() { }
-
-        #endregion
-
-        #region Public Methods
-
-        public void Setup(string path)
-        {
-            ImagePath = path;
-            Directory.GetFiles(path, "", SearchOption.AllDirectories);
-        }
-
-        public ImageFileSource GetItems(int pageNo = 1, int rowsPerPage = 40)
-        {
-            ImageFileSource ret = null;
-
-            if (!Directory.Exists(ImagePath))
-                return ret;
-
-            DirectoryInfo di = new DirectoryInfo(ImagePath);
-
-            string searchPattern = "*.*";
-            var exts = new string[] { /*"*.png",*/ "*.jpg" };
-
-            List<string> allFiles = di.GetFiles(searchPattern, SearchOption.AllDirectories)
-                .Where(f => /*f.Extension == ".png" ||*/ f.Extension == ".jpg")
-                .Select(x => x.FullName)
-                .ToList();
-
-            int totalRows = allFiles.Count;
-            ret = new ImageFileSource();
-
-            int maxPages = Convert.ToInt32(Math.Floor((decimal)(totalRows / rowsPerPage)));
-            if ((maxPages * totalRows) < totalRows) maxPages++;
-
-            ret.TotalRecords = totalRows;
-            ret.MaxPages = maxPages;
-            ret.RowsPerPage = rowsPerPage;
-            ret.PageNo = pageNo;
-
-            var files = allFiles.Skip((pageNo - 1) * rowsPerPage).Take(rowsPerPage).ToList();
-
-            if (null != files && files.Count > 0)
-            {
-                files.ForEach(file => 
-                {
-                    var imgFile = new ImageFile(file);
-                    if (imgFile.Exist)
-                    {
-                        ret.Items.Add(imgFile);
-                    }
-                });
-            }
-
-            return ret;
-        }
-
-        #endregion
-
-        #region Public Properties
-
-        /// <summary>
-        /// Gets current image path.
-        /// </summary>
-        public string ImagePath { get; protected set; }
-
-        #endregion
 
         #region Static Methods
 
@@ -237,7 +207,7 @@ namespace PPRP.Models
         /// Open Folder Browser to choose selected folder.
         /// </summary>
         /// <returns>Returns ImageFiles instance of selected folder.</returns>
-        public static ImageFiles ChooseFolder(Window owner)
+        public static ImageFileSource ChooseFolder(Window owner)
         {
             string targetPath = string.Empty;
             FolderBrowserDialog fd = new FolderBrowserDialog();
@@ -251,8 +221,7 @@ namespace PPRP.Models
             if (string.IsNullOrEmpty(targetPath))
                 return null;
 
-            ImageFiles ret = new ImageFiles();
-            ret.Setup(targetPath);
+            ImageFileSource ret = new ImageFileSource(targetPath);
             return ret;
         }
 

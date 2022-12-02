@@ -164,13 +164,11 @@ namespace PPRP.Pages
 
         private void Search()
         {
-            var win = PPRPApp.Windows.ImportPartyImage;
-            win.Setup();
-            if (win.ShowDialog() == false)
+            if (sPartyNameFilter.Trim() != txtPartyNameFilter.Text.Trim())
             {
-                return;
+                sPartyNameFilter = txtPartyNameFilter.Text.Trim();
+                RefreshList();
             }
-            RefreshList();
         }
 
         private void Print()
