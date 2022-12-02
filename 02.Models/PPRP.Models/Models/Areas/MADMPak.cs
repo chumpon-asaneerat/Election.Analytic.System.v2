@@ -395,8 +395,9 @@ namespace PPRP.Models
             return ret;
         }
 
-        public static NDbResult<List<MADMPak>> Gets(string regionId = null,
-            string provinceNameTH = null, string districtNameTH = null, string subdistrictNameTH = null)
+        public static NDbResult<List<MADMPak>> Gets(
+            string regionId = null,
+            string adm1Code = null, string adm2Code = null, string adm3Code = null)
         {
             MethodBase med = MethodBase.GetCurrentMethod();
 
@@ -417,9 +418,9 @@ namespace PPRP.Models
             var p = new DynamicParameters();
 
             p.Add("@RegionId", regionId);
-            p.Add("@ProvinceNameTH", provinceNameTH);
-            p.Add("@DistrictNameTH", districtNameTH);
-            p.Add("@SubdistrictNameTH", subdistrictNameTH);
+            p.Add("@ADM1Code", adm1Code);
+            p.Add("@ADM2Code", adm2Code);
+            p.Add("@ADM3Code", adm3Code);
 
             try
             {

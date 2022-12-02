@@ -609,23 +609,14 @@ namespace PPRP.Models
         /// <summary>
         /// Gets.
         /// </summary>
-        /// <param name="adm3Code"></param>
-        /// <param name="subdistrictNameTH"></param>
-        /// <param name="adm2Code"></param>
-        /// <param name="districtNameTH"></param>
-        /// <param name="adm1Code"></param>
-        /// <param name="provinceNameTH"></param>
         /// <param name="regionId"></param>
-        /// <param name="regionName"></param>
-        /// <param name="geoGroup"></param>
-        /// <param name="geoSubGroup"></param>
+        /// <param name="adm1Code"></param>
+        /// <param name="adm2Code"></param>
+        /// <param name="adm3Code"></param>
         /// <returns></returns>
         public static NDbResult<List<MSubdistrict>> Gets(
-            string adm3Code = null, string subdistrictNameTH = null,
-            string adm2Code = null, string districtNameTH = null,
-            string adm1Code = null, string provinceNameTH = null,
-            string regionId = null, string regionName = null,
-            string geoGroup = null, string geoSubGroup = null)
+            string regionId = null,
+            string adm1Code = null, string adm2Code = null, string adm3Code = null )
         {
             MethodBase med = MethodBase.GetCurrentMethod();
 
@@ -645,16 +636,10 @@ namespace PPRP.Models
 
             var p = new DynamicParameters();
 
-            p.Add("@ADM3Code", adm3Code);
-            p.Add("@SubdistrictNameTH", subdistrictNameTH);
-            p.Add("@ADM2Code", adm2Code);
-            p.Add("@DistrictNameTH", districtNameTH);
-            p.Add("@ADM1Code", adm1Code);
-            p.Add("@ProvinceNameTH", provinceNameTH);
             p.Add("@RegionId", regionId);
-            p.Add("@RegionName", regionName);
-            p.Add("@GeoGroup", geoGroup);
-            p.Add("@GeoSubGroup", geoSubGroup);
+            p.Add("@ADM1Code", adm1Code);
+            p.Add("@ADM2Code", adm2Code);
+            p.Add("@ADM3Code", adm3Code);
 
             try
             {

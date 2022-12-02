@@ -502,17 +502,13 @@ namespace PPRP.Models
         /// <summary>
         /// Gets.
         /// </summary>
-        /// <param name="adm2Code"></param>
-        /// <param name="districtNameTH"></param>
-        /// <param name="adm1Code"></param>
-        /// <param name="provinceNameTH"></param>
         /// <param name="regionId"></param>
-        /// <param name="regionName"></param>
-        /// <param name="geoGroup"></param>
-        /// <param name="geoSubGroup"></param>
+        /// <param name="adm1Code"></param>
+        /// <param name="adm2Code"></param>
         /// <returns></returns>
         public static NDbResult<List<MDistrict>> Gets(
-            string adm2Code = null, string adm1Code = null, string regionId = null)
+            string regionId = null,
+            string adm1Code = null, string adm2Code = null)
         {
             MethodBase med = MethodBase.GetCurrentMethod();
 
@@ -532,9 +528,9 @@ namespace PPRP.Models
 
             var p = new DynamicParameters();
 
-            p.Add("@ADM2Code", adm2Code);
-            p.Add("@ADM1Code", adm1Code);
             p.Add("@RegionId", regionId);
+            p.Add("@ADM1Code", adm1Code);
+            p.Add("@ADM2Code", adm2Code);
 
             try
             {

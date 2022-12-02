@@ -212,22 +212,22 @@ namespace PPRP.Pages
 
             // Check province.
             var province = cbProvince.SelectedItem as MProvince;
-            string provinceName = (null != province) ? province.ProvinceNameTH : null;
-            if (null != provinceName && provinceName.Contains("ทุกจังหวัด"))
+            string adm1Code = (null != province) ? province.ADM1Code : null;
+            if (string.IsNullOrWhiteSpace(adm1Code))
             {
-                provinceName = null;
+                adm1Code = null;
             }
 
             // Check district.
             var district = cbDistrict.SelectedItem as MDistrict;
-            string districtName = (null != district) ? district.DistrictNameTH : null;
-            if (null != districtName && districtName.Contains("ทุกอำเภอ/เขต"))
+            string adm2Code = (null != district) ? district.ADM2Code : null;
+            if (string.IsNullOrWhiteSpace(adm2Code))
             {
-                districtName = null;
+                adm2Code = null;
             }
 
             lvPaks.ItemsSource = null;
-            var paks = MADMPak.Gets(regionId: regionId, provinceNameTH: provinceName, districtNameTH: districtName);
+            var paks = MADMPak.Gets(regionId, adm1Code, adm2Code, null);
             lvPaks.ItemsSource = (null != paks) ? paks.Value : new List<MADMPak>();
         }
 

@@ -393,12 +393,12 @@ namespace PPRP.Models
         /// <summary>
         /// Gets.
         /// </summary>
-        /// <param name="adm1code">The ADM1 Code.</param>
         /// <param name="regionId">The region id.</param>
+        /// <param name="adm1code">The ADM1 Code.</param>
         /// <returns>Returns list of MProvince instance.</returns>
         public static NDbResult<List<MProvince>> Gets(
-            string adm1code = null,
-            string regionId = null)
+            string regionId = null,
+            string adm1Code = null)
         {
             MethodBase med = MethodBase.GetCurrentMethod();
 
@@ -417,8 +417,8 @@ namespace PPRP.Models
             }
 
             var p = new DynamicParameters();
-            p.Add("@ADM1Code", adm1code);
             p.Add("@RegionId", regionId);
+            p.Add("@ADM1Code", adm1Code);
 
             try
             {

@@ -183,7 +183,7 @@ namespace PPRP.Pages
             }
 
             lvSubdistricts.ItemsSource = null;
-            var subdistricts = MSubdistrict.Gets(regionId: regionId, adm1Code: adm1Code);
+            var subdistricts = MSubdistrict.Gets(regionId, adm1Code);
             lvSubdistricts.ItemsSource = (null != subdistricts) ? subdistricts.Value : new List<MSubdistrict>();
         }
 

@@ -183,7 +183,7 @@ namespace PPRP.Pages
             }
 
             lvProvinces.ItemsSource = null;
-            var provinces = MProvince.Gets(adm1Code, regionId);
+            var provinces = MProvince.Gets(regionId, adm1Code);
             lvProvinces.ItemsSource = (null != provinces) ? provinces.Value : new List<MProvince>();
         }
 
