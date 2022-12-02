@@ -26,8 +26,16 @@ namespace PPRP.Models
     /// <summary>
     /// The ImageFile class.
     /// </summary>
-    public class ImageFile
+    public class ImageFile : NInpc
     {
+        #region Internal Variables
+
+        private byte[] _data = null;
+        private ImageSource _imgSrc = null;
+        private bool _loaded = false;
+
+        #endregion
+
         #region Constructor and Destructor
 
         /// <summary>
@@ -55,7 +63,53 @@ namespace PPRP.Models
         /// </summary>
         ~ImageFile()
         {
+            FreeImage();
+        }
 
+        #endregion
+
+        #region Public Methods
+
+        /// <summary>
+        /// Load Image.
+        /// </summary>
+        public void LoadImage()
+        {
+            if (_loaded)
+                return;
+            _loaded = true; // careful to update flag immediately to prevent stack overflow.
+
+            lock (this)
+            {
+                // set field
+                _data = null;
+                _imgSrc = null;
+
+                if (File.Exists(FullFileName))
+                {
+                    // Set to property for notify changed (careful to prevent stack overflow)
+                    Data = ByteUtils.GetFileBuffer(FullFileName);
+                }
+                else
+                {
+                    // Set to property for notify changed (careful to prevent stack overflow)
+                    Data = null;
+                }
+            }
+        }
+        /// <summary>
+        /// Free Image.
+        /// </summary>
+        public void FreeImage()
+        {
+            lock (this)
+            {
+                _data = null;
+                _imgSrc = null;
+                GC.Collect(0);
+                GC.SuppressFinalize(this);
+                _loaded = false;
+            }
         }
 
         #endregion
@@ -86,6 +140,36 @@ namespace PPRP.Models
         /// Gets File Extension.
         /// </summary>
         public string Extension { get; private set; }
+
+        public byte[] Data
+        {
+            get 
+            {
+                if (!_loaded) LoadImage();
+                return _data; 
+            }
+            set
+            {
+                _data = value;
+                Raise(() => this.Data);
+
+                System.Windows.Application.Current.MainWindow.Dispatcher.Invoke(() =>
+                {
+                    _imgSrc = ByteUtils.GetImageSource(_data);
+                    Raise(() => this.Image);
+                });
+            }
+        }
+
+        public ImageSource Image
+        {
+            get 
+            {
+                if (!_loaded) LoadImage();
+                return _imgSrc; 
+            }
+            set { }
+        }
 
         #endregion
     }
@@ -123,6 +207,38 @@ namespace PPRP.Models
         #endregion
 
         #region Public Methods
+
+        public List<ImageFile> GetAllItems()
+        {
+            var rets = new List<ImageFile>();
+
+            if (!Directory.Exists(ImagePath))
+                return rets;
+
+            DirectoryInfo di = new DirectoryInfo(ImagePath);
+
+            string searchPattern = "*.*";
+            var exts = new string[] { /*"*.png",*/ "*.jpg" };
+
+            List<string> allFiles = di.GetFiles(searchPattern, SearchOption.AllDirectories)
+                .Where(f => /*f.Extension == ".png" ||*/ f.Extension == ".jpg")
+                .Select(x => x.FullName)
+                .ToList();
+
+            if (null != allFiles && allFiles.Count > 0)
+            {
+                allFiles.ForEach(file =>
+                {
+                    var imgFile = new ImageFile(file);
+                    if (imgFile.Exist)
+                    {
+                        Items.Add(imgFile);
+                    }
+                });
+            }
+
+            return rets;
+        }
 
         public void LoadItems(int pageNo = 1, int rowsPerPage = 40)
         {
