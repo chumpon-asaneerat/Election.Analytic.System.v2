@@ -33,11 +33,20 @@ namespace PPRP.Pages
 
         #endregion
 
+        #region Internal Variables
+
+        private string sFullNameFilter = string.Empty;
+        private int iPageNo = 1;
+        private int iMaxPage = 1;
+        private int iRowsPerPage = 40;
+
+        #endregion
+
         #region Button Handlers
 
         private void cmdAddNew_Click(object sender, RoutedEventArgs e)
         {
-            
+            AddNew();
         }
 
         private void cmdImport_Click(object sender, RoutedEventArgs e)
@@ -70,6 +79,61 @@ namespace PPRP.Pages
             Print();
         }
 
+        private void cmdEdit_Click(object sender, RoutedEventArgs e)
+        {
+            /*
+            var btn = sender as Button;
+            if (null == btn) return;
+            var item = btn.DataContext as PersonImage;
+            Edit(item);
+            */
+        }
+
+        private void cmdDelete_Click(object sender, RoutedEventArgs e)
+        {
+            /*
+            var btn = sender as Button;
+            if (null == btn) return;
+            var item = btn.DataContext as PersonImage;
+            Delete(item);
+            */
+        }
+
+        #endregion
+
+        #region TextBox Handlers
+
+        private void txtFullNameFilter_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            /*
+            if (e.Key == System.Windows.Input.Key.Enter)
+            {
+                e.Handled = true; // mark as handled
+                // search
+                Search();
+            }
+            else if (e.Key == System.Windows.Input.Key.Escape)
+            {
+                e.Handled = true; // mark as handled
+                // reset filter and search
+                txtFullNameFilter.Text = string.Empty;
+                Search();
+            }
+            */
+        }
+
+        #endregion
+
+        #region Paging Handlers
+
+        private void nav_PagingChanged(object sender, EventArgs e)
+        {
+            /*
+            iPageNo = nav.PageNo;
+            RefreshList();
+            */
+        }
+
         #endregion
 
         #region Private Methods
@@ -83,7 +147,15 @@ namespace PPRP.Pages
 
         private void Import()
         {
-
+            /*
+            var win = PPRPApp.Windows.ImportPersonImage;
+            win.Setup();
+            if (win.ShowDialog() == false)
+            {
+                return;
+            }
+            RefreshList();
+            */
         }
 
         private void Export()
@@ -98,12 +170,63 @@ namespace PPRP.Pages
 
         private void Search()
         {
-
+            /*
+            if (sFullNameFilter.Trim() != txtFullNameFilter.Text.Trim())
+            {
+                sFullNameFilter = txtFullNameFilter.Text.Trim();
+                RefreshList();
+            }
+            */
         }
 
         private void Print()
         {
 
+        }
+
+        private void AddNew()
+        {
+
+        }
+        /*
+        private void Edit(PersonImage item)
+        {
+            if (null == item)
+                return;
+            Console.WriteLine("Edit");
+        }
+
+        private void Delete(PersonImage item)
+        {
+            if (null == item)
+                return;
+            string msg = string.Format("ต้องการลบข้อมูล '{0}' ?", item.FullName);
+            if (MessageBox.Show(msg, "ยืนยันการลบข้อมูล", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+            {
+                PersonImage.Delete(item);
+                RefreshList();
+            }
+        }
+        */
+
+        private void RefreshList()
+        {
+            /*
+            lvPersons.ItemsSource = null;
+            var persons = PersonImage.Gets(sFullNameFilter, iPageNo, iRowsPerPage);
+            lvPersons.ItemsSource = (null != persons) ? persons.Value : new List<PersonImage>();
+
+            if (null != persons)
+            {
+                lvPersons.SelectedIndex = 0;
+                lvPersons.ScrollIntoView(lvPersons.SelectedItem);
+            }
+
+            iPageNo = (null != persons) ? persons.PageNo : 1;
+            iMaxPage = (null != persons) ? persons.MaxPage : 1;
+
+            nav.Setup(iPageNo, iMaxPage);
+            */
         }
 
         #endregion
@@ -118,7 +241,11 @@ namespace PPRP.Pages
         {
             if (reload)
             {
+                sFullNameFilter = string.Empty;
+                iPageNo = 1;
+                iMaxPage = 1;
 
+                RefreshList();
             }
         }
 
