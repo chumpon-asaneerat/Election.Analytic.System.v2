@@ -3,10 +3,15 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
              Background="Transparent"
              d:DesignHeight="30"
              d:DesignWidth="260"
              mc:Ignorable="d">
+    <UserControl.Resources>
+        <!--  INLINE BUTTON TEXT FONT SIZE  -->
+        <sys:Double x:Key="IBFSize">18</sys:Double>
+    </UserControl.Resources>
     <StackPanel Orientation="Horizontal"
                 VerticalAlignment="Center"
                 HorizontalAlignment="Center"
@@ -16,14 +21,14 @@
                 Width="40"
                 Style="{StaticResource InlineButton}"
                 Click="cmdFirst_Click">
-            <TextBlock Style="{StaticResource fa-go-first}" />
+            <TextBlock Style="{StaticResource fa-go-first}" FontSize="{StaticResource IBFSize}" />
         </Button>
         <Button x:Name="cmdPrev"
                 Margin="0,3"
                 Width="40"
                 Style="{StaticResource InlineButton}"
                 Click="cmdPrev_Click">
-            <TextBlock Style="{StaticResource fa-go-prev}" />
+            <TextBlock Style="{StaticResource fa-go-prev}" FontSize="{StaticResource IBFSize}" />
         </Button>
         <TextBlock x:Name="txtCurrentPage"
                    Foreground="{StaticResource BlackBlush}"
@@ -38,14 +43,14 @@
                 Width="40"
                 Style="{StaticResource InlineButton}"
                 Click="cmdNext_Click">
-            <TextBlock Style="{StaticResource fa-go-next}" />
+            <TextBlock Style="{StaticResource fa-go-next}" FontSize="{StaticResource IBFSize}" />
         </Button>
         <Button x:Name="cmdLast"
                 Margin="0,3"
                 Width="40"
                 Style="{StaticResource InlineButton}"
                 Click="cmdLast_Click">
-            <TextBlock Style="{StaticResource fa-go-last}" />
+            <TextBlock Style="{StaticResource fa-go-last}" FontSize="{StaticResource IBFSize}" />
         </Button>
     </StackPanel>
 </UserControl>
