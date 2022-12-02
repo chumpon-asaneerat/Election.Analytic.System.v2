@@ -19,6 +19,8 @@
     <Window.Resources>
         <!--  PAGE TITLE  -->
         <sys:String x:Key="PageTitle">นำเข้าข้อมูลว่าที่ผู้สมัครสมาชิกสภาผู้แทน แบบแบ่งเขต ปี 2566</sys:String>
+        <!--  INLINE BUTTON TEXT FONT SIZE  -->
+        <sys:Double x:Key="IBFSize">18</sys:Double>
     </Window.Resources>
     <Grid Background="{StaticResource PageBG}">
         <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">

@@ -3,6 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib"
         Title="PPRP - ยืนยัน"
         Height="Auto"
         Width="Auto"
@@ -13,6 +14,10 @@
         WindowStartupLocation="CenterOwner"
         SizeToContent="WidthAndHeight"
         mc:Ignorable="d">
+    <Window.Resources>
+        <!--  INLINE BUTTON TEXT FONT SIZE  -->
+        <sys:Double x:Key="IBFSize">18</sys:Double>
+    </Window.Resources>
     <Grid Background="{StaticResource PageBG}">
         <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
             <Grid.ColumnDefinitions>
@@ -40,15 +45,13 @@
                             DockPanel.Dock="Left"
                             Style="{StaticResource InlineButton}"
                             FontFamily="{StaticResource THSarabun}"
-                            FontSize="{StaticResource FontSize16}"
+                            FontSize="{StaticResource IBFSize}"
                             Width="150"
                             Height="30"
                             Click="cmdCancel_Click">
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Style="{StaticResource fa-cancel}" />
                             <TextBlock Margin="3,0"
-                                       FontFamily="{StaticResource THSarabun}"
-                                       FontSize="{StaticResource FontSize16}"
                                        Text="ยกเลิก"
                                        VerticalAlignment="Center" />
                         </StackPanel>
@@ -58,15 +61,13 @@
                             DockPanel.Dock="Right"
                             Style="{StaticResource InlineButton}"
                             FontFamily="{StaticResource THSarabun}"
-                            FontSize="{StaticResource FontSize16}"
+                            FontSize="{StaticResource IBFSize}"
                             Width="150"
                             Height="30"
                             Click="cmdOk_Click">
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Style="{StaticResource fa-ok}" />
                             <TextBlock Margin="3,0"
-                                       FontFamily="{StaticResource THSarabun}"
-                                       FontSize="{StaticResource FontSize16}"
                                        Text="ตกลง"
                                        VerticalAlignment="Center" />
                         </StackPanel>
