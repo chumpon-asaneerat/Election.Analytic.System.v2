@@ -88,9 +88,9 @@
                                 Margin="5,0"
                                 Width="30"
                                 Height="30"
-                                Click="cmdOk_Click">
+                                Click="cmdCopy_Click">
                             <StackPanel Orientation="Horizontal">
-                                <TextBlock Style="{StaticResource fa-ok}" FontSize="{StaticResource IBFSize}" />
+                                <TextBlock Style="{StaticResource fa-copy}" FontSize="{StaticResource IBFSize}" />
                             </StackPanel>
                         </Button>
                         <DockPanel LastChildFill="True">

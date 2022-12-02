@@ -39,12 +39,38 @@ namespace PPRP.Windows
 
         #region Button Handlers
 
+        private void cmdCopy_Click(object sender, RoutedEventArgs e)
+        {
+            CopyToClipboard();
+        }
+
         private void cmdOk_Click(object sender, RoutedEventArgs e)
         {
             DialogResult = true;
         }
 
         #endregion
+
+        public void CopyToClipboard()
+        {
+            List<ImportError> errors = lvItems.ItemsSource as List<ImportError>;
+            if (null == errors)
+                return;
+            StringBuilder sb = new StringBuilder();
+            foreach (var item in errors)
+            {
+                if (null != item)
+                {
+                    sb.Append(item.RowNo.ToString() + "\t");
+                    sb.Append(item.ErrMsg + "\t");
+                    string sVal = item.DataString.Replace(Environment.NewLine, ";");
+                    sb.Append(sVal + "\t");
+                }
+                sb.AppendLine();
+            }
+            Clipboard.SetDataObject(sb.ToString());
+
+        }
 
         #region Public Methods
 
@@ -55,6 +81,11 @@ namespace PPRP.Windows
         public void Setup(List<ImportError> errors)
         {
             lvItems.ItemsSource = errors;
+            if (null != errors)
+            {
+                txtTotalCount.Text = string.Format("{0:n0}", errors.Count);
+            }
+            else txtTotalCount.Text = "0";
         }
 
         #endregion
