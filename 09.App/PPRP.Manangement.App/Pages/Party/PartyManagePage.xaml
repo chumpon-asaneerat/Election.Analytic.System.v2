@@ -14,9 +14,9 @@
         <!--  INLINE BUTTON TEXT FONT SIZE  -->
         <sys:Double x:Key="IBFSize">18</sys:Double>
         <!--  FILTER BAR VISIBLE STATES  -->
-        <Visibility x:Key="FilterBarVisible">Collapsed</Visibility>
+        <Visibility x:Key="FilterBarVisible">Visible</Visibility>
         <Visibility x:Key="RefreshButtonVisible">Collapsed</Visibility>
-        <Visibility x:Key="SearchButtonVisible">Collapsed</Visibility>
+        <Visibility x:Key="SearchButtonVisible">Visible</Visibility>
         <!--  BOTTONS BAR VISIBLE STATES  -->
         <Visibility x:Key="HomeButtonVisible">Visible</Visibility>
         <Visibility x:Key="ImportButtonVisible">Visible</Visibility>
@@ -76,10 +76,25 @@
                                 Click="cmdRefresh_Click">
                             <TextBlock Style="{StaticResource fa-refresh}" FontSize="{StaticResource IBFSize}" />
                         </Button>
+                        <!--  PARTY NAME  -->
+                        <TextBlock Text="ขื่อพรรค"
+                                   DockPanel.Dock="Left"
+                                   VerticalAlignment="Center"
+                                   TextAlignment="Right"
+                                   Width="100"
+                                   Foreground="WhiteSmoke" />
+                        <TextBlock Width="10" DockPanel.Dock="Left" />
+                        <TextBox x:Name="txtPartyNameFilter"
+                                 Width="300"
+                                 FontFamily="{StaticResource THSarabun}"
+                                 FontSize="{StaticResource FontSize18}"
+                                 Margin="3"
+                                 VerticalContentAlignment="Center"
+                                 KeyDown="txtPartyNameFilter_KeyDown" />
                         <!--  SEARCH  -->
                         <Button x:Name="cmdSearch"
                                 Visibility="{StaticResource SearchButtonVisible}"
-                                DockPanel.Dock="Right"
+                                DockPanel.Dock="Left"
                                 Style="{StaticResource InlineButton}"
                                 Height="30"
                                 Width="30"
