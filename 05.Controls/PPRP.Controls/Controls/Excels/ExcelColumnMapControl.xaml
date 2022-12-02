@@ -34,12 +34,12 @@
                     Style="{StaticResource InlineButton}"
                     Click="cmdLoadExcelData_Click">
                 <StackPanel Orientation="Horizontal">
-                    <TextBlock Style="{StaticResource fa-scan}" />
+                    <TextBlock Style="{StaticResource fa-scan}" FontSize="{StaticResource IBFSize}" />
                     <TextBlock Margin="3,0"
-                                           FontFamily="{StaticResource THSarabun}"
-                                           FontSize="{StaticResource IBFSize}"
-                                           Text="อ่านข้อมูล"
-                                           VerticalAlignment="Center" />
+                               FontFamily="{StaticResource THSarabun}"
+                               FontSize="{StaticResource IBFSize}"
+                               Text="อ่านข้อมูล"
+                               VerticalAlignment="Center" />
                 </StackPanel>
             </Button>
             <TextBlock Foreground="{StaticResource TextBlockForegroundWhite}"

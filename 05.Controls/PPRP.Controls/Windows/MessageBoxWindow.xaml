@@ -48,7 +48,7 @@
                             Height="30"
                             Click="cmdOk_Click">
                         <StackPanel Orientation="Horizontal">
-                            <TextBlock Style="{StaticResource fa-ok}" />
+                            <TextBlock Style="{StaticResource fa-ok}" FontSize="{StaticResource IBFSize}" />
                             <TextBlock Margin="3,0"
                                        Text="ตกลง"
                                        VerticalAlignment="Center" />
