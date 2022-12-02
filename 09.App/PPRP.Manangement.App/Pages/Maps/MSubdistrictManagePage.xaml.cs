@@ -121,6 +121,11 @@ namespace PPRP.Pages
 
         }
 
+        private void Print()
+        {
+
+        }
+
         private void LoadRegions()
         {
             cbRegion.ItemsSource = null;
