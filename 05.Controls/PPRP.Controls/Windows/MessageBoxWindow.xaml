@@ -49,9 +49,10 @@
                     <TextBlock x:Name="txtMsg"
                                Grid.Row="1"
                                Grid.Column="1"
-                               Margin="3"
+                               Margin="10"
                                Foreground="{StaticResource CaptionForeground}"
                                FontSize="{StaticResource FontSize30}"
+                               TextAlignment="Center"
                                TextWrapping="Wrap"
                                Text="" />
                 </Grid>

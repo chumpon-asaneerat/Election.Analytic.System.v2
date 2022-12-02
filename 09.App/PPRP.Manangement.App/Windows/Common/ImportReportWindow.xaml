@@ -4,10 +4,15 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:sys="clr-namespace:System;assembly=mscorlib"
-        mc:Ignorable="d"
+        ShowInTaskbar="False"
+        WindowState="Normal"
+        WindowStartupLocation="CenterOwner"
+        SizeToContent="Width"
         Title="รายการการนำเข้าข้อมูลที่พบปัญหา"
-        Height="450"
-        Width="800">
+        Height="600"
+        Width="1000"
+        MaxWidth="1800"
+        mc:Ignorable="d">
     <Window.Resources>
         <!--  PAGE TITLE  -->
         <sys:String x:Key="PageTitle">รายการการนำเข้าข้อมูลที่พบปัญหา</sys:String>
@@ -55,51 +60,69 @@
                                Height="40">
                         <!--  OK  -->
                         <Button x:Name="cmdOk"
-                                DockPanel.Dock="Right"
                                 Style="{StaticResource InlineButton}"
                                 Margin="5,0"
                                 Width="150"
                                 Height="30"
                                 Click="cmdOk_Click">
                             <StackPanel Orientation="Horizontal">
+                                <!--
                                 <TextBlock Style="{StaticResource fa-home}" />
+                                -->
                                 <TextBlock Margin="3,0"
                                            FontFamily="{StaticResource THSarabun}"
                                            FontSize="{StaticResource FontSize16}"
-                                           Text="เมนูหลัก"
+                                           Text="ตกลง"
                                            VerticalAlignment="Center" />
                             </StackPanel>
                         </Button>
-                        <Grid />
                     </DockPanel>
                     <!--  ITEMS  -->
-                    <ListView x:Name="lvItems" Style="{StaticResource SingleSelectListView}">
+                    <ListView x:Name="lvItems"
+                              Style="{StaticResource SingleSelectListView}"
+                              VirtualizingPanel.IsVirtualizing="True"
+                              VirtualizingPanel.VirtualizationMode="Recycling">
+                        <ListView.ItemContainerStyle>
+                            <Style TargetType="ListViewItem">
+                                <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                                <Setter Property="VerticalContentAlignment" Value="Stretch" />
+                            </Style>
+                        </ListView.ItemContainerStyle>
                         <ListView.View>
                             <GridView>
                                 <GridViewColumn Header="ลำดับที่">
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
-                                            <TextBlock Width="150"
-                                                       Text="{Binding RowNo}"
-                                                       TextAlignment="Left" />
+                                            <Grid VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+                                                <TextBlock Width="100"
+                                                           Text="{Binding RowNo}"
+                                                           VerticalAlignment="Top"
+                                                           TextAlignment="Right" />
+                                            </Grid>
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
                                 </GridViewColumn>
                                 <GridViewColumn Header="ปัญหา">
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
-                                            <TextBlock Width="100"
-                                                       Text="{Binding ErrMsg}"
-                                                       TextAlignment="Center" />
+                                            <Grid VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+                                                <TextBlock Width="Auto"
+                                                           Text="{Binding ErrMsg}"
+                                                           VerticalAlignment="Top"
+                                                           TextAlignment="Left" />
+                                            </Grid>
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
                                 </GridViewColumn>
                                 <GridViewColumn Header="ข้อมูลที่อ่านได้">
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
-                                            <TextBlock Width="150"
-                                                       Text="{Binding DataString}"
-                                                       TextAlignment="Center" />
+                                            <Grid VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+                                                <TextBlock Width="Auto"
+                                                           Text="{Binding DataString}"
+                                                           VerticalAlignment="Top"
+                                                           TextAlignment="Left" />
+                                            </Grid>
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
                                 </GridViewColumn>

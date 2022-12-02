@@ -105,7 +105,16 @@ namespace PPRP.Windows
         {
             var items = lvMapPreview.Items;
             if (null == items || items.Count <= 0)
+            {
+                var mbox = PPRPApp.Windows.MessageBox;
+                mbox.Owner = this;
+                string msg = "กรุณาทำการ กดปุ่มอ่านข้อมูลตัวอย่าง" + Environment.NewLine + "และทำการตรวจสอบข้อมูล ก่อนทำการนำเข้าข้อมูล";
+                mbox.Setup(msg, "PPRP");
+                mbox.ShowDialog();
                 return; // No items
+            }
+
+            var errors = new List<ImportError>();
 
             var prog = PPRPApp.Windows.ProgressDialog;
             prog.Owner = this;
@@ -113,18 +122,41 @@ namespace PPRP.Windows
             prog.Show();
 
             int year = 2566;
+
+            int iCnt = 2; // excel first row is column name.
             foreach (var item in items)
             {
                 var obj = item as PollingUnit;
                 if (null != obj)
                 {
                     obj.ThaiYear = year;
-                    PollingUnit.Import(obj);
+                    var ret = PollingUnit.Import(obj);
+                    if (ret.HasError)
+                    {
+                        // get debug string.
+                        string dataString = obj.DebugString();
+                        errors.Add(new ImportError()
+                        {
+                            RowNo = iCnt,
+                            ErrMsg = ret.ErrMsg,
+                            DataString = dataString
+                        });
+                    }
                 }
                 prog.Increment();
+
+                iCnt++;
             }
             // Close progress dialog.
             prog.Close();
+
+            if (null != errors && errors.Count > 0)
+            {
+                var errWin = PPRPApp.Windows.ImportReport;
+                errWin.Owner = this;
+                errWin.Setup(errors);
+                errWin.ShowDialog();
+            }
         }
 
         #endregion
