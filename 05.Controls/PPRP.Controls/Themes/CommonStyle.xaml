@@ -242,6 +242,18 @@
            BasedOn="{StaticResource fa-base}">
         <Setter Property="Text" Value="&#xf2f9;" />
     </Style>
+    <!--  BROWSE FILE  -->
+    <Style x:Key="fa-browse-file"
+           TargetType="TextBlock"
+           BasedOn="{StaticResource fa-base}">
+        <Setter Property="Text" Value="&#xe494;" />
+    </Style>
+    <!--  BROWSE FOLDER  -->
+    <Style x:Key="fa-browse-folder"
+           TargetType="TextBlock"
+           BasedOn="{StaticResource fa-base}">
+        <Setter Property="Text" Value="&#xf65e;" />
+    </Style>
 
     <!--  GO FIRST  -->
     <Style x:Key="fa-go-first"
