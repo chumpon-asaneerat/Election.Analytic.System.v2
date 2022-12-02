@@ -44,9 +44,9 @@ namespace PPRP.Models
         private string _DistrictNameTH = null;
         private string _DistrictNameEN = null;
 
-        private string _SubDistrictId = null;
-        private string _SubDistrictNameTH = null;
-        private string _SubDistrictNameEN = null;
+        private string _SubdistrictId = null;
+        private string _SubdistrictNameTH = null;
+        private string _SubdistrictNameEN = null;
 
         #endregion
 
@@ -283,15 +283,15 @@ namespace PPRP.Models
         /// Gets or sets Sub District Id.
         /// </summary>
         [ExcelColumn("รหัสตำบล")]
-        public string SubDistrictId
+        public string SubdistrictId
         {
-            get { return _SubDistrictId; }
+            get { return _SubdistrictId; }
             set
             {
-                if (_SubDistrictId != value)
+                if (_SubdistrictId != value)
                 {
-                    _SubDistrictId = value;
-                    Raise(() => SubDistrictId);
+                    _SubdistrictId = value;
+                    Raise(() => SubdistrictId);
                 }
             }
         }
@@ -299,30 +299,30 @@ namespace PPRP.Models
         /// Gets or sets Sub District Name (TH).
         /// </summary>
         [ExcelColumn("ตำบล")]
-        public string SubDistrictNameTH
+        public string SubdistrictNameTH
         {
-            get { return _SubDistrictNameTH; }
+            get { return _SubdistrictNameTH; }
             set
             {
-                if (_SubDistrictNameTH != value)
+                if (_SubdistrictNameTH != value)
                 {
-                    _SubDistrictNameTH = value;
-                    Raise(() => SubDistrictNameTH);
+                    _SubdistrictNameTH = value;
+                    Raise(() => SubdistrictNameTH);
                 }
             }
         }
         /// <summary>
         /// Gets or sets Sub District Name (EN).
         /// </summary>
-        public string SubDistrictNameEN
+        public string SubdistrictNameEN
         {
-            get { return _SubDistrictNameEN; }
+            get { return _SubdistrictNameEN; }
             set
             {
-                if (_SubDistrictNameEN != value)
+                if (_SubdistrictNameEN != value)
                 {
-                    _SubDistrictNameEN = value;
-                    Raise(() => SubDistrictNameEN);
+                    _SubdistrictNameEN = value;
+                    Raise(() => SubdistrictNameEN);
                 }
             }
         }
@@ -369,10 +369,10 @@ namespace PPRP.Models
             p.Add("@RegionName", value.RegionName);
             p.Add("@ProvinceId", value.ProvinceId);
             p.Add("@DistrictId", value.DistrictId);
-            p.Add("@SubDistrictId", value.SubDistrictId);
+            p.Add("@SubdistrictId", value.SubdistrictId);
             p.Add("@ProvinceNameTH", value.ProvinceNameTH);
             p.Add("@DistrictNameTH", value.DistrictNameTH);
-            p.Add("@SubDistrictNameTH", value.SubDistrictNameTH);
+            p.Add("@SubdistrictNameTH", value.SubdistrictNameTH);
 
             p.Add("@errNum", dbType: DbType.Int32, direction: ParameterDirection.Output);
             p.Add("@errMsg", dbType: DbType.String, direction: ParameterDirection.Output, size: -1);

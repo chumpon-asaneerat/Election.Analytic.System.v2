@@ -72,6 +72,25 @@ namespace PPRP.Pages
 
         #endregion
 
+        #region ComboBox Handlers
+
+        private void cbRegion_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            LoadProvinces();
+        }
+
+        private void cbProvince_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            LoadDistricts();
+        }
+
+        private void cbDistrict_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            RefreshList();
+        }
+
+        #endregion
+
         #region Private Methods
 
         private void GotoMainMenuPage()
@@ -89,7 +108,7 @@ namespace PPRP.Pages
             {
                 return;
             }
-            //LoadRegions();
+            LoadRegions();
         }
 
         private void Export()
@@ -112,6 +131,106 @@ namespace PPRP.Pages
 
         }
 
+        private void LoadRegions()
+        {
+            cbRegion.ItemsSource = null;
+            var regions = MRegion.Gets().Value;
+            if (null != regions)
+            {
+                regions.Insert(0, new MRegion { RegionName = "ทุกภาค" });
+            }
+            cbRegion.ItemsSource = (null != regions) ? regions : new List<MRegion>();
+            if (null != regions)
+            {
+                cbRegion.SelectedIndex = 0;
+            }
+        }
+
+        private void LoadProvinces()
+        {
+            // Check region.
+            var reion = cbRegion.SelectedItem as MRegion;
+            string regionId = (null != reion) ? reion.RegionId : null;
+            if (null != regionId && regionId.Contains("ทุกภาค"))
+            {
+                regionId = null;
+            }
+
+            cbProvince.ItemsSource = null;
+            var provinces = MProvince.Gets(regionId: regionId).Value;
+            if (null != provinces)
+            {
+                provinces.Insert(0, new MProvince { ProvinceNameTH = "ทุกจังหวัด" });
+            }
+            cbProvince.ItemsSource = (null != provinces) ? provinces : new List<MProvince>();
+            if (null != provinces)
+            {
+                cbProvince.SelectedIndex = 0;
+            }
+        }
+
+        private void LoadDistricts()
+        {
+            // Check region.
+            var reion = cbRegion.SelectedItem as MRegion;
+            string regionId = (null != reion) ? reion.RegionId : null;
+            if (null != regionId && regionId.Contains("ทุกภาค"))
+            {
+                regionId = null;
+            }
+
+            // Check province
+            var province = cbProvince.SelectedItem as MProvince;
+            string provinceNameTH = (null != province) ? province.ProvinceNameTH : null;
+            if (null != provinceNameTH && provinceNameTH.Contains("ทุกจังหวัด"))
+            {
+                provinceNameTH = null;
+            }
+
+            cbDistrict.ItemsSource = null;
+            var districts = MDistrict.Gets(regionId: regionId, provinceNameTH: provinceNameTH).Value;
+            if (null != districts)
+            {
+                districts.Insert(0, new MDistrict { DistrictNameTH = "ทุกอำเภอ/เขต" } );
+            }
+            cbDistrict.ItemsSource = (null != districts) ? districts : new List<MDistrict>();
+            if (null != districts)
+            {
+                cbDistrict.SelectedIndex = 0;
+            }
+        }
+
+        private void RefreshList()
+        {
+            // Check region.
+            var reion = cbRegion.SelectedItem as MRegion;
+            string regionId = (null != reion) ? reion.RegionId : null;
+            if (null == regionId || string.IsNullOrWhiteSpace(regionId))
+            {
+                regionId = null;
+            }
+
+            // Check province.
+            var province = cbProvince.SelectedItem as MProvince;
+            string provinceName = (null != province) ? province.ProvinceNameTH : null;
+            if (null != provinceName && provinceName.Contains("ทุกจังหวัด"))
+            {
+                provinceName = null;
+            }
+
+            // Check district.
+            var district = cbDistrict.SelectedItem as MDistrict;
+            string districtName = (null != district) ? district.DistrictNameTH : null;
+            if (null != districtName && districtName.Contains("ทุกอำเภอ/เขต"))
+            {
+                districtName = null;
+            }
+
+            lvPaks.ItemsSource = null;
+            var paks = MADMPak.Gets(regionId: regionId, provinceNameTH: provinceName, districtNameTH: districtName);
+            lvPaks.ItemsSource = (null != paks) ? paks.Value : new List<MADMPak>();
+        }
+
         #endregion
 
         #region Public Methods
@@ -124,7 +243,7 @@ namespace PPRP.Pages
         {
             if (reload)
             {
-
+                LoadRegions();
             }
         }
 

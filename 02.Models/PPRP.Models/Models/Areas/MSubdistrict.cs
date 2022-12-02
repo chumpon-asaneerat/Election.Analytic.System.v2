@@ -29,8 +29,8 @@ namespace PPRP.Models
 
         private string _ADM3Code = null;
 
-        private string _SubDistrictNameEN = null;
-        private string _SubDistrictNameTH = null;
+        private string _SubdistrictNameEN = null;
+        private string _SubdistrictNameTH = null;
 
         private string _DistrictNameEN = null;
         private string _DistrictNameTH = null;
@@ -38,7 +38,7 @@ namespace PPRP.Models
         private string _ProvinceNameEN = null;
         private string _ProvinceNameTH = null;
 
-        private decimal _SubDistrictAreaM2 = decimal.Zero;
+        private decimal _SubdistrictAreaM2 = decimal.Zero;
 
         #endregion
 
@@ -80,34 +80,34 @@ namespace PPRP.Models
             }
         }
         /// <summary>
-        /// Gets or sets Sub District Name (EN).
+        /// Gets or sets Subdistrict Name (EN).
         /// </summary>
         [ExcelColumn("ADM3_EN")]
-        public string SubDistrictNameEN
+        public string SubdistrictNameEN
         {
-            get { return _SubDistrictNameEN; }
+            get { return _SubdistrictNameEN; }
             set
             {
-                if (_SubDistrictNameEN != value)
+                if (_SubdistrictNameEN != value)
                 {
-                    _SubDistrictNameEN = value;
-                    Raise(() => SubDistrictNameEN);
+                    _SubdistrictNameEN = value;
+                    Raise(() => SubdistrictNameEN);
                 }
             }
         }
         /// <summary>
-        /// Gets or sets Sub District Name (TH).
+        /// Gets or sets Subdistrict Name (TH).
         /// </summary>
         [ExcelColumn("ADM3_TH")]
-        public string SubDistrictNameTH
+        public string SubdistrictNameTH
         {
-            get { return _SubDistrictNameTH; }
+            get { return _SubdistrictNameTH; }
             set
             {
-                if (_SubDistrictNameTH != value)
+                if (_SubdistrictNameTH != value)
                 {
-                    _SubDistrictNameTH = value;
-                    Raise(() => SubDistrictNameTH);
+                    _SubdistrictNameTH = value;
+                    Raise(() => SubdistrictNameTH);
                 }
             }
         }
@@ -176,19 +176,19 @@ namespace PPRP.Models
             }
         }
         /// <summary>
-        /// Gets or sets Sub District Area M2.
+        /// Gets or sets Sub district Area M2.
         /// </summary>
         [ExcelColumn("AREA_M2")]
-        public decimal SubDistrictAreaM2
+        public decimal SubdistrictAreaM2
         {
-            get { return _SubDistrictAreaM2; }
+            get { return _SubdistrictAreaM2; }
             set
             {
-                if (_SubDistrictAreaM2 != value)
+                if (_SubdistrictAreaM2 != value)
                 {
-                    _SubDistrictAreaM2 = value;
+                    _SubdistrictAreaM2 = value;
                     // Raise Event
-                    Raise(() => SubDistrictAreaM2);
+                    Raise(() => SubdistrictAreaM2);
                 }
             }
         }
@@ -233,13 +233,13 @@ namespace PPRP.Models
 
             var p = new DynamicParameters();
             p.Add("@ADM3Code", value.ADM3Code);
-            p.Add("@SubDistrictNameTH", value.SubDistrictNameTH);
-            p.Add("@SubDistrictNameEN", value.SubDistrictNameEN);
+            p.Add("@SubDistrictNameTH", value.SubdistrictNameTH);
+            p.Add("@SubDistrictNameEN", value.SubdistrictNameEN);
             p.Add("@DistrictNameTH", value.DistrictNameTH);
             p.Add("@DistrictNameEN", value.DistrictNameEN);
             p.Add("@ProvinceNameTH", value.ProvinceNameTH);
             p.Add("@ProvinceNameEN", value.ProvinceNameEN);
-            p.Add("@AreaM2", value.SubDistrictAreaM2);
+            p.Add("@AreaM2", value.SubdistrictAreaM2);
 
             p.Add("@errNum", dbType: DbType.Int32, direction: ParameterDirection.Output);
             p.Add("@errMsg", dbType: DbType.String, direction: ParameterDirection.Output, size: -1);
