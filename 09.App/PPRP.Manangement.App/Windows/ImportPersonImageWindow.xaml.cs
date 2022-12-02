@@ -47,8 +47,6 @@ namespace PPRP.Windows
 
         #region Button Handlers
 
-        #region Cancel/Finish
-
         private void cmdCancel_Click(object sender, RoutedEventArgs e)
         {
             DialogResult = false;
@@ -66,8 +64,6 @@ namespace PPRP.Windows
         {
             ChooseImageFolder();
         }
-
-        #endregion
 
         #endregion
 

@@ -143,7 +143,6 @@ namespace PPRP.Pages
 
         private void Import()
         {
-            /*
             var win = PPRPApp.Windows.ImportPersonImage;
             win.Setup();
             if (win.ShowDialog() == false)
@@ -151,7 +150,6 @@ namespace PPRP.Pages
                 return;
             }
             RefreshList();
-            */
         }
 
         private void Export()

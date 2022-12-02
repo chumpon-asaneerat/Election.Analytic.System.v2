@@ -143,7 +143,6 @@ namespace PPRP.Pages
 
         private void Import()
         {
-            /*
             var win = PPRPApp.Windows.ImportPartyImage;
             win.Setup();
             if (win.ShowDialog() == false)
@@ -151,7 +150,6 @@ namespace PPRP.Pages
                 return;
             }
             RefreshList();
-            */
         }
 
         private void Export()
@@ -166,7 +164,6 @@ namespace PPRP.Pages
 
         private void Search()
         {
-            /*
             var win = PPRPApp.Windows.ImportPartyImage;
             win.Setup();
             if (win.ShowDialog() == false)
@@ -174,7 +171,6 @@ namespace PPRP.Pages
                 return;
             }
             RefreshList();
-            */
         }
 
         private void Print()
