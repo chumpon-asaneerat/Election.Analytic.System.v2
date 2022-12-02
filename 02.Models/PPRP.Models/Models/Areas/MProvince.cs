@@ -394,16 +394,11 @@ namespace PPRP.Models
         /// Gets.
         /// </summary>
         /// <param name="adm1code">The ADM1 Code.</param>
-        /// <param name="provinceNameTH">The province name (th).</param>
         /// <param name="regionId">The region id.</param>
-        /// <param name="regionName">The region name.</param>
-        /// <param name="geoGroup">The geo group.</param>
-        /// <param name="geoSubGroup">The geo subgroup.</param>
         /// <returns>Returns list of MProvince instance.</returns>
         public static NDbResult<List<MProvince>> Gets(
-            string adm1code = null, string provinceNameTH = null,
-            string regionId = null, string regionName = null,
-            string geoGroup = null, string geoSubGroup = null)
+            string adm1code = null,
+            string regionId = null)
         {
             MethodBase med = MethodBase.GetCurrentMethod();
 
@@ -423,11 +418,7 @@ namespace PPRP.Models
 
             var p = new DynamicParameters();
             p.Add("@ADM1Code", adm1code);
-            p.Add("@ProvinceNameTH", provinceNameTH);
             p.Add("@RegionId", regionId);
-            p.Add("@RegionName", regionName);
-            p.Add("@GeoGroup", geoGroup);
-            p.Add("@GeoSubGroup", geoSubGroup);
 
             try
             {
@@ -450,57 +441,6 @@ namespace PPRP.Models
 
             return rets;
         }
-        /*
-        /// <summary>
-        /// Save.
-        /// </summary>
-        /// <param name="value">The MProvince insance.</param>
-        /// <returns>Returns NDbResult instance.</returns>
-        public static NDbResult Save(MProvince value)
-        {
-            MethodBase med = MethodBase.GetCurrentMethod();
-
-            NDbResult ret = new NDbResult();
-
-            IDbConnection cnn = DbServer.Instance.Db;
-            if (null == cnn || !DbServer.Instance.Connected)
-            {
-                string msg = "Connection is null or cannot connect to database server.";
-                med.Err(msg);
-                // Set error number/message
-                ret.ErrNum = 8000;
-                ret.ErrMsg = msg;
-
-                return ret;
-            }
-
-            var p = new DynamicParameters();
-            p.Add("@ADM1Code", value.ADM1Code);
-            p.Add("@ProvinceId", value.ProvinceId);
-            p.Add("@RegionId", value.RegionId);
-            p.Add("@ProvinceNameTH", value.ProvinceNameTH);
-            p.Add("@ProvinceNameEN", value.ProvinceNameEN);
-
-            p.Add("@errNum", dbType: DbType.Int32, direction: ParameterDirection.Output);
-            p.Add("@errMsg", dbType: DbType.String, direction: ParameterDirection.Output, size: -1);
-
-            try
-            {
-                cnn.Execute("SaveMProvince", p, commandType: CommandType.StoredProcedure);
-                // Set error number/message
-                ret.ErrNum = p.Get<int>("@errNum");
-                ret.ErrMsg = p.Get<string>("@errMsg");
-            }
-            catch (Exception ex)
-            {
-                med.Err(ex);
-                // Set error number/message
-                ret.ErrNum = 9999;
-                ret.ErrMsg = ex.Message;
-            }
-            return ret;
-        }
-        */
 
         #endregion
     }
