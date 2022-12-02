@@ -141,10 +141,10 @@
     <Compile Include="Windows\Excels\Maps\ImportADMPakWindow.xaml.cs">
       <DependentUpon>ImportADMPakWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Windows\ImportPartyImageWindow.xaml.cs">
+    <Compile Include="Windows\Images\Party\ImportPartyImageWindow.xaml.cs">
       <DependentUpon>ImportPartyImageWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Windows\ImportPersonImageWindow.xaml.cs">
+    <Compile Include="Windows\Images\Person\ImportPersonImageWindow.xaml.cs">
       <DependentUpon>ImportPersonImageWindow.xaml</DependentUpon>
     </Compile>
     <None Include="Properties\DataSources\PPRP.Domains.MPD2562PrintVoteSummary.datasource" />
@@ -258,11 +258,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Windows\ImportPartyImageWindow.xaml">
+    <Page Include="Windows\Images\Party\ImportPartyImageWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Windows\ImportPersonImageWindow.xaml">
+    <Page Include="Windows\Images\Person\ImportPersonImageWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -314,8 +314,6 @@
   <ItemGroup>
     <Folder Include="Pages\Preview\" />
     <Folder Include="Reports\" />
-    <Folder Include="Windows\Images\Party\" />
-    <Folder Include="Windows\Images\Person\" />
     <Folder Include="Windows\MPD\2562\" />
     <Folder Include="Windows\MPD\2566\" />
   </ItemGroup>
