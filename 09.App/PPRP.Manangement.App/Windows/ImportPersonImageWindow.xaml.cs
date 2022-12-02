@@ -43,6 +43,8 @@ namespace PPRP.Windows
         private int iMaxPage = 1;
         private int iRowsPerPage = 40;
 
+        private ImageFileSource source = null;
+
         #endregion
 
         #region Button Handlers
@@ -87,12 +89,44 @@ namespace PPRP.Windows
 
         private void ChooseImageFolder()
         {
+            source = ImageFileSource.ChooseFolder(this);
+            if (null != source)
+            {
+                txtFolderName.Text = source.ImagePath;
+            }
+            else txtFolderName.Text = string.Empty;
 
+            RefreshList();
         }
 
         private void RefreshList()
         {
+            lvFiles.ItemsSource = null;
+            if (null == source)
+            {
+                // no source files.
+                iPageNo = 1;
+                iMaxPage = 1;
 
+                nav.Setup(iPageNo, iMaxPage);
+
+                return;
+            }
+
+            source.LoadItems(iPageNo, iRowsPerPage);
+            var items = source.Items;
+            lvFiles.ItemsSource = (null != items) ? items : new List<ImageFile>();
+
+            if (null != items)
+            {
+                lvFiles.SelectedIndex = 0;
+                lvFiles.ScrollIntoView(lvFiles.SelectedItem);
+            }
+
+            iPageNo = (null != items) ? source.PageNo : 1;
+            iMaxPage = (null != items) ? source.MaxPages : 1;
+
+            nav.Setup(iPageNo, iMaxPage);
         }
 
         #endregion

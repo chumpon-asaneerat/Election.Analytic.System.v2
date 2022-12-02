@@ -41,7 +41,7 @@ namespace PPRP.Windows
 
         private int iPageNo = 1;
         private int iMaxPage = 1;
-        private int iRowsPerPage = 10;
+        private int iRowsPerPage = 40;
 
         private ImageFileSource source = null;
 
@@ -114,7 +114,6 @@ namespace PPRP.Windows
             }
 
             source.LoadItems(iPageNo, iRowsPerPage);
-            //var persons = PersonImage.Gets(sFullNameFilter, iPageNo, iRowsPerPage);
             var items = source.Items;
             lvFiles.ItemsSource = (null != items) ? items : new List<ImageFile>();
 

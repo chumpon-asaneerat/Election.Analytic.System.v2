@@ -164,6 +164,12 @@
                         </Grid>
                         <!--  PREVIEW IMAGE FILES  -->
                         <ListView x:Name="lvFiles" Style="{StaticResource SingleSelectListView}">
+                            <ListView.ItemContainerStyle>
+                                <Style TargetType="ListViewItem">
+                                    <Setter Property="HorizontalAlignment" Value="Stretch" />
+                                    <Setter Property="VerticalAlignment" Value="Stretch" />
+                                </Style>
+                            </ListView.ItemContainerStyle>
                             <ListView.View>
                                 <GridView>
                                     <GridViewColumn Header="รูป" Width="150">
@@ -182,7 +188,7 @@
                                     </GridViewColumn>
                                     <GridViewColumn Header="ชื่อผู้สมัคร/ว่าที่ผู้สมัคร"
                                                     Width="400"
-                                                    DisplayMemberBinding="{Binding PersonName}" />
+                                                    DisplayMemberBinding="{Binding FileNameOnly}" />
                                 </GridView>
                             </ListView.View>
                         </ListView>
