@@ -154,7 +154,7 @@
                                 <TextBlock Style="{StaticResource fa-addnew}" />
                                 <TextBlock Margin="3,0"
                                            FontFamily="{StaticResource THSarabun}"
-                                           FontSize="{StaticResource FontSize16}"
+                                           FontSize="{StaticResource IBFSize}"
                                            Text="เพิ่มข้อมูล"
                                            VerticalAlignment="Center" />
                             </StackPanel>
@@ -172,7 +172,7 @@
                                 <TextBlock Style="{StaticResource fa-import}" />
                                 <TextBlock Margin="3,0"
                                            FontFamily="{StaticResource THSarabun}"
-                                           FontSize="{StaticResource FontSize16}"
+                                           FontSize="{StaticResource IBFSize}"
                                            Text="นำเข้าข้อมูล"
                                            VerticalAlignment="Center" />
                             </StackPanel>
@@ -190,7 +190,7 @@
                                 <TextBlock Style="{StaticResource fa-export}" />
                                 <TextBlock Margin="3,0"
                                            FontFamily="{StaticResource THSarabun}"
-                                           FontSize="{StaticResource FontSize16}"
+                                           FontSize="{StaticResource IBFSize}"
                                            Text="ส่งออกข้อมูล"
                                            VerticalAlignment="Center" />
                             </StackPanel>
@@ -208,7 +208,7 @@
                                 <TextBlock Style="{StaticResource fa-print}" />
                                 <TextBlock Margin="3,0"
                                            FontFamily="{StaticResource THSarabun}"
-                                           FontSize="{StaticResource FontSize16}"
+                                           FontSize="{StaticResource IBFSize}"
                                            Text="พิมพ์"
                                            VerticalAlignment="Center" />
                             </StackPanel>
@@ -226,7 +226,7 @@
                                 <TextBlock Style="{StaticResource fa-home}" />
                                 <TextBlock Margin="3,0"
                                            FontFamily="{StaticResource THSarabun}"
-                                           FontSize="{StaticResource FontSize16}"
+                                           FontSize="{StaticResource IBFSize}"
                                            Text="เมนูหลัก"
                                            VerticalAlignment="Center" />
                             </StackPanel>
