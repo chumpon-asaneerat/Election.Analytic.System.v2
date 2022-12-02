@@ -61,6 +61,7 @@
     <Compile Include="Consts\AppConsts.cs" />
     <Compile Include="ExtensionMethods\DateTime.cs" />
     <Compile Include="ExtensionMethods\NJson.cs" />
+    <Compile Include="ExtensionMethods\ObjectPropertiesToString.cs" />
     <Compile Include="ExtensionMethods\RangeParser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utils\WPFUtils.cs" />

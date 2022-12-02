@@ -384,6 +384,21 @@ namespace PPRP
 
             #endregion
 
+            #region Import Error Dialog
+
+            /// <summary>Gets Import Error Dialog Window.</summary>
+            public static PPRP.Windows.ImportReportWindow ImportReport
+            {
+                get
+                {
+                    var ret = new PPRP.Windows.ImportReportWindow();
+                    ret.Owner = Application.Current.MainWindow;
+                    return ret;
+                }
+            }
+
+            #endregion
+
             #region Import Polling Unit 2562
 
             /// <summary>Gets MPD2562 Polling Unit Summary Import Window.</summary>

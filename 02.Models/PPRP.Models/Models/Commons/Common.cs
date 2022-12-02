@@ -110,4 +110,31 @@ namespace PPRP.Models
     }
 
     #endregion
+
+    #region ImportError
+
+    /// <summary>
+    /// The ImportError class.
+    /// </summary>
+    public class ImportError
+    {
+        #region Public Properties
+
+        /// <summary>
+        /// Gets or set RowNo.
+        /// </summary>
+        public int RowNo { get; set; }
+        /// <summary>
+        /// Gets or set ErrMsg.
+        /// </summary>
+        public string ErrMsg { get; set; }
+        /// <summary>
+        /// Gets or set DataString.
+        /// </summary>
+        public string DataString { get; set; }
+
+        #endregion
+    }
+
+    #endregion
 }

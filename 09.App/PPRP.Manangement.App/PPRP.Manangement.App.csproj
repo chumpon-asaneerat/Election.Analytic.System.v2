@@ -108,6 +108,9 @@
       <DependentUpon>PersonImageManagePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Services\PPRPApp.cs" />
+    <Compile Include="Windows\Common\ImportReportWindow.xaml.cs">
+      <DependentUpon>ImportReportWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\Common\ProgressWindow.xaml.cs">
       <DependentUpon>ProgressWindow.xaml</DependentUpon>
     </Compile>
@@ -202,6 +205,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\Person\PersonImageManagePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\Common\ImportReportWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

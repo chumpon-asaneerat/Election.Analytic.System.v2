@@ -107,12 +107,16 @@ namespace PPRP.Windows
             if (null == items || items.Count <= 0)
                 return; // No items
 
+            var errors = new List<ImportError>();
+
             var prog = PPRPApp.Windows.ProgressDialog;
             prog.Owner = this;
             prog.Setup(items.Count);
             prog.Show();
 
             int year = 2562;
+
+            int iCnt = 2; // excel first row is column name.
             foreach (var item in items)
             {
                 var obj = item as MPDVoteSummaryImport;
@@ -120,12 +124,31 @@ namespace PPRP.Windows
                 {
                     obj.ThaiYear = year;
                     obj.RevoteNo = 0;
-                    MPDVoteSummaryImport.Import(obj);
+                    var ret = MPDVoteSummaryImport.Import(obj);
+                    if (ret.HasError)
+                    {
+                        // get debug string.
+                        string dataString = obj.DebugString();
+                        errors.Add(new ImportError() 
+                        { 
+                            RowNo = iCnt, ErrMsg = ret.ErrMsg, DataString = dataString 
+                        });
+                    }
                 }
                 prog.Increment();
+
+                iCnt++;
             }
             // Close progress dialog.
             prog.Close();
+
+            if (null != errors && errors.Count > 0)
+            {
+                var errWin = PPRPApp.Windows.ImportReport;
+                errWin.Owner = this;
+                errWin.Setup(errors);
+                errWin.ShowDialog();
+            }
         }
 
         #endregion

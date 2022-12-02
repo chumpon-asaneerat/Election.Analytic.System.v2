@@ -9,7 +9,6 @@
         WindowStartupLocation="CenterOwner"
         ResizeMode="NoResize"
         WindowStyle="None"
-        Topmost="True"
         Background="Transparent"
         Height="120"
         Width="400"
