@@ -81,6 +81,11 @@ namespace PPRP.Pages
 
         private void cbProvince_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            LoadDistricts();
+        }
+
+        private void cbDistrict_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
             RefreshList();
         }
 
@@ -164,6 +169,37 @@ namespace PPRP.Pages
             }
         }
 
+        private void LoadDistricts()
+        {
+            // Check region.
+            var reion = cbRegion.SelectedItem as MRegion;
+            string regionId = (null != reion) ? reion.RegionId : null;
+            if (null != regionId && regionId.Contains("ทุกภาค"))
+            {
+                regionId = null;
+            }
+
+            // Check province
+            var province = cbProvince.SelectedItem as MProvince;
+            string adm1Code = (null != province) ? province.ADM1Code : null;
+            if (string.IsNullOrWhiteSpace(adm1Code))
+            {
+                adm1Code = null;
+            }
+
+            cbDistrict.ItemsSource = null;
+            var districts = MDistrict.Gets(regionId, adm1Code, null).Value;
+            if (null != districts)
+            {
+                districts.Insert(0, new MDistrict { DistrictNameTH = "ทุกอำเภอ/เขต" });
+            }
+            cbDistrict.ItemsSource = (null != districts) ? districts : new List<MDistrict>();
+            if (null != districts)
+            {
+                cbDistrict.SelectedIndex = 0;
+            }
+        }
+
         private void RefreshList()
         {
             // Check region.
@@ -182,8 +218,16 @@ namespace PPRP.Pages
                 adm1Code = null;
             }
 
+            // Check district.
+            var district = cbDistrict.SelectedItem as MDistrict;
+            string adm2Code = (null != district) ? district.ADM2Code : null;
+            if (string.IsNullOrWhiteSpace(adm2Code))
+            {
+                adm2Code = null;
+            }
+
             lvSubdistricts.ItemsSource = null;
-            var subdistricts = MSubdistrict.Gets(regionId, adm1Code);
+            var subdistricts = MSubdistrict.Gets(regionId, adm1Code, adm2Code, null);
             lvSubdistricts.ItemsSource = (null != subdistricts) ? subdistricts.Value : new List<MSubdistrict>();
         }
 

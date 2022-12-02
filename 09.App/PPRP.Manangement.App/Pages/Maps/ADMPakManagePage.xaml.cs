@@ -188,7 +188,7 @@ namespace PPRP.Pages
             }
 
             cbDistrict.ItemsSource = null;
-            var districts = MDistrict.Gets(null, adm1Code, regionId).Value;
+            var districts = MDistrict.Gets(regionId, adm1Code, null).Value;
             if (null != districts)
             {
                 districts.Insert(0, new MDistrict { DistrictNameTH = "ทุกอำเภอ/เขต" } );

@@ -120,6 +120,23 @@
                                   IsSynchronizedWithCurrentItem="False"
                                   DisplayMemberPath="ProvinceNameTH"
                                   SelectionChanged="cbProvince_SelectionChanged" />
+                        <!--  DISTRICT  -->
+                        <TextBlock Text="อำเภอ/เขต"
+                                   DockPanel.Dock="Left"
+                                   VerticalAlignment="Center"
+                                   TextAlignment="Right"
+                                   Width="100"
+                                   Foreground="WhiteSmoke" />
+                        <TextBlock Width="10" DockPanel.Dock="Left" />
+                        <ComboBox x:Name="cbDistrict"
+                                  Width="300"
+                                  FontFamily="{StaticResource THSarabunNew}"
+                                  FontSize="{StaticResource FontSize18}"
+                                  Margin="3"
+                                  VerticalContentAlignment="Center"
+                                  IsSynchronizedWithCurrentItem="False"
+                                  DisplayMemberPath="DistrictNameTH"
+                                  SelectionChanged="cbDistrict_SelectionChanged" />
                         <Grid />
                     </DockPanel>
                     <!--  BUTTONS BAR  -->
