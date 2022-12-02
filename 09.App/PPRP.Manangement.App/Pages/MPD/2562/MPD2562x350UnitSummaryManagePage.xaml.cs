@@ -65,6 +65,11 @@ namespace PPRP.Pages
             Search();
         }
 
+        private void cmdPrint_Click(object sender, RoutedEventArgs e)
+        {
+            Print();
+        }
+
         #endregion
 
         #region Private Methods

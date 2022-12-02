@@ -72,6 +72,11 @@ namespace PPRP.Pages
             Search();
         }
 
+        private void cmdPrint_Click(object sender, RoutedEventArgs e)
+        {
+            Print();
+        }
+
         private void cmdView_Click(object sender, RoutedEventArgs e)
         {
             var btn = sender as Button;
