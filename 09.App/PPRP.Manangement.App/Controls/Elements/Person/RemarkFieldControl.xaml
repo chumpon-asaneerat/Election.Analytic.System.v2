@@ -22,6 +22,7 @@
                     VerticalAlignment="Center"
                     HorizontalAlignment="Left">
             <TextBlock Margin="5,0"
+                       Foreground="{StaticResource CaptionForeground}"
                        Width="{StaticResource LabelWd}"
                        FontFamily="{StaticResource THSarabun}"
                        FontSize="{StaticResource FontSize18}"
