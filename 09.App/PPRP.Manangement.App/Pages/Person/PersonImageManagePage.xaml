@@ -267,7 +267,6 @@
                                                     Width="75"
                                                     Height="25"
                                                     Style="{StaticResource InlineButton}"
-                                                    Visibility="Collapsed"
                                                     Click="cmdEdit_Click">
                                                 <StackPanel Orientation="Horizontal">
                                                     <TextBlock Style="{StaticResource fa-edit}" FontSize="{StaticResource IBFSize2}" />

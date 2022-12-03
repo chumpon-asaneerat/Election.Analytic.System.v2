@@ -145,11 +145,9 @@ namespace PPRP.Models
             get 
             {
                 var ret = string.Empty;
-                ret += string.IsNullOrEmpty(_Prefix) ? _Prefix.Trim() : string.Empty;
-                ret += " ";
-                ret += string.IsNullOrEmpty(_FirstName) ? _FirstName.Trim() : string.Empty;
-                ret += " ";
-                ret += string.IsNullOrEmpty(_LastName) ? _LastName.Trim() : string.Empty;
+                ret += !string.IsNullOrEmpty(_Prefix) ? _Prefix.Trim() + " " : string.Empty;
+                ret += !string.IsNullOrEmpty(_FirstName) ? _FirstName.Trim() + " " : string.Empty;
+                ret += !string.IsNullOrEmpty(_LastName) ? _LastName.Trim() : string.Empty;
                 return ret.Trim();
             }
             set { }
