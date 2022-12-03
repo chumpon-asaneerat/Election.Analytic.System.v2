@@ -110,7 +110,7 @@ namespace PPRP.Models
                         if (null == Data)
                         {
                             _isDefault = true;
-                            imgSrc = Defaults.Person;
+                            imgSrc = Defaults.Party;
                         }
                         else
                         {

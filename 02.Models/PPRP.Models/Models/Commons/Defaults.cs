@@ -151,7 +151,7 @@ namespace PPRP.Models
                     }
 
                 }
-                return _PersonImage;
+                return _PartyImage;
             }
         }
         /// <summary>
