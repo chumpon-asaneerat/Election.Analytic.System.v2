@@ -16,8 +16,12 @@ Election.Analytic.System.v2 - PPRP  #266
 Election.Analytic.System.v2 - PPRP  #265
 - 
 
+[commited]
 Election.Analytic.System.v2 - PPRP  #264
-- 
+- PPRP.Manangement.App project
+  - Implements UI #150.
+    - Note: 1. Use SignInPage to set all textbox style in all UserControl + Window for supports keyboard navigate.
+            2. SignInPage may need to check auto signin without press button.
 
 [commited]
 Election.Analytic.System.v2 - PPRP  #263
