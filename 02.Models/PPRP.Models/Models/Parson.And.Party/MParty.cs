@@ -90,7 +90,7 @@ namespace PPRP.Models
             }
         }
         /// <summary>
-        /// Gets or sets Data.
+        /// Gets or sets Image Data buffers.
         /// </summary>
         public byte[] Data { get; set; }
         /// <summary>
