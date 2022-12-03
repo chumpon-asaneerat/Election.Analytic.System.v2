@@ -290,6 +290,12 @@
         <Setter Property="Foreground" Value="Green" />
     </Style>
 
+    <!--  IMAGE FILE  -->
+    <Style x:Key="fa-image-file"
+           TargetType="TextBlock"
+           BasedOn="{StaticResource fa-base}">
+        <Setter Property="Text" Value="&#xf1c5;" />
+    </Style>
     <!--  EDIT  -->
     <Style x:Key="fa-edit"
            TargetType="TextBlock"
