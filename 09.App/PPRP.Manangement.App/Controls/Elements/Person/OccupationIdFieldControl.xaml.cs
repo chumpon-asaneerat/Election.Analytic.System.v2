@@ -61,6 +61,15 @@ namespace PPRP.Controls.Elements
 
         #endregion
 
+        #region Combobox Handlers
+
+        private void cb_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        #endregion
+
         #region Private Methods
 
         #endregion

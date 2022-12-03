@@ -1,8 +1,8 @@
 ﻿<UserControl x:Class="PPRP.Controls.Elements.GenderIdFieldControl"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:sys="clr-namespace:System;assembly=mscorlib"
              Background="Transparent"
              mc:Ignorable="d"
@@ -13,7 +13,7 @@
         <sys:Double x:Key="LabelWd">120</sys:Double>
         <TextAlignment x:Key="LabelAlign">Left</TextAlignment>
     </UserControl.Resources>
-    <!--  GENDER ID -->
+    <!--  GENDER ID  -->
     <StackPanel Orientation="Vertical" Margin="2">
         <TextBlock Margin="5,0"
                    VerticalAlignment="Center"
@@ -23,11 +23,15 @@
                    FontSize="{StaticResource FontSize18}"
                    TextAlignment="{StaticResource LabelAlign}"
                    Text="เพศ" />
-        <TextBox x:Name="txtFirstName"
-                 VerticalAlignment="Center"
-                 HorizontalAlignment="Stretch"
-                 Margin="5,0"
-                 FontFamily="{StaticResource THSarabun}"
-                 FontSize="{StaticResource FontSize18}" />
+        <ComboBox x:Name="cb"
+                  VerticalAlignment="Center"
+                  HorizontalAlignment="Stretch"
+                  Margin="5,0"
+                  FontFamily="{StaticResource THSarabun}"
+                  FontSize="{StaticResource FontSize18}"
+                  IsSynchronizedWithCurrentItem="False"
+                  SelectedValuePath="GenderId"
+                  DisplayMemberPath="Description"
+                  SelectionChanged="cb_SelectionChanged" />
     </StackPanel>
 </UserControl>
