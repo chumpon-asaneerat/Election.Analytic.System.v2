@@ -125,7 +125,6 @@
                                        DockPanel.Dock="Left"
                                        VerticalAlignment="Center"
                                        TextAlignment="Left"
-                                       Text="{Binding FileName}"
                                        TextWrapping="Wrap"
                                        TextTrimming="WordEllipsis"
                                        ClipToBounds="True"

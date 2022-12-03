@@ -274,6 +274,10 @@ namespace PPRP.Models
                 return ret;
             }
 
+            if (partyName == "อนาคตใหม่")
+            {
+                Console.WriteLine("detected");
+            }
             var p = new DynamicParameters();
             p.Add("@PartyName", partyName);
             p.Add("@Data", data, dbType: DbType.Binary, direction: ParameterDirection.Input, size: -1);

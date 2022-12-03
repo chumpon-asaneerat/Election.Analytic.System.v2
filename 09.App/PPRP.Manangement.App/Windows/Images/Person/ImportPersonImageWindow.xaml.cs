@@ -103,8 +103,8 @@ namespace PPRP.Windows
             int iCnt = 1;
             foreach (var item in source.Items)
             {
-                item.LoadImage(); // load image before send to database
-                var ret = MPerson.Import(item.FileNameOnly, item.Data);
+                var data = item.GetImageData(); // load image before send to database
+                var ret = MPerson.Import(item.FileNameOnly, data);
                 if (ret.HasError)
                 {
                     // get debug string.
@@ -116,6 +116,10 @@ namespace PPRP.Windows
                         DataString = dataString
                     });
                 }
+                // Try to free memory.
+                NGC.FreeGC(data);
+                data = null;
+
                 prog.Increment();
 
                 iCnt++;

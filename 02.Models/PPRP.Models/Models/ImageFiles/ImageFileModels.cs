@@ -268,7 +268,6 @@ namespace PPRP.Models
         /// <returns></returns>
         public bool OpenFolder(Window owner)
         {
-            bool ret = false;
             string targetPath = string.Empty;
             FolderBrowserDialog fd = new FolderBrowserDialog();
             fd.Description = "กรูณาเลือกโฟลเดอร์รูป";
@@ -278,9 +277,11 @@ namespace PPRP.Models
             }
             fd = null;
 
-            if (string.IsNullOrEmpty(targetPath))
-                return ret;
-            this.ImagePath = targetPath; // set target path;
+            bool ret = !string.IsNullOrEmpty(targetPath);
+            if (ret)
+            {
+                this.ImagePath = targetPath; // set target path;
+            }
 
             return ret;
         }
@@ -298,10 +299,10 @@ namespace PPRP.Models
             DirectoryInfo di = new DirectoryInfo(ImagePath);
 
             string searchPattern = "*.*";
-            var exts = new string[] { /*"*.png",*/ "*.jpg" };
+            var exts = new string[] { /*"*.png",*/ "*.jpg", "*.jpeg" };
 
             List<string> allFiles = di.GetFiles(searchPattern, SearchOption.AllDirectories)
-                .Where(f => /*f.Extension == ".png" ||*/ f.Extension == ".jpg")
+                .Where(f => /*f.Extension == ".png" ||*/ f.Extension == ".jpg" || f.Extension == ".jpeg")
                 .Select(x => x.FullName)
                 .ToList();
 
@@ -336,10 +337,10 @@ namespace PPRP.Models
             DirectoryInfo di = new DirectoryInfo(ImagePath);
 
             string searchPattern = "*.*";
-            var exts = new string[] { /*"*.png",*/ "*.jpg" };
+            var exts = new string[] { /*"*.png",*/ "*.jpg", "*.jpeg" };
 
             List<string> allFiles = di.GetFiles(searchPattern, SearchOption.AllDirectories)
-                .Where(f => /*f.Extension == ".png" ||*/ f.Extension == ".jpg")
+                .Where(f => /*f.Extension == ".png" ||*/ f.Extension == ".jpg" || f.Extension == ".jpeg")
                 .Select(x => x.FullName)
                 .ToList();
 
