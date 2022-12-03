@@ -176,6 +176,7 @@
   <PropertyGroup>
     <PostBuildEvent>REM xcopy "$(SolutionDir)References\Microsoft*.*" "$(TargetDir)\..\PPRP\Microsoft*.*" /Y/D/E
 REM xcopy "$(SolutionDir)References\System*.*" "$(TargetDir)\..\PPRP\System*.*" /Y/D/E
+xcopy "$(SolutionDir)References\runtimes\*.*" "$(TargetDir)\..\PPRP\runtimes\*.*" /Y/D/E
 </PostBuildEvent>
   </PropertyGroup>
 </Project>

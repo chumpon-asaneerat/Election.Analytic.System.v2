@@ -25,8 +25,11 @@ Election.Analytic.System.v2 - PPRP  #233
 Election.Analytic.System.v2 - PPRP  #232
 - 
 
+[commited]
 Election.Analytic.System.v2 - PPRP  #231
-- 
+- Update PPRP.Models project
+  - Add SQLite assemblies
+  - Update project build event script.
 
 [commited]
 Election.Analytic.System.v2 - PPRP  #230
