@@ -81,22 +81,18 @@ namespace PPRP.Pages
 
         private void cmdEdit_Click(object sender, RoutedEventArgs e)
         {
-            /*
             var btn = sender as Button;
             if (null == btn) return;
             var item = btn.DataContext as MParty;
             Edit(item);
-            */
         }
 
         private void cmdDelete_Click(object sender, RoutedEventArgs e)
         {
-            /*
             var btn = sender as Button;
             if (null == btn) return;
             var item = btn.DataContext as MParty;
             Delete(item);
-            */
         }
 
         #endregion
@@ -178,30 +174,28 @@ namespace PPRP.Pages
 
         private void Edit(MParty item)
         {
-            /*
             if (null == item)
                 return;
             Console.WriteLine("Edit");
-            */
         }
 
         private void Delete(MParty item)
         {
-            /*
             if (null == item)
                 return;
             string msg = string.Format("ต้องการลบข้อมูล '{0}' ?", item.PartyName);
-            if (MessageBox.Show(msg, "ยืนยันการลบข้อมูล", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+            var msgwin = PPRPApp.Windows.MessageBoxOKCancel;
+            msgwin.Setup(msg, "ยืนยันการลบข้อมูล");
+
+            if (msgwin.ShowDialog() == true)
             {
-                MParty.Delete(item);
+                //MParty.Delete(item);
                 RefreshList();
             }
-            */
         }
 
         private void RefreshList()
         {
-            /*
             lvParties.ItemsSource = null;
             var parties = MParty.Gets(sPartyNameFilter, iPageNo, iRowsPerPage);
             lvParties.ItemsSource = (null != parties) ? parties.Value : new List<MParty>();
@@ -216,7 +210,6 @@ namespace PPRP.Pages
             iMaxPage = (null != parties) ? parties.MaxPage : 1;
 
             nav.Setup(iPageNo, iMaxPage);
-            */
         }
 
         #endregion

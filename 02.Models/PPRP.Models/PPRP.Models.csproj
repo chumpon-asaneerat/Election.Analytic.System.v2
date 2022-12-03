@@ -149,6 +149,9 @@
   <ItemGroup>
     <Resource Include="Images\Default\person.jpg" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Default\party.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>REM xcopy "$(SolutionDir)References\Microsoft*.*" "$(TargetDir)\..\PPRP\Microsoft*.*" /Y/D/E
