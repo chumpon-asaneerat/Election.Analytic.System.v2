@@ -13,8 +13,17 @@ Election.Analytic.System.v2 - PPRP  #277
 Election.Analytic.System.v2 - PPRP  #276
 - 
 
+[commited]
 Election.Analytic.System.v2 - PPRP  #275
-- 
+- PPRP.Manangement.App project
+  - Implements UI #160.
+  - Note: 
+    [ ] SignInPage may need to check auto signin without press button.
+    [ ] Exports
+    [ ] DateTime Control (DOB) with display calc total ages.
+    [ ] 2562 350 units inmport
+    [ ] 2566 MPDC import
+    [ ] Print Prewiew 2 reports.
 
 [commited]
 Election.Analytic.System.v2 - PPRP  #274
