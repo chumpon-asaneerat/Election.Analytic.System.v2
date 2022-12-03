@@ -12,26 +12,22 @@
         <!--  LABEL PROPERTY  -->
         <sys:Double x:Key="LabelWd">120</sys:Double>
         <TextAlignment x:Key="LabelAlign">Left</TextAlignment>
-        <!--  INPUT PROPERTY  -->
-        <sys:Double x:Key="InputWd">150</sys:Double>
     </UserControl.Resources>
     <!--  PREFIX  -->
-    <StackPanel Orientation="Vertical"
-                Margin="2"
-                VerticalAlignment="Center"
-                HorizontalAlignment="Left">
+    <StackPanel Orientation="Vertical" Margin="2">
         <TextBlock Margin="5,0"
                    VerticalAlignment="Center"
+                   HorizontalAlignment="Left"
                    Width="{StaticResource LabelWd}"
                    FontFamily="{StaticResource THSarabun}"
                    FontSize="{StaticResource FontSize18}"
                    TextAlignment="{StaticResource LabelAlign}"
-                   Text="คำนำหน้า :" />
+                   Text="คำนำหน้า" />
         <TextBox x:Name="txtPrefix"
                  VerticalAlignment="Center"
+                 HorizontalAlignment="Stretch"
                  Margin="5,0"
                  FontFamily="{StaticResource THSarabun}"
-                 FontSize="{StaticResource FontSize18}"
-                 Width="{StaticResource InputWd}" />
+                 FontSize="{StaticResource FontSize18}"/>
     </StackPanel>
 </UserControl>
