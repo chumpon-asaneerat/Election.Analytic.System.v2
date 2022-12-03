@@ -71,6 +71,33 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Controls\Elements\Person\DOBFieldControl.xaml.cs">
+      <DependentUpon>DOBFieldControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Elements\Person\EducationIdFieldControl.xaml.cs">
+      <DependentUpon>EducationIdFieldControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Elements\Person\FirstNameFieldControl.xaml.cs">
+      <DependentUpon>FirstNameFieldControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Elements\Person\GenderIdFieldControl.xaml.cs">
+      <DependentUpon>GenderIdFieldControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Elements\Person\LastNameFieldControl.xaml.cs">
+      <DependentUpon>LastNameFieldControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Elements\Person\OccupationIdFieldControl.xaml.cs">
+      <DependentUpon>OccupationIdFieldControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Elements\Party\PartyNameFieldControl.xaml.cs">
+      <DependentUpon>PartyNameFieldControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Elements\Person\PrefixFieldControl.xaml.cs">
+      <DependentUpon>PrefixFieldControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Elements\Person\RemarkFieldControl.xaml.cs">
+      <DependentUpon>RemarkFieldControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\Editors\Party\MPartyImageEditorControl.xaml.cs">
       <DependentUpon>MPartyImageEditorControl.xaml</DependentUpon>
     </Compile>
@@ -162,6 +189,42 @@
     <None Include="Properties\DataSources\PPRP.Domains.MPD2562PrintVoteSummary.datasource" />
     <None Include="Properties\DataSources\PPRP.Domains.MPD2562x350PrintUnitSummary.datasource" />
     <None Include="Properties\DataSources\PPRP.Domains.MPDC2566PrintSummary.datasource" />
+    <Page Include="Controls\Elements\Person\DOBFieldControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\Elements\Person\EducationIdFieldControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\Elements\Person\FirstNameFieldControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\Elements\Person\GenderIdFieldControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\Elements\Person\LastNameFieldControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\Elements\Person\OccupationIdFieldControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\Elements\Party\PartyNameFieldControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\Elements\Person\PrefixFieldControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\Elements\Person\RemarkFieldControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Controls\Editors\Party\MPartyImageEditorControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
