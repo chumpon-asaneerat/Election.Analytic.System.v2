@@ -71,8 +71,9 @@
                                         Style="{StaticResource InlineButton}"
                                         Width="50"
                                         Foreground="Red"
-                                        Content="X"
-                                        Click="cmdResetMapProperty_Click" />
+                                        Click="cmdResetMapProperty_Click">
+                                    <TextBlock Style="{StaticResource fa-cancel}" FontSize="{StaticResource IBFSize}" />
+                                </Button>
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
