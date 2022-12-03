@@ -77,21 +77,51 @@
                                 Click="cmdRefresh_Click">
                             <TextBlock Style="{StaticResource fa-refresh}" FontSize="{StaticResource IBFSize}" />
                         </Button>
-                        <!--  PERSON FULL NAME  -->
-                        <TextBlock Text="ชื่อ-สกุล"
+                        <!--  PREFIX  -->
+                        <TextBlock Text="คำนำหน้า"
                                    DockPanel.Dock="Left"
                                    VerticalAlignment="Center"
                                    TextAlignment="Right"
-                                   Width="100"
+                                   Width="80"
                                    Foreground="WhiteSmoke" />
                         <TextBlock Width="10" DockPanel.Dock="Left" />
-                        <TextBox x:Name="txtFullNameFilter"
-                                 Width="300"
+                        <TextBox x:Name="txtPrefixFilter"
+                                 Width="120"
                                  FontFamily="{StaticResource THSarabun}"
                                  FontSize="{StaticResource FontSize18}"
                                  Margin="3"
                                  VerticalContentAlignment="Center"
-                                 KeyDown="txtFullNameFilter_KeyDown" />
+                                 KeyDown="txtPrefixFilter_KeyDown" />
+                        <!--  FIRST NAME  -->
+                        <TextBlock Text="ชื่อ"
+                                   DockPanel.Dock="Left"
+                                   VerticalAlignment="Center"
+                                   TextAlignment="Right"
+                                   Width="30"
+                                   Foreground="WhiteSmoke" />
+                        <TextBlock Width="10" DockPanel.Dock="Left" />
+                        <TextBox x:Name="txtFirstNameFilter"
+                                 Width="200"
+                                 FontFamily="{StaticResource THSarabun}"
+                                 FontSize="{StaticResource FontSize18}"
+                                 Margin="3"
+                                 VerticalContentAlignment="Center"
+                                 KeyDown="txtFirstNameFilter_KeyDown" />
+                        <!--  LAST NAME  -->
+                        <TextBlock Text="นามสกุล"
+                                   DockPanel.Dock="Left"
+                                   VerticalAlignment="Center"
+                                   TextAlignment="Right"
+                                   Width="70"
+                                   Foreground="WhiteSmoke" />
+                        <TextBlock Width="10" DockPanel.Dock="Left" />
+                        <TextBox x:Name="txtLastNameFilter"
+                                 Width="250"
+                                 FontFamily="{StaticResource THSarabun}"
+                                 FontSize="{StaticResource FontSize18}"
+                                 Margin="3"
+                                 VerticalContentAlignment="Center"
+                                 KeyDown="txtLastNameFilter_KeyDown" />
                         <!--  SEARCH  -->
                         <Button x:Name="cmdSearch"
                                 Visibility="{StaticResource SearchButtonVisible}"
