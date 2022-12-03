@@ -15,6 +15,11 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
+using NLib;
+using NLib.Services;
+
+using PPRP.Models;
+
 #endregion
 
 namespace PPRP.Controls
@@ -33,6 +38,22 @@ namespace PPRP.Controls
         {
             InitializeComponent();
         }
+
+        #endregion
+
+        #region Internal Variables
+
+        #endregion
+
+        #region Private Methods
+
+        #endregion
+
+        #region Public Methods
+
+        #endregion
+
+        #region Public Properties
 
         #endregion
     }

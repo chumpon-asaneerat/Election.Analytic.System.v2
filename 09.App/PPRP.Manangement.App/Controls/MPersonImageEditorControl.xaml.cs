@@ -25,18 +25,27 @@ using PPRP.Models;
 namespace PPRP.Controls
 {
     /// <summary>
-    /// Interaction logic for MPersonEditorControl.xaml
+    /// Interaction logic for MPersonImageEditorControl.xaml
     /// </summary>
-    public partial class MPersonEditorControl : UserControl
+    public partial class MPersonImageEditorControl : UserControl
     {
         #region Constructor
 
         /// <summary>
         /// Constructor
         /// </summary>
-        public MPersonEditorControl()
+        public MPersonImageEditorControl()
         {
             InitializeComponent();
+        }
+
+        #endregion
+
+        #region Button Handlers
+
+        private void cmdChooseImageFile_Click(object sender, RoutedEventArgs e)
+        {
+            ChooseImageFile();
         }
 
         #endregion
@@ -46,6 +55,11 @@ namespace PPRP.Controls
         #endregion
 
         #region Private Methods
+
+        private void ChooseImageFile()
+        {
+
+        }
 
         #endregion
 

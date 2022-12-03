@@ -71,8 +71,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Controls\ImageEditorControl.xaml.cs">
-      <DependentUpon>ImageEditorControl.xaml</DependentUpon>
+    <Compile Include="Controls\MPersonImageEditorControl.xaml.cs">
+      <DependentUpon>MPersonImageEditorControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\MPartyEditorControl.xaml.cs">
       <DependentUpon>MPartyEditorControl.xaml</DependentUpon>
@@ -159,7 +159,7 @@
     <None Include="Properties\DataSources\PPRP.Domains.MPD2562PrintVoteSummary.datasource" />
     <None Include="Properties\DataSources\PPRP.Domains.MPD2562x350PrintUnitSummary.datasource" />
     <None Include="Properties\DataSources\PPRP.Domains.MPDC2566PrintSummary.datasource" />
-    <Page Include="Controls\ImageEditorControl.xaml">
+    <Page Include="Controls\MPersonImageEditorControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
