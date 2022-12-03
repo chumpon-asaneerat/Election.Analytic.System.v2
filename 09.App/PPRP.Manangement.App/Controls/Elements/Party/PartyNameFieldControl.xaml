@@ -13,7 +13,7 @@
         <sys:Double x:Key="LabelWd">120</sys:Double>
         <TextAlignment x:Key="LabelAlign">Left</TextAlignment>
     </UserControl.Resources>
-    <!--  PREFIX  -->
+    <!--  PARTY NAME  -->
     <StackPanel Orientation="Vertical" Margin="2">
         <TextBlock Margin="5,0"
                    VerticalAlignment="Center"
