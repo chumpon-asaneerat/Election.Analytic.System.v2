@@ -1,5 +1,38 @@
-﻿Election.Analytic.System.v2 - PPRP  #270
+﻿Election.Analytic.System.v2 - PPRP  #280
 - 
+
+Election.Analytic.System.v2 - PPRP  #279
+- 
+
+Election.Analytic.System.v2 - PPRP  #278
+- 
+
+Election.Analytic.System.v2 - PPRP  #277
+- 
+
+Election.Analytic.System.v2 - PPRP  #276
+- 
+
+Election.Analytic.System.v2 - PPRP  #275
+- 
+
+Election.Analytic.System.v2 - PPRP  #274
+- 
+
+Election.Analytic.System.v2 - PPRP  #273
+- 
+
+Election.Analytic.System.v2 - PPRP  #272
+- 
+
+Election.Analytic.System.v2 - PPRP  #271
+- 
+
+[commited]
+Election.Analytic.System.v2 - PPRP  #270
+- Prepare history.txt
+  - Note (remind): 1. Use SignInPage to set all textbox style in all UserControl + Window for supports keyboard navigate.
+                   2. SignInPage may need to check auto signin without press button.
 
 [commited]
 Election.Analytic.System.v2 - PPRP  #269
@@ -30,8 +63,8 @@ Election.Analytic.System.v2 - PPRP  #265
 Election.Analytic.System.v2 - PPRP  #264
 - PPRP.Manangement.App project
   - Implements UI #150.
-    - Note: 1. Use SignInPage to set all textbox style in all UserControl + Window for supports keyboard navigate.
-            2. SignInPage may need to check auto signin without press button.
+  - Note: 1. Use SignInPage to set all textbox style in all UserControl + Window for supports keyboard navigate.
+          2. SignInPage may need to check auto signin without press button.
 
 [commited]
 Election.Analytic.System.v2 - PPRP  #263
