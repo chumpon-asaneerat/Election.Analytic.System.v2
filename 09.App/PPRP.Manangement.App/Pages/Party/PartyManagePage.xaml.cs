@@ -183,13 +183,22 @@ namespace PPRP.Pages
         {
             if (null == item)
                 return;
-            string msg = string.Format("ต้องการลบข้อมูล '{0}' ?", item.PartyName);
-            var msgwin = PPRPApp.Windows.MessageBoxOKCancel;
-            msgwin.Setup(msg, "ยืนยันการลบข้อมูล");
+            string confitmMsg = string.Format("ต้องการลบข้อมูล '{0}' ?", item.PartyName);
+            var confirmWin = PPRPApp.Windows.MessageBoxOKCancel;
+            confirmWin.Setup(confitmMsg, "ยืนยันการลบข้อมูล");
 
-            if (msgwin.ShowDialog() == true)
+            if (confirmWin.ShowDialog() == true)
             {
-                //MParty.Delete(item);
+                var ret = MParty.Delete(item);
+                if (null != ret && ret.HasError)
+                {
+                    string msg = string.Empty;
+                    msg += string.Format("ไม่สามารถลบข้อมูล '{0}' ได้", item.PartyName) + Environment.NewLine;
+                    msg += "เนื่องจากข้อมูลดังกล่าว ถูกอ้างอิงถึงในส่วนอื่น ๆ ของฐานข้อมูล";
+                    var msgWin = PPRPApp.Windows.MessageBox;
+                    msgWin.Setup(msg, "PPRP");
+                    msgWin.ShowDialog();
+                }
                 RefreshList();
             }
         }

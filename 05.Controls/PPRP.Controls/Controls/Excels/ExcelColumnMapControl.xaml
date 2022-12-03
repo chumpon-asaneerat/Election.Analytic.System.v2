@@ -69,7 +69,7 @@
                             <DataTemplate>
                                 <Button x:Name="cmdResetMapProperty"
                                         Style="{StaticResource InlineButton}"
-                                        Width="50"
+                                        Width="30"
                                         Foreground="Red"
                                         Click="cmdResetMapProperty_Click">
                                     <TextBlock Style="{StaticResource fa-cancel}" FontSize="{StaticResource IBFSize}" />
