@@ -18,20 +18,19 @@ using PPRP.Models;
 
 #endregion
 
-
 namespace PPRP.Windows
 {
     /// <summary>
-    /// Interaction logic for PartyEditorWindow.xaml
+    /// Interaction logic for PersonEditorWindow.xaml
     /// </summary>
-    public partial class PartyEditorWindow : Window
+    public partial class PersonEditorWindow : Window
     {
         #region Constructor
 
         /// <summary>
         /// Constructor.
         /// </summary>
-        public PartyEditorWindow()
+        public PersonEditorWindow()
         {
             InitializeComponent();
         }
