@@ -284,6 +284,22 @@
         <Setter Property="Foreground" Value="Green" />
     </Style>
 
+    <!--  EDIT  -->
+    <Style x:Key="fa-edit"
+           TargetType="TextBlock"
+           BasedOn="{StaticResource fa-base}">
+        <Setter Property="Text" Value="&#xf303;" />
+        <Setter Property="Foreground" Value="Green" />
+    </Style>
+    <!--  REMOVE  -->
+    <Style x:Key="fa-remove"
+           TargetType="TextBlock"
+           BasedOn="{StaticResource fa-base}">
+        <Setter Property="Text" Value="&#xf2ed;" />
+        <Setter Property="Foreground" Value="Green" />
+    </Style>
+
+
     <!--  GO FIRST  -->
     <Style x:Key="fa-go-first"
            TargetType="TextBlock"
