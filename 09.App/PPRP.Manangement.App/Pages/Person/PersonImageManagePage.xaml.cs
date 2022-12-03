@@ -159,7 +159,7 @@ namespace PPRP.Pages
         private void nav_PagingChanged(object sender, EventArgs e)
         {
             iPageNo = nav.PageNo;
-            RefreshList();
+            RefreshList(false);
         }
 
         #endregion
@@ -181,7 +181,7 @@ namespace PPRP.Pages
             {
                 return;
             }
-            RefreshList();
+            RefreshList(true);
         }
 
         private void Export()
@@ -216,7 +216,7 @@ namespace PPRP.Pages
 
             if (bRefresh)
             {
-                RefreshList();
+                RefreshList(true);
             }
         }
 
@@ -238,7 +238,7 @@ namespace PPRP.Pages
             editor.Setup(item);
             if (editor.ShowDialog() == true)
             {
-                RefreshList();
+                RefreshList(true);
             }
         }
 
@@ -262,21 +262,26 @@ namespace PPRP.Pages
                     msgWin.Setup(msg, "PPRP");
                     msgWin.ShowDialog();
                 }
-                RefreshList();
+                RefreshList(true);
             }
         }
 
-        private void RefreshList()
+        private void RefreshList(bool refresh)
         {
+            if (refresh)
+            {
+                iPageNo = 1;
+            }
+
             lvPersons.ItemsSource = null;
             var persons = MPerson.Gets(sPrefixFilter, sFirstNameFilter, sLastNameFilter, 
                 iPageNo, iRowsPerPage);
             lvPersons.ItemsSource = (null != persons) ? persons.Value : new List<MPerson>();
 
-            if (null != persons)
+            var sv = lvPersons.GetChildOfType<ScrollViewer>();
+            if (null != sv)
             {
-                lvPersons.SelectedIndex = 0;
-                lvPersons.ScrollIntoView(lvPersons.SelectedItem);
+                sv.ScrollToHome();
             }
 
             iPageNo = (null != persons) ? persons.PageNo : 1;
@@ -304,7 +309,7 @@ namespace PPRP.Pages
                 iPageNo = 1;
                 iMaxPage = 1;
 
-                RefreshList();
+                RefreshList(true);
             }
         }
 

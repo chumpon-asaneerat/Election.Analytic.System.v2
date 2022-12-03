@@ -123,7 +123,7 @@ namespace PPRP.Pages
         private void nav_PagingChanged(object sender, EventArgs e)
         {
             iPageNo = nav.PageNo;
-            RefreshList();
+            RefreshList(false);
         }
 
         #endregion
@@ -145,7 +145,7 @@ namespace PPRP.Pages
             {
                 return;
             }
-            RefreshList();
+            RefreshList(true);
         }
 
         private void Export()
@@ -163,7 +163,7 @@ namespace PPRP.Pages
             if (sPartyNameFilter.Trim() != txtPartyNameFilter.Text.Trim())
             {
                 sPartyNameFilter = txtPartyNameFilter.Text.Trim();
-                RefreshList();
+                RefreshList(true);
             }
         }
 
@@ -180,7 +180,7 @@ namespace PPRP.Pages
             editor.Setup(item);
             if (editor.ShowDialog() == true)
             {
-                RefreshList();
+                RefreshList(true);
             }
         }
 
@@ -204,20 +204,25 @@ namespace PPRP.Pages
                     msgWin.Setup(msg, "PPRP");
                     msgWin.ShowDialog();
                 }
-                RefreshList();
+                RefreshList(true);
             }
         }
 
-        private void RefreshList()
+        private void RefreshList(bool refresh)
         {
+            if (refresh)
+            {
+                iPageNo = 1;
+            }
+
             lvParties.ItemsSource = null;
             var parties = MParty.Gets(sPartyNameFilter, iPageNo, iRowsPerPage);
             lvParties.ItemsSource = (null != parties) ? parties.Value : new List<MParty>();
 
-            if (null != parties)
+            var sv = lvParties.GetChildOfType<ScrollViewer>();
+            if (null != sv)
             {
-                lvParties.SelectedIndex = 0;
-                lvParties.ScrollIntoView(lvParties.SelectedItem);
+                sv.ScrollToHome();
             }
 
             iPageNo = (null != parties) ? parties.PageNo : 1;
@@ -242,7 +247,7 @@ namespace PPRP.Pages
                 iPageNo = 1;
                 iMaxPage = 1;
 
-                RefreshList();
+                RefreshList(true);
             }
         }
 

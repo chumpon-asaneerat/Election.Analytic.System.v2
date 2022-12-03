@@ -313,7 +313,7 @@ namespace PPRP.Models
                     var imgFile = new ImageFile(file);
                     if (imgFile.Exist)
                     {
-                        Items.Add(imgFile);
+                        rets.Add(imgFile);
                     }
                 });
             }

@@ -74,7 +74,7 @@ namespace PPRP.Windows
         private void nav_PagingChanged(object sender, EventArgs e)
         {
             iPageNo = nav.PageNo;
-            RefreshList();
+            RefreshList(false);
         }
 
         #endregion
@@ -83,7 +83,13 @@ namespace PPRP.Windows
 
         private bool Import()
         {
-            if (null == source || null == source.Items && source.Items.Count <= 0)
+            List<ImageFile> files = null;
+            if (null != source)
+            {
+                files = source.GetAllItems();
+            }
+
+            if (null == files || files.Count <= 0)
             {
                 var mbox = PPRPApp.Windows.MessageBox;
                 mbox.Owner = this;
@@ -97,11 +103,11 @@ namespace PPRP.Windows
 
             var prog = PPRPApp.Windows.ProgressDialog;
             prog.Owner = this;
-            prog.Setup(source.Items.Count);
+            prog.Setup(files.Count);
             prog.Show();
 
             int iCnt = 1;
-            foreach (var item in source.Items)
+            foreach (var item in files)
             {
                 var data = item.GetImageData(); // load image before send to database
                 var ret = MParty.Import(item.FileNameOnly, data);
@@ -148,11 +154,16 @@ namespace PPRP.Windows
             }
             else txtFolderName.Text = string.Empty;
 
-            RefreshList();
+            RefreshList(true);
         }
 
-        private void RefreshList()
+        private void RefreshList(bool refresh)
         {
+            if (refresh)
+            {
+                iPageNo = 1;
+            }
+
             lvFiles.ItemsSource = null;
             if (null == source)
             {
@@ -169,10 +180,10 @@ namespace PPRP.Windows
             var items = source.Items;
             lvFiles.ItemsSource = (null != items) ? items : new List<ImageFile>();
 
-            if (null != items)
+            var sv = lvFiles.GetChildOfType<ScrollViewer>();
+            if (null != sv)
             {
-                lvFiles.SelectedIndex = 0;
-                lvFiles.ScrollIntoView(lvFiles.SelectedItem);
+                sv.ScrollToHome();
             }
 
             iPageNo = (null != items) ? source.PageNo : 1;
@@ -193,7 +204,7 @@ namespace PPRP.Windows
             iPageNo = 1;
             iMaxPage = 1;
 
-            RefreshList();
+            RefreshList(true);
         }
 
         #endregion
