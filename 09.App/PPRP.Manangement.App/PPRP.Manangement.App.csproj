@@ -71,7 +71,13 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Controls\PagingControl.xaml.cs">
+    <Compile Include="Controls\MPartyEditorControl.xaml.cs">
+      <DependentUpon>MPartyEditorControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\MPersonEditorControl.xaml.cs">
+      <DependentUpon>MPersonEditorControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Navigators\PagingControl.xaml.cs">
       <DependentUpon>PagingControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\Maps\ADMPakManagePage.xaml.cs">
@@ -150,7 +156,15 @@
     <None Include="Properties\DataSources\PPRP.Domains.MPD2562PrintVoteSummary.datasource" />
     <None Include="Properties\DataSources\PPRP.Domains.MPD2562x350PrintUnitSummary.datasource" />
     <None Include="Properties\DataSources\PPRP.Domains.MPDC2566PrintSummary.datasource" />
-    <Page Include="Controls\PagingControl.xaml">
+    <Page Include="Controls\MPartyEditorControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\MPersonEditorControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\Navigators\PagingControl.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

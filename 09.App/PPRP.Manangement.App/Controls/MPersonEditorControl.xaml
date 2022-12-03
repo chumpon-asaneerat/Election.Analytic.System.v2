@@ -1,0 +1,220 @@
+﻿<UserControl x:Class="PPRP.Controls.MPersonEditorControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
+             Background="Transparent"
+             d:DesignHeight="600"
+             d:DesignWidth="900"
+             mc:Ignorable="d">
+    <UserControl.Resources>
+        <!--  INLINE BUTTON TEXT FONT SIZE  -->
+        <sys:Double x:Key="IBFSize">18</sys:Double>
+        <!--  LABEL/INPUT WIDTH  -->
+        <sys:Double x:Key="LabelWd">120</sys:Double>
+        <sys:Double x:Key="InputWd1">150</sys:Double>
+        <sys:Double x:Key="InputWd2">300</sys:Double>
+        <sys:Double x:Key="InputWd3">500</sys:Double>
+    </UserControl.Resources>
+    <DockPanel LastChildFill="True" Margin="5">
+        <!--  IMAGE  -->
+        <DockPanel DockPanel.Dock="Left"
+                   LastChildFill="True"
+                   Margin="5">
+            <!--  IMAGE VIEW  -->
+            <Border DockPanel.Dock="Top"
+                    BorderBrush="Silver"
+                    BorderThickness="1"
+                    CornerRadius="3"
+                    Margin="2"
+                    Width="320"
+                    Height="480">
+                <Image x:Name="img"
+                       Width="300"
+                       Height="465" />
+            </Border>
+            <!--  CHANGE IMAGE  -->
+            <DockPanel LastChildFill="True"
+                       DockPanel.Dock="Top"
+                       Margin="2">
+                <StackPanel Orientation="Horizontal"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center">
+                    <Button x:Name="cmdChooseImageFile"
+                            Content="เปลี่ยนรูป"
+                            Style="{StaticResource InlineButton}"
+                            Width="100"
+                            Height="30" />
+                </StackPanel>
+            </DockPanel>
+            <Grid />
+        </DockPanel>
+        <!--  INFO  -->
+        <DockPanel LastChildFill="True" Margin="5">
+            <!--  PREFIX  -->
+            <StackPanel DockPanel.Dock="Top"
+                        Orientation="Horizontal"
+                        Margin="2"
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Left">
+                <TextBlock Margin="5,0"
+                           VerticalAlignment="Center"
+                           Width="{StaticResource LabelWd}"
+                           FontFamily="{StaticResource THSarabun}"
+                           FontSize="{StaticResource FontSize18}"
+                           TextAlignment="Right"
+                           Text="คำนำหน้า :" />
+                <TextBox x:Name="txtPrefix"
+                         VerticalAlignment="Center"
+                         Margin="5,0"
+                         FontFamily="{StaticResource THSarabun}"
+                         FontSize="{StaticResource FontSize18}"
+                         Width="{StaticResource InputWd1}" />
+            </StackPanel>
+            <!--  FIRST NAME  -->
+            <StackPanel DockPanel.Dock="Top"
+                        Orientation="Horizontal"
+                        Margin="2"
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Left">
+                <TextBlock Margin="5,0"
+                           VerticalAlignment="Center"
+                           Width="{StaticResource LabelWd}"
+                           FontFamily="{StaticResource THSarabun}"
+                           FontSize="{StaticResource FontSize18}"
+                           TextAlignment="Right"
+                           Text="ชื่อ :" />
+                <TextBox x:Name="txtFirstName"
+                         VerticalAlignment="Center"
+                         Margin="5,0"
+                         FontFamily="{StaticResource THSarabun}"
+                         FontSize="{StaticResource FontSize18}"
+                         Width="{StaticResource InputWd2}" />
+            </StackPanel>
+            <!--  LAST NAME  -->
+            <StackPanel DockPanel.Dock="Top"
+                        Orientation="Horizontal"
+                        Margin="2"
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Left">
+                <TextBlock Margin="5,0"
+                           VerticalAlignment="Center"
+                           Width="{StaticResource LabelWd}"
+                           FontFamily="{StaticResource THSarabun}"
+                           FontSize="{StaticResource FontSize18}"
+                           TextAlignment="Right"
+                           Text="สกุล :" />
+                <TextBox x:Name="txtLastName"
+                         Margin="5,0"
+                         VerticalAlignment="Center"
+                         FontFamily="{StaticResource THSarabun}"
+                         FontSize="{StaticResource FontSize18}"
+                         Width="{StaticResource InputWd2}" />
+            </StackPanel>
+            <!--  GENDER  -->
+            <StackPanel DockPanel.Dock="Top"
+                        Orientation="Horizontal"
+                        Margin="2"
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Left">
+                <TextBlock Margin="5,0"
+                           VerticalAlignment="Center"
+                           Width="{StaticResource LabelWd}"
+                           FontFamily="{StaticResource THSarabun}"
+                           FontSize="{StaticResource FontSize18}"
+                           TextAlignment="Right"
+                           Text="เพศ :" />
+                <!--
+                <TextBox x:Name="txtLastName"
+                         Margin="5,0"
+                         FontFamily="{StaticResource THSarabun}"
+                         FontSize="{StaticResource FontSize18}"
+                         Width="{StaticResource InputWd2}" />
+                -->
+            </StackPanel>
+            <!--  DOB  -->
+            <StackPanel DockPanel.Dock="Top"
+                        Orientation="Horizontal"
+                        Margin="2"
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Left">
+                <TextBlock Margin="5,0"
+                           VerticalAlignment="Center"
+                           Width="{StaticResource LabelWd}"
+                           FontFamily="{StaticResource THSarabun}"
+                           FontSize="{StaticResource FontSize18}"
+                           TextAlignment="Right"
+                           Text="วัน/เดือน/ปี เกิด :" />
+                <!--
+                <TextBox x:Name="txtLastName"
+                         Margin="5,0"
+                         FontFamily="{StaticResource THSarabun}"
+                         FontSize="{StaticResource FontSize18}"
+                         Width="{StaticResource InputWd2}" />
+                -->
+            </StackPanel>
+            <!--  EDUCATION  -->
+            <StackPanel DockPanel.Dock="Top"
+                        Orientation="Horizontal"
+                        Margin="2"
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Left">
+                <TextBlock Margin="5,0"
+                           VerticalAlignment="Center"
+                           Width="{StaticResource LabelWd}"
+                           FontFamily="{StaticResource THSarabun}"
+                           FontSize="{StaticResource FontSize18}"
+                           TextAlignment="Right"
+                           Text="ระดับการศึกษา :" />
+                <ComboBox x:Name="cbEducation"
+                          Margin="5,0"
+                          VerticalAlignment="Center"
+                          FontFamily="{StaticResource THSarabun}"
+                          FontSize="{StaticResource FontSize18}"
+                          Width="{StaticResource InputWd2}" />
+            </StackPanel>
+            <!--  OCCUPATION  -->
+            <StackPanel DockPanel.Dock="Top"
+                        Orientation="Horizontal"
+                        Margin="2"
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Left">
+                <TextBlock Margin="5,0"
+                           VerticalAlignment="Center"
+                           Width="{StaticResource LabelWd}"
+                           FontFamily="{StaticResource THSarabun}"
+                           FontSize="{StaticResource FontSize18}"
+                           TextAlignment="Right"
+                           Text="อาชีพ :" />
+                <ComboBox x:Name="cbOccupation"
+                          Margin="5,0"
+                          VerticalAlignment="Center"
+                          FontFamily="{StaticResource THSarabun}"
+                          FontSize="{StaticResource FontSize18}"
+                          Width="{StaticResource InputWd2}" />
+            </StackPanel>
+            <!--  REMARK  -->
+            <DockPanel DockPanel.Dock="Top" LastChildFill="True">
+                <StackPanel DockPanel.Dock="Top"
+                            Orientation="Horizontal"
+                            Margin="2"
+                            VerticalAlignment="Center"
+                            HorizontalAlignment="Left">
+                    <TextBlock Margin="5,0"
+                               Width="{StaticResource LabelWd}"
+                               FontFamily="{StaticResource THSarabun}"
+                               FontSize="{StaticResource FontSize18}"
+                               TextAlignment="Right"
+                               Text="หมายเหตุ :" />
+                </StackPanel>
+                <TextBox x:Name="txtRemark"
+                         Margin="5,0"
+                         FontFamily="{StaticResource THSarabun}"
+                         FontSize="{StaticResource FontSize18}"
+                         Height="310" />
+            </DockPanel>
+            <Grid />
+        </DockPanel>
+    </DockPanel>
+</UserControl>
