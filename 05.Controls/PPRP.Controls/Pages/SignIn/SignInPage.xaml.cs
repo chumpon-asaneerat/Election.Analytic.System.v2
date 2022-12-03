@@ -31,9 +31,80 @@ namespace PPRP.Pages
 
         #endregion
 
+        #region Internal Variables
+
+        private string sUserName = string.Empty;
+        private string sPassword = string.Empty;
+
+        #endregion
+
         #region Button Handlers
 
         private void txtSignIn_Click(object sender, RoutedEventArgs e)
+        {
+            SignIn();
+        }
+
+        #endregion
+
+        #region Textbox/Passwordbox handlers
+
+        private void txtUserName_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if (!string.IsNullOrWhiteSpace(txtUserName.Text) &&
+                !string.IsNullOrWhiteSpace(txtPassword.Password))
+            {
+                if (txtUserName.Text.Trim() != sUserName || txtPassword.Password.Trim() != sPassword)
+                {
+                    sUserName = txtUserName.Text.Trim();
+                    sPassword = txtPassword.Password.Trim();
+                    SignIn();
+                }
+            }
+        }
+
+        private void txtPassword_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if (!string.IsNullOrWhiteSpace(txtUserName.Text) &&
+                !string.IsNullOrWhiteSpace(txtPassword.Password))
+            {
+                if (txtUserName.Text.Trim() != sUserName || txtPassword.Password.Trim() != sPassword)
+                {
+                    sUserName = txtUserName.Text.Trim();
+                    sPassword = txtPassword.Password.Trim();
+                    SignIn();
+                }
+            }
+        }
+
+        #endregion
+
+        #region Private Methods
+
+        private void FocusControl(TextBox ctrl)
+        {
+            if (null == ctrl)
+                return;
+            // Set focus to text box this invoked when the application has rendered
+            Dispatcher.BeginInvoke(new Action(() =>
+            {
+                ctrl.SelectAll();
+                ctrl.Focus();
+            }), System.Windows.Threading.DispatcherPriority.Render);
+        }
+        private void FocusControl(PasswordBox ctrl)
+        {
+            if (null == ctrl)
+                return;
+            // Set focus to text box this invoked when the application has rendered
+            Dispatcher.BeginInvoke(new Action(() =>
+            {
+                ctrl.SelectAll();
+                ctrl.Focus();
+            }), System.Windows.Threading.DispatcherPriority.Render);
+        }
+
+        private void SignIn()
         {
             string userName = txtUserName.Text;
             if (string.IsNullOrWhiteSpace(userName))
@@ -87,34 +158,6 @@ namespace PPRP.Pages
 
                 return;
             }
-            // login success.
-        }
-
-        #endregion
-
-        #region Private Methods
-
-        private void FocusControl(TextBox ctrl)
-        {
-            if (null == ctrl)
-                return;
-            // Set focus to text box this invoked when the application has rendered
-            Dispatcher.BeginInvoke(new Action(() =>
-            {
-                ctrl.SelectAll();
-                ctrl.Focus();
-            }), System.Windows.Threading.DispatcherPriority.Render);
-        }
-        private void FocusControl(PasswordBox ctrl)
-        {
-            if (null == ctrl)
-                return;
-            // Set focus to text box this invoked when the application has rendered
-            Dispatcher.BeginInvoke(new Action(() =>
-            {
-                ctrl.SelectAll();
-                ctrl.Focus();
-            }), System.Windows.Threading.DispatcherPriority.Render);
         }
 
         #endregion
@@ -126,6 +169,9 @@ namespace PPRP.Pages
         /// </summary>
         public void Setup()
         {
+            sUserName = string.Empty;
+            sPassword = string.Empty;
+
             FocusControl(txtUserName);
         }
 

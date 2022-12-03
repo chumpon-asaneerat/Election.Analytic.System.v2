@@ -16,8 +16,11 @@ Election.Analytic.System.v2 - PPRP  #276
 Election.Analytic.System.v2 - PPRP  #275
 - 
 
+[commited]
 Election.Analytic.System.v2 - PPRP  #274
-- 
+- PPRP.Manangement.App project
+  - Implements UI #159.
+  - Note (remind): SignInPage may need to check auto signin without press button.
 
 [commited]
 Election.Analytic.System.v2 - PPRP  #273

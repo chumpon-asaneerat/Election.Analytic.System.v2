@@ -105,7 +105,8 @@
                                      util:KeyboardOptions.EnterAsTab="True"
                                      util:KeyboardOptions.LeftRightNavigation="False"
                                      util:KeyboardOptions.UpDownNavigation="True"
-                                     Style="{StaticResource CommonTextBox}" />
+                                     Style="{StaticResource CommonTextBox}"
+                                     LostFocus="txtUserName_LostFocus" />
                             <TextBlock DockPanel.Dock="Top" Height="5" />
                             <!--  PASSWORD  -->
                             <TextBlock DockPanel.Dock="Top"
@@ -119,7 +120,8 @@
                                          util:KeyboardOptions.EnterAsTab="True"
                                          util:KeyboardOptions.LeftRightNavigation="False"
                                          util:KeyboardOptions.UpDownNavigation="True"
-                                         Style="{StaticResource CommonPwdBox}" />
+                                         Style="{StaticResource CommonPwdBox}"
+                                         LostFocus="txtPassword_LostFocus"/>
                             <TextBlock DockPanel.Dock="Top" Height="20" />
                             <!--  SIGNIN BUTTON  -->
                             <Border DockPanel.Dock="Top">
