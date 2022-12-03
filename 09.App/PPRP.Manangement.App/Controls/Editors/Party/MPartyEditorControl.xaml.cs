@@ -43,6 +43,8 @@ namespace PPRP.Controls
 
         #region Internal Variables
 
+        private MParty _item;
+
         #endregion
 
         #region Private Methods
@@ -51,9 +53,23 @@ namespace PPRP.Controls
 
         #region Public Methods
 
+        public void Setup(MParty value)
+        {
+            _item = value;
+            // set data context
+            DataContext = _item;
+            ctrlPartyName.Setup(_item);
+            ctrlPartyImage.Setup(_item);
+        }
+
         #endregion
 
         #region Public Properties
+
+        /// <summary>
+        /// Gets current item.
+        /// </summary>
+        public MParty Item { get { return _item; } }
 
         #endregion
     }

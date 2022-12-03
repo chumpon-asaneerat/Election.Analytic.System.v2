@@ -4,9 +4,9 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:sys="clr-namespace:System;assembly=mscorlib"
+             xmlns:elem="clr-namespace:PPRP.Controls.Elements"
+             xmlns:ctrl="clr-namespace:PPRP.Controls"
              Background="Transparent"
-             d:DesignHeight="600"
-             d:DesignWidth="900"
              mc:Ignorable="d">
     <UserControl.Resources>
         <!--  INLINE BUTTON TEXT FONT SIZE  -->
@@ -17,4 +17,53 @@
         <sys:Double x:Key="InputWd2">300</sys:Double>
         <sys:Double x:Key="InputWd3">500</sys:Double>
     </UserControl.Resources>
+    <DockPanel LastChildFill="True" Margin="5">
+        <DockPanel DockPanel.Dock="Top">
+            <!--  IMAGE  -->
+            <Grid DockPanel.Dock="Left"
+                  VerticalAlignment="Stretch"
+                  HorizontalAlignment="Stretch"
+                  Width="280">
+                <ctrl:MPersonImageEditorControl x:Name="ctrlPersonImage" />
+            </Grid>
+            <!--  INFOMATION  -->
+            <DockPanel LastChildFill="True">
+                <!--  PREFIX/FIRST NAME/LAST NAME  -->
+                <StackPanel Orientation="Horizontal"
+                            VerticalAlignment="Center"
+                            DockPanel.Dock="Top"
+                            HorizontalAlignment="Left">
+                    <elem:PrefixFieldControl x:Name="ctrlPrefix" Width="150 " />
+                    <elem:FirstNameFieldControl x:Name="ctrlFirstName" Width="200 " />
+                    <elem:LastNameFieldControl x:Name="ctrlLastName" Width="250 " />
+                </StackPanel>
+                <!--  DOB  -->
+                <StackPanel Orientation="Horizontal"
+                            VerticalAlignment="Center"
+                            DockPanel.Dock="Top"
+                            HorizontalAlignment="Left">
+                    <elem:DOBFieldControl x:Name="ctrlDOB" Width="150 " />
+                </StackPanel>
+                <!--  GENDER/EDUCATION/OCCUPATION  -->
+                <StackPanel Orientation="Horizontal"
+                            VerticalAlignment="Center"
+                            DockPanel.Dock="Top"
+                            HorizontalAlignment="Left">
+                    <elem:GenderIdFieldControl x:Name="ctrlGenderId" Width="150" />
+                    <elem:EducationIdFieldControl x:Name="ctrlEducationId" Width="200" />
+                    <elem:OccupationIdFieldControl x:Name="ctrlOccupationId" Width="250" />
+                </StackPanel>
+                <!--  REMARK  -->
+                <StackPanel Orientation="Horizontal"
+                            VerticalAlignment="Center"
+                            DockPanel.Dock="Top"
+                            HorizontalAlignment="Left">
+                    <elem:RemarkFieldControl x:Name="ctrlRemark"
+                                             Width="600 "
+                                             Height="200" />
+                </StackPanel>
+            </DockPanel>
+        </DockPanel>
+        <Grid />
+    </DockPanel>
 </UserControl>

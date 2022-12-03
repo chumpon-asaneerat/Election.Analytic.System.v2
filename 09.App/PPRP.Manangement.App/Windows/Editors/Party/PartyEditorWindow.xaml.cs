@@ -87,11 +87,9 @@ namespace PPRP.Windows
         {
             _item = value;
             _addNew = addNew;
-            if (null != _item)
-            {
 
-            }
             DataContext = _item;
+            ed.Setup(_item);
         }
 
         #endregion

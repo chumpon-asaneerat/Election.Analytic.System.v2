@@ -43,6 +43,8 @@ namespace PPRP.Controls
 
         #region Internal Variables
 
+        private MPerson _item;
+
         #endregion
 
         #region Private Methods
@@ -51,9 +53,30 @@ namespace PPRP.Controls
 
         #region Public Methods
 
+        public void Setup(MPerson value)
+        {
+            _item = value;
+            // set data context
+            DataContext = _item;
+            ctrlPrefix.Setup(_item);
+            ctrlFirstName.Setup(_item);
+            ctrlLastName.Setup(_item);
+            ctrlDOB.Setup(_item);
+            ctrlGenderId.Setup(_item);
+            ctrlEducationId.Setup(_item);
+            ctrlOccupationId.Setup(_item);
+            ctrlRemark.Setup(_item);
+            ctrlPersonImage.Setup(_item);
+        }
+
         #endregion
 
         #region Public Properties
+
+        /// <summary>
+        /// Gets current item.
+        /// </summary>
+        public MPerson Item { get { return _item; } }
 
         #endregion
     }
