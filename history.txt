@@ -28,8 +28,9 @@ Election.Analytic.System.v2 - PPRP  #232
 Election.Analytic.System.v2 - PPRP  #231
 - 
 
+[commited]
 Election.Analytic.System.v2 - PPRP  #230
-- 
+- Remove PPRP.ShapeMaps project.
 
 [commited]
 Election.Analytic.System.v2 - PPRP  #229
