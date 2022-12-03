@@ -563,6 +563,36 @@ namespace PPRP
             }
 
             #endregion
+
+            #region Party Editor
+
+            /// <summary>Gets Party Editor Window.</summary>
+            public static PPRP.Windows.PartyEditorWindow PartyEditor
+            {
+                get
+                {
+                    var ret = new PPRP.Windows.PartyEditorWindow();
+                    ret.Owner = Application.Current.MainWindow;
+                    return ret;
+                }
+            }
+
+            #endregion
+
+            #region Person Editor
+
+            /// <summary>Gets Person Editor Window.</summary>
+            public static PPRP.Windows.PersonEditorWindow PersonEditor
+            {
+                get
+                {
+                    var ret = new PPRP.Windows.PersonEditorWindow();
+                    ret.Owner = Application.Current.MainWindow;
+                    return ret;
+                }
+            }
+
+            #endregion
         }
     }
 }
