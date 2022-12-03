@@ -10,20 +10,11 @@
              d:DesignHeight="350"
              d:DesignWidth="450"
              mc:Ignorable="d">
-    <UserControl.Resources>
-        <!--  INLINE BUTTON TEXT FONT SIZE  -->
-        <sys:Double x:Key="IBFSize">18</sys:Double>
-        <!--  LABEL/INPUT WIDTH  -->
-        <sys:Double x:Key="LabelWd">120</sys:Double>
-        <sys:Double x:Key="InputWd1">400</sys:Double>
-        <sys:Double x:Key="InputWd2">100</sys:Double>
-        <sys:Double x:Key="InputWd3">100</sys:Double>
-    </UserControl.Resources>
     <DockPanel LastChildFill="True" Margin="5">
         <StackPanel Orientation="Vertical"
                     DockPanel.Dock="Top"
                     HorizontalAlignment="Left">
-            <elem:PartyNameFieldControl x:Name="ctrlPartyName" Width="300 " />
+            <elem:PartyNameFieldControl x:Name="ctrlPartyName" Width="400" />
         </StackPanel>
         <Grid VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
             <ctrl:MPartyImageEditorControl x:Name="ctrlPartyImage" />

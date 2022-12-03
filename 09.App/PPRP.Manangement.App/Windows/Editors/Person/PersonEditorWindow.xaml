@@ -10,8 +10,10 @@
         VerticalAlignment="Center"
         ShowInTaskbar="False"
         WindowStartupLocation="CenterOwner"
+        SizeToContent="WidthAndHeight"
+        ResizeMode="NoResize"
         Height="450"
-        Width="800"
+        Width="900"
         mc:Ignorable="d">
     <Window.Resources>
         <!--  PAGE TITLE  -->

@@ -8,15 +8,6 @@
              xmlns:ctrl="clr-namespace:PPRP.Controls"
              Background="Transparent"
              mc:Ignorable="d">
-    <UserControl.Resources>
-        <!--  INLINE BUTTON TEXT FONT SIZE  -->
-        <sys:Double x:Key="IBFSize">18</sys:Double>
-        <!--  LABEL/INPUT WIDTH  -->
-        <sys:Double x:Key="LabelWd">120</sys:Double>
-        <sys:Double x:Key="InputWd1">150</sys:Double>
-        <sys:Double x:Key="InputWd2">300</sys:Double>
-        <sys:Double x:Key="InputWd3">500</sys:Double>
-    </UserControl.Resources>
     <DockPanel LastChildFill="True" Margin="5">
         <DockPanel DockPanel.Dock="Top">
             <!--  IMAGE  -->
@@ -33,16 +24,16 @@
                             VerticalAlignment="Center"
                             DockPanel.Dock="Top"
                             HorizontalAlignment="Left">
-                    <elem:PrefixFieldControl x:Name="ctrlPrefix" Width="150 " />
-                    <elem:FirstNameFieldControl x:Name="ctrlFirstName" Width="200 " />
-                    <elem:LastNameFieldControl x:Name="ctrlLastName" Width="250 " />
+                    <elem:PrefixFieldControl x:Name="ctrlPrefix" Width="150" />
+                    <elem:FirstNameFieldControl x:Name="ctrlFirstName" Width="200" />
+                    <elem:LastNameFieldControl x:Name="ctrlLastName" Width="250" />
                 </StackPanel>
                 <!--  DOB  -->
                 <StackPanel Orientation="Horizontal"
                             VerticalAlignment="Center"
                             DockPanel.Dock="Top"
                             HorizontalAlignment="Left">
-                    <elem:DOBFieldControl x:Name="ctrlDOB" Width="150 " />
+                    <elem:DOBFieldControl x:Name="ctrlDOB" Width="150" />
                 </StackPanel>
                 <!--  GENDER/EDUCATION/OCCUPATION  -->
                 <StackPanel Orientation="Horizontal"
@@ -59,7 +50,7 @@
                             DockPanel.Dock="Top"
                             HorizontalAlignment="Left">
                     <elem:RemarkFieldControl x:Name="ctrlRemark"
-                                             Width="600 "
+                                             Width="600"
                                              Height="200" />
                 </StackPanel>
             </DockPanel>

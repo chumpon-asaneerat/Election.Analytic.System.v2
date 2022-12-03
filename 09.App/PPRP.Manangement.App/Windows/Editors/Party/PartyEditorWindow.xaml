@@ -8,8 +8,10 @@
         Title="ข้อมูลพรรคการเมือง"
         HorizontalAlignment="Center"
         VerticalAlignment="Center"
-        ShowInTaskbar="False"
+        ShowInTaskbar="False"        
         WindowStartupLocation="CenterOwner"
+        SizeToContent="WidthAndHeight"
+        ResizeMode="NoResize"
         Height="450"
         Width="800"
         mc:Ignorable="d">
