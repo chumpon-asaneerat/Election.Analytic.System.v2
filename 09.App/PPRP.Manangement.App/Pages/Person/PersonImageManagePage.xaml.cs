@@ -235,9 +235,11 @@ namespace PPRP.Pages
             if (null == item)
                 return;
             var editor = PPRPApp.Windows.PersonEditor;
-            editor.ShowDialog();
             editor.Setup(item);
-            RefreshList();
+            if (editor.ShowDialog() == true)
+            {
+                RefreshList();
+            }
         }
 
         private void Delete(MPerson item)
