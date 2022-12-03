@@ -85,7 +85,7 @@ namespace PPRP.Models
         /// <summary>
         /// Gets or sets PollingUnit No.
         /// </summary>
-        [ExcelColumn("เขตเลือกตั้ง")]
+        [ExcelColumn("เขตเลือกตั้ง", 2)]
         public int PollingUnitNo
         {
             get { return _PollingUnitNo; }
@@ -101,7 +101,7 @@ namespace PPRP.Models
         /// <summary>
         /// Gets or sets PollingUnit Count.
         /// </summary>
-        [ExcelColumn("จำนวนหน่วยเลือกตั้ง")]
+        [ExcelColumn("จำนวนหน่วยเลือกตั้ง", 3)]
         public int PollingUnitCount
         {
             get { return _PollingUnitCount; }
@@ -117,7 +117,7 @@ namespace PPRP.Models
         /// <summary>
         /// Gets or sets Area Remark.
         /// </summary>
-        [ExcelColumn("ข้อมูลพื้นที่")]
+        [ExcelColumn("ข้อมูลพื้นที่", 4)]
         public string AreaRemark
         {
             get { return _AreaRemark; }
@@ -184,7 +184,7 @@ namespace PPRP.Models
         /// <summary>
         /// Gets or sets Province Name (TH).
         /// </summary>
-        [ExcelColumn("จังหวัด")]
+        [ExcelColumn("จังหวัด", 1)]
         public string ProvinceNameTH
         {
             get { return _ProvinceNameTH; }
