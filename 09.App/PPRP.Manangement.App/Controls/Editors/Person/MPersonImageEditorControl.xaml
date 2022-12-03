@@ -16,29 +16,6 @@
                Margin="5"
                VerticalAlignment="Stretch"
                HorizontalAlignment="Stretch">
-        <!--  CHANGE IMAGE BUTTON  -->
-        <DockPanel LastChildFill="True"
-                   DockPanel.Dock="Bottom"
-                   Margin="2">
-            <StackPanel Orientation="Horizontal"
-                        HorizontalAlignment="Center"
-                        VerticalAlignment="Center">
-                <Button x:Name="cmdChooseImageFile"
-                        Style="{StaticResource InlineButton}"
-                        Width="150"
-                        Height="30"
-                        Click="cmdChooseImageFile_Click">
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock Style="{StaticResource fa-image-file}" FontSize="{StaticResource IBFSize}" />
-                        <TextBlock Margin="3,0"
-                                           FontFamily="{StaticResource THSarabun}"
-                                           FontSize="{StaticResource IBFSize}"
-                                           Text="เปลี่ยนรูป"
-                                           VerticalAlignment="Center" />
-                    </StackPanel>
-                </Button>
-            </StackPanel>
-        </DockPanel>
         <!--  IMAGE VIEW  -->
         <Grid VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
             <Grid.ColumnDefinitions>
@@ -56,8 +33,8 @@
                        RenderOptions.BitmapScalingMode="LowQuality"
                        RenderOptions.EdgeMode="Aliased"
                        Source="{Binding Image}"
-                       Width="Auto" 
-                       Height="Auto"/>
+                       Width="Auto"
+                       Height="Auto" />
             </Border>
         </Grid>
     </DockPanel>

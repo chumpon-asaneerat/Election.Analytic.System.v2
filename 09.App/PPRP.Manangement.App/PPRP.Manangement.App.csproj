@@ -186,6 +186,9 @@
     <Compile Include="Windows\Images\Person\ImportPersonImageWindow.xaml.cs">
       <DependentUpon>ImportPersonImageWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Windows\PartyEditorWindow.xaml.cs">
+      <DependentUpon>PartyEditorWindow.xaml</DependentUpon>
+    </Compile>
     <None Include="Properties\DataSources\PPRP.Domains.MPD2562PrintVoteSummary.datasource" />
     <None Include="Properties\DataSources\PPRP.Domains.MPD2562x350PrintUnitSummary.datasource" />
     <None Include="Properties\DataSources\PPRP.Domains.MPDC2566PrintSummary.datasource" />
@@ -357,6 +360,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Windows\PartyEditorWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Pages\Menu\MainMenuPage.xaml.cs">
@@ -407,6 +414,7 @@
     <Folder Include="Reports\" />
     <Folder Include="Windows\MPD\2562\" />
     <Folder Include="Windows\MPD\2566\" />
+    <Folder Include="Windows\Party\" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\Logo\PPRPLogo.png" />

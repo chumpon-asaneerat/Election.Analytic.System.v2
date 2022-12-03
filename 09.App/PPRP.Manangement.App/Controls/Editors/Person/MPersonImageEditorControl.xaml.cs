@@ -41,28 +41,9 @@ namespace PPRP.Controls
 
         #endregion
 
-        #region Button Handlers
-
-        private void cmdChooseImageFile_Click(object sender, RoutedEventArgs e)
-        {
-            ChooseImageFile();
-        }
-
-        #endregion
-
         #region Internal Variables
 
         private MPerson _item = null;
-
-        #endregion
-
-        #region Private Methods
-
-        private void ChooseImageFile()
-        {
-            if (null == _item)
-                return;
-        }
 
         #endregion
 
