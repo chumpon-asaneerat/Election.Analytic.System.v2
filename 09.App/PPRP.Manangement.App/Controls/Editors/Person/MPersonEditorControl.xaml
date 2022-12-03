@@ -18,60 +18,8 @@
         <sys:Double x:Key="InputWd3">500</sys:Double>
     </UserControl.Resources>
     <DockPanel LastChildFill="True" Margin="5">
-        <!--  IMAGE  -->
-        <DockPanel DockPanel.Dock="Left"
-                   LastChildFill="True"
-                   Margin="5">
-            <!--  IMAGE VIEW  -->
-            <Border DockPanel.Dock="Top"
-                    BorderBrush="Silver"
-                    BorderThickness="1"
-                    CornerRadius="3"
-                    Margin="2"
-                    Width="320"
-                    Height="480">
-                <Image x:Name="img"
-                       Width="300"
-                       Height="465" />
-            </Border>
-            <!--  CHANGE IMAGE  -->
-            <DockPanel LastChildFill="True"
-                       DockPanel.Dock="Top"
-                       Margin="2">
-                <StackPanel Orientation="Horizontal"
-                            HorizontalAlignment="Center"
-                            VerticalAlignment="Center">
-                    <Button x:Name="cmdChooseImageFile"
-                            Content="เปลี่ยนรูป"
-                            Style="{StaticResource InlineButton}"
-                            Width="100"
-                            Height="30" />
-                </StackPanel>
-            </DockPanel>
-            <Grid />
-        </DockPanel>
         <!--  INFO  -->
         <DockPanel LastChildFill="True" Margin="5">
-            <!--  PREFIX  -->
-            <StackPanel DockPanel.Dock="Top"
-                        Orientation="Horizontal"
-                        Margin="2"
-                        VerticalAlignment="Center"
-                        HorizontalAlignment="Left">
-                <TextBlock Margin="5,0"
-                           VerticalAlignment="Center"
-                           Width="{StaticResource LabelWd}"
-                           FontFamily="{StaticResource THSarabun}"
-                           FontSize="{StaticResource FontSize18}"
-                           TextAlignment="Right"
-                           Text="คำนำหน้า :" />
-                <TextBox x:Name="txtPrefix"
-                         VerticalAlignment="Center"
-                         Margin="5,0"
-                         FontFamily="{StaticResource THSarabun}"
-                         FontSize="{StaticResource FontSize18}"
-                         Width="{StaticResource InputWd1}" />
-            </StackPanel>
             <!--  FIRST NAME  -->
             <StackPanel DockPanel.Dock="Top"
                         Orientation="Horizontal"
@@ -194,26 +142,6 @@
                           FontSize="{StaticResource FontSize18}"
                           Width="{StaticResource InputWd2}" />
             </StackPanel>
-            <!--  REMARK  -->
-            <DockPanel DockPanel.Dock="Top" LastChildFill="True">
-                <StackPanel DockPanel.Dock="Top"
-                            Orientation="Horizontal"
-                            Margin="2"
-                            VerticalAlignment="Center"
-                            HorizontalAlignment="Left">
-                    <TextBlock Margin="5,0"
-                               Width="{StaticResource LabelWd}"
-                               FontFamily="{StaticResource THSarabun}"
-                               FontSize="{StaticResource FontSize18}"
-                               TextAlignment="Right"
-                               Text="หมายเหตุ :" />
-                </StackPanel>
-                <TextBox x:Name="txtRemark"
-                         Margin="5,0"
-                         FontFamily="{StaticResource THSarabun}"
-                         FontSize="{StaticResource FontSize18}"
-                         Height="310" />
-            </DockPanel>
             <Grid />
         </DockPanel>
     </DockPanel>
