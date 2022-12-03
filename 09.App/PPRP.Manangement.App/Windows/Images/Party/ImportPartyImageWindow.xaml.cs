@@ -83,6 +83,53 @@ namespace PPRP.Windows
 
         private bool Import()
         {
+            if (null == source || null == source.Items && source.Items.Count <= 0)
+            {
+                var mbox = PPRPApp.Windows.MessageBox;
+                mbox.Owner = this;
+                string msg = "ไม่มีข้อมูลในการนำเข้าสู่ระบบฐานข้อมูล";
+                mbox.Setup(msg, "PPRP");
+                mbox.ShowDialog();
+                return false;
+            }
+
+            var errors = new List<ImportError>();
+
+            var prog = PPRPApp.Windows.ProgressDialog;
+            prog.Owner = this;
+            prog.Setup(source.Items.Count);
+            prog.Show();
+
+            int iCnt = 1;
+            foreach (var item in source.Items)
+            {
+                item.LoadImage(); // load image before send to database
+                var ret = MParty.Import(item.FileNameOnly, item.Data);
+                if (ret.HasError)
+                {
+                    // get debug string.
+                    string dataString = item.DebugString();
+                    errors.Add(new ImportError()
+                    {
+                        RowNo = iCnt,
+                        ErrMsg = ret.ErrMsg,
+                        DataString = dataString
+                    });
+                }
+                prog.Increment();
+
+                iCnt++;
+            }
+            // Close progress dialog.
+            prog.Close();
+
+            if (null != errors && errors.Count > 0)
+            {
+                var errWin = PPRPApp.Windows.ImportReport;
+                errWin.Owner = this;
+                errWin.Setup(errors);
+                errWin.ShowDialog();
+            }
 
             return true;
         }

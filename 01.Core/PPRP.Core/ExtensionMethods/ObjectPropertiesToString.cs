@@ -2,6 +2,7 @@
 
 using System;
 using System.Globalization;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -44,6 +45,32 @@ namespace PPRP
             return Caches[targetType];
         }
         /// <summary>
+        /// Avaliable supports type for dump property.
+        /// </summary>
+        public static readonly List<Type> SupportTypes = new List<Type>(new Type[] 
+        {
+            typeof(string),
+            typeof(bool), typeof(bool?),
+            typeof(short), typeof(int), typeof(long),
+            typeof(short?), typeof(int?), typeof(long?),
+            typeof(ushort), typeof(uint), typeof(ulong),
+            typeof(ushort?), typeof(uint?), typeof(ulong?),
+            typeof(decimal), typeof(float), typeof(double),
+            typeof(decimal?), typeof(float?), typeof(double?),
+            typeof(DateTime), typeof(DateTime?),
+            typeof(TimeSpan), typeof(TimeSpan?),
+            typeof(Guid), typeof(Guid?)
+        }); 
+        /// <summary>
+        /// Checks is supports type.
+        /// </summary>
+        /// <param name="type">Target type.</param>
+        /// <returns>Returns true if type is supports to debug dump.</returns>
+        public static bool IsSupports(Type type)
+        {
+            return SupportTypes.Contains(type);
+        }
+        /// <summary>
         /// Gets Object Debug String.
         /// </summary>
         /// <param name="value">The object instance.</param>
@@ -58,8 +85,15 @@ namespace PPRP
                 var props = GetProperties(type);
                 if (null != props && props.Count > 0)
                 {
-                    props.ForEach((prop) =>
+                    foreach (var prop in props)
                     {
+                        if (null == prop) continue;
+                        // skip all if match below type.
+                        if (prop.PropertyType is IEnumerable) continue;
+                        if (prop.PropertyType.IsArray) continue;
+                        if (prop.PropertyType == typeof(System.Windows.Threading.Dispatcher)) continue;
+                        if (!IsSupports(prop.PropertyType)) continue;
+
                         string propName = prop.Name;
                         try
                         {
@@ -77,9 +111,12 @@ namespace PPRP
                         {
                             result += propName + ": " + "(value error)" + Environment.NewLine;
                         }
-                    });
+                    }
                 }
-                else result = "object has no property.";
+                else
+                {
+                    result = "object has no property.";
+                }
             }
             return result.Trim();
         }

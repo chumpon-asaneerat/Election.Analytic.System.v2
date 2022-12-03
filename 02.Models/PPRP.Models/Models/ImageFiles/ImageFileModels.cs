@@ -71,6 +71,21 @@ namespace PPRP.Models
         #region Public Methods
 
         /// <summary>
+        /// Gets Image Data buffers.
+        /// </summary>
+        /// <returns>Returns image data in byte array.</returns>
+        public byte[] GetImageData()
+        {
+            byte[] rets = null;
+            if (File.Exists(FullFileName))
+            {
+                // Set to property for notify changed (careful to prevent stack overflow)
+                rets = ByteUtils.GetFileBuffer(FullFileName);
+            }
+            return rets;
+        }
+
+        /// <summary>
         /// Load Image.
         /// </summary>
         public void LoadImage()
@@ -85,16 +100,7 @@ namespace PPRP.Models
                 _data = null;
                 _imgSrc = null;
 
-                if (File.Exists(FullFileName))
-                {
-                    // Set to property for notify changed (careful to prevent stack overflow)
-                    Data = ByteUtils.GetFileBuffer(FullFileName);
-                }
-                else
-                {
-                    // Set to property for notify changed (careful to prevent stack overflow)
-                    Data = null;
-                }
+                Data = GetImageData();
             }
         }
         /// <summary>
@@ -140,7 +146,9 @@ namespace PPRP.Models
         /// Gets File Extension.
         /// </summary>
         public string Extension { get; private set; }
-
+        /// <summary>
+        /// Gets or sets Image Data buffers.
+        /// </summary>
         public byte[] Data
         {
             get 
@@ -160,7 +168,9 @@ namespace PPRP.Models
                 });
             }
         }
-
+        /// <summary>
+        /// Gets ImageSource.
+        /// </summary>
         public ImageSource Image
         {
             get 
