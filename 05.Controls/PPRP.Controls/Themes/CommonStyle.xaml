@@ -197,6 +197,12 @@
            BasedOn="{StaticResource fa-base}">
         <Setter Property="Text" Value="&#xf015;" />
     </Style>
+    <!--  CLOSE  -->
+    <Style x:Key="fa-close"
+           TargetType="TextBlock"
+           BasedOn="{StaticResource fa-base}">
+        <Setter Property="Text" Value="&#xf057;" />
+    </Style>
 
     <!--  OK  -->
     <Style x:Key="fa-ok"
