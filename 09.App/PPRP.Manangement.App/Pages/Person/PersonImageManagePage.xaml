@@ -13,6 +13,7 @@
         <sys:String x:Key="PageTitle">ข้อมูลรูปผู้สมัคร/ว่าที่ผู้สมัคร</sys:String>
         <!--  INLINE BUTTON TEXT FONT SIZE  -->
         <sys:Double x:Key="IBFSize">18</sys:Double>
+        <sys:Double x:Key="IBFSize2">16</sys:Double>
         <!--  FILTER BAR VISIBLE STATES  -->
         <Visibility x:Key="FilterBarVisible">Visible</Visibility>
         <Visibility x:Key="RefreshButtonVisible">Collapsed</Visibility>
@@ -225,26 +226,46 @@
                                         Width="170"
                                         ClipToBounds="True">
                                     <DockPanel LastChildFill="True" Margin="2">
+                                        <!--  ITEM TOOLS  -->
                                         <StackPanel Orientation="Horizontal"
                                                     DockPanel.Dock="Bottom"
                                                     VerticalAlignment="Center"
                                                     HorizontalAlignment="Center">
+                                            <!--  EDIT  -->
                                             <Button x:Name="cmdEdit"
                                                     Margin="2,1"
                                                     Width="75"
                                                     Height="25"
-                                                    Content="แก้ไข"
                                                     Style="{StaticResource InlineButton}"
                                                     Visibility="Collapsed"
-                                                    Click="cmdEdit_Click" />
+                                                    Click="cmdEdit_Click">
+                                                <StackPanel Orientation="Horizontal">
+                                                    <TextBlock Style="{StaticResource fa-edit}" FontSize="{StaticResource IBFSize2}" />
+                                                    <TextBlock Margin="3,0"
+                                                               FontFamily="{StaticResource THSarabun}"
+                                                               FontSize="{StaticResource IBFSize2}"
+                                                               Text="แก้ไข"
+                                                               VerticalAlignment="Center" />
+                                                </StackPanel>
+                                            </Button>
+                                            <!--  DELETE  -->
                                             <Button x:Name="cmdDelete"
                                                     Margin="2,1"
                                                     Width="75"
                                                     Height="25"
-                                                    Content="ลบ"
                                                     Style="{StaticResource InlineButton}"
-                                                    Click="cmdDelete_Click" />
+                                                    Click="cmdDelete_Click">
+                                                <StackPanel Orientation="Horizontal">
+                                                    <TextBlock Style="{StaticResource fa-remove}" FontSize="{StaticResource IBFSize2}" />
+                                                    <TextBlock Margin="3,0"
+                                                               FontFamily="{StaticResource THSarabun}"
+                                                               FontSize="{StaticResource IBFSize2}"
+                                                               Text="ลบ"
+                                                               VerticalAlignment="Center" />
+                                                </StackPanel>
+                                            </Button>
                                         </StackPanel>
+                                        <!--  INFO  -->
                                         <Grid DockPanel.Dock="Bottom"
                                               Height="48"
                                               VerticalAlignment="Center"
@@ -256,6 +277,7 @@
                                                        TextAlignment="Center"
                                                        TextWrapping="Wrap" />
                                         </Grid>
+                                        <!--  IMAGE  -->
                                         <Image RenderOptions.BitmapScalingMode="LowQuality"
                                                RenderOptions.EdgeMode="Aliased"
                                                Source="{Binding Image}"
