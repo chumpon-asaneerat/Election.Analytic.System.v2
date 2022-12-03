@@ -55,12 +55,17 @@ namespace PPRP.Models
         /// Constructor.
         /// </summary>
         /// <param name="headerText">The excel column header's text.</param>
+        /// <param name="ColumnOrder">The sort column order.</param>
         /// <param name="mode">The excel column mode.</param>
         /// <param name="properyName">The target class's property name (Optional).</param>
-        public ExcelColumnAttribute(string headerText, ExcelColumnMode mode = ExcelColumnMode.Both, [CallerMemberName] string properyName = null) : base()
+        public ExcelColumnAttribute(string headerText, 
+            uint ColumnOrder,
+            ExcelColumnMode mode = ExcelColumnMode.Both, 
+            [CallerMemberName] string properyName = null) : base()
         {
             this.PropertyName = properyName;
 
+            this.ColumnOrder = ColumnOrder;
             this.Mode = mode;
 
             if (!string.IsNullOrWhiteSpace(headerText))
@@ -76,6 +81,10 @@ namespace PPRP.Models
         /// Gets or sets Column Header Text.
         /// </summary>
         public string HeaderText { get; set; }
+        /// <summary>
+        /// Gets or sets Column Order.
+        /// </summary>
+        public uint ColumnOrder { get; private set; }
         /// <summary>
         /// Gets or sets Column Mode.
         /// </summary>
