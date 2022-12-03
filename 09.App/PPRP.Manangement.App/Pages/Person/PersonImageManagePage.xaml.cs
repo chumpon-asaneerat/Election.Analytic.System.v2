@@ -6,6 +6,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
+using System.Windows.Threading;
 
 using NLib;
 using NLib.Services;
@@ -159,7 +160,11 @@ namespace PPRP.Pages
         private void nav_PagingChanged(object sender, EventArgs e)
         {
             iPageNo = nav.PageNo;
-            RefreshList(false);
+
+            Dispatcher.BeginInvoke(new Action(() =>
+            {
+                RefreshList(false);
+            }), DispatcherPriority.Render);
         }
 
         #endregion
@@ -181,7 +186,11 @@ namespace PPRP.Pages
             {
                 return;
             }
-            RefreshList(true);
+
+            Dispatcher.BeginInvoke(new Action(() =>
+            {
+                RefreshList(true);
+            }), DispatcherPriority.Render);
         }
 
         private void Export()
@@ -191,32 +200,38 @@ namespace PPRP.Pages
 
         private void Refresh()
         {
+            Dispatcher.BeginInvoke(new Action(() =>
+            {
 
+            }), DispatcherPriority.Render);
         }
 
         private void Search()
         {
-            bool bRefresh = false;
+            bool refresh = false;
 
             if (sPrefixFilter.Trim() != txtPrefixFilter.Text.Trim())
             {
                 sPrefixFilter = txtPrefixFilter.Text.Trim();
-                bRefresh = true;
+                refresh = true;
             }
             if (sFirstNameFilter.Trim() != txtFirstNameFilter.Text.Trim())
             {
                 sFirstNameFilter = txtFirstNameFilter.Text.Trim();
-                bRefresh = true;
+                refresh = true;
             }
             if (sLastNameFilter.Trim() != txtLastNameFilter.Text.Trim())
             {
                 sLastNameFilter = txtLastNameFilter.Text.Trim();
-                bRefresh = true;
+                refresh = true;
             }
 
-            if (bRefresh)
+            if (refresh)
             {
-                RefreshList(true);
+                Dispatcher.BeginInvoke(new Action(() =>
+                {
+                    RefreshList(true);
+                }), DispatcherPriority.Render);
             }
         }
 
@@ -238,7 +253,10 @@ namespace PPRP.Pages
             editor.Setup(item);
             if (editor.ShowDialog() == true)
             {
-                RefreshList(true);
+                Dispatcher.BeginInvoke(new Action(() =>
+                {
+                    RefreshList(true);
+                }), DispatcherPriority.Render);
             }
         }
 
@@ -262,7 +280,11 @@ namespace PPRP.Pages
                     msgWin.Setup(msg, "PPRP");
                     msgWin.ShowDialog();
                 }
-                RefreshList(true);
+
+                Dispatcher.BeginInvoke(new Action(() =>
+                {
+                    RefreshList(true);
+                }), DispatcherPriority.Render);
             }
         }
 
@@ -309,7 +331,10 @@ namespace PPRP.Pages
                 iPageNo = 1;
                 iMaxPage = 1;
 
-                RefreshList(true);
+                Dispatcher.BeginInvoke(new Action(() =>
+                {
+                    RefreshList(true);
+                }), DispatcherPriority.Render);
             }
         }
 

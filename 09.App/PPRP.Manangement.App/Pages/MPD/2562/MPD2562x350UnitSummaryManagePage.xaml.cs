@@ -6,6 +6,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
+using System.Windows.Threading;
 
 using NLib;
 using NLib.Services;
@@ -98,7 +99,10 @@ namespace PPRP.Pages
 
         private void Search()
         {
+            Dispatcher.BeginInvoke(new Action(() =>
+            {
 
+            }), DispatcherPriority.Render);
         }
 
         private void Print()
@@ -118,7 +122,10 @@ namespace PPRP.Pages
         {
             if (reload)
             {
+                Dispatcher.BeginInvoke(new Action(() =>
+                {
 
+                }), DispatcherPriority.Render);
             }
         }
 

@@ -74,7 +74,11 @@ namespace PPRP.Windows
         private void nav_PagingChanged(object sender, EventArgs e)
         {
             iPageNo = nav.PageNo;
-            RefreshList(false);
+
+            Dispatcher.BeginInvoke(new Action(() =>
+            {
+                RefreshList(false);
+            }), DispatcherPriority.Render);
         }
 
         #endregion
@@ -154,7 +158,10 @@ namespace PPRP.Windows
             }
             else txtFolderName.Text = string.Empty;
 
-            RefreshList(true);
+            Dispatcher.BeginInvoke(new Action(() =>
+            {
+                RefreshList(true);
+            }), DispatcherPriority.Render);
         }
 
         private void RefreshList(bool refresh)
@@ -204,7 +211,10 @@ namespace PPRP.Windows
             iPageNo = 1;
             iMaxPage = 1;
 
-            RefreshList(true);
+            Dispatcher.BeginInvoke(new Action(() =>
+            {
+                RefreshList(true);
+            }), DispatcherPriority.Render);
         }
 
         #endregion

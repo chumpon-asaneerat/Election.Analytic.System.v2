@@ -6,6 +6,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
+using System.Windows.Threading;
 
 using NLib;
 using NLib.Services;
@@ -76,12 +77,18 @@ namespace PPRP.Pages
 
         private void cbRegion_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            LoadProvinces();
+            Dispatcher.BeginInvoke(new Action(() =>
+            {
+                LoadProvinces();
+            }), DispatcherPriority.Render);
         }
 
         private void cbProvince_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            RefreshList();
+            Dispatcher.BeginInvoke(new Action(() =>
+            {
+                RefreshList();
+            }), DispatcherPriority.Render);
         }
 
         #endregion
@@ -103,7 +110,11 @@ namespace PPRP.Pages
             {
                 return;
             }
-            LoadRegions();
+
+            Dispatcher.BeginInvoke(new Action(() =>
+            {
+                LoadRegions();
+            }), DispatcherPriority.Render);
         }
 
         private void Export()
@@ -199,7 +210,10 @@ namespace PPRP.Pages
         {
             if (reload)
             {
-                LoadRegions();
+                Dispatcher.BeginInvoke(new Action(() =>
+                {
+                    LoadRegions();
+                }), DispatcherPriority.Render);
             }
         }
 

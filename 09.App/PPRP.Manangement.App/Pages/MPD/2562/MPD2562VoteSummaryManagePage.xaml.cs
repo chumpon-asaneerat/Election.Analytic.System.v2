@@ -6,6 +6,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
+using System.Windows.Threading;
 
 using NLib;
 using NLib.Services;
@@ -91,7 +92,10 @@ namespace PPRP.Pages
 
         private void cbProvince_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            RefreshList();
+            Dispatcher.BeginInvoke(new Action(() =>
+            {
+                RefreshList();
+            }), DispatcherPriority.Render);
         }
 
         #endregion
@@ -151,7 +155,11 @@ namespace PPRP.Pages
             {
                 return;
             }
-            LoadProvinces();
+
+            Dispatcher.BeginInvoke(new Action(() =>
+            {
+                LoadProvinces();
+            }), DispatcherPriority.Render);
         }
 
         private void Export()
@@ -166,15 +174,24 @@ namespace PPRP.Pages
 
         private void Search()
         {
+            bool refresh = false;
             if (sPartyNameFilter.Trim() != txtPartyNameFilter.Text.Trim())
             {
                 sPartyNameFilter = txtPartyNameFilter.Text.Trim();
-                RefreshList();
+                refresh = true;
             }
             if (sFullNameFilter.Trim() != txtFullNameFilter.Text.Trim())
             {
                 sFullNameFilter = txtFullNameFilter.Text.Trim();
-                RefreshList();
+                refresh = true;
+            }
+
+            if (refresh)
+            {
+                Dispatcher.BeginInvoke(new Action(() =>
+                {
+                    RefreshList();
+                }), DispatcherPriority.Render);
             }
         }
 
@@ -237,7 +254,11 @@ namespace PPRP.Pages
             {
                 sPartyNameFilter = string.Empty;
                 sFullNameFilter = string.Empty;
-                LoadProvinces();
+
+                Dispatcher.BeginInvoke(new Action(() =>
+                {
+                    LoadProvinces();
+                }), DispatcherPriority.Render);
             }
         }
 
