@@ -25,16 +25,16 @@ using PPRP.Models;
 namespace PPRP.Controls
 {
     /// <summary>
-    /// Interaction logic for MPersonImageEditorControl.xaml
+    /// Interaction logic for MPartyImageEditorControl.xaml
     /// </summary>
-    public partial class MPersonImageEditorControl : UserControl
+    public partial class MPartyImageEditorControl : UserControl
     {
         #region Constructor
 
         /// <summary>
         /// Constructor
         /// </summary>
-        public MPersonImageEditorControl()
+        public MPartyImageEditorControl()
         {
             InitializeComponent();
         }
@@ -52,7 +52,7 @@ namespace PPRP.Controls
 
         #region Internal Variables
 
-        private MPerson _item = null;
+        private MParty _item = null;
 
         #endregion
 
@@ -72,7 +72,7 @@ namespace PPRP.Controls
         /// Setup.
         /// </summary>
         /// <param name="item">The item instance.</param>
-        public void Setup(MPerson item)
+        public void Setup(MParty item)
         {
             _item = item;
             if (null != _item)
@@ -89,7 +89,7 @@ namespace PPRP.Controls
         /// <summary>
         /// Gets current item.
         /// </summary>
-        public MPerson Item { get { return _item; } }
+        public MParty Item { get { return _item; } }
 
         #endregion
     }
