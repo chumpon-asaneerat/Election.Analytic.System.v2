@@ -89,8 +89,9 @@ namespace PPRP.Windows
 
         private void ChooseImageFolder()
         {
-            source = ImageFileSource.ChooseFolder(this);
-            if (null != source)
+            source = new ImageFileSource();
+            var ret = source.OpenFolder(this);
+            if (ret)
             {
                 txtFolderName.Text = source.ImagePath;
             }

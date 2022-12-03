@@ -172,6 +172,55 @@ namespace PPRP.Models
         }
 
         #endregion
+
+        #region Static Methods
+
+        /// <summary>
+        /// Open Image File.
+        /// </summary>
+        /// <param name="title"></param>
+        /// <param name="initDir"></param>
+        /// <returns>Returns ImageFile instance if image file is selected.</returns>
+        public static ImageFile OpenFile(string title = "กรุณาเลือก image file ที่ต้องการอ่านข้อมูล",
+            string initDir = null)
+        {
+            return OpenFile(null, title, initDir);
+        }
+        /// <summary>
+        /// Open Image File.
+        /// </summary>
+        /// <param name="owner">The owner window.</param>
+        /// <param name="title"></param>
+        /// <param name="initDir"></param>
+        /// <returns>Returns ImageFile instance if image file is selected.</returns>
+        public static ImageFile OpenFile(Window owner,
+            string title = "กรุณาเลือก image file ที่ต้องการอ่านข้อมูล",
+            string initDir = null)
+        {
+            ImageFile inst = null;
+
+            // setup dialog options
+            var od = new Microsoft.Win32.OpenFileDialog();
+            od.Multiselect = false;
+            od.InitialDirectory = initDir;
+            od.Title = string.IsNullOrEmpty(title) ? "กรุณาเลือก image file ที่ต้องการอ่านข้อมูล" : title;
+            od.Filter = "Excel Files(*.xls, *.xlsx)|*.xls;*.xlsx";
+
+            var ret = od.ShowDialog(owner) == true;
+            if (ret)
+            {
+                // assigned to FileName
+                var fileName = od.FileName;
+                if (!string.IsNullOrEmpty(fileName) && File.Exists(fileName))
+                {
+                    inst = new ImageFile(fileName);
+                }
+            }
+
+            return inst;
+        }
+
+        #endregion
     }
 
     #endregion
@@ -188,15 +237,8 @@ namespace PPRP.Models
         /// <summary>
         /// Constructor.
         /// </summary>
-        private ImageFileSource() : base() { }
-        /// <summary>
-        /// Constructor.
-        /// </summary>
-        /// <param name="imagePath"></param>
-        public ImageFileSource(string imagePath) : base() 
+        public ImageFileSource() : base() 
         {
-            this.ImagePath = imagePath;
-
             this.Items = new List<ImageFile>();
         }
         /// <summary>
@@ -208,6 +250,34 @@ namespace PPRP.Models
 
         #region Public Methods
 
+
+        /// <summary>
+        /// Open Folder.
+        /// </summary>
+        /// <param name="owner">The owner window.</param>
+        /// <returns></returns>
+        public bool OpenFolder(Window owner)
+        {
+            bool ret = false;
+            string targetPath = string.Empty;
+            FolderBrowserDialog fd = new FolderBrowserDialog();
+            fd.Description = "กรูณาเลือกโฟลเดอร์รูป";
+            if (fd.ShowDialog(owner.GetIWin32Window()) == System.Windows.Forms.DialogResult.OK)
+            {
+                targetPath = fd.SelectedPath;
+            }
+            fd = null;
+
+            if (string.IsNullOrEmpty(targetPath))
+                return ret;
+            this.ImagePath = targetPath; // set target path;
+
+            return ret;
+        }
+        /// <summary>
+        /// Gets all items (files).
+        /// </summary>
+        /// <returns>Returns list of image file.</returns>
         public List<ImageFile> GetAllItems()
         {
             var rets = new List<ImageFile>();
@@ -239,7 +309,11 @@ namespace PPRP.Models
 
             return rets;
         }
-
+        /// <summary>
+        /// Load Items (files) on specificed PageNo with limit RowPerPage.
+        /// </summary>
+        /// <param name="pageNo"></param>
+        /// <param name="rowsPerPage"></param>
         public void LoadItems(int pageNo = 1, int rowsPerPage = 40)
         {
             if (null != Items)
@@ -313,33 +387,6 @@ namespace PPRP.Models
         /// Gets Items on current page.
         /// </summary>
         public List<ImageFile> Items { get; private set; }
-
-        #endregion
-
-        #region Static Methods
-
-
-        /// <summary>
-        /// Open Folder Browser to choose selected folder.
-        /// </summary>
-        /// <returns>Returns ImageFiles instance of selected folder.</returns>
-        public static ImageFileSource ChooseFolder(Window owner)
-        {
-            string targetPath = string.Empty;
-            FolderBrowserDialog fd = new FolderBrowserDialog();
-            fd.Description = "กรูณาเลือกโฟลเดอร์รูป";
-            if (fd.ShowDialog(owner.GetIWin32Window()) == System.Windows.Forms.DialogResult.OK)
-            {
-                targetPath = fd.SelectedPath;
-            }
-            fd = null;
-
-            if (string.IsNullOrEmpty(targetPath))
-                return null;
-
-            ImageFileSource ret = new ImageFileSource(targetPath);
-            return ret;
-        }
 
         #endregion
     }
