@@ -63,7 +63,7 @@ namespace PPRP.Models
         /// <summary>
         /// Gets or sets ADM2 Code.
         /// </summary>
-        [ExcelColumn("ADM2_CODE")]
+        [ExcelColumn("ADM2_CODE", 5)]
         public string ADM2Code
         {
             get { return _ADM2Code; }
@@ -79,7 +79,7 @@ namespace PPRP.Models
         /// <summary>
         /// Gets or sets District Name (EN).
         /// </summary>
-        [ExcelColumn("ADM2_EN")]
+        [ExcelColumn("ADM2_EN", 4)]
         public string DistrictNameEN
         {
             get { return _DistrictNameEN; }
@@ -95,7 +95,7 @@ namespace PPRP.Models
         /// <summary>
         /// Gets or sets District Name (TH).
         /// </summary>
-        [ExcelColumn("ADM2_TH")]
+        [ExcelColumn("ADM2_TH", 3)]
         public string DistrictNameTH
         {
             get { return _DistrictNameTH; }
@@ -111,7 +111,7 @@ namespace PPRP.Models
         /// <summary>
         /// Gets or sets Province Name (EN).
         /// </summary>
-        [ExcelColumn("ADM1_EN")]
+        [ExcelColumn("ADM1_EN", 2)]
         public string ProvinceNameEN
         {
             get { return _ProvinceNameEN; }
@@ -127,7 +127,7 @@ namespace PPRP.Models
         /// <summary>
         /// Gets or sets Province Name (TH).
         /// </summary>
-        [ExcelColumn("ADM1_TH")]
+        [ExcelColumn("ADM1_TH", 1)]
         public string ProvinceNameTH
         {
             get { return _ProvinceNameTH; }
@@ -143,7 +143,7 @@ namespace PPRP.Models
         /// <summary>
         /// Gets or sets District Area M2.
         /// </summary>
-        [ExcelColumn("AREA_M2")]
+        [ExcelColumn("AREA_M2", 6)]
         public decimal DistrictAreaM2
         {
             get { return _DistrictAreaM2; }
