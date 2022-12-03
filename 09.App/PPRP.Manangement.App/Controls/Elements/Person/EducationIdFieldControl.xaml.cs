@@ -61,16 +61,12 @@ namespace PPRP.Controls.Elements
 
         #endregion
 
-        #region Combobox Handlers
-
-        private void cb_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-        }
-
-        #endregion
-
         #region Private Methods
+
+        private void LoadComboBox()
+        {
+           cb.ItemsSource = MEducation.Gets().Value;
+        }
 
         #endregion
 
@@ -82,6 +78,8 @@ namespace PPRP.Controls.Elements
         /// <param name="value">The edit item instance.</param>
         public void Setup(MPerson value)
         {
+            LoadComboBox();
+
             _item = value;
             if (null != _item)
             {

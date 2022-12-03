@@ -29,6 +29,7 @@
                  HorizontalAlignment="Stretch"
                  Margin="5,0"
                  FontFamily="{StaticResource THSarabun}"
-                 FontSize="{StaticResource FontSize18}" />
+                 FontSize="{StaticResource FontSize18}"
+                 Text="{Binding DOB}" />
     </StackPanel>
 </UserControl>

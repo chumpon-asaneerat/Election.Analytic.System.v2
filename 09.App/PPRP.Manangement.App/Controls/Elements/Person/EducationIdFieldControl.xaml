@@ -33,6 +33,6 @@
                   IsSynchronizedWithCurrentItem="False"
                   SelectedValuePath="EducationId"
                   DisplayMemberPath="Description"
-                  SelectionChanged="cb_SelectionChanged" />
+                  SelectedValue="{Binding Path=EducationId}" />
     </StackPanel>
 </UserControl>
