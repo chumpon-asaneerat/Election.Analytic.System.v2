@@ -37,6 +37,13 @@ namespace PPRP.Windows
 
         #endregion
 
+        #region Internal Variables
+
+        private bool _addNew = false;
+        private MParty _item = null;
+
+        #endregion
+
         #region Button Handlers
 
         private void cmdChangeIamge_Click(object sender, RoutedEventArgs e)
@@ -72,10 +79,33 @@ namespace PPRP.Windows
 
         #region Public Methods
 
-        public void Setup()
+        /// <summary>
+        /// Setup.
+        /// </summary>
+        /// <param name="value">The edit item instance.</param>
+        public void Setup(MParty value, bool addNew = false)
         {
+            _item = value;
+            _addNew = addNew;
+            if (null != _item)
+            {
 
+            }
+            DataContext = _item;
         }
+
+        #endregion
+
+        #region Public Properties
+
+        /// <summary>
+        /// Gets current item.
+        /// </summary>
+        public MParty Item { get { return _item; } }
+        /// <summary>
+        /// Checks is add new mode.
+        /// </summary>
+        public bool IsAddNew { get { return _addNew; } }
 
         #endregion
     }

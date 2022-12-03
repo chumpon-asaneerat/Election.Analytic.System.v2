@@ -176,7 +176,10 @@ namespace PPRP.Pages
         {
             if (null == item)
                 return;
-            Console.WriteLine("Edit");
+            var editor = PPRPApp.Windows.PartyEditor;
+            editor.ShowDialog();
+            editor.Setup(item);
+            RefreshList();
         }
 
         private void Delete(MParty item)
