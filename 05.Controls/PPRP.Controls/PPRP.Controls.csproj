@@ -256,10 +256,6 @@
       <Project>{454a7013-4ffd-44cb-b589-1e4cd7369ded}</Project>
       <Name>PPRP.Models</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\02.Models\PPRP.ShapeMaps\PPRP.ShapeMaps.csproj">
-      <Project>{3af94133-365f-4da5-8ee5-0b2e0c959ac7}</Project>
-      <Name>PPRP.ShapeMaps</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
