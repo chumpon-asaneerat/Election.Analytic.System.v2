@@ -90,7 +90,7 @@ namespace PPRP.Models
         /// <summary>
         /// Gets or sets Region Name.
         /// </summary>
-        [ExcelColumn("ภาค")]
+        [ExcelColumn("ภาค", 1)]
         public string RegionName
         {
             get { return _RegionName; }
@@ -186,7 +186,7 @@ namespace PPRP.Models
         /// <summary>
         /// Gets or sets Province Id.
         /// </summary>
-        [ExcelColumn("รหัสจังหวัด")]
+        [ExcelColumn("รหัสจังหวัด", 2)]
         public string ProvinceId
         {
             get { return _ProvinceId; }
@@ -202,7 +202,7 @@ namespace PPRP.Models
         /// <summary>
         /// Gets or sets Province Name (TH).
         /// </summary>
-        [ExcelColumn("จังหวัด")]
+        [ExcelColumn("ชื่อจังหวัด", 3)]
         public string ProvinceNameTH
         {
             get { return _ProvinceNameTH; }
@@ -234,7 +234,7 @@ namespace PPRP.Models
         /// <summary>
         /// Gets or sets Sub District Id.
         /// </summary>
-        [ExcelColumn("รหัสอำเภอ")]
+        [ExcelColumn("รหัสอำเภอ", 4)]
         public string DistrictId
         {
             get { return _DistrictId; }
@@ -250,7 +250,7 @@ namespace PPRP.Models
         /// <summary>
         /// Gets or sets District Name (TH).
         /// </summary>
-        [ExcelColumn("อำเภอ")]
+        [ExcelColumn("ชื่ออำเภอ", 5)]
         public string DistrictNameTH
         {
             get { return _DistrictNameTH; }
@@ -282,7 +282,7 @@ namespace PPRP.Models
         /// <summary>
         /// Gets or sets Sub District Id.
         /// </summary>
-        [ExcelColumn("รหัสตำบล")]
+        [ExcelColumn("รหัสตำบล", 6)]
         public string SubdistrictId
         {
             get { return _SubdistrictId; }
@@ -298,7 +298,7 @@ namespace PPRP.Models
         /// <summary>
         /// Gets or sets Sub District Name (TH).
         /// </summary>
-        [ExcelColumn("ตำบล")]
+        [ExcelColumn("ชื่อตำบล", 7)]
         public string SubdistrictNameTH
         {
             get { return _SubdistrictNameTH; }
