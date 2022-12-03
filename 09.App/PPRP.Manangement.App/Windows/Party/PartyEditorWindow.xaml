@@ -15,7 +15,7 @@
         mc:Ignorable="d">
     <Window.Resources>
         <!--  PAGE TITLE  -->
-        <sys:String x:Key="PageTitle">นำเข้าข้อมูลภาค (ESRI - ADM PAK)</sys:String>
+        <sys:String x:Key="PageTitle">ข้อมูลพรรคการเมือง</sys:String>
         <!--  INLINE BUTTON TEXT FONT SIZE  -->
         <sys:Double x:Key="IBFSize">18</sys:Double>
     </Window.Resources>
@@ -66,7 +66,8 @@
                                 Style="{StaticResource InlineButton}"
                                 Margin="5,0"
                                 Width="150"
-                                Height="30">
+                                Height="30"
+                                Click="cmdChangeIamge_Click">
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock Style="{StaticResource fa-image-file}" FontSize="{StaticResource IBFSize}" />
                                 <TextBlock Margin="3,0"
@@ -82,7 +83,8 @@
                                 Style="{StaticResource InlineButton}"
                                 Margin="5,0"
                                 Width="150"
-                                Height="30">
+                                Height="30"
+                                Click="cmdSave_Click">
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock Style="{StaticResource fa-search}" FontSize="{StaticResource IBFSize}" />
                                 <TextBlock Margin="3,0"
@@ -98,7 +100,8 @@
                                 Style="{StaticResource InlineButton}"
                                 Margin="5,0"
                                 Width="150"
-                                Height="30">
+                                Height="30"
+                                Click="cmdCancel_Click">
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock Style="{StaticResource fa-cancel}" FontSize="{StaticResource IBFSize}" />
                                 <TextBlock Margin="3,0"
