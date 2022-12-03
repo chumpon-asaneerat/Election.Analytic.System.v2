@@ -225,6 +225,13 @@
         <Setter Property="Text" Value="&#xf02f;" />
         <Setter Property="Foreground" Value="WhiteSmoke" />
     </Style>
+    <!--  PRINT  -->
+    <Style x:Key="fa-save"
+           TargetType="TextBlock"
+           BasedOn="{StaticResource fa-base}">
+        <Setter Property="Text" Value="&#xf0c7;" />
+        <Setter Property="Foreground" Value="DarkGreen" />
+    </Style>
 
     <!--  IMPORT  -->
     <Style x:Key="fa-import"

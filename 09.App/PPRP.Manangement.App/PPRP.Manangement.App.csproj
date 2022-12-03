@@ -189,7 +189,7 @@
     <Compile Include="Windows\Editors\Party\PartyEditorWindow.xaml.cs">
       <DependentUpon>PartyEditorWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Windows\PersonEditorWindow.xaml.cs">
+    <Compile Include="Windows\Editors\Person\PersonEditorWindow.xaml.cs">
       <DependentUpon>PersonEditorWindow.xaml</DependentUpon>
     </Compile>
     <None Include="Properties\DataSources\PPRP.Domains.MPD2562PrintVoteSummary.datasource" />
@@ -367,7 +367,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Windows\PersonEditorWindow.xaml">
+    <Page Include="Windows\Editors\Person\PersonEditorWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -419,7 +419,6 @@
   <ItemGroup>
     <Folder Include="Pages\Preview\" />
     <Folder Include="Reports\" />
-    <Folder Include="Windows\Editors\Person\" />
     <Folder Include="Windows\MPD\2562\" />
     <Folder Include="Windows\MPD\2566\" />
   </ItemGroup>
