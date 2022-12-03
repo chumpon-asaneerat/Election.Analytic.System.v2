@@ -35,32 +35,32 @@ namespace PPRP.Models
         /// <summary>
         /// Gets or sets ProvinceNameTH.
         /// </summary>
-        [ExcelColumn("จังหวัด")]
+        [ExcelColumn("จังหวัด", 1)]
         public string ProvinceNameTH { get; set; }
         /// <summary>
         /// Gets or sets PollingUnitNo.
         /// </summary>
-        [ExcelColumn("เขตเลือกตั้ง")]
+        [ExcelColumn("เขตเลือกตั้ง", 2)]
         public int PollingUnitNo { get; set; }
         /// <summary>
         /// Gets or sets CandidateNo.
         /// </summary>
-        [ExcelColumn("หมายเลขผู้สมัคร")]
+        [ExcelColumn("หมายเลขผู้สมัคร", 4)]
         public int CandidateNo { get; set; }
         /// <summary>
         /// Gets or sets PartyName.
         /// </summary>
-        [ExcelColumn("ชื่อพรรค")]
+        [ExcelColumn("ชื่อพรรค", 5)]
         public string PartyName { get; set; }
         /// <summary>
         /// Gets or sets FullName.
         /// </summary>
-        [ExcelColumn("ชื่อผู้สมัคร")]
+        [ExcelColumn("ชื่อผู้สมัคร", 3)]
         public string FullName { get; set; }
         /// <summary>
         /// Gets or sets VoteCount.
         /// </summary>
-        [ExcelColumn("ผลคะแนน")]
+        [ExcelColumn("ผลคะแนน", 6)]
         public int VoteCount { get; set; }
         /// <summary>
         /// Gets or sets RevoteNo.
@@ -165,7 +165,7 @@ namespace PPRP.Models
         /// <summary>
         /// Gets or sets RegionName.
         /// </summary>
-        [ExcelColumn("ภาค")]
+        [ExcelColumn("ภาค", 1)]
         public string RegionName { get; set; }
         /// <summary>
         /// Gets or sets GeoGroup.
@@ -179,32 +179,32 @@ namespace PPRP.Models
         /// <summary>
         /// Gets or sets ProvinceNameTH.
         /// </summary>
-        [ExcelColumn("จังหวัด")]
+        [ExcelColumn("จังหวัด", 2)]
         public string ProvinceNameTH { get; set; }
         /// <summary>
         /// Gets or sets PollingUnitNo.
         /// </summary>
-        [ExcelColumn("เขตเลือกตั้ง")]
+        [ExcelColumn("เขตเลือกตั้ง", 3)]
         public int PollingUnitNo { get; set; }
         /// <summary>
         /// Gets or sets CandidateNo.
         /// </summary>
-        [ExcelColumn("หมายเลขผู้สมัคร")]
+        [ExcelColumn("หมายเลขผู้สมัคร", 5)]
         public int CandidateNo { get; set; }
         /// <summary>
         /// Gets or sets PartyName.
         /// </summary>
-        [ExcelColumn("ชื่อพรรค")]
+        [ExcelColumn("ชื่อพรรค", 6)]
         public string PartyName { get; set; }
         /// <summary>
         /// Gets or sets FullName.
         /// </summary>
-        [ExcelColumn("ชื่อผู้สมัคร")]
+        [ExcelColumn("ชื่อผู้สมัคร", 4)]
         public string FullName { get; set; }
         /// <summary>
         /// Gets or sets VoteCount.
         /// </summary>
-        [ExcelColumn("ผลคะแนน")]
+        [ExcelColumn("ผลคะแนน", 7)]
         public int VoteCount { get; set; }
         /// <summary>
         /// Gets or sets RowNo.
