@@ -496,11 +496,11 @@ namespace PPRP.Models
         private void MapColumnsProperties(Type targetType)
         {
             var props = Utils.GetProperties(targetType);
+            var attrs = new List<ExcelColumnAttribute>();
+
             foreach (var prop in props)
             {
                 var attr = Utils.GetAttribute(prop);
-                string propertyName = attr.PropertyName;
-                string displayText = attr.HeaderText;
 
                 if (Mode == ExcelColumnMode.Import)
                 {
@@ -512,6 +512,15 @@ namespace PPRP.Models
                     if (attr.Mode == ExcelColumnMode.Import)
                         continue; // mismatch mode
                 }
+
+                attrs.Add(attr);
+            }
+
+            var sorts = attrs.OrderBy(attr => attr.ColumnOrder).ToList();
+            foreach (var attr in sorts)
+            {
+                string propertyName = attr.PropertyName;
+                string displayText = attr.HeaderText;
 
                 this.Mappings.Add(new NExcelMapProperty(this)
                 {
