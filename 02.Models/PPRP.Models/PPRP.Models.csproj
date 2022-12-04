@@ -150,6 +150,7 @@
     <Compile Include="Models\MenuItems\MenuItem.cs" />
     <Compile Include="Models\Parson.And.Party\MParty.cs" />
     <Compile Include="Models\Parson.And.Party\MPerson.cs" />
+    <Compile Include="Models\Stats\MPDStatVoter.cs" />
     <Compile Include="Models\Stats\MPDVoteSummary.cs" />
     <Compile Include="MsSqlDbServer.cs" />
     <Compile Include="Models\Commons\Common.cs" />
