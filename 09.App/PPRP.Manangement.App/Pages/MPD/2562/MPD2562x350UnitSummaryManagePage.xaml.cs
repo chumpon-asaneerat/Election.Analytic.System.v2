@@ -94,7 +94,10 @@ namespace PPRP.Pages
 
         private void Refresh()
         {
-
+            Dispatcher.BeginInvoke(new Action(() =>
+            {
+                //RefreshList();
+            }), DispatcherPriority.Render);
         }
 
         private void Search()

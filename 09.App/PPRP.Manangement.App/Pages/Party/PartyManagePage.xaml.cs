@@ -163,7 +163,10 @@ namespace PPRP.Pages
 
         private void Refresh()
         {
-
+            Dispatcher.BeginInvoke(new Action(() =>
+            {
+                RefreshList(false);
+            }), DispatcherPriority.Render);
         }
 
         private void Search()

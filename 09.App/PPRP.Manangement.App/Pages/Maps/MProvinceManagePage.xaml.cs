@@ -141,12 +141,18 @@ namespace PPRP.Pages
 
         private void Refresh()
         {
-            RefreshList();
+            Dispatcher.BeginInvoke(new Action(() =>
+            {
+                RefreshList();
+            }), DispatcherPriority.Render);
         }
 
         private void Search()
         {
+            Dispatcher.BeginInvoke(new Action(() =>
+            {
 
+            }), DispatcherPriority.Render);
         }
 
         private void Print()

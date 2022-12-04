@@ -118,7 +118,7 @@ namespace PPRP.Pages
         {
             Dispatcher.BeginInvoke(new Action(() =>
             {
-
+                RefreshList();
             }), DispatcherPriority.Render);
         }
 
