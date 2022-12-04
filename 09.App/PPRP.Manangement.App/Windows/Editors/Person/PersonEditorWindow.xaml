@@ -10,9 +10,9 @@
         VerticalAlignment="Center"
         ShowInTaskbar="False"
         WindowStartupLocation="CenterOwner"
-        SizeToContent="WidthAndHeight"
+        SizeToContent="Width"
         ResizeMode="NoResize"
-        Height="450"
+        Height="500"
         Width="900"
         mc:Ignorable="d">
     <Window.Resources>
