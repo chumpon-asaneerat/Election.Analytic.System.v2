@@ -128,8 +128,8 @@
     <Compile Include="Pages\MPD\2562\MPD2562VoteSummaryManagePage.xaml.cs">
       <DependentUpon>MPD2562VoteSummaryManagePage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\MPD\2562\MPD2562x350UnitSummaryManagePage.xaml.cs">
-      <DependentUpon>MPD2562x350UnitSummaryManagePage.xaml</DependentUpon>
+    <Compile Include="Pages\MPD\2562\MPD2562StatVoterManagePage.xaml.cs">
+      <DependentUpon>MPD2562StatVoterManagePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\MPD\2566\MPD2566PollingUnitManagePage.xaml.cs">
       <DependentUpon>MPD2566PollingUnitManagePage.xaml</DependentUpon>
@@ -162,8 +162,8 @@
     <Compile Include="Windows\Excels\MPD\2562\ImportMPD2562VoteSummaryWindow.xaml.cs">
       <DependentUpon>ImportMPD2562VoteSummaryWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Windows\Excels\MPD\2562\ImportMPD2562x350UnitSummaryWindow.xaml.cs">
-      <DependentUpon>ImportMPD2562x350UnitSummaryWindow.xaml</DependentUpon>
+    <Compile Include="Windows\Excels\MPD\2562\ImportMPD2562StatVoterWindow.xaml.cs">
+      <DependentUpon>ImportMPD2562StatVoterWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Windows\Excels\MPD\2566\ImportMPD2566PollingUnitWindow.xaml.cs">
       <DependentUpon>ImportMPD2566PollingUnitWindow.xaml</DependentUpon>
@@ -287,7 +287,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\MPD\2562\MPD2562x350UnitSummaryManagePage.xaml">
+    <Page Include="Pages\MPD\2562\MPD2562StatVoterManagePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -331,7 +331,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Windows\Excels\MPD\2562\ImportMPD2562x350UnitSummaryWindow.xaml">
+    <Page Include="Windows\Excels\MPD\2562\ImportMPD2562StatVoterWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

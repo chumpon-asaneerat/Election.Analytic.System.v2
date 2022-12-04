@@ -151,23 +151,23 @@ namespace PPRP
 
             #endregion
 
-            #region MPD 2562 User Stat (350 units)
+            #region MPD 2562 Stat Voters
 
-            private static MPD2562x350UnitSummaryManagePage _MPD2562x350UnitSummaryManage;
+            private static MPD2562StatVoterManagePage _MPD2562StatVoterManagePage;
 
-            /// <summary>Gets MPD2562 350 Unit Summary Manage Page.</summary>
-            public static MPD2562x350UnitSummaryManagePage MPD2562x350UnitSummaryManage
+            /// <summary>Gets MPD 2562 Stat Voters Manage Page.</summary>
+            public static MPD2562StatVoterManagePage MPD2562StatVoterManage
             {
                 get
                 {
-                    if (null == _MPD2562x350UnitSummaryManage)
+                    if (null == _MPD2562StatVoterManagePage)
                     {
                         lock (typeof(PPRPApp))
                         {
-                            _MPD2562x350UnitSummaryManage = new MPD2562x350UnitSummaryManagePage();
+                            _MPD2562StatVoterManagePage = new MPD2562StatVoterManagePage();
                         }
                     }
-                    return _MPD2562x350UnitSummaryManage;
+                    return _MPD2562StatVoterManagePage;
                 }
             }
 
@@ -444,14 +444,14 @@ namespace PPRP
 
             #endregion
 
-            #region Import MPD 2562 User Stat (350 units)
+            #region Import MPD 2562 Stat Voter
 
-            /// <summary>Gets MPD2562 350 Unit Summary Import Window.</summary>
-            public static PPRP.Windows.ImportMPD2562x350UnitSummaryWindow ImportMPD2562x350UnitSummary
+            /// <summary>Gets MPD 2562 Stat Voter Import Window.</summary>
+            public static PPRP.Windows.ImportMPD2562StatVoterWindow ImportMPD2562StatVoter
             {
                 get
                 {
-                    var ret = new PPRP.Windows.ImportMPD2562x350UnitSummaryWindow();
+                    var ret = new PPRP.Windows.ImportMPD2562StatVoterWindow();
                     ret.Owner = Application.Current.MainWindow;
                     return ret;
                 }

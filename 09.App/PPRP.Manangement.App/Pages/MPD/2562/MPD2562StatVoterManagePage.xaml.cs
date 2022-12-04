@@ -18,16 +18,16 @@ using PPRP.Models;
 namespace PPRP.Pages
 {
     /// <summary>
-    /// Interaction logic for MPD2562x350UnitSummaryManagePage.xaml
+    /// Interaction logic for MPD2562StatVoterManagePage.xaml
     /// </summary>
-    public partial class MPD2562x350UnitSummaryManagePage : UserControl
+    public partial class MPD2562StatVoterManagePage : UserControl
     {
         #region Constructor
 
         /// <summary>
         /// Constructor.
         /// </summary>
-        public MPD2562x350UnitSummaryManagePage()
+        public MPD2562StatVoterManagePage()
         {
             InitializeComponent();
         }

@@ -16,7 +16,7 @@ using Newtonsoft.Json;
 
 #endregion
 
-namespace PPRP.Models.Stats
+namespace PPRP.Models
 {
     #region MPDStatVoter
 
