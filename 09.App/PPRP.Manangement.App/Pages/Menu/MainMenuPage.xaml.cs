@@ -66,7 +66,7 @@ namespace PPRP.Pages
 
         private void mnuMPD2562UserStatSummaryManage_Click(object sender, RoutedEventArgs e)
         {
-            GotoMPD2562UserStatSummaryManage();
+            GotoMPD2562StatVoterManage();
         }
 
         private void mnuMPDC2566Manage_Click(object sender, RoutedEventArgs e)
@@ -144,10 +144,10 @@ namespace PPRP.Pages
             PageContentManager.Instance.Current = page;
         }
 
-        private void GotoMPD2562UserStatSummaryManage()
+        private void GotoMPD2562StatVoterManage()
         {
-            // ข้อมูลผู้ใช้สิทธิ 350 เขต ปี 2562 - MPD 350 Unit(summary)
-            var page = PPRPApp.Pages.MPD2562x350UnitSummaryManage;
+            // ข้อมูลผู้ใช้สิทธิ 350 เขต ปี 2562 - MPD Stat Voters
+            var page = PPRPApp.Pages.MPD2562StatVoterManage;
             page.Setup();
             PageContentManager.Instance.Current = page;
         }

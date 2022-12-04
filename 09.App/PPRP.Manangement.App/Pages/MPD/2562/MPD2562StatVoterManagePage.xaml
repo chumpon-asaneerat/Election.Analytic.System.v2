@@ -13,7 +13,7 @@
         <!--  INLINE BUTTON TEXT FONT SIZE  -->
         <sys:Double x:Key="IBFSize">18</sys:Double>
         <!--  FILTER BAR VISIBLE STATES  -->
-        <Visibility x:Key="FilterBarVisible">Collapsed</Visibility>
+        <Visibility x:Key="FilterBarVisible">Visible</Visibility>
         <Visibility x:Key="RefreshButtonVisible">Collapsed</Visibility>
         <Visibility x:Key="SearchButtonVisible">Collapsed</Visibility>
         <!--  BOTTONS BAR VISIBLE STATES  -->
@@ -85,6 +85,23 @@
                                 Click="cmdSearch_Click">
                             <TextBlock Style="{StaticResource fa-search}" FontSize="{StaticResource IBFSize}" />
                         </Button>
+                        <!--  PROVINCE  -->
+                        <TextBlock Text="จังหวัด"
+                                   DockPanel.Dock="Left"
+                                   VerticalAlignment="Center"
+                                   TextAlignment="Right"
+                                   Width="100"
+                                   Foreground="WhiteSmoke" />
+                        <TextBlock Width="10" DockPanel.Dock="Left" />
+                        <ComboBox x:Name="cbProvince"
+                                  Width="300"
+                                  FontFamily="{StaticResource THSarabunNew}"
+                                  FontSize="{StaticResource FontSize18}"
+                                  Margin="3"
+                                  VerticalContentAlignment="Center"
+                                  IsSynchronizedWithCurrentItem="False"
+                                  DisplayMemberPath="ProvinceNameTH"
+                                  SelectionChanged="cbProvince_SelectionChanged" />
                         <Grid />
                     </DockPanel>
                     <!--  BUTTONS BAR  -->
@@ -184,7 +201,66 @@
                         <Grid />
                     </DockPanel>
                     <!--  ITEMS  -->
-                    <Grid />
+                    <ListView x:Name="lvMPDVoters" Style="{StaticResource SingleSelectListView}">
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn Header="จังหวัด">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Width="150"
+                                                       Text="{Binding ProvinceNameTH}"
+                                                       TextAlignment="Left" />
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                                <GridViewColumn Header="เขต">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Width="100"
+                                                       Text="{Binding PollingUnitNo}"
+                                                       TextAlignment="Center" />
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                                <GridViewColumn Header="ผู้มีสิทธิเลือกตั้ง">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Width="180"
+                                                       Text="{Binding RightCount, StringFormat={}{0:n0}}"
+                                                       TextAlignment="Right" />
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                                <GridViewColumn Header="ผู้ใช้สิทธิเลือกตั้ง">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Width="180"
+                                                       Text="{Binding ExerciseCount, StringFormat={}{0:n0}}"
+                                                       TextAlignment="Right" />
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                                <GridViewColumn Header="บัตรเสีย">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Width="180"
+                                                       Text="{Binding InvalidCount, StringFormat={}{0:n0}}"
+                                                       TextAlignment="Right" />
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                                <GridViewColumn Header="บัตรไม่เลือกผู้สมัครผู้ใด">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Width="180"
+                                                       Text="{Binding NoVoteCount, StringFormat={}{0:n0}}"
+                                                       TextAlignment="Right" />
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
                 </DockPanel>
             </DockPanel>
         </Grid>

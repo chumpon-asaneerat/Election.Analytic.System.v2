@@ -73,6 +73,18 @@ namespace PPRP.Pages
 
         #endregion
 
+        #region ComboBox Handlers
+
+        private void cbProvince_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            Dispatcher.BeginInvoke(new Action(() =>
+            {
+                RefreshList();
+            }), DispatcherPriority.Render);
+        }
+
+        #endregion
+
         #region Private Methods
 
         private void GotoMainMenuPage()
@@ -84,19 +96,47 @@ namespace PPRP.Pages
 
         private void Import()
         {
+            var win = PPRPApp.Windows.ImportMPD2562StatVoter;
+            win.Setup();
+            if (win.ShowDialog() == false)
+            {
+                return;
+            }
 
+            Dispatcher.BeginInvoke(new Action(() =>
+            {
+                LoadProvinces();
+            }), DispatcherPriority.Render);
         }
 
         private void Export()
         {
+            string msg = string.Empty;
+            int thaiYear = 2562;
+            var items = MPDStatVoter.Gets(thaiYear).Value;
 
+            if (ExcelModel.SaveAs(items, "ข้อมูลผู้ใช้สิทธิปี " + thaiYear.ToString(), "ข้อมูลผู้ใช้สิทธิปี " + thaiYear + ".xlsx"))
+            {
+                msg += "ส่งออกข้อมูลสำเร็จ";
+            }
+            else
+            {
+                msg += "ส่งออกข้อมูลไม่สำเร็จ" + Environment.NewLine;
+                msg += "อาจเกิดจากปัญหา ไม่ได้ทำการเลือกชื่อไฟล์, " + Environment.NewLine;
+                msg += "ทำการเปิดไฟล์ค้างไว้ หรือไม่มีข้อมูลสำหรับการส่งออก " + Environment.NewLine;
+                msg += "กรุณาตรวจสอบสาเหตุดังกล่าวก่อน แล้วทำการส่งออกใหม่อีกครั้ง";
+            }
+
+            var msgBox = PPRPApp.Windows.MessageBox;
+            msgBox.Setup(msg, "ผลการส่งออกข้อมูล");
+            msgBox.ShowDialog();
         }
 
         private void Refresh()
         {
             Dispatcher.BeginInvoke(new Action(() =>
             {
-                //RefreshList();
+                RefreshList();
             }), DispatcherPriority.Render);
         }
 
@@ -113,6 +153,37 @@ namespace PPRP.Pages
 
         }
 
+        private void LoadProvinces()
+        {
+            cbProvince.ItemsSource = null;
+            var provinces = MProvince.Gets().Value;
+            if (null != provinces)
+            {
+                provinces.Insert(0, new MProvince { ProvinceNameTH = "ทุกจังหวัด" });
+            }
+            cbProvince.ItemsSource = (null != provinces) ? provinces : new List<MProvince>();
+            if (null != provinces)
+            {
+                cbProvince.SelectedIndex = 0;
+            }
+        }
+
+        private void RefreshList()
+        {
+            // Check province.
+            var province = cbProvince.SelectedItem as MProvince;
+            string provinceName = (null != province) ? province.ProvinceNameTH : null;
+            if (null != provinceName && provinceName.Contains("ทุกจังหวัด"))
+            {
+                provinceName = null;
+            }
+
+            lvMPDVoters.ItemsSource = null;
+            int year = 2562;
+            var summaries = MPDStatVoter.Gets(thaiYear: year, provinceNameTH: provinceName);
+            lvMPDVoters.ItemsSource = (null != summaries) ? summaries.Value : new List<MPDStatVoter>();
+        }
+
         #endregion
 
         #region Public Methods
@@ -127,7 +198,7 @@ namespace PPRP.Pages
             {
                 Dispatcher.BeginInvoke(new Action(() =>
                 {
-
+                    LoadProvinces();
                 }), DispatcherPriority.Render);
             }
         }

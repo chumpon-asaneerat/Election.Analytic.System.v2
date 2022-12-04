@@ -419,8 +419,6 @@
   <ItemGroup>
     <Folder Include="Pages\Preview\" />
     <Folder Include="Reports\" />
-    <Folder Include="Windows\MPD\2562\" />
-    <Folder Include="Windows\MPD\2566\" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\Logo\PPRPLogo.png" />
