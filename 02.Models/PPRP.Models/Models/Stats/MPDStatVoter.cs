@@ -104,7 +104,7 @@ namespace PPRP.Models
         /// <summary>
         /// Gets or sets NoVoteCount.
         /// </summary>
-        [ExcelColumn("ผลคะแนน", 6)]
+        [ExcelColumn("บัตรไม่เลือกผู้สมัครผู้ใด", 6)]
         public int NoVoteCount { get; set; }
 
         #endregion
