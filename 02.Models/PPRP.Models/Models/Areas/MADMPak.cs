@@ -394,7 +394,14 @@ namespace PPRP.Models
 
             return ret;
         }
-
+        /// <summary>
+        /// Gets.
+        /// </summary>
+        /// <param name="regionId"></param>
+        /// <param name="adm1Code"></param>
+        /// <param name="adm2Code"></param>
+        /// <param name="adm3Code"></param>
+        /// <returns></returns>
         public static NDbResult<List<MADMPak>> Gets(
             string regionId = null,
             string adm1Code = null, string adm2Code = null, string adm3Code = null)

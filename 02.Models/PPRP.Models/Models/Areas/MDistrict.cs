@@ -224,6 +224,55 @@ namespace PPRP.Models
 
             return ret;
         }
+        /// <summary>
+        /// Gets all.
+        /// </summary>
+        /// <returns></returns>
+        public static NDbResult<List<MADM2>> Gets()
+        {
+            MethodBase med = MethodBase.GetCurrentMethod();
+
+            NDbResult<List<MADM2>> rets = new NDbResult<List<MADM2>>();
+
+            IDbConnection cnn = DbServer.Instance.Db;
+            if (null == cnn || !DbServer.Instance.Connected)
+            {
+                string msg = "Connection is null or cannot connect to database server.";
+                med.Err(msg);
+                // Set error number/message
+                rets.ErrNum = 8000;
+                rets.ErrMsg = msg;
+
+                return rets;
+            }
+
+            var p = new DynamicParameters();
+
+            p.Add("@RegionId", null);
+            p.Add("@ADM1Code", null);
+            p.Add("@ADM2Code", null);
+
+            try
+            {
+                rets.Value = cnn.Query<MADM2>("GetMDistricts", p,
+                    commandType: CommandType.StoredProcedure).ToList();
+            }
+            catch (Exception ex)
+            {
+                med.Err(ex);
+                // Set error number/message
+                rets.ErrNum = 9999;
+                rets.ErrMsg = ex.Message;
+            }
+
+            if (null == rets.Value)
+            {
+                // create empty list.
+                rets.Value = new List<MADM2>();
+            }
+
+            return rets;
+        }
 
         #endregion
     }

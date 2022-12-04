@@ -141,7 +141,7 @@ namespace PPRP.Pages
 
         private void Refresh()
         {
-
+            RefreshList();
         }
 
         private void Search()
