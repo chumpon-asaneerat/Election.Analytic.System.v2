@@ -3,8 +3,9 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:Themes="clr-namespace:Xceed.Wpf.Toolkit.Themes;assembly=Xceed.Wpf.Toolkit"
+             xmlns:xceed="http://schemas.xceed.com/wpf/xaml/toolkit"
              xmlns:sys="clr-namespace:System;assembly=mscorlib"
-             xmlns:util="clr-namespace:PPRP.Controls.Utils;assembly=PPRP.Controls"
              Background="Transparent"
              mc:Ignorable="d"
              Loaded="UserControl_Loaded"
@@ -12,7 +13,11 @@
     <UserControl.Resources>
         <!--  LABEL PROPERTY  -->
         <sys:Double x:Key="LabelWd">120</sys:Double>
+        <sys:Double x:Key="LabelWd2">50</sys:Double>
         <TextAlignment x:Key="LabelAlign">Left</TextAlignment>
+        <TextAlignment x:Key="LabelAlign2">Right</TextAlignment>
+        <!--  LABEL PROPERTY  -->
+        <sys:Double x:Key="InputWd">150</sys:Double>
     </UserControl.Resources>
     <!--  DOB  -->
     <StackPanel Orientation="Vertical" Margin="2">
@@ -25,12 +30,51 @@
                    FontSize="{StaticResource FontSize18}"
                    TextAlignment="{StaticResource LabelAlign}"
                    Text="วัน/เดือน/ปี เกิด" />
-        <TextBox x:Name="txtDOB"
-                 VerticalAlignment="Center"
-                 HorizontalAlignment="Stretch"
-                 Margin="5,0"
-                 FontFamily="{StaticResource THSarabun}"
-                 FontSize="{StaticResource FontSize18}"
-                 Text="{Binding DOB}" />
+        <StackPanel Orientation="Horizontal">
+            <xceed:DateTimePicker x:Name="dtDOB"
+                                  Margin="5,0"
+                                  VerticalAlignment="Center"
+                                  HorizontalAlignment="Left"
+                                  Width="{StaticResource InputWd}"
+                                  FontFamily="{StaticResource THSarabun}"
+                                  FontSize="{StaticResource FontSize18}"
+                                  Format="Custom"
+                                  FormatString="dd/MM/yyyy"
+                                  AutoCloseCalendar="True"
+                                  ShowButtonSpinner="False"
+                                  ShowDropDownButton="True"
+                                  TimePickerAllowSpin="False"
+                                  TimePickerShowButtonSpinner="False"
+                                  TimePickerVisibility="Collapsed"
+                                  Style="{DynamicResource PPRPDateTimePickerStyle}"
+                                  ValueChanged="dtDOB_ValueChanged" />
+            <!--  AGE CALC  -->
+            <TextBlock Margin="5,0"
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Stretch"
+                       Foreground="{StaticResource CaptionForeground}"
+                       Width="{StaticResource LabelWd2}"
+                       FontFamily="{StaticResource THSarabun}"
+                       FontSize="{StaticResource FontSize18}"
+                       TextAlignment="Right"
+                       Text="อายุ" />
+            <TextBlock VerticalAlignment="Center"
+                       HorizontalAlignment="Stretch"
+                       Foreground="{StaticResource CaptionForeground}"
+                       Width="{StaticResource LabelWd2}"
+                       FontFamily="{StaticResource THSarabun}"
+                       FontSize="{StaticResource FontSize18}"
+                       TextAlignment="Center" 
+                       Text="{Binding AgeEst}"/>
+            <TextBlock Margin="5,0"
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Stretch"
+                       Foreground="{StaticResource CaptionForeground}"
+                       Width="{StaticResource LabelWd2}"
+                       FontFamily="{StaticResource THSarabun}"
+                       FontSize="{StaticResource FontSize18}"
+                       TextAlignment="Left"
+                       Text="ปี" />
+        </StackPanel>
     </StackPanel>
 </UserControl>

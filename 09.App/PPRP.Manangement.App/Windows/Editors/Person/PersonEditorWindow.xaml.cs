@@ -72,7 +72,10 @@ namespace PPRP.Windows
 
         private void Save()
         {
-
+            if (null != _item)
+            {
+                Console.WriteLine("Save Item.");
+            }
         }
 
         #endregion

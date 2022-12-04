@@ -13,7 +13,17 @@ namespace PPRP.Controls.Utils
     /// </summary>
     public class ThaiYearConverter : IValueConverter
     {
-        private static ThaiBuddhistCalendar thaicalendar = new ThaiBuddhistCalendar();
+        //private static ThaiBuddhistCalendar ThaiCalendar = new ThaiBuddhistCalendar();
+        public static CultureInfo ThaiCultureInfo = new CultureInfo("th-TH");
+
+        public static class Helpers
+        {
+            public static int GetMonthIndex(string month)
+            {
+                return Array.FindIndex(CultureInfo.CurrentCulture.DateTimeFormat.MonthNames,
+                                 t => t.Equals(month, StringComparison.CurrentCultureIgnoreCase));
+            }
+        }
 
         /// <summary>
         /// Convert.
@@ -30,9 +40,11 @@ namespace PPRP.Controls.Utils
             string ret = value.ToString();
             if (null != values && values.Length >= 2)
             {
+                int mn = Helpers.GetMonthIndex(values[0]);
+                string thMonth = ThaiCultureInfo.DateTimeFormat.GetMonthName(mn);
                 int yr = int.Parse(values[1]);
                 if (yr < 2500) yr += 543;
-                ret = values[0] + " " + yr.ToString();
+                ret = thMonth + " " + yr.ToString();
             }
             return ret;
         }

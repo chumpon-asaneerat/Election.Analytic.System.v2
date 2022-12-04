@@ -706,8 +706,8 @@
         </Setter>
     </Style>
 
-    <!--  DMTDateTimePickerStyle  -->
-    <Style x:Key="DMTDateTimePickerStyle" TargetType="{x:Type xceed:DateTimePicker}">
+    <!--  PPRPDateTimePickerStyle  -->
+    <Style x:Key="PPRPDateTimePickerStyle" TargetType="{x:Type xceed:DateTimePicker}">
         <Setter Property="Background" Value="{DynamicResource {x:Static SystemColors.WindowBrushKey}}" />
         <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.WindowTextBrushKey}}" />
         <Setter Property="BorderBrush" Value="{DynamicResource {ComponentResourceKey ResourceId=ControlNormalBorderKey, TypeInTargetAssembly={x:Type Themes:ResourceKeys}}}" />
@@ -865,10 +865,10 @@
                                         </LinearGradientBrush>
                                     </Border.Background>
                                     <StackPanel>
-                                        <!--  Set Style to DMTCalendarItemStyle  -->
+                                        <!--  Set Style to PPRPCalendarItemStyle  -->
                                         <Calendar x:Name="PART_Calendar"
                                                   BorderThickness="0"
-                                                  Style="{DynamicResource DMTCalendarStyle}" />
+                                                  Style="{DynamicResource PPRPCalendarStyle}" />
                                         <xceed:TimePicker x:Name="PART_TimeUpDown"
                                                           AllowSpin="{TemplateBinding TimePickerAllowSpin}"
                                                           Background="{DynamicResource {x:Static SystemColors.WindowBrushKey}}"
@@ -927,8 +927,8 @@
         </StackPanel>
     </DataTemplate>
 
-    <!--  DMTCalendarItemStyle  -->
-    <Style x:Key="DMTCalendarItemStyle" TargetType="{x:Type CalendarItem}">
+    <!--  PPRPCalendarItemStyle  -->
+    <Style x:Key="PPRPCalendarItemStyle" TargetType="{x:Type CalendarItem}">
         <Setter Property="Margin" Value="0,3,0,3" />
         <Setter Property="Template">
             <Setter.Value>
@@ -1080,8 +1080,8 @@
         </Setter>
     </Style>
 
-    <!--  DMTCalendarStyle  -->
-    <Style x:Key="DMTCalendarStyle" TargetType="{x:Type Calendar}">
+    <!--  PPRPCalendarStyle  -->
+    <Style x:Key="PPRPCalendarStyle" TargetType="{x:Type Calendar}">
         <Setter Property="Foreground" Value="#FF333333" />
         <Setter Property="Background">
             <Setter.Value>
@@ -1109,12 +1109,12 @@
                 <ControlTemplate TargetType="{x:Type Calendar}">
                     <Viewbox Width="300" Height="300">
                         <StackPanel x:Name="PART_Root" HorizontalAlignment="Center">
-                            <!--  Set Style to DMTCalendarItemStyle  -->
+                            <!--  Set Style to PPRPCalendarItemStyle  -->
                             <CalendarItem x:Name="PART_CalendarItem"
                                           Background="{TemplateBinding Background}"
                                           BorderBrush="{TemplateBinding BorderBrush}"
                                           BorderThickness="{TemplateBinding BorderThickness}"
-                                          Style="{StaticResource DMTCalendarItemStyle}" />
+                                          Style="{StaticResource PPRPCalendarItemStyle}" />
                         </StackPanel>
                     </Viewbox>
                 </ControlTemplate>

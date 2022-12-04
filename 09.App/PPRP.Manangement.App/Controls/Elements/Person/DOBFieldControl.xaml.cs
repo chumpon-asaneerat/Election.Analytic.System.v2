@@ -3,6 +3,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Globalization;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -12,6 +13,7 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Markup;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
@@ -43,6 +45,10 @@ namespace PPRP.Controls.Elements
 
         #region Internal Variables
 
+        //private CultureInfo culture = new CultureInfo("th-TH") { DateTimeFormat = { Calendar = new ThaiBuddhistCalendar() } };
+        private CultureInfo culture = new CultureInfo("th-TH");
+        private XmlLanguage language = XmlLanguage.GetLanguage("th-TH");
+
         private MPerson _item = null;
 
         #endregion
@@ -51,7 +57,8 @@ namespace PPRP.Controls.Elements
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
-
+            dtDOB.CultureInfo = culture;
+            dtDOB.Language = language;
         }
 
         private void UserControl_Unloaded(object sender, RoutedEventArgs e)
@@ -61,7 +68,31 @@ namespace PPRP.Controls.Elements
 
         #endregion
 
+        #region DateTimePicker ValueChanged Handler 
+
+        private void dtDOB_ValueChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
+        {
+            if (null != _item)
+            {
+                _item.DOB = dtDOB.Value;
+            }
+        }
+
+        #endregion
+
         #region Private Methods
+
+        private void Reset()
+        {
+            if (null != _item)
+            {
+                dtDOB.Value = _item.DOB;
+            }
+            else
+            {
+                dtDOB.Value = new DateTime?();
+            }
+        }
 
         #endregion
 
@@ -76,7 +107,7 @@ namespace PPRP.Controls.Elements
             _item = value;
             if (null != _item)
             {
-
+                Reset();
             }
             DataContext = _item;
         }

@@ -32,6 +32,8 @@ namespace PPRP.Models
         private string _FirstName = null;
         private string _LastName = null;
 
+        private DateTime? _DOB = new DateTime?();
+
         private bool _isDefault = true;
         private bool _ImageLoading = false;
         private ImageSource _img = null;
@@ -155,7 +157,19 @@ namespace PPRP.Models
         /// <summary>
         /// Gets or sets DOB.
         /// </summary>
-        public DateTime? DOB { get; set; }
+        public DateTime? DOB 
+        {
+            get { return _DOB; }
+            set
+            {
+                if (_DOB != value)
+                {
+                    _DOB = value;
+                    Raise(() => DOB);
+                    Raise(() => AgeEst);
+                }
+            }
+        }
         /// <summary>
         /// Gets or sets GenderId.
         /// </summary>
@@ -214,6 +228,27 @@ namespace PPRP.Models
         /// Checks is default image.
         /// </summary>
         public bool IsDefault { get { return _isDefault; } }
+        /// <summary>
+        /// Gets Age estiamate.
+        /// </summary>
+        public string AgeEst
+        {
+            get
+            {
+                if (!DOB.HasValue)
+                    return "-";
+
+                int YearsPassed = DateTime.Now.Year - DOB.Value.Year;
+                // Are we before the birth date this year? If so subtract one year from the mix
+                if (DateTime.Now.Month < DOB.Value.Month ||
+                    (DateTime.Now.Month == DOB.Value.Month && DateTime.Now.Day < DOB.Value.Day))
+                {
+                    YearsPassed--;
+                }
+
+                return YearsPassed.ToString();
+            }
+        }
 
         #endregion
 

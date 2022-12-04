@@ -9,7 +9,6 @@
                 <ResourceDictionary Source="pack://application:,,,/Fluent;Component/Themes/Generic.xaml" />
                 -->
                 <ResourceDictionary Source="pack://application:,,,/PPRP.Controls;Component/Themes/Generic.xaml" />
-                <ResourceDictionary Source="pack://application:,,,/PPRP.Controls;component/Themes/XceedToolKitStyle.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

@@ -33,7 +33,7 @@
                             VerticalAlignment="Center"
                             DockPanel.Dock="Top"
                             HorizontalAlignment="Left">
-                    <elem:DOBFieldControl x:Name="ctrlDOB" Width="150" />
+                    <elem:DOBFieldControl x:Name="ctrlDOB" Width="350" />
                 </StackPanel>
                 <!--  GENDER/EDUCATION/OCCUPATION  -->
                 <StackPanel Orientation="Horizontal"
