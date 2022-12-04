@@ -164,7 +164,25 @@ namespace PPRP.Pages
 
         private void Export()
         {
+            string msg = string.Empty;
+            int thaiYear = 2562;
+            var items = MPDVoteSummary.Gets(thaiYear).Value;
 
+            if (ExcelModel.SaveAs(items, "ข้อมูลผลคะแนนทั่วไปแบบแบ่งเขตปี " + thaiYear.ToString(), "ข้อมูลผลคะแนนทั่วไปแบบแบ่งเขตปี " + thaiYear + ".xlsx"))
+            {
+                msg += "ส่งออกข้อมูลสำเร็จ";
+            }
+            else
+            {
+                msg += "ส่งออกข้อมูลไม่สำเร็จ" + Environment.NewLine;
+                msg += "อาจเกิดจากปัญหา ไม่ได้ทำการเลือกชื่อไฟล์, " + Environment.NewLine;
+                msg += "ทำการเปิดไฟล์ค้างไว้ หรือไม่มีข้อมูลสำหรับการส่งออก " + Environment.NewLine;
+                msg += "กรุณาตรวจสอบสาเหตุดังกล่าวก่อน แล้วทำการส่งออกใหม่อีกครั้ง";
+            }
+
+            var msgBox = PPRPApp.Windows.MessageBox;
+            msgBox.Setup(msg, "ผลการส่งออกข้อมูล");
+            msgBox.ShowDialog();
         }
 
         private void Refresh()
