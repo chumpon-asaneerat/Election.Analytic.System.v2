@@ -99,14 +99,6 @@ namespace PPRP.Models
 
     #endregion
 
-    #region ExcelColumnMap
-
-    public class ExcelColumnMap
-    {
-    }
-
-    #endregion
-
     #region NExcelColumn
 
     /// <summary>
@@ -487,53 +479,6 @@ namespace PPRP.Models
 
         #endregion
 
-        #region Private Methods
-
-        /// <summary>
-        /// Map Columns and Properties.
-        /// </summary>
-        /// <param name="targetType">The Target type.</param>
-        private void MapColumnsProperties(Type targetType)
-        {
-            var props = Utils.GetProperties(targetType);
-            var attrs = new List<ExcelColumnAttribute>();
-
-            foreach (var prop in props)
-            {
-                var attr = Utils.GetAttribute(prop);
-
-                if (Mode == ExcelColumnMode.Import)
-                {
-                    if (attr.Mode == ExcelColumnMode.Export)
-                        continue; // mismatch mode
-                }
-                else if (Mode == ExcelColumnMode.Export)
-                {
-                    if (attr.Mode == ExcelColumnMode.Import)
-                        continue; // mismatch mode
-                }
-
-                attrs.Add(attr);
-            }
-
-            var sorts = attrs.OrderBy(attr => attr.ColumnOrder).ToList();
-            foreach (var attr in sorts)
-            {
-                string propertyName = attr.PropertyName;
-                string displayText = attr.HeaderText;
-
-                this.Mappings.Add(new NExcelMapProperty(this)
-                {
-                    PropertyName = propertyName,
-                    DisplayText = displayText,
-                    ColumnLetter = null,
-                    ColumnIndex = -1
-                });
-            }
-        }
-
-        #endregion
-
         #region Public Methods
 
         /// <summary>
@@ -550,7 +495,7 @@ namespace PPRP.Models
         /// <param name="targetType">The Target type.</param>
         public void MapColumns(Type targetType)
         {
-            MapColumnsProperties(targetType);
+            this.Mappings = GetMapColumns(this, this.Mode, targetType);
         }
         /// <summary>
         /// Load Items.
@@ -682,6 +627,61 @@ namespace PPRP.Models
         /// Gets or sets ExcelColumnMode.
         /// </summary>
         public ExcelColumnMode Mode { get; set; }
+
+        #endregion
+
+        #region Static Methods
+
+        /// <summary>
+        /// Get Mapping columns.
+        /// </summary>
+        /// <param name="worksheet"></param>
+        /// <param name="mode"></param>
+        /// <param name="targetType"></param>
+        /// <returns></returns>
+        public static List<NExcelMapProperty> GetMapColumns(NExcelWorksheet worksheet,
+            ExcelColumnMode mode, Type targetType)
+        {
+            var maps = new List<NExcelMapProperty>();
+                
+            var props = Utils.GetProperties(targetType);
+            var attrs = new List<ExcelColumnAttribute>();
+
+            foreach (var prop in props)
+            {
+                var attr = Utils.GetAttribute(prop);
+
+                if (mode == ExcelColumnMode.Import)
+                {
+                    if (attr.Mode == ExcelColumnMode.Export)
+                        continue; // mismatch mode
+                }
+                else if (mode == ExcelColumnMode.Export)
+                {
+                    if (attr.Mode == ExcelColumnMode.Import)
+                        continue; // mismatch mode
+                }
+
+                attrs.Add(attr);
+            }
+
+            var sorts = attrs.OrderBy(attr => attr.ColumnOrder).ToList();
+            foreach (var attr in sorts)
+            {
+                string propertyName = attr.PropertyName;
+                string displayText = attr.HeaderText;
+
+                maps.Add(new NExcelMapProperty(worksheet)
+                {
+                    PropertyName = propertyName,
+                    DisplayText = displayText,
+                    ColumnLetter = null,
+                    ColumnIndex = -1
+                });
+            }
+
+            return maps;
+        }
 
         #endregion
     }
@@ -907,58 +907,170 @@ namespace PPRP.Models
             if (null == Worksheets) Worksheets = new List<NExcelWorksheet>();
             Worksheets.Clear(); // clear exists worksheets
 
-            using (var package = new ExcelPackage(FileName))
+            try
             {
-                try
+                using (var package = new ExcelPackage(FileName))
                 {
-                    var xlsSheets = package.Workbook.Worksheets;
-                    foreach (var xlsSheet in xlsSheets)
-                    {
-                        // Create new NExcelWorksheet.
-                        var nSheet = new NExcelWorksheet(this) { SheetName = xlsSheet.Name };
-                        // Extract columns into new NExcelWorksheet.
-                        if (null != xlsSheet &&
-                            null != xlsSheet.Dimension &&
-                            null != xlsSheet.Dimension.End &&
-                            xlsSheet.Dimension.End.Column > 0)
-                        {
-                            // row always 1
-                            int iRow = 1;
-                            for (int iCol = 1; iCol <= xlsSheet.Dimension.End.Column; iCol++)
-                            {
-                                // get column value
-                                var oVal = xlsSheet.Cells[iRow, iCol].Value;
-                                if (null != oVal)
-                                {
-                                    var nColumn = new NExcelColumn()
-                                    {
-                                        ColumnName = oVal.ToString(),
-                                        ColumnIndex = iCol,
-                                        ColumnLetter = ExcelCellAddress.GetColumnLetter(iCol)
-                                    };
-                                    // Add to column list
-                                    nSheet.Columns.Add(nColumn);
-                                }
-                            }
-                        }
-                        // Append to list.
-                        Worksheets.Add(nSheet);
-                    }
-
-                    ret = true;
-                }
-                catch (Exception ex)
-                {
-                    med.Err(ex);
                     try
                     {
-                        if (null != package) package.Dispose();
+                        var xlsSheets = package.Workbook.Worksheets;
+                        foreach (var xlsSheet in xlsSheets)
+                        {
+                            // Create new NExcelWorksheet.
+                            var nSheet = new NExcelWorksheet(this) { SheetName = xlsSheet.Name };
+                            // Extract columns into new NExcelWorksheet.
+                            if (null != xlsSheet &&
+                                null != xlsSheet.Dimension &&
+                                null != xlsSheet.Dimension.End &&
+                                xlsSheet.Dimension.End.Column > 0)
+                            {
+                                // row always 1
+                                int iRow = 1;
+                                for (int iCol = 1; iCol <= xlsSheet.Dimension.End.Column; iCol++)
+                                {
+                                    // get column value
+                                    var oVal = xlsSheet.Cells[iRow, iCol].Value;
+                                    if (null != oVal)
+                                    {
+                                        var nColumn = new NExcelColumn()
+                                        {
+                                            ColumnName = oVal.ToString(),
+                                            ColumnIndex = iCol,
+                                            ColumnLetter = ExcelCellAddress.GetColumnLetter(iCol)
+                                        };
+                                        // Add to column list
+                                        nSheet.Columns.Add(nColumn);
+                                    }
+                                }
+                            }
+                            // Append to list.
+                            Worksheets.Add(nSheet);
+                        }
+
+                        ret = true;
                     }
-                    catch
+                    catch (Exception ex)
                     {
-                        Console.WriteLine("package dispose error.");
+                        med.Err(ex);
+                        try
+                        {
+                            if (null != package) package.Dispose();
+                        }
+                        catch
+                        {
+                            Console.WriteLine("package dispose error.");
+                        }
                     }
                 }
+            }
+            catch (Exception pEx)
+            {
+                med.Err(pEx);
+            }
+
+            return ret;
+        }
+
+        private bool WriteExportItems<T>(List<T> items, string sheetName = "Sheet1")
+            where T : class, new()
+        {
+            MethodBase med = MethodBase.GetCurrentMethod();
+
+            bool ret = false;
+            if (null == items || items.Count <= 0)
+                return ret;
+            if (string.IsNullOrWhiteSpace(sheetName))
+                return ret;
+
+            // create worksheet.
+            var ws = new NExcelWorksheet(this) { SheetName = sheetName };
+            // get map properties.
+            var maps = NExcelWorksheet.GetMapColumns(ws, ExcelColumnMode.Export, typeof(T));
+
+            if (null == ws || null == maps)
+                return ret;
+
+            try
+            {
+                using (var package = new ExcelPackage(FileName))
+                {
+                    try
+                    {
+                        var sheet = package.Workbook.Worksheets[sheetName]; // check exists
+                        if (null != sheet)
+                            package.Workbook.Worksheets.Delete(sheet); // delete first
+
+                        sheet = package.Workbook.Worksheets.Add(sheetName); // create new
+                        if (null != sheet)
+                        {
+                            // write headers
+                            int iCol = 1;
+                            maps.ForEach(map =>
+                            {
+                                // access header cell
+                                var hdrCell = sheet.Cells[1, iCol];
+                                if (null != hdrCell)
+                                {
+                                    // set font style
+                                    hdrCell.Style.Font.Color.SetColor(System.Drawing.Color.Black);
+                                    hdrCell.Style.Font.Bold = true;
+                                    hdrCell.Style.Font.Size = 12;
+                                    // set background
+                                    hdrCell.Style.Fill.PatternType = OfficeOpenXml.Style.ExcelFillStyle.Solid;
+                                    hdrCell.Style.Fill.BackgroundColor.SetColor(System.Drawing.Color.Silver);
+                                    // set alignment
+                                    hdrCell.Style.HorizontalAlignment = OfficeOpenXml.Style.ExcelHorizontalAlignment.Center;
+                                    hdrCell.Style.VerticalAlignment = OfficeOpenXml.Style.ExcelVerticalAlignment.Center;
+                                    // write header text
+                                    hdrCell.Value = map.DisplayText;
+                                }
+                                iCol++;
+                            });
+
+                            int iRow = 2; // data start with row 2.
+                            items.ForEach(item =>
+                            {
+                                iCol = 1; // reset column index
+                                maps.ForEach(map =>
+                                {
+                                    // access data cell
+                                    var dataCell = sheet.Cells[iRow, iCol];
+                                    if (null != dataCell)
+                                    {
+                                        // set font style
+                                        dataCell.Style.Font.Size = 12;
+                                        // write data value
+                                        dataCell.Value = DynamicAccess<T>.Get(item, map.PropertyName);
+                                    }
+                                    iCol++;
+                                });
+                                iRow++;
+                            });
+
+                            // auto fit columns
+                            sheet.Cells.AutoFitColumns();
+                            // save to file.
+                            package.SaveAs(FileName);
+                            ret = true;
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        med.Err(ex);
+                        try
+                        {
+                            if (null != package) package.Dispose();
+                        }
+                        catch
+                        {
+                            Console.WriteLine("package dispose error.");
+                        }
+                    }
+                }
+            }
+            catch (Exception pEx)
+            {
+                med.Err(pEx);
             }
 
             return ret;
@@ -1010,16 +1122,23 @@ namespace PPRP.Models
         /// <summary>
         /// Save File as.
         /// </summary>
-        /// <returns>Returns true if file selected</returns>
-        public bool SaveAs()
+        /// <typeparam name="T">The Target class type.</typeparam>
+        /// <param name="items"></param>
+        /// <param name="worksheetName">The worksheet name.</param>
+        /// <param name="defaultFileName">The worksheet name.</param>
+        /// <returns>Returns true if file selected.</returns>
+        public static bool SaveAs<T>(List<T> items, string worksheetName = "Sheet1", string defaultFileName = "")
+            where T: class, new()
         {
             bool ret = false;
 
-            string file = Dialogs.SaveDialog();
+            ExcelModel model = new ExcelModel();
+
+            string file = Dialogs.SaveDialog(defaultFileName: defaultFileName);
             if (!string.IsNullOrWhiteSpace(file))
             {
-                FileName = file;
-                // need create worksheet function.
+                model.FileName = file;
+                ret = model.WriteExportItems<T>(items, worksheetName);
             }
 
             return ret;
