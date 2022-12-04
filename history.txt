@@ -25,8 +25,16 @@ Election.Analytic.System.v2 - PPRP  #283
 Election.Analytic.System.v2 - PPRP  #282
 - 
 
+[commited]
 Election.Analytic.System.v2 - PPRP  #281
-- 
+- PPRP.Manangement.App project
+  - Implements UI #162.
+  - Note: 
+    [ ] Exports
+    [ ] 2562 350 units inmport
+    [ ] 2566 MPDC import
+    [ ] Print Prewiew 2 reports.
+    [ ] AddNew Party, Person with auto check exists (load exist one if match).
 
 [commited]
 Election.Analytic.System.v2 - PPRP  #280

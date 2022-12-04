@@ -334,6 +334,11 @@ namespace PPRP.Pages
                 Dispatcher.BeginInvoke(new Action(() =>
                 {
                     RefreshList(true);
+
+                    Dispatcher.BeginInvoke(new Action(() =>
+                    {
+                        txtFirstNameFilter.Focus(); // Focus on first name.
+                    }), DispatcherPriority.Render);
                 }), DispatcherPriority.Render);
             }
         }

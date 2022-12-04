@@ -258,6 +258,12 @@ namespace PPRP.Pages
                 Dispatcher.BeginInvoke(new Action(() =>
                 {
                     LoadProvinces();
+
+                    Dispatcher.BeginInvoke(new Action(() =>
+                    {
+                        txtPartyNameFilter.Focus();
+                    }), DispatcherPriority.Render);
+
                 }), DispatcherPriority.Render);
             }
         }

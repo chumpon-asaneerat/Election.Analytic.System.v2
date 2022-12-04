@@ -273,6 +273,11 @@ namespace PPRP.Pages
                 Dispatcher.BeginInvoke(new Action(() =>
                 {
                     RefreshList(true);
+
+                    Dispatcher.BeginInvoke(new Action(() =>
+                    {
+                        txtPartyNameFilter.Focus(); // Focus on party name.
+                    }), DispatcherPriority.Render);
                 }), DispatcherPriority.Render);
             }
         }

@@ -19,7 +19,7 @@
         <!--  BOTTONS BAR VISIBLE STATES  -->
         <Visibility x:Key="HomeButtonVisible">Visible</Visibility>
         <Visibility x:Key="ImportButtonVisible">Visible</Visibility>
-        <Visibility x:Key="ExportButtonVisible">Collapsed</Visibility>
+        <Visibility x:Key="ExportButtonVisible">Visible</Visibility>
         <Visibility x:Key="PrintButtonVisible">Collapsed</Visibility>
         <Visibility x:Key="AddNewButtonVisible">Collapsed</Visibility>
     </UserControl.Resources>
@@ -164,7 +164,7 @@
                         </Button>
                         <!--  PRINT  -->
                         <Button x:Name="cmdPrint"
-                                Visibility="{StaticResource ExportButtonVisible}"
+                                Visibility="{StaticResource PrintButtonVisible}"
                                 DockPanel.Dock="Left"
                                 Style="{StaticResource InlineButton}"
                                 Margin="5,0"
