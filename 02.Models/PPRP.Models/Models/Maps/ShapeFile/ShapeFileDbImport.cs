@@ -525,6 +525,8 @@ namespace PPRP.Services
             if (null == ShapeMapDbService.Instance.Db)
                 return;
 
+            MethodBase med = MethodBase.GetCurrentMethod();
+
             ShapeMapDbService.Instance.Db.BeginTransaction();
             try
             {
@@ -579,6 +581,8 @@ namespace PPRP.Services
             }
             catch (Exception ex)
             {
+                med.Err(ex);
+
                 ShapeMapDbService.Instance.Db.Rollback();
             }
         }
