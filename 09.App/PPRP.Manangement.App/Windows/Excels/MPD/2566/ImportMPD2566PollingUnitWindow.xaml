@@ -15,7 +15,8 @@
         WindowStartupLocation="CenterOwner"
         mc:Ignorable="d"
         Loaded="UserControl_Loaded"
-        Unloaded="UserControl_Unloaded">
+        Unloaded="UserControl_Unloaded"
+        Closing="Window_Closing">
     <Window.Resources>
         <!--  PAGE TITLE  -->
         <sys:String x:Key="PageTitle">นำเข้าข้อมูลหน่วยเลือกตั้งแบบแบ่งเขต ปี 2566</sys:String>

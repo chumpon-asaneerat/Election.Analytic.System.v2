@@ -39,6 +39,9 @@ namespace PPRP.Windows
 
         #region Internal Variables
 
+        private ExcelModel model = new ExcelModel();
+        private bool onImporting = false;
+
         #endregion
 
         #region Loaded/Unloaded
@@ -51,6 +54,15 @@ namespace PPRP.Windows
         private void UserControl_Unloaded(object sender, RoutedEventArgs e)
         {
             //import.OnSampleDataChanged -= Import_OnSampleDataChanged;
+        }
+
+        #endregion
+
+        #region Window Closing
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            e.Cancel = onImporting;
         }
 
         #endregion
@@ -104,6 +116,13 @@ namespace PPRP.Windows
         private void ChooseExcelFile()
         {
 
+        }
+
+        private void EanbleButtons(bool enable)
+        {
+            cmdCancel.IsEnabled = enable;
+            cmdFinish.IsEnabled = enable;
+            cmdChooseExcel.IsEnabled = enable;
         }
 
         private bool Imports()

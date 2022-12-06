@@ -40,6 +40,7 @@ namespace PPRP.Windows
         #region Internal Variables
 
         private ExcelModel model = new ExcelModel();
+        private bool onImporting = false;
 
         #endregion
 
@@ -52,6 +53,15 @@ namespace PPRP.Windows
         private void UserControl_Unloaded(object sender, RoutedEventArgs e)
         {
             model.SheetItemChanges -= Model_SheetItemChanges;
+        }
+
+        #endregion
+
+        #region Window Closing
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            e.Cancel = onImporting;
         }
 
         #endregion
@@ -103,6 +113,13 @@ namespace PPRP.Windows
             txtFileName.Text = model.FileName;
         }
 
+        private void EanbleButtons(bool enable)
+        {
+            cmdCancel.IsEnabled = enable;
+            cmdFinish.IsEnabled = enable;
+            cmdChooseExcel.IsEnabled = enable;
+        }
+
         private bool Imports()
         {
             var items = lvMapPreview.Items;
@@ -115,6 +132,9 @@ namespace PPRP.Windows
                 mbox.ShowDialog();
                 return false; // No items
             }
+
+            onImporting = true;
+            EanbleButtons(false); // while import disable all buttons.
 
             var errors = new List<ImportError>();
 
@@ -152,6 +172,9 @@ namespace PPRP.Windows
                 errWin.Setup(errors);
                 errWin.ShowDialog();
             }
+
+            EanbleButtons(true); // completed import enable all buttons.
+            onImporting = false;
 
             return true;
         }
