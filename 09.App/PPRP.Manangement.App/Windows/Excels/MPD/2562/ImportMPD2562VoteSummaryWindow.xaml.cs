@@ -113,6 +113,13 @@ namespace PPRP.Windows
             txtFileName.Text = model.FileName;
         }
 
+        private void EanbleButtons(bool enable)
+        {
+            cmdCancel.IsEnabled = enable;
+            cmdFinish.IsEnabled = enable;
+            cmdChooseExcel.IsEnabled = enable;
+        }
+
         private bool Imports()
         {
             var items = lvMapPreview.Items;
@@ -125,6 +132,9 @@ namespace PPRP.Windows
                 mbox.ShowDialog();
                 return false; // No items
             }
+
+            onImporting = true;
+            EanbleButtons(false); // while import disable all buttons.
 
             var errors = new List<ImportError>();
 
@@ -168,6 +178,9 @@ namespace PPRP.Windows
                 errWin.Setup(errors);
                 errWin.ShowDialog();
             }
+
+            EanbleButtons(true); // completed import enable all buttons.
+            onImporting = false;
 
             return true;
         }
