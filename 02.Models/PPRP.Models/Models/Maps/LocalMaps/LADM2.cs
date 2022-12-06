@@ -171,11 +171,6 @@ namespace PPRP.Models
         [MaxLength(20)]
         public string ADM2Code { get; set; }
         /// <summary>
-        /// Gets or sets ADM3 Code.
-        /// </summary>
-        [MaxLength(20)]
-        public string ADM3Code { get; set; }
-        /// <summary>
         /// Gets or sets RecordId.
         /// </summary>
         public int RecordId { get; set; }
@@ -259,11 +254,6 @@ namespace PPRP.Models
         /// </summary>
         [MaxLength(20)]
         public string ADM2Code { get; set; }
-        /// <summary>
-        /// Gets or sets ADM3 Code.
-        /// </summary>
-        [MaxLength(20)]
-        public string ADM3Code { get; set; }
         /// <summary>
         /// Gets or sets RecordId.
         /// </summary>
