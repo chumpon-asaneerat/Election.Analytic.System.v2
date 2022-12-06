@@ -123,9 +123,13 @@
     <Compile Include="Models\Areas\MProvince.cs" />
     <Compile Include="Models\Areas\MRegion.cs" />
     <Compile Include="Models\Areas\MSubdistrict.cs" />
+    <Compile Include="Models\Commons\SqliteCommon.cs" />
     <Compile Include="Models\Excels\ExcelModels.cs" />
     <Compile Include="Models\ImageFiles\ImageFileModels.cs" />
-    <Compile Include="Models\Maps\JsonMapFiles.cs" />
+    <Compile Include="Models\Maps\Json\JsonMapFiles.cs" />
+    <Compile Include="Models\Maps\LocalMaps\LADM0.cs" />
+    <Compile Include="Models\Maps\LocalMaps\LADM1.cs" />
+    <Compile Include="Models\Maps\LocalMaps\LADM2.cs" />
     <Compile Include="Models\Maps\ShapeFile\Converter\EndianBitConverter.cs" />
     <Compile Include="Models\Maps\ShapeFile\FileFormat\Header.cs" />
     <Compile Include="Models\Maps\ShapeFile\FileFormat\ShapeFactory.cs" />
@@ -174,6 +178,7 @@
   <ItemGroup>
     <Resource Include="Images\Default\party.png" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>REM xcopy "$(SolutionDir)References\Microsoft*.*" "$(TargetDir)\..\PPRP\Microsoft*.*" /Y/D/E
