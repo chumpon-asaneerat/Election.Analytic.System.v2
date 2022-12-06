@@ -7,8 +7,10 @@ Election.Analytic.System.v2 - PPRP  #339
 Election.Analytic.System.v2 - PPRP  #338
 - 
 
+[commited]
 Election.Analytic.System.v2 - PPRP  #337
-- 
+- PPRP.Manangement.App project
+  - Implements Map system #31.
 
 [commited]
 Election.Analytic.System.v2 - PPRP  #336
