@@ -191,6 +191,10 @@ namespace PPRP.Models
         /// </summary>
         public int RecordId { get; set; }
         /// <summary>
+        /// Gets or sets PartId.
+        /// </summary>
+        public int PartId { get; set; }
+        /// <summary>
         /// Gets or sets Point count.
         /// </summary>
         public int PointCount { get; set; }
@@ -201,7 +205,7 @@ namespace PPRP.Models
 
         public static NDbResult<LADM3Part> Get(
             string ADM0Code, string ADM1Code, string ADM2Code, string ADM3Code,
-            int recordId)
+            int recordId, int partId)
         {
             NDbResult<LADM3Part> ret = new NDbResult<LADM3Part>();
             lock (sync)
@@ -222,9 +226,10 @@ namespace PPRP.Models
                     cmd += "   AND ADM2Code = ? ";
                     cmd += "   AND ADM3Code = ? ";
                     cmd += "   AND RecordId = ? ";
+                    cmd += "   AND PartId = ? ";
                     var results = NQuery.Query<LADM3Part>(cmd,
                         ADM0Code, ADM1Code, ADM2Code, ADM3Code,
-                        recordId).FirstOrDefault();
+                        recordId, partId).FirstOrDefault();
                     ret.Success(results);
                 }
                 catch (Exception ex)
@@ -277,6 +282,10 @@ namespace PPRP.Models
         /// </summary>
         public int RecordId { get; set; }
         /// <summary>
+        /// Gets or sets PartId.
+        /// </summary>
+        public int PartId { get; set; }
+        /// <summary>
         /// Gets or sets Point Id.
         /// </summary>
         public int PointId { get; set; }
@@ -295,7 +304,7 @@ namespace PPRP.Models
 
         public static NDbResult<LADM3Point> Get(
             string ADM0Code, string ADM1Code, string ADM2Code, string ADM3Code,
-            int recordId, int pointId)
+            int recordId, int partId, int pointId)
         {
             NDbResult<LADM3Point> ret = new NDbResult<LADM3Point>();
             lock (sync)
@@ -316,10 +325,11 @@ namespace PPRP.Models
                     cmd += "   AND ADM2Code = ? ";
                     cmd += "   AND ADM3Code = ? ";
                     cmd += "   AND RecordId = ? ";
+                    cmd += "   AND PartId = ? ";
                     cmd += "   AND PointId = ? ";
                     var results = NQuery.Query<LADM3Point>(cmd,
                         ADM0Code, ADM1Code, ADM2Code, ADM3Code,
-                        recordId, pointId).FirstOrDefault();
+                        recordId, partId, pointId).FirstOrDefault();
                     ret.Success(results);
                 }
                 catch (Exception ex)

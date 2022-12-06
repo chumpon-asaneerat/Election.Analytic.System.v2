@@ -159,6 +159,10 @@ namespace PPRP.Models
         /// </summary>
         public int RecordId { get; set; }
         /// <summary>
+        /// Gets or sets PartId.
+        /// </summary>
+        public int PartId { get; set; }
+        /// <summary>
         /// Gets or sets Point count.
         /// </summary>
         public int PointCount { get; set; }
@@ -169,7 +173,7 @@ namespace PPRP.Models
 
         public static NDbResult<LADM1Part> Get(
             string ADM0Code, string ADM1Code, 
-            int recordId)
+            int recordId, int partId)
         {
             NDbResult<LADM1Part> ret = new NDbResult<LADM1Part>();
             lock (sync)
@@ -186,9 +190,10 @@ namespace PPRP.Models
                     cmd += " WHERE ADM0Code = ? ";
                     cmd += "   AND ADM1Code = ? ";
                     cmd += "   AND RecordId = ? ";
+                    cmd += "   AND PartId = ? ";
                     var results = NQuery.Query<LADM1Part>(cmd,
                         ADM0Code, ADM1Code, 
-                        recordId).FirstOrDefault();
+                        recordId, partId).FirstOrDefault();
                     ret.Success(results);
                 }
                 catch (Exception ex)
@@ -231,6 +236,10 @@ namespace PPRP.Models
         /// </summary>
         public int RecordId { get; set; }
         /// <summary>
+        /// Gets or sets PartId.
+        /// </summary>
+        public int PartId { get; set; }
+        /// <summary>
         /// Gets or sets Point Id.
         /// </summary>
         public int PointId { get; set; }
@@ -249,7 +258,7 @@ namespace PPRP.Models
 
         public static NDbResult<LADM1Point> Get(
             string ADM0Code, string ADM1Code,
-            int recordId, int pointId)
+            int recordId, int partId, int pointId)
         {
             NDbResult<LADM1Point> ret = new NDbResult<LADM1Point>();
             lock (sync)
@@ -266,10 +275,11 @@ namespace PPRP.Models
                     cmd += " WHERE ADM0Code = ? ";
                     cmd += "   AND ADM1Code = ? ";
                     cmd += "   AND RecordId = ? ";
+                    cmd += "   AND PartId = ? ";
                     cmd += "   AND PointId = ? ";
                     var results = NQuery.Query<LADM1Point>(cmd,
                         ADM0Code, ADM1Code,
-                        recordId, pointId).FirstOrDefault();
+                        recordId, partId, pointId).FirstOrDefault();
                     ret.Success(results);
                 }
                 catch (Exception ex)

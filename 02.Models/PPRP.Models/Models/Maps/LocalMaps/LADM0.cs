@@ -142,6 +142,10 @@ namespace PPRP.Models
         /// </summary>
         public int RecordId { get; set; }
         /// <summary>
+        /// Gets or sets PartId.
+        /// </summary>
+        public int PartId { get; set; }
+        /// <summary>
         /// Gets or sets Point count.
         /// </summary>
         public int PointCount { get; set; }
@@ -150,7 +154,7 @@ namespace PPRP.Models
 
         #region Static Methods
 
-        public static NDbResult<LADM0Part> Get(string ADM0Code, int recordId)
+        public static NDbResult<LADM0Part> Get(string ADM0Code, int recordId, int partId)
         {
             NDbResult<LADM0Part> ret = new NDbResult<LADM0Part>();
             lock (sync)
@@ -165,7 +169,8 @@ namespace PPRP.Models
                     cmd += "SELECT * FROM LADM0Part ";
                     cmd += " WHERE ADM0Code = ? ";
                     cmd += "   AND RecordId = ? ";
-                    var results = NQuery.Query<LADM0Part>(cmd, ADM0Code, recordId).FirstOrDefault();
+                    cmd += "   AND PartId = ? ";
+                    var results = NQuery.Query<LADM0Part>(cmd, ADM0Code, recordId, partId).FirstOrDefault();
                     ret.Success(results);
                 }
                 catch (Exception ex)
@@ -203,6 +208,10 @@ namespace PPRP.Models
         /// </summary>
         public int RecordId { get; set; }
         /// <summary>
+        /// Gets or sets PartId.
+        /// </summary>
+        public int PartId { get; set; }
+        /// <summary>
         /// Gets or sets Point Id.
         /// </summary>
         public int PointId { get; set; }
@@ -219,7 +228,7 @@ namespace PPRP.Models
 
         #region Static Methods
 
-        public static NDbResult<LADM0Point> Get(string ADM0Code, int recordId, int pointId)
+        public static NDbResult<LADM0Point> Get(string ADM0Code, int recordId, int partId, int pointId)
         {
             NDbResult<LADM0Point> ret = new NDbResult<LADM0Point>();
             lock (sync)
@@ -234,8 +243,9 @@ namespace PPRP.Models
                     cmd += "SELECT * FROM ADM0Point ";
                     cmd += " WHERE ADM0Code = ? ";
                     cmd += "   AND RecordId = ? ";
+                    cmd += "   AND PartId = ? ";
                     cmd += "   AND PointId = ? ";
-                    var results = NQuery.Query<LADM0Point>(cmd, ADM0Code, recordId, pointId).FirstOrDefault();
+                    var results = NQuery.Query<LADM0Point>(cmd, ADM0Code, recordId, partId, pointId).FirstOrDefault();
                     ret.Success(results);
                 }
                 catch (Exception ex)
