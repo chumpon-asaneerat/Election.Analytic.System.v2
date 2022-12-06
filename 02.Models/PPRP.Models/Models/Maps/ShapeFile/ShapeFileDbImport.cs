@@ -570,12 +570,20 @@ namespace PPRP.Services
                                                         iDistrict, iDistrictCnt, 
                                                         iSubdistrict, iSubdistrictCnt);
                                                 }
+
+                                                iSubdistrict++;
                                             });
                                         }
+
+                                        iDistrict++;
                                     });
                                 }
+
+                                iProvince++;
                             });
                         }
+
+                        iRegion++;
                     });
                 }
                 ShapeMapDbService.Instance.Db.Commit();
