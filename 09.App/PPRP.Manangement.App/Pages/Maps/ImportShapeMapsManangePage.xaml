@@ -99,7 +99,12 @@
                                     Content="Import"
                                     Style="{StaticResource InlineButton}"
                                     Click="cmdImportADM0_Click" />
-                            <TextBlock x:Name="txtADM0ProcessPoint" Margin="5,0" />
+                            <TextBlock x:Name="txtADM0ProcessPoint"
+                                       Margin="5,0"
+                                       VerticalAlignment="Center"
+                                       FontFamily="{StaticResource THSarabun}"
+                                       FontSize="{StaticResource FontSize18}"
+                                       Foreground="Yellow" />
                         </StackPanel>
                         <!--  ADM0 Shape Files  -->
                         <StackPanel Orientation="Horizontal" Margin="5">
@@ -122,7 +127,12 @@
                                     Content="Import"
                                     Style="{StaticResource InlineButton}"
                                     Click="cmdImportADM1_Click" />
-                            <TextBlock x:Name="txtADM1ProcessPoint" Margin="5,0" />
+                            <TextBlock x:Name="txtADM1ProcessPoint"
+                                       Margin="5,0"
+                                       VerticalAlignment="Center"
+                                       FontFamily="{StaticResource THSarabun}"
+                                       FontSize="{StaticResource FontSize18}"
+                                       Foreground="Yellow" />
                         </StackPanel>
                         <!--  ADM2 Shape Files  -->
                         <StackPanel Orientation="Horizontal" Margin="5">
@@ -145,7 +155,12 @@
                                     Content="Import"
                                     Style="{StaticResource InlineButton}"
                                     Click="cmdImportADM2_Click" />
-                            <TextBlock x:Name="txtADM2ProcessPoint" Margin="5,0" />
+                            <TextBlock x:Name="txtADM2ProcessPoint"
+                                       Margin="5,0"
+                                       VerticalAlignment="Center"
+                                       FontFamily="{StaticResource THSarabun}"
+                                       FontSize="{StaticResource FontSize18}"
+                                       Foreground="Yellow" />
                         </StackPanel>
                         <!--  ADM3 Shape Files  -->
                         <StackPanel Orientation="Horizontal" Margin="5">
@@ -168,7 +183,12 @@
                                     Content="Import"
                                     Style="{StaticResource InlineButton}"
                                     Click="cmdImportADM3_Click" />
-                            <TextBlock x:Name="txtADM3ProcessPoint" Margin="5,0" />
+                            <TextBlock x:Name="txtADM3ProcessPoint"
+                                       Margin="5,0"
+                                       VerticalAlignment="Center"
+                                       FontFamily="{StaticResource THSarabun}"
+                                       FontSize="{StaticResource FontSize18}"
+                                       Foreground="Yellow" />
                         </StackPanel>
                     </StackPanel>
                 </DockPanel>
