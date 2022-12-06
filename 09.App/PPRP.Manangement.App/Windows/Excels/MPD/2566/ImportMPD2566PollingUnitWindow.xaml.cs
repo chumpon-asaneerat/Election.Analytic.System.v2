@@ -133,6 +133,9 @@ namespace PPRP.Windows
                 return false; // No items
             }
 
+            onImporting = true;
+            EanbleButtons(false); // while import disable all buttons.
+
             var errors = new List<ImportError>();
 
             var prog = PPRPApp.Windows.ProgressDialog;
@@ -176,6 +179,9 @@ namespace PPRP.Windows
                 errWin.Setup(errors);
                 errWin.ShowDialog();
             }
+
+            EanbleButtons(true); // completed import enable all buttons.
+            onImporting = false;
 
             return true;
         }
