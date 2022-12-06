@@ -10,8 +10,11 @@ Election.Analytic.System.v2 - PPRP  #298
 Election.Analytic.System.v2 - PPRP  #297
 - 
 
+[commited]
 Election.Analytic.System.v2 - PPRP  #296
-- 
+- PPRP.Manangement.App project
+  - Implements UI #175.
+    - ImportADMPakWindow lock UI during import process.
 
 [commited]
 Election.Analytic.System.v2 - PPRP  #295
