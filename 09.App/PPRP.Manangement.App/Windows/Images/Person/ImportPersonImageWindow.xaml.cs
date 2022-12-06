@@ -44,6 +44,16 @@ namespace PPRP.Windows
         private int iRowsPerPage = 40;
 
         private ImageFileSource source = null;
+        private bool onImporting = false;
+
+        #endregion
+
+        #region Window Closing
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            e.Cancel = onImporting;
+        }
 
         #endregion
 
@@ -85,6 +95,29 @@ namespace PPRP.Windows
 
         #region Private Methods
 
+        private void ChooseImageFolder()
+        {
+            source = new ImageFileSource();
+            var ret = source.OpenFolder(this);
+            if (ret)
+            {
+                txtFolderName.Text = source.ImagePath;
+            }
+            else txtFolderName.Text = string.Empty;
+
+            Dispatcher.BeginInvoke(new Action(() =>
+            {
+                RefreshList(true);
+            }), DispatcherPriority.Render);
+        }
+
+        private void EanbleButtons(bool enable)
+        {
+            cmdCancel.IsEnabled = enable;
+            cmdFinish.IsEnabled = enable;
+            cmdChooseFolder.IsEnabled = enable;
+        }
+
         private bool Import()
         {
             List<ImageFile> files = null;
@@ -102,6 +135,9 @@ namespace PPRP.Windows
                 mbox.ShowDialog();
                 return false;
             }
+
+            onImporting = true;
+            EanbleButtons(false); // while import disable all buttons.
 
             var errors = new List<ImportError>();
 
@@ -145,23 +181,10 @@ namespace PPRP.Windows
                 errWin.ShowDialog();
             }
 
+            EanbleButtons(true); // completed import enable all buttons.
+            onImporting = false;
+
             return true;
-        }
-
-        private void ChooseImageFolder()
-        {
-            source = new ImageFileSource();
-            var ret = source.OpenFolder(this);
-            if (ret)
-            {
-                txtFolderName.Text = source.ImagePath;
-            }
-            else txtFolderName.Text = string.Empty;
-
-            Dispatcher.BeginInvoke(new Action(() =>
-            {
-                RefreshList(true);
-            }), DispatcherPriority.Render);
         }
 
         private void RefreshList(bool refresh)

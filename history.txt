@@ -25,8 +25,11 @@ Election.Analytic.System.v2 - PPRP  #303
 Election.Analytic.System.v2 - PPRP  #302
 - 
 
+[commited]
 Election.Analytic.System.v2 - PPRP  #301
-- 
+  - Implements UI #176.
+    - ImportPartyImageWindow lock UI during import process.
+    - ImportPersonImageWindow lock UI during import process.
 
 [commited]
 Election.Analytic.System.v2 - PPRP  #300

@@ -128,6 +128,13 @@ namespace PPRP.Windows
         private bool Imports()
         {
 
+            onImporting = true;
+            EanbleButtons(false); // while import disable all buttons.
+
+
+            EanbleButtons(true); // completed import enable all buttons.
+            onImporting = false;
+
             return true;
         }
 
