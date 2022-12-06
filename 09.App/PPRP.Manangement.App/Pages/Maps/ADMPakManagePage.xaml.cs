@@ -230,7 +230,9 @@ namespace PPRP.Pages
             {
                 districts.Insert(0, new MDistrict { DistrictNameTH = "ทุกอำเภอ/เขต" } );
             }
+
             cbDistrict.ItemsSource = (null != districts) ? districts : new List<MDistrict>();
+
             if (null != districts)
             {
                 cbDistrict.SelectedIndex = 0;

@@ -192,6 +192,7 @@ namespace PPRP.Pages
                 provinces.Insert(0, new MProvince { ProvinceNameTH = "ทุกจังหวัด" });
             }
             cbProvince.ItemsSource = (null != provinces) ? provinces : new List<MProvince>();
+
             if (null != provinces)
             {
                 cbProvince.SelectedIndex = 0;
