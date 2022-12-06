@@ -19,7 +19,7 @@ using Newtonsoft.Json.Bson;
 
 #endregion
 
-namespace PPRP.Models.Maps
+namespace PPRP.Models
 {
     #region LADM0
 
