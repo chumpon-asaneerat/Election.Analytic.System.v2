@@ -99,6 +99,7 @@ namespace PPRP
         #endregion
 
         #region Private Methods
+
         private void InitTables()
         {
             Db.CreateTable<LADM0>();
