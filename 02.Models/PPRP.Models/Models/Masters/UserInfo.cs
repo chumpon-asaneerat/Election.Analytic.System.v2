@@ -207,7 +207,7 @@ namespace PPRP.Models
 
             try
             {
-                rets.Value = cnn.Query<UserInfo>("GetUsers", p,
+                rets.data = cnn.Query<UserInfo>("GetUsers", p,
                     commandType: CommandType.StoredProcedure).AsList();
             }
             catch (Exception ex)
@@ -218,10 +218,10 @@ namespace PPRP.Models
                 rets.ErrMsg = ex.Message;
             }
 
-            if (null == rets.Value)
+            if (null == rets.data)
             {
                 // create empty list.
-                rets.Value = new List<UserInfo>();
+                rets.data = new List<UserInfo>();
             }
 
             return rets;
@@ -256,7 +256,7 @@ namespace PPRP.Models
 
             try
             {
-                rets.Value = cnn.Query<UserInfo>("GetUser", p,
+                rets.data = cnn.Query<UserInfo>("GetUser", p,
                     commandType: CommandType.StoredProcedure).FirstOrDefault();
             }
             catch (Exception ex)
@@ -267,10 +267,10 @@ namespace PPRP.Models
                 rets.ErrMsg = ex.Message;
             }
 
-            if (null == rets.Value)
+            if (null == rets.data)
             {
                 // set to null.
-                rets.Value = null;
+                rets.data = null;
             }
 
             return rets;

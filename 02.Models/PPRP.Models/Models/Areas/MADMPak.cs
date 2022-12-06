@@ -431,7 +431,7 @@ namespace PPRP.Models
 
             try
             {
-                rets.Value = cnn.Query<MADMPak>("GetMADMPaks", p,
+                rets.data = cnn.Query<MADMPak>("GetMADMPaks", p,
                     commandType: CommandType.StoredProcedure).ToList();
             }
             catch (Exception ex)
@@ -442,10 +442,10 @@ namespace PPRP.Models
                 rets.ErrMsg = ex.Message;
             }
 
-            if (null == rets.Value)
+            if (null == rets.data)
             {
                 // create empty list.
-                rets.Value = new List<MADMPak>();
+                rets.data = new List<MADMPak>();
             }
 
             return rets;

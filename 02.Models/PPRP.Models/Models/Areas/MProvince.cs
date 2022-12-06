@@ -214,7 +214,7 @@ namespace PPRP.Models
 
             try
             {
-                rets.Value = cnn.Query<MADM1>("GetMProvinces", p,
+                rets.data = cnn.Query<MADM1>("GetMProvinces", p,
                     commandType: CommandType.StoredProcedure).ToList();
             }
             catch (Exception ex)
@@ -225,10 +225,10 @@ namespace PPRP.Models
                 rets.ErrMsg = ex.Message;
             }
 
-            if (null == rets.Value)
+            if (null == rets.data)
             {
                 // create empty list.
-                rets.Value = new List<MADM1>();
+                rets.data = new List<MADM1>();
             }
 
             return rets;
@@ -469,7 +469,7 @@ namespace PPRP.Models
 
             try
             {
-                rets.Value = cnn.Query<MProvince>("GetMProvinces", p,
+                rets.data = cnn.Query<MProvince>("GetMProvinces", p,
                     commandType: CommandType.StoredProcedure).ToList();
             }
             catch (Exception ex)
@@ -480,10 +480,10 @@ namespace PPRP.Models
                 rets.ErrMsg = ex.Message;
             }
 
-            if (null == rets.Value)
+            if (null == rets.data)
             {
                 // create empty list.
-                rets.Value = new List<MProvince>();
+                rets.data = new List<MProvince>();
             }
 
             return rets;

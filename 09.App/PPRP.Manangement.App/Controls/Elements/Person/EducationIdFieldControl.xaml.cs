@@ -65,7 +65,7 @@ namespace PPRP.Controls.Elements
 
         private void LoadComboBox()
         {
-           cb.ItemsSource = MEducation.Gets().Value;
+           cb.ItemsSource = MEducation.Gets().Value();
         }
 
         #endregion

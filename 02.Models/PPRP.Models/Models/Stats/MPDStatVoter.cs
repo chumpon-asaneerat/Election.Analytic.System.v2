@@ -254,7 +254,7 @@ namespace PPRP.Models
 
             try
             {
-                rets.Value = cnn.Query<MPDStatVoter>("GetMPDStatVoterSummaries", p,
+                rets.data = cnn.Query<MPDStatVoter>("GetMPDStatVoterSummaries", p,
                     commandType: CommandType.StoredProcedure).ToList();
             }
             catch (Exception ex)
@@ -265,10 +265,10 @@ namespace PPRP.Models
                 rets.ErrMsg = ex.Message;
             }
 
-            if (null == rets.Value)
+            if (null == rets.data)
             {
                 // create empty list.
-                rets.Value = new List<MPDStatVoter>();
+                rets.data = new List<MPDStatVoter>();
             }
 
             return rets;

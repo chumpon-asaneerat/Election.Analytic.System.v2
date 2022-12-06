@@ -254,7 +254,7 @@ namespace PPRP.Models
 
             try
             {
-                rets.Value = cnn.Query<MADM2>("GetMDistricts", p,
+                rets.data = cnn.Query<MADM2>("GetMDistricts", p,
                     commandType: CommandType.StoredProcedure).ToList();
             }
             catch (Exception ex)
@@ -265,10 +265,10 @@ namespace PPRP.Models
                 rets.ErrMsg = ex.Message;
             }
 
-            if (null == rets.Value)
+            if (null == rets.data)
             {
                 // create empty list.
-                rets.Value = new List<MADM2>();
+                rets.data = new List<MADM2>();
             }
 
             return rets;
@@ -583,7 +583,7 @@ namespace PPRP.Models
 
             try
             {
-                rets.Value = cnn.Query<MDistrict>("GetMDistricts", p,
+                rets.data = cnn.Query<MDistrict>("GetMDistricts", p,
                     commandType: CommandType.StoredProcedure).ToList();
             }
             catch (Exception ex)
@@ -594,10 +594,10 @@ namespace PPRP.Models
                 rets.ErrMsg = ex.Message;
             }
 
-            if (null == rets.Value)
+            if (null == rets.data)
             {
                 // create empty list.
-                rets.Value = new List<MDistrict>();
+                rets.data = new List<MDistrict>();
             }
 
             return rets;

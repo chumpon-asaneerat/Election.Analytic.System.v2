@@ -138,7 +138,7 @@ namespace PPRP.Models
 
             try
             {
-                rets.Value = cnn.Query<MTitle>("GetMTitles", p,
+                rets.data = cnn.Query<MTitle>("GetMTitles", p,
                     commandType: CommandType.StoredProcedure).ToList();
             }
             catch (Exception ex)
@@ -149,10 +149,10 @@ namespace PPRP.Models
                 rets.ErrMsg = ex.Message;
             }
 
-            if (null == rets.Value)
+            if (null == rets.data)
             {
                 // create empty list.
-                rets.Value = new List<MTitle>();
+                rets.data = new List<MTitle>();
             }
 
             return rets;

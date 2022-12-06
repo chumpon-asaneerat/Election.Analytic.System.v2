@@ -159,7 +159,7 @@ namespace PPRP.Models
 
             try
             {
-                rets.Value = cnn.Query<MRegion>("GetMRegions", p,
+                rets.data = cnn.Query<MRegion>("GetMRegions", p,
                     commandType: CommandType.StoredProcedure).AsList();
             }
             catch (Exception ex)
@@ -170,10 +170,10 @@ namespace PPRP.Models
                 rets.ErrMsg = ex.Message;
             }
 
-            if (null == rets.Value)
+            if (null == rets.data)
             {
                 // create empty list.
-                rets.Value = new List<MRegion>();
+                rets.data = new List<MRegion>();
             }
 
             return rets;

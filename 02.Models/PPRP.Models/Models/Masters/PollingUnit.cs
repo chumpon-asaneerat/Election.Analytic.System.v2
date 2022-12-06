@@ -317,7 +317,7 @@ namespace PPRP.Models
 
             try
             {
-                rets.Value = cnn.Query<PollingUnit>("GetPollingUnits", p,
+                rets.data = cnn.Query<PollingUnit>("GetPollingUnits", p,
                     commandType: CommandType.StoredProcedure).ToList();
             }
             catch (Exception ex)
@@ -328,10 +328,10 @@ namespace PPRP.Models
                 rets.ErrMsg = ex.Message;
             }
 
-            if (null == rets.Value)
+            if (null == rets.data)
             {
                 // create empty list.
-                rets.Value = new List<PollingUnit>();
+                rets.data = new List<PollingUnit>();
             }
 
             return rets;

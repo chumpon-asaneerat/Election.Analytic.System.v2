@@ -298,7 +298,7 @@ namespace PPRP.Pages
             lvPersons.ItemsSource = null;
             var persons = MPerson.Gets(sPrefixFilter, sFirstNameFilter, sLastNameFilter, 
                 iPageNo, iRowsPerPage);
-            lvPersons.ItemsSource = (null != persons) ? persons.Value : new List<MPerson>();
+            lvPersons.ItemsSource = (null != persons) ? persons.Value() : new List<MPerson>();
 
             var sv = lvPersons.GetChildOfType<ScrollViewer>();
             if (null != sv)

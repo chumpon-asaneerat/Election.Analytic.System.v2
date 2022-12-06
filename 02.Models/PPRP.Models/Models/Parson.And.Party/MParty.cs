@@ -177,7 +177,7 @@ namespace PPRP.Models
             {
                 var items = cnn.Query<MParty>("GetMParties", p,
                     commandType: CommandType.StoredProcedure);
-                rets.Value = (null != items) ? items.ToList() : null;
+                rets.data = (null != items) ? items.ToList() : null;
 
                 // Get Paging parameters
                 rets.PageNo = p.Get<int>("@pageNum");
@@ -196,10 +196,10 @@ namespace PPRP.Models
                 rets.ErrMsg = ex.Message;
             }
 
-            if (null == rets.Value)
+            if (null == rets.data)
             {
                 // create empty list.
-                rets.Value = new List<MParty>();
+                rets.data = new List<MParty>();
             }
 
             return rets;

@@ -116,7 +116,7 @@ namespace PPRP.Models
 
             try
             {
-                rets.Value = cnn.Query<MGender>("GetMGenders", p,
+                rets.data = cnn.Query<MGender>("GetMGenders", p,
                     commandType: CommandType.StoredProcedure).ToList();
             }
             catch (Exception ex)
@@ -127,10 +127,10 @@ namespace PPRP.Models
                 rets.ErrMsg = ex.Message;
             }
 
-            if (null == rets.Value)
+            if (null == rets.data)
             {
                 // create empty list.
-                rets.Value = new List<MGender>();
+                rets.data = new List<MGender>();
             }
 
             return rets;

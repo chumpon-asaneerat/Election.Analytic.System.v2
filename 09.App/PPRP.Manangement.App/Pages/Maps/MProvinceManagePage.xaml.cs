@@ -120,7 +120,7 @@ namespace PPRP.Pages
         private void Export()
         {
             string msg = string.Empty;
-            var items = MADM1.Gets().Value;
+            var items = MADM1.Gets().Value();
 
             if (ExcelModel.SaveAs(items, "adm1", "tha_adm_areas_adm1.xlsx"))
             {
@@ -163,7 +163,7 @@ namespace PPRP.Pages
         private void LoadRegions()
         {
             cbRegion.ItemsSource = null;
-            var regions = MRegion.Gets().Value;
+            var regions = MRegion.Gets().Value();
             if (null != regions)
             {
                 regions.Insert(0, new MRegion { RegionName = "ทุกภาค" });
@@ -186,7 +186,7 @@ namespace PPRP.Pages
             }
 
             cbProvince.ItemsSource = null;
-            var provinces = MProvince.Gets(regionId: regionId).Value;
+            var provinces = MProvince.Gets(regionId: regionId).Value();
             if (null != provinces)
             {
                 provinces.Insert(0, new MProvince { ProvinceNameTH = "ทุกจังหวัด" });
@@ -218,7 +218,7 @@ namespace PPRP.Pages
 
             lvProvinces.ItemsSource = null;
             var provinces = MProvince.Gets(regionId, adm1Code);
-            lvProvinces.ItemsSource = (null != provinces) ? provinces.Value : new List<MProvince>();
+            lvProvinces.ItemsSource = (null != provinces) ? provinces.Value() : new List<MProvince>();
         }
 
         #endregion

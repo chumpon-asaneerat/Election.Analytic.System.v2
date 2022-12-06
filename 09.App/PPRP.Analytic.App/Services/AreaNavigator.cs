@@ -110,7 +110,7 @@ namespace PPRP
                 {
                     lock (typeof(AreaNavi))
                     {
-                        _regions = PakMenuItem.Gets().Value;
+                        _regions = PakMenuItem.Gets().Value();
                     }
                 }
                 return _regions;

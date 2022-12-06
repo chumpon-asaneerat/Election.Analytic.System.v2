@@ -187,7 +187,7 @@ namespace PPRP.Models
 
             try
             {
-                rets.Value = cnn.Query<MAge>("GetMAges", p,
+                rets.data = cnn.Query<MAge>("GetMAges", p,
                     commandType: CommandType.StoredProcedure).ToList();
             }
             catch (Exception ex)
@@ -198,10 +198,10 @@ namespace PPRP.Models
                 rets.ErrMsg = ex.Message;
             }
 
-            if (null == rets.Value)
+            if (null == rets.data)
             {
                 // create empty list.
-                rets.Value = new List<MAge>();
+                rets.data = new List<MAge>();
             }
 
             return rets;

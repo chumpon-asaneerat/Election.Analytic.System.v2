@@ -243,7 +243,7 @@ namespace PPRP.Pages
 
             lvParties.ItemsSource = null;
             var parties = MParty.Gets(sPartyNameFilter, iPageNo, iRowsPerPage);
-            lvParties.ItemsSource = (null != parties) ? parties.Value : new List<MParty>();
+            lvParties.ItemsSource = (null != parties) ? parties.Value() : new List<MParty>();
 
             var sv = lvParties.GetChildOfType<ScrollViewer>();
             if (null != sv)

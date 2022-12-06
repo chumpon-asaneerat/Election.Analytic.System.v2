@@ -65,7 +65,7 @@ namespace PPRP.Controls.Elements
 
         private void LoadComboBox()
         {
-            cb.ItemsSource = MGender.Gets().Value;
+            cb.ItemsSource = MGender.Gets().Value();
         }
 
         #endregion

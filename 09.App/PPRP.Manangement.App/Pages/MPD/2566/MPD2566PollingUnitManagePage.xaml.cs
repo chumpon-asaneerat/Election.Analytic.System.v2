@@ -113,7 +113,7 @@ namespace PPRP.Pages
         {
             string msg = string.Empty;
             int thaiYear = 2566;
-            var items = PollingUnit.Gets(thaiYear).Value;
+            var items = PollingUnit.Gets(thaiYear).Value();
 
             if (ExcelModel.SaveAs(items, "หน่วยเลือกตั้งแบบแบ่งเขต " + thaiYear.ToString(), "ข้อมูลการเขตเลือกตั้งปี " + thaiYear + ".xlsx"))
             {
@@ -156,7 +156,7 @@ namespace PPRP.Pages
         private void LoadProvinces()
         {
             cbProvince.ItemsSource = null;
-            var provinces = MProvince.Gets().Value;
+            var provinces = MProvince.Gets().Value();
             if (null != provinces)
             {
                 provinces.Insert(0, new MProvince { ProvinceNameTH = "ทุกจังหวัด" });
@@ -181,7 +181,7 @@ namespace PPRP.Pages
             lvPollingUnits.ItemsSource = null;
             int year = 2566;
             var summaries = PollingUnit.Gets(thaiYear: year, provinceNameTH: provinceName);
-            lvPollingUnits.ItemsSource = (null != summaries) ? summaries.Value : new List<PollingUnit>();
+            lvPollingUnits.ItemsSource = (null != summaries) ? summaries.Value() : new List<PollingUnit>();
         }
 
         #endregion

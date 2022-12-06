@@ -66,7 +66,7 @@ namespace PPRP.Services
         public SignInStatus SignIn(string userName, string password)
         {
             UserInfo oUser = default;
-            var Users = UserInfo.Gets(userName: userName).Value;
+            var Users = UserInfo.Gets(userName: userName).Value();
             if (null != Users && Users.Count > 0)
             {
                 oUser = Users[0];
@@ -78,7 +78,7 @@ namespace PPRP.Services
                 return SignInStatus.UserNotFound;
             }
 
-            User = UserInfo.Get(userName, password).Value;
+            User = UserInfo.Get(userName, password).Value();
 
             if (null != User)
             {

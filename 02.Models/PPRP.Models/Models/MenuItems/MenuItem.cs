@@ -104,7 +104,7 @@ namespace PPRP.Models
                 {
                     if (null == _Items)
                     {
-                        _Items = ProvinceMenuItem.Gets(RegionId).Value;
+                        _Items = ProvinceMenuItem.Gets(RegionId).data;
                     }
                 }
                 return _Items;
@@ -144,7 +144,7 @@ namespace PPRP.Models
             {
                 var items = cnn.Query<PakMenuItem>("GetRegionMenuItems", p,
                     commandType: CommandType.StoredProcedure);
-                rets.Value = (null != items) ? items.ToList() : new List<PakMenuItem>();
+                rets.data = (null != items) ? items.ToList() : new List<PakMenuItem>();
             }
             catch (Exception ex)
             {
@@ -154,10 +154,10 @@ namespace PPRP.Models
                 rets.ErrMsg = ex.Message;
             }
 
-            if (null == rets.Value)
+            if (null == rets.data)
             {
                 // create empty list.
-                rets.Value = new List<PakMenuItem>();
+                rets.data = new List<PakMenuItem>();
             }
 
             return rets;
@@ -251,7 +251,7 @@ namespace PPRP.Models
             {
                 var items = cnn.Query<ProvinceMenuItem>("GetProvinceMenuItems", p,
                     commandType: CommandType.StoredProcedure);
-                rets.Value = (null != items) ? items.ToList() : new List<ProvinceMenuItem>();
+                rets.data = (null != items) ? items.ToList() : new List<ProvinceMenuItem>();
             }
             catch (Exception ex)
             {
@@ -261,10 +261,10 @@ namespace PPRP.Models
                 rets.ErrMsg = ex.Message;
             }
 
-            if (null == rets.Value)
+            if (null == rets.data)
             {
                 // create empty list.
-                rets.Value = new List<ProvinceMenuItem>();
+                rets.data = new List<ProvinceMenuItem>();
             }
 
             return rets;
@@ -365,7 +365,7 @@ namespace PPRP.Models
             {
                 var items = cnn.Query<PollingUnitMenuItem>("GetPollingUnitMenuItems", p,
                     commandType: CommandType.StoredProcedure);
-                rets.Value = (null != items) ? items.ToList() : new List<PollingUnitMenuItem>();
+                rets.data = (null != items) ? items.ToList() : new List<PollingUnitMenuItem>();
             }
             catch (Exception ex)
             {
@@ -375,10 +375,10 @@ namespace PPRP.Models
                 rets.ErrMsg = ex.Message;
             }
 
-            if (null == rets.Value)
+            if (null == rets.data)
             {
                 // create empty list.
-                rets.Value = new List<PollingUnitMenuItem>();
+                rets.data = new List<PollingUnitMenuItem>();
             }
 
             return rets;
