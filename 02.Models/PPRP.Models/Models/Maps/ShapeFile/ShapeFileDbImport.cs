@@ -537,6 +537,7 @@ namespace PPRP.Services
                     int iRegionCnt = regions.Count;
                     regions.ForEach(region =>
                     {
+                        LPAK.Import(region);
                         var provinces = MProvince.Gets(region.RegionId).Value();
                         if (null != provinces)
                         {

@@ -190,6 +190,34 @@
                                        FontSize="{StaticResource FontSize18}"
                                        Foreground="Yellow" />
                         </StackPanel>
+                        <!--  ADM Region Mappings  -->
+                        <StackPanel Orientation="Horizontal" Margin="5">
+                            <TextBlock Text="ADM Region Mappings:"
+                                       VerticalAlignment="Center"
+                                       FontFamily="{StaticResource THSarabun}"
+                                       FontSize="{StaticResource FontSize18}"
+                                       Foreground="WhiteSmoke" />
+                            <TextBlock x:Name="txtADMMappings"
+                                       Width="251"
+                                       Margin="5,0"
+                                       VerticalAlignment="Center"
+                                       FontFamily="{StaticResource THSarabun}"
+                                       FontSize="{StaticResource FontSize18}"
+                                       Foreground="Yellow" />
+                            <Button x:Name="cmdImportADMMappings"
+                                    Margin="5,0"
+                                    Width="150"
+                                    Height="30"
+                                    Content="Import"
+                                    Style="{StaticResource InlineButton}"
+                                    Click="cmdImportADMMappings_Click" />
+                            <TextBlock x:Name="txtADMMappingsProcess"
+                                       Margin="5,0"
+                                       VerticalAlignment="Center"
+                                       FontFamily="{StaticResource THSarabun}"
+                                       FontSize="{StaticResource FontSize18}"
+                                       Foreground="Yellow" />
+                        </StackPanel>
                     </StackPanel>
                 </DockPanel>
             </DockPanel>

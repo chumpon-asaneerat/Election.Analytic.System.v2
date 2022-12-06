@@ -130,6 +130,11 @@ namespace PPRP.Pages
             ImportADM3();
         }
 
+        private void cmdImportADMMappings_Click(object sender, RoutedEventArgs e)
+        {
+            ImportPAKMappings();
+        }
+
         #endregion
 
         #region Private Methods
@@ -169,6 +174,7 @@ namespace PPRP.Pages
                     cmdImportADM1.IsEnabled = false;
                     cmdImportADM2.IsEnabled = false;
                     cmdImportADM3.IsEnabled = false;
+                    cmdImportADMMappings.IsEnabled = false;
                 });
                 using (Shapefile shapefile = new Shapefile(fileName))
                 {
@@ -197,6 +203,7 @@ namespace PPRP.Pages
                     cmdImportADM1.IsEnabled = true;
                     cmdImportADM2.IsEnabled = true;
                     cmdImportADM3.IsEnabled = true;
+                    cmdImportADMMappings.IsEnabled = true;
                     txtADM0ProcessPoint.Text = string.Empty;
                 });
             });
@@ -211,12 +218,13 @@ namespace PPRP.Pages
             // Start Db Sercice
             Task.Run(() =>
             {
-                Dispatcher.Invoke(() => 
-                { 
+                Dispatcher.Invoke(() =>
+                {
                     cmdImportADM0.IsEnabled = false;
                     cmdImportADM1.IsEnabled = false;
                     cmdImportADM2.IsEnabled = false;
                     cmdImportADM3.IsEnabled = false;
+                    cmdImportADMMappings.IsEnabled = false;
                 });
                 using (Shapefile shapefile = new Shapefile(fileName))
                 {
@@ -245,6 +253,7 @@ namespace PPRP.Pages
                     cmdImportADM1.IsEnabled = true;
                     cmdImportADM2.IsEnabled = true;
                     cmdImportADM3.IsEnabled = true;
+                    cmdImportADMMappings.IsEnabled = true;
                     txtADM1ProcessPoint.Text = string.Empty;
                 });
             });
@@ -265,6 +274,7 @@ namespace PPRP.Pages
                     cmdImportADM1.IsEnabled = false;
                     cmdImportADM2.IsEnabled = false;
                     cmdImportADM3.IsEnabled = false;
+                    cmdImportADMMappings.IsEnabled = false;
                 });
                 using (Shapefile shapefile = new Shapefile(fileName))
                 {
@@ -293,6 +303,7 @@ namespace PPRP.Pages
                     cmdImportADM1.IsEnabled = true;
                     cmdImportADM2.IsEnabled = true;
                     cmdImportADM3.IsEnabled = true;
+                    cmdImportADMMappings.IsEnabled = true;
                     txtADM2ProcessPoint.Text = string.Empty;
                 });
             });
@@ -313,6 +324,7 @@ namespace PPRP.Pages
                     cmdImportADM1.IsEnabled = false;
                     cmdImportADM2.IsEnabled = false;
                     cmdImportADM3.IsEnabled = false;
+                    cmdImportADMMappings.IsEnabled = false;
                 });
                 using (Shapefile shapefile = new Shapefile(fileName))
                 {
@@ -341,6 +353,7 @@ namespace PPRP.Pages
                     cmdImportADM1.IsEnabled = true;
                     cmdImportADM2.IsEnabled = true;
                     cmdImportADM3.IsEnabled = true;
+                    cmdImportADMMappings.IsEnabled = true;
                     txtADM3ProcessPoint.Text = string.Empty;
                 });
             });
@@ -350,7 +363,49 @@ namespace PPRP.Pages
         /// </summary>
         public void ImportPAKMappings()
         {
+            // Start Db Sercice
+            Task.Run(() =>
+            {
+                Dispatcher.Invoke(() =>
+                {
+                    cmdImportADM0.IsEnabled = false;
+                    cmdImportADM1.IsEnabled = false;
+                    cmdImportADM2.IsEnabled = false;
+                    cmdImportADM3.IsEnabled = false;
+                    txtADMMappingsProcess.IsEnabled = false;
+                });
 
+                ShapeMapDbService.Instance.Start();
+                if (ShapeMapDbService.Instance.Connected)
+                {
+                    var import = new ShapeFileDbImport();
+
+                    import.ImportMappings((retionNo, maxRegion, provinceNo, maxProvince,
+                        districtNo, maxDistrict, subDistrictNo, maxSubDistrict) =>
+                    {
+                        Dispatcher.Invoke(() =>
+                        {
+                            string msg = string.Format("Region: {0:n0}/{1:n0}, Province: {2:n0}/{3:n0}, District: {4:n0}/{5:n0}, Subdistrict: {6:n0}/{7:n0}",
+                                retionNo, maxRegion, provinceNo, maxProvince,
+                                districtNo, maxDistrict, subDistrictNo, maxSubDistrict);
+                            txtADMMappingsProcess.Text = msg;
+                        });
+                    });
+
+                    // Shutdown Db Sercice
+                    ShapeMapDbService.Instance.Shutdown();
+                }
+
+                Dispatcher.Invoke(() =>
+                {
+                    cmdImportADM0.IsEnabled = true;
+                    cmdImportADM1.IsEnabled = true;
+                    cmdImportADM2.IsEnabled = true;
+                    cmdImportADM3.IsEnabled = true;
+                    cmdImportADMMappings.IsEnabled = true;
+                    txtADMMappingsProcess.Text = string.Empty;
+                });
+            });
         }
 
         #endregion
