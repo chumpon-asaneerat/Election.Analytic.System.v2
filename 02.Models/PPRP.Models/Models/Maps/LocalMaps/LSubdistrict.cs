@@ -91,6 +91,7 @@ namespace PPRP.Models
                 return ret;
             }
         }
+
         public static NDbResult<LSubdistrict> Get(string ADM3Code)
         {
             NDbResult<LSubdistrict> ret = new NDbResult<LSubdistrict>();
@@ -108,6 +109,37 @@ namespace PPRP.Models
                     cmd += " WHERE ADM3Code = ? ";
                     var results = NQuery.Query<LSubdistrict>(cmd, ADM3Code).FirstOrDefault();
                     ret.Success(results);
+                }
+                catch (Exception ex)
+                {
+                    med.Err(ex);
+                }
+
+                return ret;
+            }
+        }
+
+        public static NDbResult Import(MSubdistrict value)
+        {
+            NDbResult ret = new NDbResult();
+            if (null == value) return ret;
+
+            lock (sync)
+            {
+                SQLiteConnection db = Default;
+                if (null == db) return ret;
+
+                MethodBase med = MethodBase.GetCurrentMethod();
+                try
+                {
+                    var item = new LSubdistrict();
+                    item.RegionId = value.RegionId;
+                    item.ADM1Code = value.ADM1Code;
+                    item.ADM2Code = value.ADM2Code;
+                    item.ADM3Code = value.ADM3Code;
+                    item.SubdistrictName = value.SubdistrictNameTH;
+                    ret = Save(item);
+                    ret.Success();
                 }
                 catch (Exception ex)
                 {
