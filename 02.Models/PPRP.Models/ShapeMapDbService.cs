@@ -114,6 +114,11 @@ namespace PPRP
             Db.CreateTable<LADM3>();
             Db.CreateTable<LADM3Part>();
             Db.CreateTable<LADM3Point>();
+
+            Db.CreateTable<LPAK>();
+            Db.CreateTable<LProvince>();
+            Db.CreateTable<LDistrict>();
+            Db.CreateTable<LSubdistrict>();
         }
 
         #endregion
