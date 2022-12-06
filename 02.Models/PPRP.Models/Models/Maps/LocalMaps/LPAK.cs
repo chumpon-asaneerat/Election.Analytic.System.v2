@@ -105,6 +105,35 @@ namespace PPRP.Models
             }
         }
 
+        public static NDbResult Import(MRegion value)
+        {
+            NDbResult ret = new NDbResult();
+            if (null == value) return ret;
+
+            lock (sync)
+            {
+                SQLiteConnection db = Default;
+                if (null == db) return ret;
+
+                MethodBase med = MethodBase.GetCurrentMethod();
+                try
+                {
+                    var item = new LPAK();
+                    item.RegionId = value.RegionId;
+                    item.RegionName = value.RegionName;
+                    ret = Save(item);
+                    ret.Success();
+                }
+                catch (Exception ex)
+                {
+                    med.Err(ex);
+                }
+
+                return ret;
+            }
+        }
+
+
         #endregion
     }
 
