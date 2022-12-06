@@ -67,7 +67,7 @@ namespace PPRP.Models
                 try
                 {
                     string cmd = string.Empty;
-                    cmd += "SELECT * FROM LPAK ";
+                    cmd += "SELECT * FROM LProvince ";
                     if (!string.IsNullOrWhiteSpace(RegionId))
                     {
                         cmd += " WHERE RegionId = ? ";
