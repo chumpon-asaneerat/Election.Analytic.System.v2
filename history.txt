@@ -16,8 +16,10 @@ Election.Analytic.System.v2 - PPRP  #306
 Election.Analytic.System.v2 - PPRP  #305
 - 
 
+[commited]
 Election.Analytic.System.v2 - PPRP  #304
-- 
+- PPRP.Manangement.App project
+  - Change Print button icon color.
 
 [commited]
 Election.Analytic.System.v2 - PPRP  #303

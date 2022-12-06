@@ -223,9 +223,9 @@
            TargetType="TextBlock"
            BasedOn="{StaticResource fa-base}">
         <Setter Property="Text" Value="&#xf02f;" />
-        <Setter Property="Foreground" Value="WhiteSmoke" />
+        <Setter Property="Foreground" Value="Navy" />
     </Style>
-    <!--  PRINT  -->
+    <!--  SAVE  -->
     <Style x:Key="fa-save"
            TargetType="TextBlock"
            BasedOn="{StaticResource fa-base}">
