@@ -134,6 +134,10 @@
     <Compile Include="Models\Maps\LocalMaps\LADM1.cs" />
     <Compile Include="Models\Maps\LocalMaps\LADM2.cs" />
     <Compile Include="Models\Maps\LocalMaps\LADM3.cs" />
+    <Compile Include="Models\Maps\LocalMaps\LDistrict.cs" />
+    <Compile Include="Models\Maps\LocalMaps\LPAK.cs" />
+    <Compile Include="Models\Maps\LocalMaps\LProvince.cs" />
+    <Compile Include="Models\Maps\LocalMaps\LSubdistrict.cs" />
     <Compile Include="Models\Maps\ShapeFile\Converter\EndianBitConverter.cs" />
     <Compile Include="Models\Maps\ShapeFile\FileFormat\Header.cs" />
     <Compile Include="Models\Maps\ShapeFile\FileFormat\ShapeFactory.cs" />
