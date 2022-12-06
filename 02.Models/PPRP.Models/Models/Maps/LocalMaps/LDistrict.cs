@@ -60,31 +60,23 @@ namespace PPRP.Models
 
         #region Static Methods
 
-        public static NDbResult<List<LDistrict>> Gets(string RegionId, string ADM0Code = null)
+        public static NDbResult<List<LDistrict>> Gets(string ADM1Code)
         {
             NDbResult<List<LDistrict>> ret = new NDbResult<List<LDistrict>>();
             lock (sync)
             {
                 SQLiteConnection db = Default;
                 if (null == db) return ret;
+                if (string.IsNullOrWhiteSpace(ADM1Code)) return ret;
 
                 MethodBase med = MethodBase.GetCurrentMethod();
                 try
                 {
                     string cmd = string.Empty;
                     cmd += "SELECT * FROM LDistrict ";
-                    cmd += " WHERE RegionId = ? ";
-                    if (!string.IsNullOrWhiteSpace(ADM0Code))
-                    {
-                        cmd += "   AND ADM0Code = ? ";
-                        var results = NQuery.Query<LDistrict>(cmd, RegionId, ADM0Code).ToList();
-                        ret.Success(results);
-                    }
-                    else
-                    {
-                        var results = NQuery.Query<LDistrict>(cmd, RegionId).ToList();
-                        ret.Success(results);
-                    }
+                    cmd += " WHERE ADM1Code = ? ";
+                    var results = NQuery.Query<LDistrict>(cmd, ADM1Code).ToList();
+                    ret.Success(results);
                 }
                 catch (Exception ex)
                 {
@@ -94,24 +86,22 @@ namespace PPRP.Models
                 return ret;
             }
         }
-        public static NDbResult<LDistrict> Get(
-            string RegionId, string ADM0Code)
+        public static NDbResult<LDistrict> Get(string ADM2Code)
         {
             NDbResult<LDistrict> ret = new NDbResult<LDistrict>();
             lock (sync)
             {
                 SQLiteConnection db = Default;
                 if (null == db) return ret;
-                if (string.IsNullOrWhiteSpace(RegionId)) return ret;
+                if (string.IsNullOrWhiteSpace(ADM2Code)) return ret;
+
                 MethodBase med = MethodBase.GetCurrentMethod();
                 try
                 {
                     string cmd = string.Empty;
                     cmd += "SELECT * FROM LDistrict ";
-                    cmd += " WHERE RegionId = ? ";
-                    cmd += "   AND ADM0Code = ? ";
-                    var results = NQuery.Query<LDistrict>(cmd,
-                        RegionId, ADM0Code).FirstOrDefault();
+                    cmd += " WHERE ADM2Code = ? ";
+                    var results = NQuery.Query<LDistrict>(cmd, ADM2Code).FirstOrDefault();
                     ret.Success(results);
                 }
                 catch (Exception ex)

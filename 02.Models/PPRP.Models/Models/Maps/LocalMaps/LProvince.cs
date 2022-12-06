@@ -62,6 +62,7 @@ namespace PPRP.Models
             {
                 SQLiteConnection db = Default;
                 if (null == db) return ret;
+                if (string.IsNullOrWhiteSpace(RegionId)) return ret;
 
                 MethodBase med = MethodBase.GetCurrentMethod();
                 try
@@ -88,24 +89,23 @@ namespace PPRP.Models
                 return ret;
             }
         }
-        public static NDbResult<LProvince> Get(
-            string RegionId, string ADM0Code)
+        public static NDbResult<LProvince> Get(string ADM1Code)
         {
             NDbResult<LProvince> ret = new NDbResult<LProvince>();
             lock (sync)
             {
                 SQLiteConnection db = Default;
                 if (null == db) return ret;
-                if (string.IsNullOrWhiteSpace(RegionId)) return ret;
+                if (string.IsNullOrWhiteSpace(ADM1Code)) return ret;
+
                 MethodBase med = MethodBase.GetCurrentMethod();
                 try
                 {
                     string cmd = string.Empty;
                     cmd += "SELECT * FROM LProvince ";
-                    cmd += " WHERE RegionId = ? ";
-                    cmd += "   AND ADM0Code = ? ";
+                    cmd += " WHERE ADM1Code = ? ";
                     var results = NQuery.Query<LProvince>(cmd,
-                        RegionId, ADM0Code).FirstOrDefault();
+                        ADM1Code).FirstOrDefault();
                     ret.Success(results);
                 }
                 catch (Exception ex)
