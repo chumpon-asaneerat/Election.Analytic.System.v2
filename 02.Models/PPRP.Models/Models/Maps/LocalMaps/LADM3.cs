@@ -95,19 +95,54 @@ namespace PPRP.Models
         /// <summary>
         /// Gets Bound Left position.
         /// </summary>
-        public double BoundLeft { get; set; }
+        public double LF { get; set; }
         /// <summary>
         /// Gets Bound Top position.
         /// </summary>
-        public double BoundTop { get; set; }
+        public double TP { get; set; }
         /// <summary>
         /// Gets Bound Right position.
         /// </summary>
-        public double BoundRight { get; set; }
+        public double RT { get; set; }
         /// <summary>
         /// Gets Bound Bottom position.
         /// </summary>
-        public double BoundBottom { get; set; }
+        public double BT { get; set; }
+        /// <summary>
+        /// Gets Bound Width.
+        /// </summary>
+        [Ignore]
+        public double WD
+        {
+            get { return RT - LF; }
+            set { }
+        }
+        /// <summary>
+        /// Gets Bound Height.
+        /// </summary>
+        [Ignore]
+        public double HT
+        {
+            get { return BT - TP; }
+            set { }
+        }
+        /// <summary>
+        /// Gets Bound Center X.
+        /// </summary>
+        [Ignore]
+        public double CX
+        {
+            get { return LF + (double)(WD / (double)2); }
+            set { }
+        }
+        /// <summary>
+        /// Gets Bound Center Y.
+        /// </summary>
+        public double CY
+        {
+            get { return TP + (double)(HT / (double)2); }
+            set { }
+        }
 
         #endregion
 

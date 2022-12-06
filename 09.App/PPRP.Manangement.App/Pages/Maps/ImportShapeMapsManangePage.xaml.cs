@@ -3,6 +3,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
@@ -13,6 +14,8 @@ using NLib;
 using NLib.Services;
 
 using PPRP.Models;
+using PPRP.Models.ShapeFiles;
+using PPRP.Services;
 
 #endregion
 
@@ -152,7 +155,41 @@ namespace PPRP.Pages
 
         private void ImportADM0()
         {
+            if (null == _mapFile) return;
+            var fileName = _mapFile.ADM0ShapeFullFileName;
+            if (!File.Exists(fileName)) return;
 
+            // Start Db Sercice
+            Task.Run(() =>
+            {
+                Dispatcher.Invoke(() => { cmdImportADM0.IsEnabled = false; });
+                using (Shapefile shapefile = new Shapefile(fileName))
+                {
+                    ShapeMapDbService.Instance.Start();
+                    if (ShapeMapDbService.Instance.Connected)
+                    {
+                        var import = new ShapeFileDbImport();
+                        import.Import(shapefile, (shapeNo, shapeCnt, partNo, partCnt, pointNo, pointMax) =>
+                        {
+                            Dispatcher.Invoke(() =>
+                            {
+                                string msg = string.Format("Shape:{0}/{1}, Part:{2}/{3}, Point:{4}/{5}",
+                                    shapeNo, shapeCnt,
+                                    partNo, partCnt,
+                                    pointNo, pointMax);
+                                txtADM0ProcessPoint.Text = msg;
+                            });
+                        });
+                    }
+                    // Shutdown Db Sercice
+                    ShapeMapDbService.Instance.Shutdown();
+                }
+                Dispatcher.Invoke(() =>
+                {
+                    cmdImportADM0.IsEnabled = true;
+                    txtADM0ProcessPoint.Text = string.Empty;
+                });
+            });
         }
 
         private void ImportADM1()

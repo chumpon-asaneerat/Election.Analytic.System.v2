@@ -136,6 +136,7 @@
     <Compile Include="Models\Maps\ShapeFile\FileFormat\ShapeFactory.cs" />
     <Compile Include="Models\Maps\ShapeFile\FileFormat\ShapeFileEnumerator.cs" />
     <Compile Include="Models\Maps\ShapeFile\Shapefile.cs" />
+    <Compile Include="Models\Maps\ShapeFile\ShapeFileDbImport.cs" />
     <Compile Include="Models\Maps\ShapeFile\Shapes\Shape.cs" />
     <Compile Include="Models\Maps\ShapeFile\Shapes\ShapeMultiPoint.cs" />
     <Compile Include="Models\Maps\ShapeFile\Shapes\ShapePoint.cs" />
@@ -186,7 +187,11 @@
     <PostBuildEvent>REM xcopy "$(SolutionDir)References\Microsoft*.*" "$(TargetDir)\..\PPRP\Microsoft*.*" /Y/D/E
 REM xcopy "$(SolutionDir)References\System*.*" "$(TargetDir)\..\PPRP\System*.*" /Y/D/E
 xcopy "$(SolutionDir)References\runtimes\*.*" "$(TargetDir)\..\PPRP\runtimes\*.*" /Y/D/E
-xcopy "$(SolutionDir)References\SQLite*.*" "$(TargetDir)\..\PPRP\SQLite*.*" /Y/D/E
+REM xcopy "$(SolutionDir)References\SQLite*.*" "$(TargetDir)\..\PPRP\SQLite*.*" /Y/D/E
+REM xcopy "$(SolutionDir)References\System.Buffers.*" "$(TargetDir)\..\PPRP\System.Buffers.*" /Y/D/E
+REM xcopy "$(SolutionDir)References\System.Memory.*" "$(TargetDir)\..\PPRP\System.Memory.*" /Y/D/E
+REM xcopy "$(SolutionDir)References\System.Numerics.Vectors.*" "$(TargetDir)\..\PPRP\System.Numerics.Vectors.*" /Y/D/E
+REM xcopy "$(SolutionDir)References\System.Runtime.CompilerServices.Unsafe.*" "$(TargetDir)\..\PPRP\System.Runtime.CompilerServices.Unsafe.*" /Y/D/E
 </PostBuildEvent>
   </PropertyGroup>
 </Project>
