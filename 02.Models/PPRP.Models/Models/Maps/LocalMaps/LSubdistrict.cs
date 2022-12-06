@@ -65,6 +65,59 @@ namespace PPRP.Models
 
         #region Static Methods
 
+        public static NDbResult<List<LSubdistrict>> Gets(string ADM2Code)
+        {
+            NDbResult<List<LSubdistrict>> ret = new NDbResult<List<LSubdistrict>>();
+            lock (sync)
+            {
+                SQLiteConnection db = Default;
+                if (null == db) return ret;
+                if (string.IsNullOrWhiteSpace(ADM2Code)) return ret;
+
+                MethodBase med = MethodBase.GetCurrentMethod();
+                try
+                {
+                    string cmd = string.Empty;
+                    cmd += "SELECT * FROM LSubdistrict ";
+                    cmd += " WHERE ADM2Code = ? ";
+                    var results = NQuery.Query<LSubdistrict>(cmd, ADM2Code).ToList();
+                    ret.Success(results);
+                }
+                catch (Exception ex)
+                {
+                    med.Err(ex);
+                }
+
+                return ret;
+            }
+        }
+        public static NDbResult<LSubdistrict> Get(string ADM3Code)
+        {
+            NDbResult<LSubdistrict> ret = new NDbResult<LSubdistrict>();
+            lock (sync)
+            {
+                SQLiteConnection db = Default;
+                if (null == db) return ret;
+                if (string.IsNullOrWhiteSpace(ADM3Code)) return ret;
+
+                MethodBase med = MethodBase.GetCurrentMethod();
+                try
+                {
+                    string cmd = string.Empty;
+                    cmd += "SELECT * FROM LSubdistrict ";
+                    cmd += " WHERE ADM3Code = ? ";
+                    var results = NQuery.Query<LSubdistrict>(cmd, ADM3Code).FirstOrDefault();
+                    ret.Success(results);
+                }
+                catch (Exception ex)
+                {
+                    med.Err(ex);
+                }
+
+                return ret;
+            }
+        }
+
         #endregion
     }
 
