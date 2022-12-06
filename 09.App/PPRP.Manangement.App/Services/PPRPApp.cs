@@ -326,6 +326,28 @@ namespace PPRP
             }
 
             #endregion
+
+            #region Shape Maps
+
+            private static ImportShapeMapsManangePage _ImportShapeMapsManange;
+
+            /// <summary>Gets Import ShapeMaps Manage Page.</summary>
+            public static ImportShapeMapsManangePage ImportShapeMapsManange
+            {
+                get
+                {
+                    if (null == _ImportShapeMapsManange)
+                    {
+                        lock (typeof(PPRPApp))
+                        {
+                            _ImportShapeMapsManange = new ImportShapeMapsManangePage();
+                        }
+                    }
+                    return _ImportShapeMapsManange;
+                }
+            }
+
+            #endregion
         }
         /// <summary>
         /// Windows Static class.

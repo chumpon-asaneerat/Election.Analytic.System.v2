@@ -201,48 +201,26 @@
                                                    Margin="5"
                                                    Text="ข้อมูลแผนที่" />
                                     </Border>
-                                    <!--  นำเข้าข้อมูลแผนที่ระดับประเทศ  -->
+                                    <!--  นำเข้าข้อมูลแผนที่  -->
                                     <TextBlock FontFamily="{DynamicResource THSarabun}"
                                                FontSize="{StaticResource FontSize18}"
                                                Margin="15,5,5,5"
                                                Cursor="Hand">
-                                        <Hyperlink x:Name="mnuImportMapADM0Manage"
+                                        <Hyperlink x:Name="mnuImportMapADMManage"
                                                    Foreground="{StaticResource MainMenuItemForeground}"
-                                                   Click="mnuImportMapADM0Manage_Click">
-                                            นำเข้าข้อมูลแผนที่ระดับจังหวัด
+                                                   Click="mnuImportMapADMManage_Click">
+                                            นำเข้าข้อมูลแผนที่
                                         </Hyperlink>
                                     </TextBlock>
-                                    <!--  นำเข้าข้อมูลแผนที่ระดับจังหวัด  -->
+                                    <!--  ตรวจสอบข้อมูลแผนที่  -->
                                     <TextBlock FontFamily="{DynamicResource THSarabun}"
                                                FontSize="{StaticResource FontSize18}"
                                                Margin="15,5,5,5"
                                                Cursor="Hand">
-                                        <Hyperlink x:Name="mnuImportMapADM1Manage"
+                                        <Hyperlink x:Name="mnuMapViewer"
                                                    Foreground="{StaticResource MainMenuItemForeground}"
-                                                   Click="mnuImportMapADM1Manage_Click">
-                                            นำเข้าข้อมูลแผนที่ระดับจังหวัด
-                                        </Hyperlink>
-                                    </TextBlock>
-                                    <!--  นำเข้าข้อมูลแผนที่ระดับอำเภอ  -->
-                                    <TextBlock FontFamily="{DynamicResource THSarabun}"
-                                               FontSize="{StaticResource FontSize18}"
-                                               Margin="15,5,5,5"
-                                               Cursor="Hand">
-                                        <Hyperlink x:Name="mnuImportMapADM2Manage"
-                                                   Foreground="{StaticResource MainMenuItemForeground}"
-                                                   Click="mnuImportMapADM2Manage_Click">
-                                            นำเข้าข้อมูลแผนที่ระดับอำเภอ
-                                        </Hyperlink>
-                                    </TextBlock>
-                                    <!--  นำเข้าข้อมูลแผนที่ระดับตำบล  -->
-                                    <TextBlock FontFamily="{DynamicResource THSarabun}"
-                                               FontSize="{StaticResource FontSize18}"
-                                               Margin="15,5,5,5"
-                                               Cursor="Hand">
-                                        <Hyperlink x:Name="mnuImportMapADM3Manage"
-                                                   Foreground="{StaticResource MainMenuItemForeground}"
-                                                   Click="mnuImportMapADM0Manage_Click">
-                                            นำเข้าข้อมูลแผนที่ระดับอำเภอ
+                                                   Click="mnuMapViewer_Click">
+                                            ตรวจสอบข้อมูลแผนที่
                                         </Hyperlink>
                                     </TextBlock>
                                 </StackPanel>

@@ -113,11 +113,14 @@
     <Compile Include="Controls\Navigators\PagingControl.xaml.cs">
       <DependentUpon>PagingControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\Maps\ADMPakManagePage.xaml.cs">
+    <Compile Include="Pages\ADM\ADMPakManagePage.xaml.cs">
       <DependentUpon>ADMPakManagePage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\Maps\MDistrictManagePage.xaml.cs">
+    <Compile Include="Pages\ADM\MDistrictManagePage.xaml.cs">
       <DependentUpon>MDistrictManagePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Maps\ImportShapeMapsManangePage.xaml.cs">
+      <DependentUpon>ImportShapeMapsManangePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\MPD\2566\MPDC2566ManagePage.xaml.cs">
       <DependentUpon>MPDC2566ManagePage.xaml</DependentUpon>
@@ -134,10 +137,10 @@
     <Compile Include="Pages\MPD\2566\MPD2566PollingUnitManagePage.xaml.cs">
       <DependentUpon>MPD2566PollingUnitManagePage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\Maps\MProvinceManagePage.xaml.cs">
+    <Compile Include="Pages\ADM\MProvinceManagePage.xaml.cs">
       <DependentUpon>MProvinceManagePage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\Maps\MSubdistrictManagePage.xaml.cs">
+    <Compile Include="Pages\ADM\MSubdistrictManagePage.xaml.cs">
       <DependentUpon>MSubdistrictManagePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\Party\PartyManagePage.xaml.cs">
@@ -263,11 +266,15 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Pages\Maps\ADMPakManagePage.xaml">
+    <Page Include="Pages\ADM\ADMPakManagePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\Maps\MDistrictManagePage.xaml">
+    <Page Include="Pages\ADM\MDistrictManagePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Maps\ImportShapeMapsManangePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -295,11 +302,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\Maps\MProvinceManagePage.xaml">
+    <Page Include="Pages\ADM\MProvinceManagePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\Maps\MSubdistrictManagePage.xaml">
+    <Page Include="Pages\ADM\MSubdistrictManagePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

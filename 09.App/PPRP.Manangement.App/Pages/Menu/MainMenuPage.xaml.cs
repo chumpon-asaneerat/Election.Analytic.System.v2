@@ -102,24 +102,14 @@ namespace PPRP.Pages
 
         #region Group 3 - ข้อมูลแผนที่
 
-        private void mnuImportMapADM0Manage_Click(object sender, RoutedEventArgs e)
+        private void mnuImportMapADMManage_Click(object sender, RoutedEventArgs e)
         {
-            ImportMapADM0Manage();
+            ImportMapsManage();
         }
 
-        private void mnuImportMapADM1Manage_Click(object sender, RoutedEventArgs e)
+        private void mnuMapViewer_Click(object sender, RoutedEventArgs e)
         {
-            ImportMapADM1Manage();
-        }
-
-        private void mnuImportMapADM2Manage_Click(object sender, RoutedEventArgs e)
-        {
-            ImportMapADM2Manage();
-        }
-
-        private void mnuImportMapADM3Manage_Click(object sender, RoutedEventArgs e)
-        {
-            ImportMapADM3Manage();
+            ViewMapsManage();
         }
 
         #endregion
@@ -224,24 +214,17 @@ namespace PPRP.Pages
 
         #region MAPS Import
 
-        private void ImportMapADM0Manage()
+        private void ImportMapsManage()
         {
-
+            // นำเข้าข้อมูลแผนที่
+            var page = PPRPApp.Pages.ImportShapeMapsManange;
+            page.Setup();
+            PageContentManager.Instance.Current = page;
         }
 
-        private void ImportMapADM1Manage()
+        private void ViewMapsManage()
         {
-
-        }
-
-        private void ImportMapADM2Manage()
-        {
-
-        }
-
-        private void ImportMapADM3Manage()
-        {
-
+            // เรียกดูข้อมูลแผนที่
         }
 
         #endregion
