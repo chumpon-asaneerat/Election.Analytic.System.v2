@@ -74,6 +74,39 @@ namespace PPRP
 
         #endregion
 
+        #region Window Closing
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            if (null != PageContentManager.Instance.Current)
+            {
+                Type curr = PageContentManager.Instance.Current.GetType();
+                if (curr != PPRPApp.Pages.SignIn.GetType())
+                {
+                    var win = PPRPApp.Windows.MessageBoxOKCancel;
+                    win.Setup("ต้องการปิดโปรแกรมใช่หรือไม่", "PPRP");
+                    if (win.ShowDialog() == true)
+                    {
+                        // signout
+                        SignInManager.Instance.Signout();
+                        e.Cancel = false;
+                    }
+                    else
+                    {
+                        // stay on current page.
+                        e.Cancel = true;
+                    }
+                }
+                else
+                {
+                    // on signin page so allow close
+                    e.Cancel = false;
+                }
+            }
+        }
+
+        #endregion
+
         #region Page Content Manager Handlers
 
         void Instance_ContentChanged(object sender, EventArgs e)

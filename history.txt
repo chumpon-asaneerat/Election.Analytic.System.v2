@@ -22,12 +22,16 @@ Election.Analytic.System.v2 - PPRP  #304
 Election.Analytic.System.v2 - PPRP  #303
 - 
 
+[commited]
 Election.Analytic.System.v2 - PPRP  #302
-- 
+- PPRP.Manangement.App project
+  - Implements UI #180.
+    - MainWindow check close window.
 
 [commited]
 Election.Analytic.System.v2 - PPRP  #301
-  - Implements UI #176.
+- PPRP.Manangement.App project
+  - Implements UI #179.
     - ImportPartyImageWindow lock UI during import process.
     - ImportPersonImageWindow lock UI during import process.
 
@@ -37,16 +41,19 @@ Election.Analytic.System.v2 - PPRP  #300
 
 [commited]
 Election.Analytic.System.v2 - PPRP  #299
+- PPRP.Manangement.App project
   - Implements UI #178.
     - ImportMPD2562StatVoterWindow lock UI during import process.
 
 [commited]
 Election.Analytic.System.v2 - PPRP  #298
+- PPRP.Manangement.App project
   - Implements UI #177.
     - ImportMPD2562VoteSummaryWindow lock UI during import process.
 
 [commited]
 Election.Analytic.System.v2 - PPRP  #297
+- PPRP.Manangement.App project
   - Implements UI #176.
     - ImportMPD2562PollingUnitWindow lock UI during import process.
     - ImportMPD2566PollingUnitWindow lock UI during import process.

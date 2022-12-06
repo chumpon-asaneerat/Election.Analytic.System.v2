@@ -11,6 +11,7 @@
         WindowState="Maximized"
         Loaded="Window_Loaded"
         Unloaded="Window_Unloaded"
+        Closing="Window_Closing"
         mc:Ignorable="d">
     <Grid>
         <ContentPresenter x:Name="container" />
