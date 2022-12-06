@@ -170,13 +170,12 @@ namespace PPRP.Pages
 
         private void LoadRegions()
         {
-            cbRegion.ItemsSource = null;
             var regions = MRegion.Gets().Value();
             if (null != regions)
             {
                 regions.Insert(0, new MRegion { RegionName = "ทุกภาค" });
             }
-            cbRegion.ItemsSource = (null != regions) ? regions : new List<MRegion>();
+            cbRegion.ItemsSource = (null != regions) ? regions : null;
             if (null != regions)
             {
                 cbRegion.SelectedIndex = 0;
@@ -199,7 +198,7 @@ namespace PPRP.Pages
             {
                 provinces.Insert(0, new MProvince { ProvinceNameTH = "ทุกจังหวัด" });
             }
-            cbProvince.ItemsSource = (null != provinces) ? provinces : new List<MProvince>();
+            cbProvince.ItemsSource = (null != provinces) ? provinces : null;
             if (null != provinces)
             {
                 cbProvince.SelectedIndex = 0;
@@ -231,7 +230,7 @@ namespace PPRP.Pages
                 districts.Insert(0, new MDistrict { DistrictNameTH = "ทุกอำเภอ/เขต" } );
             }
 
-            cbDistrict.ItemsSource = (null != districts) ? districts : new List<MDistrict>();
+            cbDistrict.ItemsSource = (null != districts) ? districts : null;
 
             if (null != districts)
             {
