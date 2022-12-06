@@ -2,6 +2,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
@@ -34,11 +35,96 @@ namespace PPRP.Pages
 
         #endregion
 
+        #region Internal Class
+
+        private class MapFiles : ModelBase
+        {
+            private string _ShapeFilePath = string.Empty;
+
+            public MapFiles()
+            {
+                ShapeFilePath = @".\shapefiles";
+                ADM0ShapeFile = "thailand_adm0.shp";
+                ADM1ShapeFile = "thailand_adm1.shp";
+                ADM2ShapeFile = "thailand_adm2.shp";
+                ADM3ShapeFile = "thailand_adm3.shp";
+            }
+            public string ShapeFilePath
+            {
+                get { return _ShapeFilePath; }
+                set
+                {
+                    if (_ShapeFilePath != value)
+                    {
+                        _ShapeFilePath = value;
+                        RaiseChanged("ShapeFilePath");
+                        RaiseChanged("ADM0ShapeFile");
+                        RaiseChanged("ADM1ShapeFile");
+                        RaiseChanged("ADM2ShapeFile");
+                    }
+                }
+            }
+
+            public string ADM0ShapeFile { get; private set; }
+            public string ADM1ShapeFile { get; private set; }
+            public string ADM2ShapeFile { get; private set; }
+            public string ADM3ShapeFile { get; private set; }
+
+            public string ADM0ShapeFullFileName
+            {
+                get { return System.IO.Path.Combine(ShapeFilePath, ADM0ShapeFile); }
+                set { }
+            }
+            public string ADM1ShapeFullFileName
+            {
+                get { return System.IO.Path.Combine(ShapeFilePath, ADM1ShapeFile); }
+                set { }
+            }
+            public string ADM2ShapeFullFileName
+            {
+                get { return System.IO.Path.Combine(ShapeFilePath, ADM2ShapeFile); }
+                set { }
+            }
+            public string ADM3ShapeFullFileName
+            {
+                get { return System.IO.Path.Combine(ShapeFilePath, ADM3ShapeFile); }
+                set { }
+            }
+        }
+
+        #endregion
+
+        #region Internal Variables
+
+        private MapFiles _mapFile = new MapFiles();
+
+        #endregion
+
         #region Button Handlers
 
         private void cmdHome_Click(object sender, RoutedEventArgs e)
         {
             GotoMainMenuPage();
+        }
+
+        private void cmdImportADM0_Click(object sender, RoutedEventArgs e)
+        {
+            ImportADM0();
+        }
+
+        private void cmdImportADM1_Click(object sender, RoutedEventArgs e)
+        {
+            ImportADM1();
+        }
+
+        private void cmdImportADM2_Click(object sender, RoutedEventArgs e)
+        {
+            ImportADM2();
+        }
+
+        private void cmdImportADM3_Click(object sender, RoutedEventArgs e)
+        {
+            ImportADM3();
         }
 
         #endregion
@@ -51,6 +137,38 @@ namespace PPRP.Pages
             page.Setup();
             PageContentManager.Instance.Current = page;
         }
+        private void ScanFiles()
+        {
+            if (null == _mapFile) return;
+            txtADM0FileName.Text = _mapFile.ADM0ShapeFile;
+            cmdImportADM0.IsEnabled = File.Exists(_mapFile.ADM0ShapeFullFileName) ? true : false;
+            txtADM1FileName.Text = _mapFile.ADM1ShapeFile;
+            cmdImportADM1.IsEnabled = File.Exists(_mapFile.ADM1ShapeFullFileName) ? true : false;
+            txtADM2FileName.Text = _mapFile.ADM2ShapeFile;
+            cmdImportADM2.IsEnabled = File.Exists(_mapFile.ADM2ShapeFullFileName) ? true : false;
+            txtADM3FileName.Text = _mapFile.ADM3ShapeFile;
+            cmdImportADM3.IsEnabled = File.Exists(_mapFile.ADM3ShapeFullFileName) ? true : false;
+        }
+
+        private void ImportADM0()
+        {
+
+        }
+
+        private void ImportADM1()
+        {
+
+        }
+
+        private void ImportADM2()
+        {
+
+        }
+
+        private void ImportADM3()
+        {
+
+        }
 
         #endregion
 
@@ -61,29 +179,9 @@ namespace PPRP.Pages
         /// </summary>
         public void Setup()
         {
-
+            ScanFiles();
         }
 
         #endregion
-
-        private void cmdImportADM0_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void cmdImportADM1_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void cmdImportADM2_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void cmdImportADM3_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
     }
 }

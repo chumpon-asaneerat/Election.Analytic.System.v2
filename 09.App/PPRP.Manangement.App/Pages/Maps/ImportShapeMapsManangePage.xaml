@@ -89,9 +89,9 @@
                                        VerticalAlignment="Center"
                                        FontFamily="{StaticResource THSarabun}"
                                        FontSize="{StaticResource FontSize18}"
-                                       Width="400"
+                                       Width="300"
                                        Margin="5,0"
-                                       Foreground="Navy" />
+                                       Foreground="Yellow" />
                             <Button x:Name="cmdImportADM0"
                                     Margin="5,0"
                                     Width="150"
@@ -109,7 +109,7 @@
                                        FontSize="{StaticResource FontSize18}"
                                        Foreground="WhiteSmoke" />
                             <TextBlock x:Name="txtADM1FileName"
-                                       Width="400"
+                                       Width="300"
                                        Margin="5,0"
                                        VerticalAlignment="Center"
                                        FontFamily="{StaticResource THSarabun}"
@@ -132,7 +132,7 @@
                                        FontSize="{StaticResource FontSize18}"
                                        Foreground="WhiteSmoke" />
                             <TextBlock x:Name="txtADM2FileName"
-                                       Width="400"
+                                       Width="300"
                                        Margin="5,0"
                                        VerticalAlignment="Center"
                                        FontFamily="{StaticResource THSarabun}"
@@ -155,7 +155,7 @@
                                        FontSize="{StaticResource FontSize18}"
                                        Foreground="WhiteSmoke" />
                             <TextBlock x:Name="txtADM3FileName"
-                                       Width="400"
+                                       Width="300"
                                        Margin="5,0"
                                        VerticalAlignment="Center"
                                        FontFamily="{StaticResource THSarabun}"
