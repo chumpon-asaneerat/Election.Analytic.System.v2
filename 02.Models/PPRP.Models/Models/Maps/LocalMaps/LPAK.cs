@@ -77,6 +77,7 @@ namespace PPRP.Models
                 return ret;
             }
         }
+
         public static NDbResult<LPAK> Get(
             string RegionId)
         {
@@ -132,7 +133,6 @@ namespace PPRP.Models
                 return ret;
             }
         }
-
 
         #endregion
     }

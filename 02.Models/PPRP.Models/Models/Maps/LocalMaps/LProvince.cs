@@ -89,6 +89,7 @@ namespace PPRP.Models
                 return ret;
             }
         }
+
         public static NDbResult<LProvince> Get(string ADM1Code)
         {
             NDbResult<LProvince> ret = new NDbResult<LProvince>();
@@ -107,6 +108,35 @@ namespace PPRP.Models
                     var results = NQuery.Query<LProvince>(cmd,
                         ADM1Code).FirstOrDefault();
                     ret.Success(results);
+                }
+                catch (Exception ex)
+                {
+                    med.Err(ex);
+                }
+
+                return ret;
+            }
+        }
+
+        public static NDbResult Import(MProvince value)
+        {
+            NDbResult ret = new NDbResult();
+            if (null == value) return ret;
+
+            lock (sync)
+            {
+                SQLiteConnection db = Default;
+                if (null == db) return ret;
+
+                MethodBase med = MethodBase.GetCurrentMethod();
+                try
+                {
+                    var item = new LProvince();
+                    item.RegionId = value.RegionId;
+                    item.ADM1Code = value.ADM1Code;
+                    item.ProvinceName = value.ProvinceNameTH;
+                    ret = Save(item);
+                    ret.Success();
                 }
                 catch (Exception ex)
                 {
