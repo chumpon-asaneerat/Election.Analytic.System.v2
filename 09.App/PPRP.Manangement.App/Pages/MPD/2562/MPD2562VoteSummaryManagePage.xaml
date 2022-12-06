@@ -76,16 +76,6 @@
                                 Click="cmdRefresh_Click">
                             <TextBlock Style="{StaticResource fa-refresh}" FontSize="{StaticResource IBFSize}" />
                         </Button>
-                        <!--  SEARCH  -->
-                        <Button x:Name="cmdSearch"
-                                Visibility="{StaticResource SearchButtonVisible}"
-                                DockPanel.Dock="Right"
-                                Style="{StaticResource InlineButton}"
-                                Height="30"
-                                Width="30"
-                                Click="cmdSearch_Click">
-                            <TextBlock Style="{StaticResource fa-search}" FontSize="{StaticResource IBFSize}" />
-                        </Button>
                         <!--  PROVINCE  -->
                         <TextBlock Text="จังหวัด"
                                    DockPanel.Dock="Left"
@@ -148,6 +138,16 @@
                                  VerticalContentAlignment="Center"
                                  KeyDown="txtFullNameFilter_KeyDown" />
                         <TextBlock Width="10" DockPanel.Dock="Left" />
+                        <!--  SEARCH  -->
+                        <Button x:Name="cmdSearch"
+                                Visibility="{StaticResource SearchButtonVisible}"
+                                DockPanel.Dock="Left"
+                                Style="{StaticResource InlineButton}"
+                                Height="30"
+                                Width="30"
+                                Click="cmdSearch_Click">
+                            <TextBlock Style="{StaticResource fa-search}" FontSize="{StaticResource IBFSize}" />
+                        </Button>
                         <Grid />
                     </DockPanel>
                     <!--  BUTTONS BAR  -->

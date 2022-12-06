@@ -276,6 +276,9 @@ namespace PPRP.Pages
                 sPartyNameFilter = string.Empty;
                 sFullNameFilter = string.Empty;
 
+                txtPartyNameFilter.Text = string.Empty;
+                txtFullNameFilter.Text = string.Empty;
+
                 Dispatcher.BeginInvoke(new Action(() =>
                 {
                     LoadProvinces();

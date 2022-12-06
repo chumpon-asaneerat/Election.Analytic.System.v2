@@ -328,6 +328,10 @@ namespace PPRP.Pages
                 sFirstNameFilter = string.Empty;
                 sLastNameFilter = string.Empty;
 
+                txtPrefixFilter.Text = string.Empty;
+                txtFirstNameFilter.Text = string.Empty;
+                txtLastNameFilter.Text = string.Empty;
+
                 iPageNo = 1;
                 iMaxPage = 1;
 

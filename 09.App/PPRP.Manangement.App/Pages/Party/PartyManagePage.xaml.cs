@@ -270,6 +270,8 @@ namespace PPRP.Pages
             if (reload)
             {
                 sPartyNameFilter = string.Empty;
+                txtPartyNameFilter.Text = string.Empty;
+
                 iPageNo = 1;
                 iMaxPage = 1;
 
