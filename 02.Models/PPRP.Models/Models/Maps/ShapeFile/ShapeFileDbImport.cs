@@ -88,12 +88,16 @@ namespace PPRP.Services
                     {
                         int iPart = 1;
                         int maxPart = shapePolygon.Parts.Count;
+                        LADM0Part.DeleteAll(); // delete all first.
+
                         foreach (PointD[] part in shapePolygon.Parts)
                         {
                             ShapeMapDbService.Instance.Db.BeginTransaction();
 
-                            var admPart = LADM0Part.Get(row.ADM0Code, recordId).Value();
-                            if (null == admPart) admPart = new LADM0Part();
+                            //var admPart = LADM0Part.Get(row.ADM0Code, recordId).Value();
+                            //if (null == admPart) admPart = new LADM0Part();
+                            var admPart = new LADM0Part();
+
                             admPart.ADM0Code = row.ADM0Code;
                             admPart.RecordId = recordId;
                             admPart.PointCount = part.Length;
@@ -102,10 +106,14 @@ namespace PPRP.Services
 
                             int iCnt = 1;
                             int maxPts = part.Length;
+                            LADM0Point.DeleteAll(); // delete all first.
+
                             foreach (PointD point in part)
                             {
-                                var admPoint = LADM0Point.Get(row.ADM0Code, recordId, iCnt).Value();
-                                if (null == admPoint) admPoint = new LADM0Point();
+                                //var admPoint = LADM0Point.Get(row.ADM0Code, recordId, iCnt).Value();
+                                //if (null == admPoint) admPoint = new LADM0Point();
+                                var admPoint = new LADM0Point();
+
                                 admPoint.ADM0Code = row.ADM0Code;
                                 admPoint.RecordId = recordId;
                                 admPoint.PointId = iCnt;
@@ -187,13 +195,16 @@ namespace PPRP.Services
                     {
                         int iPart = 1;
                         int maxPart = shapePolygon.Parts.Count;
+                        LADM1Part.DeleteAll(); // delete all first
+
                         foreach (PointD[] part in shapePolygon.Parts)
                         {
                             ShapeMapDbService.Instance.Db.BeginTransaction();
 
+                            //var admPart = LADM1Part.Get(row.ADM0Code, row.ADM1Code, recordId).Value();
+                            //if (null == admPart) admPart = new LADM1Part();
+                            var admPart = new LADM1Part();
 
-                            var admPart = LADM1Part.Get(row.ADM0Code, row.ADM1Code, recordId).Value();
-                            if (null == admPart) admPart = new LADM1Part();
                             admPart.ADM0Code = row.ADM0Code;
                             admPart.ADM1Code = row.ADM1Code;
                             admPart.RecordId = recordId;
@@ -203,10 +214,14 @@ namespace PPRP.Services
 
                             int iCnt = 1;
                             int maxPts = part.Length;
+                            LADM1Point.DeleteAll(); // delete all first
+
                             foreach (PointD point in part)
                             {
-                                var admPoint = LADM1Point.Get(row.ADM0Code, row.ADM1Code, recordId, iCnt).Value();
-                                if (null == admPoint) admPoint = new LADM1Point();
+                                //var admPoint = LADM1Point.Get(row.ADM0Code, row.ADM1Code, recordId, iCnt).Value();
+                                //if (null == admPoint) admPoint = new LADM1Point();
+                                var admPoint = new LADM1Point();
+
                                 admPoint.ADM0Code = row.ADM0Code;
                                 admPoint.ADM1Code = row.ADM1Code;
                                 admPoint.RecordId = recordId;
@@ -292,13 +307,16 @@ namespace PPRP.Services
                     {
                         int iPart = 1;
                         int maxPart = shapePolygon.Parts.Count;
+                        LADM2Part.DeleteAll(); // delete all first.
+
                         foreach (PointD[] part in shapePolygon.Parts)
                         {
                             ShapeMapDbService.Instance.Db.BeginTransaction();
 
+                            //var admPart = LADM2Part.Get(row.ADM0Code, row.ADM1Code, row.ADM2Code, recordId).Value();
+                            //if (null == admPart) admPart = new LADM2Part();
+                            var admPart = new LADM2Part();
 
-                            var admPart = LADM2Part.Get(row.ADM0Code, row.ADM1Code, row.ADM2Code, recordId).Value();
-                            if (null == admPart) admPart = new LADM2Part();
                             admPart.ADM0Code = row.ADM0Code;
                             admPart.ADM1Code = row.ADM1Code;
                             admPart.RecordId = recordId;
@@ -308,10 +326,14 @@ namespace PPRP.Services
 
                             int iCnt = 1;
                             int maxPts = part.Length;
+                            LADM2Point.DeleteAll(); // delete all first.
+
                             foreach (PointD point in part)
                             {
-                                var admPoint = LADM2Point.Get(row.ADM0Code, row.ADM1Code, row.ADM2Code, recordId, iCnt).Value();
-                                if (null == admPoint) admPoint = new LADM2Point();
+                                //var admPoint = LADM2Point.Get(row.ADM0Code, row.ADM1Code, row.ADM2Code, recordId, iCnt).Value();
+                                //if (null == admPoint) admPoint = new LADM2Point();
+                                var admPoint = new LADM2Point();
+
                                 admPoint.ADM0Code = row.ADM0Code;
                                 admPoint.ADM1Code = row.ADM1Code;
                                 admPoint.RecordId = recordId;
