@@ -180,7 +180,7 @@ namespace PPRP.Pages
                         {
                             Dispatcher.Invoke(() =>
                             {
-                                string msg = string.Format("Shape:{0:n0}/{1:n0}, Part:{2:n0}/{3:n0}, Point:{4:n0}/{5:n0}",
+                                string msg = string.Format("Shape: {0:n0}/{1:n0}, Part: {2:n0}/{3:n0}, Point: {4:n0}/{5:n0}",
                                     shapeNo, shapeCnt,
                                     partNo, partCnt,
                                     pointNo, pointMax);
@@ -228,7 +228,7 @@ namespace PPRP.Pages
                         {
                             Dispatcher.Invoke(() =>
                             {
-                                string msg = string.Format("Shape:{0:n0}/{1:n0}, Part:{2:n0}/{3:n0}, Point:{4:n0}/{5:n0}",
+                                string msg = string.Format("Shape: {0:n0}/{1:n0}, Part: {2:n0}/{3:n0}, Point: {4:n0}/{5:n0}",
                                     shapeNo, shapeCnt,
                                     partNo, partCnt,
                                     pointNo, pointMax);
@@ -276,7 +276,7 @@ namespace PPRP.Pages
                         {
                             Dispatcher.Invoke(() =>
                             {
-                                string msg = string.Format("Shape:{0:n0}/{1:n0}, Part:{2:n0}/{3:n0}, Point:{4:n0}/{5:n0}",
+                                string msg = string.Format("Shape: {0:n0}/{1:n0}, Part: {2:n0}/{3:n0}, Point: {4:n0}/{5:n0}",
                                     shapeNo, shapeCnt,
                                     partNo, partCnt,
                                     pointNo, pointMax);
@@ -324,7 +324,7 @@ namespace PPRP.Pages
                         {
                             Dispatcher.Invoke(() =>
                             {
-                                string msg = string.Format("Shape:{0:n0}/{1:n0}, Part:{2:n0}/{3:n0}, Point:{4:n0}/{5:n0}",
+                                string msg = string.Format("Shape: {0:n0}/{1:n0}, Part: {2:n0}/{3:n0}, Point: {4:n0}/{5:n0}",
                                     shapeNo, shapeCnt,
                                     partNo, partCnt,
                                     pointNo, pointMax);
@@ -345,8 +345,10 @@ namespace PPRP.Pages
                 });
             });
         }
-
-        private void ImportPAKMappings()
+        /// <summary>
+        /// Import PAK Mappings.
+        /// </summary>
+        public void ImportPAKMappings()
         {
 
         }
