@@ -207,8 +207,9 @@ namespace PPRP.Models
 
             try
             {
-                rets.data = cnn.Query<UserInfo>("GetUsers", p,
+                var data = cnn.Query<UserInfo>("GetUsers", p,
                     commandType: CommandType.StoredProcedure).AsList();
+                rets.Success(data);
             }
             catch (Exception ex)
             {
@@ -256,8 +257,9 @@ namespace PPRP.Models
 
             try
             {
-                rets.data = cnn.Query<UserInfo>("GetUser", p,
+                var data = cnn.Query<UserInfo>("GetUser", p,
                     commandType: CommandType.StoredProcedure).FirstOrDefault();
+                rets.Success(data);
             }
             catch (Exception ex)
             {

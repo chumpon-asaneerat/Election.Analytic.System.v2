@@ -172,6 +172,7 @@ namespace PPRP.Models
             try
             {
                 cnn.Execute("ImportADM1", p, commandType: CommandType.StoredProcedure);
+                ret.Success();
                 // Set error number/message
                 ret.ErrNum = p.Get<int>("@errNum");
                 ret.ErrMsg = p.Get<string>("@errMsg");
@@ -214,8 +215,9 @@ namespace PPRP.Models
 
             try
             {
-                rets.data = cnn.Query<MADM1>("GetMProvinces", p,
+                var data = cnn.Query<MADM1>("GetMProvinces", p,
                     commandType: CommandType.StoredProcedure).ToList();
+                rets.Success(data);
             }
             catch (Exception ex)
             {
@@ -469,8 +471,9 @@ namespace PPRP.Models
 
             try
             {
-                rets.data = cnn.Query<MProvince>("GetMProvinces", p,
+                var data = cnn.Query<MProvince>("GetMProvinces", p,
                     commandType: CommandType.StoredProcedure).ToList();
+                rets.Success(data);
             }
             catch (Exception ex)
             {

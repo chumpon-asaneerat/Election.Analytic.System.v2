@@ -144,7 +144,8 @@ namespace PPRP.Models
             {
                 var items = cnn.Query<PakMenuItem>("GetRegionMenuItems", p,
                     commandType: CommandType.StoredProcedure);
-                rets.data = (null != items) ? items.ToList() : new List<PakMenuItem>();
+                var data = (null != items) ? items.ToList() : new List<PakMenuItem>();
+                rets.Success(data);
             }
             catch (Exception ex)
             {
@@ -251,7 +252,8 @@ namespace PPRP.Models
             {
                 var items = cnn.Query<ProvinceMenuItem>("GetProvinceMenuItems", p,
                     commandType: CommandType.StoredProcedure);
-                rets.data = (null != items) ? items.ToList() : new List<ProvinceMenuItem>();
+                var data = (null != items) ? items.ToList() : new List<ProvinceMenuItem>();
+                rets.Success(data);
             }
             catch (Exception ex)
             {
@@ -365,7 +367,8 @@ namespace PPRP.Models
             {
                 var items = cnn.Query<PollingUnitMenuItem>("GetPollingUnitMenuItems", p,
                     commandType: CommandType.StoredProcedure);
-                rets.data = (null != items) ? items.ToList() : new List<PollingUnitMenuItem>();
+                var data = (null != items) ? items.ToList() : new List<PollingUnitMenuItem>();
+                rets.Success(data);
             }
             catch (Exception ex)
             {

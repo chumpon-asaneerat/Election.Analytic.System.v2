@@ -128,6 +128,7 @@ namespace PPRP.Models
             try
             {
                 cnn.Execute("ImportMPDVoteSummary", p, commandType: CommandType.StoredProcedure);
+                ret.Success();
                 // Set error number/message
                 ret.ErrNum = p.Get<int>("@errNum");
                 ret.ErrMsg = p.Get<string>("@errMsg");
@@ -264,8 +265,9 @@ namespace PPRP.Models
 
             try
             {
-                rets.data = cnn.Query<MPDVoteSummary>("GetMPDVoteSummaries", p,
+                var data = cnn.Query<MPDVoteSummary>("GetMPDVoteSummaries", p,
                     commandType: CommandType.StoredProcedure).ToList();
+                rets.Success(data);
             }
             catch (Exception ex)
             {

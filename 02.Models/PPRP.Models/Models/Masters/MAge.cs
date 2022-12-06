@@ -187,8 +187,9 @@ namespace PPRP.Models
 
             try
             {
-                rets.data = cnn.Query<MAge>("GetMAges", p,
+                var data = cnn.Query<MAge>("GetMAges", p,
                     commandType: CommandType.StoredProcedure).ToList();
+                rets.Success(data);
             }
             catch (Exception ex)
             {

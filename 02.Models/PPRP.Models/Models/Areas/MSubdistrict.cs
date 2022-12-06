@@ -247,6 +247,7 @@ namespace PPRP.Models
             try
             {
                 cnn.Execute("ImportADM3", p, commandType: CommandType.StoredProcedure);
+                ret.Success();
                 // Set error number/message
                 ret.ErrNum = p.Get<int>("@errNum");
                 ret.ErrMsg = p.Get<string>("@errMsg");
@@ -292,8 +293,9 @@ namespace PPRP.Models
 
             try
             {
-                rets.data = cnn.Query<MADM3>("GetMSubdistricts", p,
+                var data = cnn.Query<MADM3>("GetMSubdistricts", p,
                     commandType: CommandType.StoredProcedure).ToList();
+                rets.Success(data);
             }
             catch (Exception ex)
             {
@@ -693,8 +695,9 @@ namespace PPRP.Models
 
             try
             {
-                rets.data = cnn.Query<MSubdistrict>("GetMSubdistricts", p,
+                var data = cnn.Query<MSubdistrict>("GetMSubdistricts", p,
                     commandType: CommandType.StoredProcedure).ToList();
+                rets.Success(data);
             }
             catch (Exception ex)
             {

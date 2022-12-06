@@ -153,8 +153,9 @@ namespace PPRP.Models
 
             try
             {
-                rets.data = cnn.Query<MOccupation>("GetMOccupations", p,
+                var data = cnn.Query<MOccupation>("GetMOccupations", p,
                     commandType: CommandType.StoredProcedure).ToList();
+                rets.Success(data);
             }
             catch (Exception ex)
             {

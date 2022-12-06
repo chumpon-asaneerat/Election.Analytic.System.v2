@@ -315,7 +315,8 @@ namespace PPRP.Models
             {
                 var items = cnn.Query<MPerson>("GetMPersons", p,
                     commandType: CommandType.StoredProcedure);
-                rets.data = (null != items) ? items.ToList() : null;
+                var data = (null != items) ? items.ToList() : null;
+                rets.Success(data);
 
                 // Get Paging parameters
                 rets.PageNo = p.Get<int>("@pageNum");
@@ -374,6 +375,7 @@ namespace PPRP.Models
             try
             {
                 cnn.Execute("DeleteMPerson", p, commandType: CommandType.StoredProcedure);
+                ret.Success();
                 // Set error number/message
                 ret.ErrNum = p.Get<int>("@errNum");
                 ret.ErrMsg = p.Get<string>("@errMsg");
@@ -422,6 +424,7 @@ namespace PPRP.Models
             try
             {
                 cnn.Execute("ImportMPersonImage", p, commandType: CommandType.StoredProcedure);
+                ret.Success();
                 // Set error number/message
                 ret.ErrNum = p.Get<int>("@errNum");
                 ret.ErrMsg = p.Get<string>("@errMsg");

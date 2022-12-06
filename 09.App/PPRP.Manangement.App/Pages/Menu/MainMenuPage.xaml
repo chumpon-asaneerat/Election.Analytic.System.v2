@@ -189,6 +189,63 @@
                                         </Hyperlink>
                                     </TextBlock>
                                 </StackPanel>
+                                <!--  ข้อมูลแผนที่  -->
+                                <StackPanel Orientation="Vertical" Margin="5">
+                                    <!--  GROUP Header 3 ข้อมูลแผนที่ -->
+                                    <Border CornerRadius="3"
+                                            Background="{StaticResource MainMenuCaptionBackground}"
+                                            Margin="3">
+                                        <TextBlock FontFamily="{DynamicResource THSarabun}"
+                                                   FontSize="{StaticResource FontSize24}"
+                                                   Foreground="{StaticResource MainMenuCaptionForeground}"
+                                                   Margin="5"
+                                                   Text="ข้อมูลแผนที่" />
+                                    </Border>
+                                    <!--  นำเข้าข้อมูลแผนที่ระดับประเทศ  -->
+                                    <TextBlock FontFamily="{DynamicResource THSarabun}"
+                                               FontSize="{StaticResource FontSize18}"
+                                               Margin="15,5,5,5"
+                                               Cursor="Hand">
+                                        <Hyperlink x:Name="mnuImportMapADM0Manage"
+                                                   Foreground="{StaticResource MainMenuItemForeground}"
+                                                   Click="mnuImportMapADM0Manage_Click">
+                                            นำเข้าข้อมูลแผนที่ระดับจังหวัด
+                                        </Hyperlink>
+                                    </TextBlock>
+                                    <!--  นำเข้าข้อมูลแผนที่ระดับจังหวัด  -->
+                                    <TextBlock FontFamily="{DynamicResource THSarabun}"
+                                               FontSize="{StaticResource FontSize18}"
+                                               Margin="15,5,5,5"
+                                               Cursor="Hand">
+                                        <Hyperlink x:Name="mnuImportMapADM1Manage"
+                                                   Foreground="{StaticResource MainMenuItemForeground}"
+                                                   Click="mnuImportMapADM1Manage_Click">
+                                            นำเข้าข้อมูลแผนที่ระดับจังหวัด
+                                        </Hyperlink>
+                                    </TextBlock>
+                                    <!--  นำเข้าข้อมูลแผนที่ระดับอำเภอ  -->
+                                    <TextBlock FontFamily="{DynamicResource THSarabun}"
+                                               FontSize="{StaticResource FontSize18}"
+                                               Margin="15,5,5,5"
+                                               Cursor="Hand">
+                                        <Hyperlink x:Name="mnuImportMapADM2Manage"
+                                                   Foreground="{StaticResource MainMenuItemForeground}"
+                                                   Click="mnuImportMapADM2Manage_Click">
+                                            นำเข้าข้อมูลแผนที่ระดับอำเภอ
+                                        </Hyperlink>
+                                    </TextBlock>
+                                    <!--  นำเข้าข้อมูลแผนที่ระดับตำบล  -->
+                                    <TextBlock FontFamily="{DynamicResource THSarabun}"
+                                               FontSize="{StaticResource FontSize18}"
+                                               Margin="15,5,5,5"
+                                               Cursor="Hand">
+                                        <Hyperlink x:Name="mnuImportMapADM3Manage"
+                                                   Foreground="{StaticResource MainMenuItemForeground}"
+                                                   Click="mnuImportMapADM0Manage_Click">
+                                            นำเข้าข้อมูลแผนที่ระดับอำเภอ
+                                        </Hyperlink>
+                                    </TextBlock>
+                                </StackPanel>
                                 <!--  ข้อมูลหลัก  -->
                                 <StackPanel Orientation="Vertical" Margin="5">
                                     <!--  GROUP Header 3 ข้อมูลหลัก -->

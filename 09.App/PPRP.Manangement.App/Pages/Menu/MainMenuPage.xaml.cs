@@ -100,6 +100,30 @@ namespace PPRP.Pages
 
         #endregion
 
+        #region Group 3 - ข้อมูลแผนที่
+
+        private void mnuImportMapADM0Manage_Click(object sender, RoutedEventArgs e)
+        {
+            ImportMapADM0Manage();
+        }
+
+        private void mnuImportMapADM1Manage_Click(object sender, RoutedEventArgs e)
+        {
+            ImportMapADM1Manage();
+        }
+
+        private void mnuImportMapADM2Manage_Click(object sender, RoutedEventArgs e)
+        {
+            ImportMapADM2Manage();
+        }
+
+        private void mnuImportMapADM3Manage_Click(object sender, RoutedEventArgs e)
+        {
+            ImportMapADM3Manage();
+        }
+
+        #endregion
+
         #region Group 4 - ข้อมูลหลัก
 
         private void mnuPartyImageManage_Click(object sender, RoutedEventArgs e)
@@ -194,6 +218,30 @@ namespace PPRP.Pages
             var page = PPRPApp.Pages.ADMPakManage;
             page.Setup();
             PageContentManager.Instance.Current = page;
+        }
+
+        #endregion
+
+        #region MAPS Import
+
+        private void ImportMapADM0Manage()
+        {
+
+        }
+
+        private void ImportMapADM1Manage()
+        {
+
+        }
+
+        private void ImportMapADM2Manage()
+        {
+
+        }
+
+        private void ImportMapADM3Manage()
+        {
+
         }
 
         #endregion

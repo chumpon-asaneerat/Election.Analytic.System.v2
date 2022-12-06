@@ -317,8 +317,9 @@ namespace PPRP.Models
 
             try
             {
-                rets.data = cnn.Query<PollingUnit>("GetPollingUnits", p,
+                var data = cnn.Query<PollingUnit>("GetPollingUnits", p,
                     commandType: CommandType.StoredProcedure).ToList();
+                rets.Success(data);
             }
             catch (Exception ex)
             {
@@ -384,6 +385,7 @@ namespace PPRP.Models
             try
             {
                 cnn.Execute("ImportPollingUnit", p, commandType: CommandType.StoredProcedure);
+                ret.Success();
                 // Set error number/message
                 ret.ErrNum = p.Get<int>("@errNum");
                 ret.ErrMsg = p.Get<string>("@errMsg");
