@@ -140,6 +140,7 @@ namespace PPRP.Pages
             page.Setup();
             PageContentManager.Instance.Current = page;
         }
+
         private void ScanFiles()
         {
             if (null == _mapFile) return;
@@ -231,7 +232,7 @@ namespace PPRP.Pages
                                     shapeNo, shapeCnt,
                                     partNo, partCnt,
                                     pointNo, pointMax);
-                                txtADM0ProcessPoint.Text = msg;
+                                txtADM1ProcessPoint.Text = msg;
                             });
                         });
                     }
@@ -244,17 +245,108 @@ namespace PPRP.Pages
                     cmdImportADM1.IsEnabled = true;
                     cmdImportADM2.IsEnabled = true;
                     cmdImportADM3.IsEnabled = true;
-                    txtADM0ProcessPoint.Text = string.Empty;
+                    txtADM1ProcessPoint.Text = string.Empty;
                 });
             });
         }
 
         private void ImportADM2()
         {
+            if (null == _mapFile) return;
+            var fileName = _mapFile.ADM2ShapeFullFileName;
+            if (!File.Exists(fileName)) return;
 
+            // Start Db Sercice
+            Task.Run(() =>
+            {
+                Dispatcher.Invoke(() =>
+                {
+                    cmdImportADM0.IsEnabled = false;
+                    cmdImportADM1.IsEnabled = false;
+                    cmdImportADM2.IsEnabled = false;
+                    cmdImportADM3.IsEnabled = false;
+                });
+                using (Shapefile shapefile = new Shapefile(fileName))
+                {
+                    ShapeMapDbService.Instance.Start();
+                    if (ShapeMapDbService.Instance.Connected)
+                    {
+                        var import = new ShapeFileDbImport();
+                        import.Import(shapefile, (shapeNo, shapeCnt, partNo, partCnt, pointNo, pointMax) =>
+                        {
+                            Dispatcher.Invoke(() =>
+                            {
+                                string msg = string.Format("Shape:{0:n0}/{1:n0}, Part:{2:n0}/{3:n0}, Point:{4:n0}/{5:n0}",
+                                    shapeNo, shapeCnt,
+                                    partNo, partCnt,
+                                    pointNo, pointMax);
+                                txtADM2ProcessPoint.Text = msg;
+                            });
+                        });
+                    }
+                    // Shutdown Db Sercice
+                    ShapeMapDbService.Instance.Shutdown();
+                }
+                Dispatcher.Invoke(() =>
+                {
+                    cmdImportADM0.IsEnabled = true;
+                    cmdImportADM1.IsEnabled = true;
+                    cmdImportADM2.IsEnabled = true;
+                    cmdImportADM3.IsEnabled = true;
+                    txtADM2ProcessPoint.Text = string.Empty;
+                });
+            });
         }
 
         private void ImportADM3()
+        {
+            if (null == _mapFile) return;
+            var fileName = _mapFile.ADM3ShapeFullFileName;
+            if (!File.Exists(fileName)) return;
+
+            // Start Db Sercice
+            Task.Run(() =>
+            {
+                Dispatcher.Invoke(() =>
+                {
+                    cmdImportADM0.IsEnabled = false;
+                    cmdImportADM1.IsEnabled = false;
+                    cmdImportADM2.IsEnabled = false;
+                    cmdImportADM3.IsEnabled = false;
+                });
+                using (Shapefile shapefile = new Shapefile(fileName))
+                {
+                    ShapeMapDbService.Instance.Start();
+                    if (ShapeMapDbService.Instance.Connected)
+                    {
+                        var import = new ShapeFileDbImport();
+                        import.Import(shapefile, (shapeNo, shapeCnt, partNo, partCnt, pointNo, pointMax) =>
+                        {
+                            Dispatcher.Invoke(() =>
+                            {
+                                string msg = string.Format("Shape:{0:n0}/{1:n0}, Part:{2:n0}/{3:n0}, Point:{4:n0}/{5:n0}",
+                                    shapeNo, shapeCnt,
+                                    partNo, partCnt,
+                                    pointNo, pointMax);
+                                txtADM3ProcessPoint.Text = msg;
+                            });
+                        });
+                    }
+                    // Shutdown Db Sercice
+                    ShapeMapDbService.Instance.Shutdown();
+                }
+                Dispatcher.Invoke(() =>
+                {
+                    cmdImportADM0.IsEnabled = true;
+                    cmdImportADM1.IsEnabled = true;
+                    cmdImportADM2.IsEnabled = true;
+                    cmdImportADM3.IsEnabled = true;
+                    txtADM3ProcessPoint.Text = string.Empty;
+                });
+            });
+        }
+
+        private void ImportPAKMappings()
         {
 
         }

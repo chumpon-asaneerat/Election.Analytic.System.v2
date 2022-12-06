@@ -168,7 +168,7 @@ namespace PPRP.Models
         #region Static Methods
 
         public static NDbResult<LADM1Part> Get(
-            string ADM0Code, string ADM1Code, string ADM2Code, string ADM3Code,
+            string ADM0Code, string ADM1Code, 
             int recordId)
         {
             NDbResult<LADM1Part> ret = new NDbResult<LADM1Part>();
@@ -187,7 +187,7 @@ namespace PPRP.Models
                     cmd += "   AND ADM1Code = ? ";
                     cmd += "   AND RecordId = ? ";
                     var results = NQuery.Query<LADM1Part>(cmd,
-                        ADM0Code, ADM1Code, ADM2Code, ADM3Code,
+                        ADM0Code, ADM1Code, 
                         recordId).FirstOrDefault();
                     ret.Success(results);
                 }
