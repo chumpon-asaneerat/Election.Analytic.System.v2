@@ -1,8 +1,10 @@
 ﻿Election.Analytic.System.v2 - PPRP  #300
 - 
 
+[commited]
 Election.Analytic.System.v2 - PPRP  #299
-- 
+  - Implements UI #178.
+    - ImportMPD2562StatVoterWindow lock UI during import process.
 
 [commited]
 Election.Analytic.System.v2 - PPRP  #298
