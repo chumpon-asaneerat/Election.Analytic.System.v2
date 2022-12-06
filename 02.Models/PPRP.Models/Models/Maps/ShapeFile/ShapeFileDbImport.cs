@@ -17,6 +17,8 @@ using PPRP.Models.ShapeFiles;
 namespace PPRP.Services
 {
     public delegate void ProcessShape(int shapeNo, int maxShape, int partNo, int maxPart, int pointNo, int maxPoint);
+    public delegate void ProcessADM(int retionNo, int maxRegion, int provinceNo, int maxProvince, 
+        int districtNo, int maxDistrict, int subDistrictNo, int maxSubDistrict);
 
     /// <summary>
     /// JsonMapFiles Extension Methods class.
@@ -516,6 +518,69 @@ namespace PPRP.Services
             LADM3.Save(row);
 
             ShapeMapDbService.Instance.Db.Commit();
+        }
+
+        public void ImportMappings(ProcessADM action)
+        {
+            if (null == ShapeMapDbService.Instance.Db)
+                return;
+
+            ShapeMapDbService.Instance.Db.BeginTransaction();
+            try
+            {
+                var regions = MRegion.Gets().Value();
+                if (null != regions)
+                {
+                    int iRegion = 1;
+                    int iRegionCnt = regions.Count;
+                    regions.ForEach(region =>
+                    {
+                        var provinces = MProvince.Gets(region.RegionId).Value();
+                        if (null != provinces)
+                        {
+                            int iProvince = 1;
+                            int iProvinceCnt = provinces.Count;
+                            provinces.ForEach(province => 
+                            {
+                                LProvince.Import(province);
+                                var districts = MDistrict.Gets(region.RegionId, province.ADM1Code).Value();
+                                if (null != districts)
+                                {
+                                    int iDistrict = 1;
+                                    int iDistrictCnt = districts.Count;
+                                    districts.ForEach(district => 
+                                    {
+                                        LDistrict.Import(district);
+                                        var subdistricts = MSubdistrict.Gets(region.RegionId, 
+                                            province.ADM1Code, district.ADM2Code).Value();
+                                        if (null != subdistricts)
+                                        {
+                                            int iSubdistrict = 1;
+                                            int iSubdistrictCnt = subdistricts.Count;
+                                            subdistricts.ForEach(subdistrict => 
+                                            {
+                                                LSubdistrict.Import(subdistrict);
+                                                if (null != action)
+                                                {
+                                                    action(iRegion, iRegionCnt, 
+                                                        iProvince, iProvinceCnt, 
+                                                        iDistrict, iDistrictCnt, 
+                                                        iSubdistrict, iSubdistrictCnt);
+                                                }
+                                            });
+                                        }
+                                    });
+                                }
+                            });
+                        }
+                    });
+                }
+                ShapeMapDbService.Instance.Db.Commit();
+            }
+            catch (Exception ex)
+            {
+                ShapeMapDbService.Instance.Db.Rollback();
+            }
         }
     }
 }
