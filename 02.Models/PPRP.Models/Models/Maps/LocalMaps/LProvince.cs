@@ -26,7 +26,7 @@ namespace PPRP.Models
     /// <summary>
     /// The LProvince class
     /// </summary>
-    public class LProvince
+    public class LProvince : NTable<LProvince>
     {
         #region Public Properties
 

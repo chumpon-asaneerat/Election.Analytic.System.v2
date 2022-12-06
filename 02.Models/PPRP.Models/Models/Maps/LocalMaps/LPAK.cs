@@ -17,6 +17,9 @@ using SQLiteNetExtensions.Extensions;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Bson;
 
+using PPRP.Models;
+using PPRP.Services;
+
 #endregion
 
 namespace PPRP.Models
@@ -26,7 +29,7 @@ namespace PPRP.Models
     /// <summary>
     /// The LPAK class
     /// </summary>
-    public class LPAK
+    public class LPAK : NTable<LPAK>
     {
         #region Public Properties
 
@@ -49,6 +52,58 @@ namespace PPRP.Models
         #endregion
 
         #region Static Methods
+
+        public static NDbResult<List<LPAK>> Gets()
+        {
+            NDbResult<List<LPAK>> ret = new NDbResult<List<LPAK>>();
+            lock (sync)
+            {
+                SQLiteConnection db = Default;
+                if (null == db) return ret;
+
+                MethodBase med = MethodBase.GetCurrentMethod();
+                try
+                {
+                    string cmd = string.Empty;
+                    cmd += "SELECT * FROM LPAK ";
+                    var results = NQuery.Query<LPAK>(cmd).ToList();
+                    ret.Success(results);
+                }
+                catch (Exception ex)
+                {
+                    med.Err(ex);
+                }
+
+                return ret;
+            }
+        }
+        public static NDbResult<LPAK> Get(
+            string RegionId)
+        {
+            NDbResult<LPAK> ret = new NDbResult<LPAK>();
+            lock (sync)
+            {
+                SQLiteConnection db = Default;
+                if (null == db) return ret;
+                if (string.IsNullOrWhiteSpace(RegionId)) return ret;
+                MethodBase med = MethodBase.GetCurrentMethod();
+                try
+                {
+                    string cmd = string.Empty;
+                    cmd += "SELECT * FROM LPAK ";
+                    cmd += " WHERE RegionId = ? ";
+                    var results = NQuery.Query<LPAK>(cmd,
+                        RegionId).FirstOrDefault();
+                    ret.Success(results);
+                }
+                catch (Exception ex)
+                {
+                    med.Err(ex);
+                }
+
+                return ret;
+            }
+        }
 
         #endregion
     }

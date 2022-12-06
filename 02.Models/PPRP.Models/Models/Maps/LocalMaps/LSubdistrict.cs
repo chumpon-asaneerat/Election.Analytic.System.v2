@@ -26,7 +26,7 @@ namespace PPRP.Models
     /// <summary>
     /// The LSubdistrict class
     /// </summary>
-    public class LSubdistrict
+    public class LSubdistrict : NTable<LSubdistrict>
     {
         #region Public Properties
 
