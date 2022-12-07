@@ -189,6 +189,9 @@
     <Compile Include="Pages\Person\PersonImageManagePage.xaml.cs">
       <DependentUpon>PersonImageManagePage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\ShapeMapViewPage.xaml.cs">
+      <DependentUpon>ShapeMapViewPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Services\PPRPApp.cs" />
     <Compile Include="Windows\Common\ImportReportWindow.xaml.cs">
       <DependentUpon>ImportReportWindow.xaml</DependentUpon>
@@ -355,6 +358,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\Person\PersonImageManagePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\ShapeMapViewPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
