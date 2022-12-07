@@ -48,12 +48,11 @@ namespace PPRP.Windows
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
-            //import.OnSampleDataChanged += Import_OnSampleDataChanged;
+            model.SheetItemChanges += Model_SheetItemChanges;
         }
-
         private void UserControl_Unloaded(object sender, RoutedEventArgs e)
         {
-            //import.OnSampleDataChanged -= Import_OnSampleDataChanged;
+            model.SheetItemChanges -= Model_SheetItemChanges;
         }
 
         #endregion
@@ -89,24 +88,15 @@ namespace PPRP.Windows
 
         #endregion
 
-        #region NExcelImport Handlers
+        #region ExcelModel Handlers
 
-        private void Import_OnSampleDataChanged(object sender, EventArgs e)
+        private void Model_SheetItemChanges(object sender, ExcelWorksheetArgs evt)
         {
-            /*
-            if (null != wsMap && null != wsMap.ImportModel)
+            if (null != evt && null != evt.Sheet)
             {
-                var model = wsMap.ImportModel;
-                lvMapPreview.Setup(import);
-
-                items = XlsMProvince.LoadWorksheetTable(import, model.Worksheet.SheetName, model.Maps);
-                if (null != items)
-                {
-
-                }
-                lvMapPreview.UpdateItems(model.Maps, items);
+                var sheet = evt.Sheet;
+                lvMapPreview.Setup<MPDCImport>(sheet);
             }
-            */
         }
 
         #endregion
@@ -115,7 +105,12 @@ namespace PPRP.Windows
 
         private void ChooseExcelFile()
         {
+            if (model.Open())
+            {
+                wsMap.Setup<MPDCImport>(model);
+            }
 
+            txtFileName.Text = model.FileName;
         }
 
         private void EanbleButtons(bool enable)
@@ -127,10 +122,63 @@ namespace PPRP.Windows
 
         private bool Imports()
         {
+            var items = lvMapPreview.Items;
+            if (null == items || items.Count <= 0)
+            {
+                var mbox = PPRPApp.Windows.MessageBox;
+                mbox.Owner = this;
+                string msg = "กรุณาทำการ กดปุ่มอ่านข้อมูล และทำการตรวจสอบข้อมูล" + Environment.NewLine + "ก่อนทำการ กดปุ่มนำเข้าข้อมูล";
+                mbox.Setup(msg, "PPRP");
+                mbox.ShowDialog();
+                return false; // No items
+            }
 
             onImporting = true;
             EanbleButtons(false); // while import disable all buttons.
 
+            var errors = new List<ImportError>();
+
+            var prog = PPRPApp.Windows.ProgressDialog;
+            prog.Owner = this;
+            prog.Setup(items.Count);
+            prog.Show();
+
+            int year = 2566;
+
+            int iCnt = 2; // excel first row is column name.
+            foreach (var item in items)
+            {
+                var obj = item as MPDCImport;
+                if (null != obj)
+                {
+                    obj.ThaiYear = year;
+                    var ret = MPDCImport.Import(obj);
+                    if (ret.HasError)
+                    {
+                        // get debug string.
+                        string dataString = obj.DebugString();
+                        errors.Add(new ImportError()
+                        {
+                            RowNo = iCnt,
+                            ErrMsg = ret.ErrMsg,
+                            DataString = dataString
+                        });
+                    }
+                }
+                prog.Increment();
+
+                iCnt++;
+            }
+            // Close progress dialog.
+            prog.Close();
+
+            if (null != errors && errors.Count > 0)
+            {
+                var errWin = PPRPApp.Windows.ImportReport;
+                errWin.Owner = this;
+                errWin.Setup(errors);
+                errWin.ShowDialog();
+            }
 
             EanbleButtons(true); // completed import enable all buttons.
             onImporting = false;

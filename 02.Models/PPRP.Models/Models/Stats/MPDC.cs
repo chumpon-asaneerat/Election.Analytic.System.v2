@@ -110,7 +110,7 @@ namespace PPRP.Models
 
             try
             {
-                cnn.Execute("ImportMPDC2566", p, commandType: CommandType.StoredProcedure);
+                cnn.Execute("ImportMPDC", p, commandType: CommandType.StoredProcedure);
                 // Set error number/message
                 ret.ErrNum = p.Get<int>("@errNum");
                 ret.ErrMsg = p.Get<string>("@errMsg");

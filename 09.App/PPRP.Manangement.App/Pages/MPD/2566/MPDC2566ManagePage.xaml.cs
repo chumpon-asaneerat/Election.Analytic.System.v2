@@ -149,12 +149,47 @@ namespace PPRP.Pages
 
         private void Import()
         {
+            var win = PPRPApp.Windows.ImportMPDC2566;
+            win.Setup();
+            if (win.ShowDialog() == false)
+            {
+                return;
+            }
 
+            Dispatcher.BeginInvoke(new Action(() =>
+            {
+                LoadProvinces();
+
+                Dispatcher.BeginInvoke(new Action(() =>
+                {
+                    txtFullNameFilter.Focus();
+                }), DispatcherPriority.Render);
+            }), DispatcherPriority.Render);
         }
 
         private void Export()
         {
+            /*
+            string msg = string.Empty;
+            int thaiYear = 2566;
+            var items = MPDVoteSummary.Gets(thaiYear).Value();
 
+            if (ExcelModel.SaveAs(items, "ว่าที่ผู้สมัคร " + thaiYear.ToString(), "รายชื่อว่าที่ผู้สมัครปี " + thaiYear + ".xlsx"))
+            {
+                msg += "ส่งออกข้อมูลสำเร็จ";
+            }
+            else
+            {
+                msg += "ส่งออกข้อมูลไม่สำเร็จ" + Environment.NewLine;
+                msg += "อาจเกิดจากปัญหา ไม่ได้ทำการเลือกชื่อไฟล์, " + Environment.NewLine;
+                msg += "ทำการเปิดไฟล์ค้างไว้ หรือไม่มีข้อมูลสำหรับการส่งออก " + Environment.NewLine;
+                msg += "กรุณาตรวจสอบสาเหตุดังกล่าวก่อน แล้วทำการส่งออกใหม่อีกครั้ง";
+            }
+
+            var msgBox = PPRPApp.Windows.MessageBox;
+            msgBox.Setup(msg, "ผลการส่งออกข้อมูล");
+            msgBox.ShowDialog();
+            */
         }
 
         private void LoadProvinces()
