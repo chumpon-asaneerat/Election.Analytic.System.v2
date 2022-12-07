@@ -37,6 +37,9 @@ namespace PPRP.Pages
         #region Internal Variables
 
         private string sFullNameFilter = string.Empty;
+        private int iPageNo = 1;
+        private int iMaxPage = 1;
+        private int iRowsPerPage = 4;
 
         #endregion
 
@@ -95,7 +98,10 @@ namespace PPRP.Pages
         {
             Dispatcher.BeginInvoke(new Action(() =>
             {
-                RefreshList();
+                iPageNo = 1;
+                iMaxPage = 1;
+
+                RefreshList(true);
             }), DispatcherPriority.Render);
         }
 
@@ -118,6 +124,16 @@ namespace PPRP.Pages
                 txtFullNameFilter.Text = string.Empty;
                 Search();
             }
+        }
+
+        #endregion
+
+        #region Paging Handlers
+
+        private void nav_PagingChanged(object sender, EventArgs e)
+        {
+            iPageNo = nav.PageNo;
+            RefreshList(false);
         }
 
         #endregion
@@ -168,7 +184,11 @@ namespace PPRP.Pages
         {
             Dispatcher.BeginInvoke(new Action(() =>
             {
-
+                if (sFullNameFilter.Trim() != txtFullNameFilter.Text.Trim())
+                {
+                    sFullNameFilter = txtFullNameFilter.Text.Trim();
+                    RefreshList(true);
+                }
             }), DispatcherPriority.Render);
         }
 
@@ -177,8 +197,13 @@ namespace PPRP.Pages
 
         }
 
-        private void RefreshList()
+        private void RefreshList(bool refresh)
         {
+            if (refresh)
+            {
+                iPageNo = 1;
+            }
+
             // Check province.
             var province = cbProvince.SelectedItem as MProvince;
             string provinceName = (null != province) ? province.ProvinceNameTH : null;
@@ -188,6 +213,17 @@ namespace PPRP.Pages
             }
 
             int thaiYear = 2566;
+
+            lvMPDC2566.ItemsSource = null;
+            //var candidates = MPDC2566PullingUnit.Gets(provinceName, sFullNameFilter, iPageNo, iRowsPerPage);
+
+            //lvMPDC2566.ItemsSource = (null != candidates) ? candidates.Value : new List<MPDC2566PullingUnit>();
+            //sv.ScrollToHome(); // scroll to home position
+
+            //iPageNo = (null != candidates) ? candidates.PageNo : 1;
+            //iMaxPage = (null != candidates) ? candidates.MaxPage : 1;
+
+            nav.Setup(iPageNo, iMaxPage);
         }
 
         #endregion

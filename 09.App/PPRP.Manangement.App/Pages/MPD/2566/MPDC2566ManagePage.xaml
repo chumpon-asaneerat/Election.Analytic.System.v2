@@ -5,6 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:sys="clr-namespace:System;assembly=mscorlib"
              xmlns:util="clr-namespace:PPRP.Controls.Utils;assembly=PPRP.Controls"
+             xmlns:ctrl="clr-namespace:PPRP.Controls"
              d:DesignHeight="450"
              d:DesignWidth="1000"
              mc:Ignorable="d">
@@ -329,6 +330,17 @@
                         </Button>
                         <Grid />
                     </DockPanel>
+                    <!--  PAGING BAR  -->
+                    <Grid DockPanel.Dock="Bottom"
+                          Margin="1,0"
+                          Background="White">
+                        <StackPanel Height="40"
+                                    Orientation="Horizontal"
+                                    VerticalAlignment="Center"
+                                    HorizontalAlignment="Center">
+                            <ctrl:PagingControl x:Name="nav" PagingChanged="nav_PagingChanged" />
+                        </StackPanel>
+                    </Grid>
                     <!--  ITEMS  -->
                     <ScrollViewer x:Name="sv"
                                   VerticalScrollBarVisibility="Auto"
