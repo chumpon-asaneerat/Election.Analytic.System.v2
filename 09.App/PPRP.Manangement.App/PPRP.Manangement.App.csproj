@@ -189,7 +189,7 @@
     <Compile Include="Pages\Person\PersonImageManagePage.xaml.cs">
       <DependentUpon>PersonImageManagePage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\ShapeMapViewPage.xaml.cs">
+    <Compile Include="Pages\Maps\ShapeMapViewPage.xaml.cs">
       <DependentUpon>ShapeMapViewPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Services\PPRPApp.cs" />
@@ -361,7 +361,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\ShapeMapViewPage.xaml">
+    <Page Include="Pages\Maps\ShapeMapViewPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

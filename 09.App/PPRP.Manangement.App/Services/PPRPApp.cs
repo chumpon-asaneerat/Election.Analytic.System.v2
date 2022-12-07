@@ -327,7 +327,7 @@ namespace PPRP
 
             #endregion
 
-            #region Shape Maps
+            #region Shape Maps (Create)
 
             private static ImportShapeMapsManangePage _ImportShapeMapsManange;
 
@@ -344,6 +344,28 @@ namespace PPRP
                         }
                     }
                     return _ImportShapeMapsManange;
+                }
+            }
+
+            #endregion
+
+            #region Shape Maps (View)
+
+            private static ShapeMapViewPage _ShapeMapView;
+
+            /// <summary>Gets ShapeMaps View Page.</summary>
+            public static ShapeMapViewPage ShapeMapView
+            {
+                get
+                {
+                    if (null == _ShapeMapView)
+                    {
+                        lock (typeof(PPRPApp))
+                        {
+                            _ShapeMapView = new ShapeMapViewPage();
+                        }
+                    }
+                    return _ShapeMapView;
                 }
             }
 

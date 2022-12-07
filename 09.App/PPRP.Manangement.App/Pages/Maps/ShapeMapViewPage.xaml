@@ -9,7 +9,7 @@
              mc:Ignorable="d" >
     <UserControl.Resources>
         <!--  PAGE TITLE  -->
-        <sys:String x:Key="PageTitle">สร้างฐานข้อมูลแผนที่</sys:String>
+        <sys:String x:Key="PageTitle">ข้อมูลแผนที่</sys:String>
         <!--  INLINE BUTTON TEXT FONT SIZE  -->
         <sys:Double x:Key="IBFSize">18</sys:Double>
         <!--  BOTTONS BAR VISIBLE STATES  -->

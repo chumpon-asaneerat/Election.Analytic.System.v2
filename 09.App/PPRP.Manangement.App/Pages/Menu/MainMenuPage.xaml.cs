@@ -225,6 +225,9 @@ namespace PPRP.Pages
         private void ViewMapsManage()
         {
             // เรียกดูข้อมูลแผนที่
+            var page = PPRPApp.Pages.ShapeMapView;
+            page.Setup();
+            PageContentManager.Instance.Current = page;
         }
 
         #endregion
