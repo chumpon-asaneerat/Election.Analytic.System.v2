@@ -18,6 +18,11 @@ using Newtonsoft.Json;
 
 namespace PPRP.Models
 {
+    #region MPDCImport
+
+    /// <summary>
+    /// The MPDCImport class.
+    /// </summary>
     public class MPDCImport : NInpc
     {
         #region Public Properties
@@ -129,13 +134,133 @@ namespace PPRP.Models
         #endregion
     }
 
+    #endregion
+
+    #region MPDCPollingUnit
 
     public class MPDCPollingUnit : NInpc
     {
 
     }
 
+    #endregion
+
+    #region MPDC
+
+    /// <summary>
+    /// The MPDC class.
+    /// </summary>
     public class MPDC : NInpc
     {
+        #region Internal Variables
+
+        private bool _ImageLoading = false;
+        private ImageSource _img = null;
+
+        #endregion
+
+        #region Public Properties
+
+        /*
+  @ThaiYear int    
+, @ADM1Code nvarchar(20)
+, @PollingUnitNo int
+, @CandidateNo int
+, @Prefix nvarchar(100)
+, @FirstName nvarchar(200)
+, @LastName nvarchar(200)
+, @PrevPartyId int = NULL
+, @Remark nvarchar(max) = NULL
+, @SubGroup nvarchar(max) = NULL
+, @ADM1CodeOri nvarchar(100) = NULL
+, @PollingUnitNoOri int = NULL
+, @CandidateNoOri int = NULL
+
+        */
+        /*
+        /// <summary>
+        /// Gets or sets ThaiYear.
+        /// </summary>
+        public int ThaiYear { get; set; }
+        /// <summary>
+        /// Gets or sets ADM1Code.
+        /// </summary>
+        public string ADM1Code { get; set; }
+        /// <summary>
+        /// Gets or sets ProvinceNameTH.
+        /// </summary>
+        [ExcelColumn("จังหวัด", 1)]
+        public string ProvinceNameTH { get; set; }
+        /// <summary>
+        /// Gets or sets PollingUnitNo.
+        /// </summary>
+        [ExcelColumn("เขตเลือกตั้ง", 2)]
+        public int PollingUnitNo { get; set; }
+        /// <summary>
+        /// Gets or sets CandidateNo.
+        /// </summary>
+        [ExcelColumn("ลำดับที่", 3)]
+        public int CandidateNo { get; set; }
+        /// <summary>
+        /// Gets or sets FullName.
+        /// </summary>
+        [ExcelColumn("ชื่อผู้สมัคร", 4)]
+        public string FullName { get; set; }
+        /// <summary>
+        /// Gets or sets Prev PartyName.
+        /// </summary>
+        [ExcelColumn("สังกัดพรรคเดิม", 5)]
+        public string PrevPartyName { get; set; }
+        public string EducationLevel { get; set; }
+        public string SubGroup { get; set; }
+        public string Remark { get; set; }
+
+        public string ImageFullName { get; set; }
+        public byte[] Data { get; set; }
+
+        public ImageSource Image
+        {
+            get
+            {
+                if (null == _img && !_ImageLoading)
+                {
+                    _ImageLoading = true;
+
+                    Defaults.RunInBackground(() =>
+                    {
+                        ImageSource imgSrc;
+                        if (null == Data)
+                        {
+                            imgSrc = Defaults.Person;
+                        }
+                        else
+                        {
+                            imgSrc = ByteUtils.GetImageSource(Data);
+                        }
+                        _img = imgSrc;
+
+                        _ImageLoading = false;
+                        Raise(() => Image);
+                    });
+                }
+                return _img;
+            }
+            set { }
+        }
+
+        public string ProvinceNameOri { get; set; }
+        public int PollingUnitNoOri { get; set; }
+        public int CandidateNoOri { get; set; }
+        public string FullNameOri { get; set; }
+
+        public string GroupName
+        {
+            get { return string.Format("{0} เขต {1}", ProvinceName, PollingUnitNo); }
+            set { }
+        }
+        */
+        #endregion
     }
+
+    #endregion
 }
