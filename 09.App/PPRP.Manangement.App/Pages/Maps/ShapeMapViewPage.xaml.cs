@@ -17,6 +17,8 @@ using PPRP.Models;
 using PPRP.Models.ShapeFiles;
 using PPRP.Services;
 
+using PPRP.Controls;
+
 #endregion
 
 namespace PPRP.Pages
@@ -67,6 +69,11 @@ namespace PPRP.Pages
             ShapeMapDbService.Instance.Shutdown();
         }
 
+        private void UpdateMaps()
+        {
+            canvas.Children.Add(new VisualHost() { Visual = new ThailandDrawingVisual() });
+        }
+
         #endregion
 
         #region Public Methods
@@ -77,6 +84,7 @@ namespace PPRP.Pages
         public void Setup()
         {
             Connect();
+            UpdateMaps();
         }
 
         #endregion

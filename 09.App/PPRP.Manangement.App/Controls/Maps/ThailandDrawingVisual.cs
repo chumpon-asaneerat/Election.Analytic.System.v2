@@ -14,6 +14,21 @@ using System.Windows.Input;
 
 namespace PPRP.Controls
 {
+    public class VisualHost : UIElement
+    {
+        public Visual Visual { get; set; }
+
+        protected override int VisualChildrenCount
+        {
+            get { return Visual != null ? 1 : 0; }
+        }
+
+        protected override Visual GetVisualChild(int index)
+        {
+            return Visual;
+        }
+    }
+
     #region ShapeDrawingVisual (abstract)
 
     /// <summary>
@@ -98,7 +113,7 @@ namespace PPRP.Controls
     /// This class provides layout, event handling, and container support for
     /// the child visual objects.
     /// </summary>
-    public class ThailandDrawingVisual : FrameworkElement
+    public class ThailandDrawingVisual : ShapeDrawingVisual
     {
         #region Internal Variables
 
@@ -108,6 +123,9 @@ namespace PPRP.Controls
 
         public ThailandDrawingVisual() : base()
         {
+            var visual = Create();
+            _ = Children.Add(visual);
+
             // Add the event handler for MouseLeftButtonUp.
             /*
             this.MouseLeftButtonUp += new System.Windows.Input.MouseButtonEventHandler(MyVisualHost_MouseLeftButtonUp);
@@ -117,6 +135,28 @@ namespace PPRP.Controls
         #endregion
 
         #region Override Methods
+
+        #endregion
+
+        #region Private Methods
+
+        private DrawingVisual Create()
+        {
+            DrawingVisual drawingVisual = new DrawingVisual();
+
+            // Retrieve the DrawingContext in order to create new drawing content.
+            DrawingContext drawingContext = drawingVisual.RenderOpen();
+
+            // Create a rectangle and draw it in the DrawingContext.
+            Rect rect = new Rect(new Point(160, 100), new Size(320, 80));
+            
+            drawingContext.DrawRectangle(Brushes.LightBlue, (Pen)null, rect);
+
+            // Persist the drawing content.
+            drawingContext.Close();
+
+            return drawingVisual;
+        }
 
         #endregion
     }
