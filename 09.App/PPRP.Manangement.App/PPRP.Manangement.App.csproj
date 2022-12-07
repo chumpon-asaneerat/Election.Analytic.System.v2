@@ -150,6 +150,7 @@
     <Compile Include="Controls\Editors\Person\MPersonEditorControl.xaml.cs">
       <DependentUpon>MPersonEditorControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\Maps\ThailandDrawingVisual.cs" />
     <Compile Include="Controls\Navigators\PagingControl.xaml.cs">
       <DependentUpon>PagingControl.xaml</DependentUpon>
     </Compile>
