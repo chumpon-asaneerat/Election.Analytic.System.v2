@@ -4,8 +4,9 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:sys="clr-namespace:System;assembly=mscorlib"
+             xmlns:util="clr-namespace:PPRP.Controls.Utils;assembly=PPRP.Controls"
              d:DesignHeight="450"
-             d:DesignWidth="800"
+             d:DesignWidth="1000"
              mc:Ignorable="d">
     <UserControl.Resources>
         <!--  PAGE TITLE  -->
@@ -15,13 +16,119 @@
         <!--  FILTER BAR VISIBLE STATES  -->
         <Visibility x:Key="FilterBarVisible">Visible</Visibility>
         <Visibility x:Key="RefreshButtonVisible">Collapsed</Visibility>
-        <Visibility x:Key="SearchButtonVisible">Collapsed</Visibility>
+        <Visibility x:Key="SearchButtonVisible">Visible</Visibility>
         <!--  BOTTONS BAR VISIBLE STATES  -->
         <Visibility x:Key="HomeButtonVisible">Visible</Visibility>
         <Visibility x:Key="ImportButtonVisible">Visible</Visibility>
         <Visibility x:Key="ExportButtonVisible">Visible</Visibility>
         <Visibility x:Key="PrintButtonVisible">Collapsed</Visibility>
         <Visibility x:Key="AddNewButtonVisible">Collapsed</Visibility>
+        <!--  DATA TEMPLATE  -->
+        <DataTemplate x:Key="CandidateInfo">
+            <Border BorderBrush="Silver"
+                    BorderThickness="1"
+                    CornerRadius="3"
+                    Margin="2"
+                    Height="285"
+                    Width="450"
+                    ClipToBounds="True">
+                <DockPanel LastChildFill="True" Margin="2">
+                    <!--  EDIT/DELETE  -->
+                    <StackPanel Orientation="Horizontal"
+                                DockPanel.Dock="Bottom"
+                                VerticalAlignment="Center"
+                                HorizontalAlignment="Center">
+                        <TextBlock Width="8" />
+                        <Button x:Name="cmdEdit"
+                                Margin="2,1"
+                                Width="75"
+                                Height="25"
+                                Content="แก้ไข"
+                                Style="{StaticResource InlineButton}"
+                                Click="cmdEdit_Click" />
+                        <Button x:Name="cmdDelete"
+                                Margin="2,1"
+                                Width="75"
+                                Height="25"
+                                Content="ลบ"
+                                Style="{StaticResource InlineButton}"
+                                Click="cmdDelete_Click" />
+                    </StackPanel>
+                    <!--  IMAGES  -->
+                    <Border CornerRadius="3"
+                            BorderBrush="Silver"
+                            BorderThickness="1">
+                        <Image Margin="2"
+                               RenderOptions.BitmapScalingMode="LowQuality"
+                               RenderOptions.EdgeMode="Aliased"
+                               Source="{Binding Image}"
+                               Height="270" />
+                    </Border>
+                    <!--  INFO  -->
+                    <DockPanel LastChildFill="True" Margin="2">
+                        <StackPanel Orientation="Vertical"
+                                    DockPanel.Dock="Top"
+                                    Margin="2">
+                            <!--  CANDIDATE NO  -->
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="ลำดับที่: " />
+                                <TextBlock Text="{Binding CandidateNo}"
+                                           Height="Auto"
+                                           VerticalAlignment="Center"
+                                           HorizontalAlignment="Left"
+                                           TextAlignment="Left"
+                                           TextWrapping="Wrap" />
+                            </StackPanel>
+                            <Grid Height="5" />
+                            <!--  FULL NAME  -->
+                            <TextBlock Text="{Binding FullName}"
+                                       Height="Auto"
+                                       VerticalAlignment="Center"
+                                       HorizontalAlignment="Left"
+                                       TextAlignment="Left"
+                                       TextWrapping="Wrap" />
+                            <Grid Height="5" />
+                            <!--  PREV PARTY  -->
+                            <TextBlock Text="พรรคต้นสังกัดเดิม: " Foreground="{StaticResource BlueHeavyBrush2}" />
+                            <TextBlock Text="{Binding PrevPartyName}"
+                                       Height="Auto"
+                                       VerticalAlignment="Center"
+                                       HorizontalAlignment="Left"
+                                       TextAlignment="Left"
+                                       TextWrapping="Wrap" />
+                            <Grid Height="5" />
+                            <!--  EDUCATION LEVEL  -->
+                            <TextBlock Text="วุฒิการศึกษา: " Foreground="{StaticResource BlueHeavyBrush2}" />
+                            <TextBlock Text="{Binding EducationLevel}"
+                                       Height="Auto"
+                                       VerticalAlignment="Center"
+                                       HorizontalAlignment="Left"
+                                       TextAlignment="Left"
+                                       TextWrapping="Wrap" />
+                            <Grid Height="5" />
+                            <!--  SUB GROUP  -->
+                            <TextBlock Height="Auto"
+                                       VerticalAlignment="Center"
+                                       HorizontalAlignment="Left"
+                                       TextAlignment="Left"
+                                       TextWrapping="Wrap">
+                                <Run Text="* " />
+                                <Run Text="{Binding SubGroup}" />
+                            </TextBlock>
+                            <!--  REMARK  -->
+                            <TextBlock Text="หมายเหตุ: " Foreground="{StaticResource BlueHeavyBrush2}" />
+                            <TextBlock Text="{Binding Remark}"
+                                       Height="Auto"
+                                       VerticalAlignment="Center"
+                                       HorizontalAlignment="Left"
+                                       TextAlignment="Left"
+                                       TextWrapping="Wrap" />
+                            <Grid Height="5" />
+                        </StackPanel>
+                    </DockPanel>
+                </DockPanel>
+            </Border>
+        </DataTemplate>
     </UserControl.Resources>
     <Grid Background="{StaticResource PageBG}">
         <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
@@ -75,10 +182,49 @@
                                 Click="cmdRefresh_Click">
                             <TextBlock Style="{StaticResource fa-refresh}" FontSize="{StaticResource IBFSize}" />
                         </Button>
+                        <!--  PROVINCE  -->
+                        <TextBlock Text="จังหวัด"
+                                   DockPanel.Dock="Left"
+                                   VerticalAlignment="Center"
+                                   TextAlignment="Right"
+                                   Width="100"
+                                   Foreground="WhiteSmoke" />
+                        <TextBlock Width="10" DockPanel.Dock="Left" />
+                        <ComboBox x:Name="cbProvince"
+                                  Width="300"
+                                  FontFamily="{StaticResource THSarabunNew}"
+                                  FontSize="{StaticResource FontSize18}"
+                                  Margin="3"
+                                  VerticalContentAlignment="Center"
+                                  IsSynchronizedWithCurrentItem="False"
+                                  DisplayMemberPath="ProvinceNameTH"
+                                  SelectionChanged="cbProvince_SelectionChanged" />
+                        <!--  FULL NAME  -->
+                        <TextBlock Text="ชื่อ-สกุล"
+                                   DockPanel.Dock="Left"
+                                   VerticalAlignment="Center"
+                                   TextAlignment="Right"
+                                   Width="100"
+                                   Foreground="WhiteSmoke" />
+                        <TextBlock Width="10" DockPanel.Dock="Left" />
+                        <TextBox x:Name="txtFullNameFilter"
+                                 Width="300"
+                                 util:FocusOptions.SelectAll="True"
+                                 util:KeyboardOptions.Enabled="True"
+                                 util:KeyboardOptions.EnterAsTab="False"
+                                 util:KeyboardOptions.LeftRightNavigation="False"
+                                 util:KeyboardOptions.UpDownNavigation="True"
+                                 Style="{StaticResource CommonTextBox}"
+                                 FontFamily="{StaticResource THSarabun}"
+                                 FontSize="{StaticResource FontSize18}"
+                                 Margin="3"
+                                 VerticalContentAlignment="Center"
+                                 KeyDown="txtFullNameFilter_KeyDown" />
+                        <TextBlock Width="10" DockPanel.Dock="Left" />
                         <!--  SEARCH  -->
                         <Button x:Name="cmdSearch"
                                 Visibility="{StaticResource SearchButtonVisible}"
-                                DockPanel.Dock="Right"
+                                DockPanel.Dock="Left"
                                 Style="{StaticResource InlineButton}"
                                 Height="30"
                                 Width="30"
@@ -184,7 +330,84 @@
                         <Grid />
                     </DockPanel>
                     <!--  ITEMS  -->
-                    <Grid />
+                    <ScrollViewer x:Name="sv"
+                                  VerticalScrollBarVisibility="Auto"
+                                  HorizontalScrollBarVisibility="Disabled">
+                        <ItemsControl x:Name="lvMPDC2566"
+                                      HorizontalContentAlignment="Stretch"
+                                      VirtualizingPanel.IsVirtualizing="True"
+                                      VirtualizingPanel.VirtualizationMode="Recycling"
+                                      Background="White">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <Expander Style="{StaticResource ExpanderRightToggleStyle}" IsExpanded="True">
+                                        <Expander.Header>
+                                            <Grid Width="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Expander}}, Path=ActualWidth}">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="*" />
+                                                    <ColumnDefinition Width="30" />
+                                                </Grid.ColumnDefinitions>
+                                                <StackPanel Orientation="Horizontal" Grid.Column="0">
+                                                    <TextBlock Width="5" />
+                                                    <TextBlock Text="{Binding ProvinceName}"
+                                                               FontSize="{StaticResource FontSize18}"
+                                                               Foreground="{StaticResource BlackBlush}" />
+                                                    <TextBlock Text=" - " />
+                                                    <TextBlock Text="{Binding PollingUnitNo}"
+                                                               FontSize="{StaticResource FontSize18}"
+                                                               Foreground="{StaticResource BlackBlush}" />
+                                                    <TextBlock Width="5" />
+                                                </StackPanel>
+                                            </Grid>
+                                        </Expander.Header>
+                                        <Grid HorizontalAlignment="Stretch" Margin="10,5">
+                                            <Grid Height="285"
+                                                  HorizontalAlignment="Stretch"
+                                                  VerticalAlignment="Stretch">
+                                                <TextBlock Text="ไม่พบข้อมูล"
+                                                           FontSize="{StaticResource FontSize36}"
+                                                           Foreground="Silver"
+                                                           FontFamily="{StaticResource THSarabun}"
+                                                           VerticalAlignment="Center"
+                                                           HorizontalAlignment="Center"
+                                                           TextAlignment="Center">
+                                                    <TextBlock.Style>
+                                                        <Style TargetType="TextBlock">
+                                                            <Setter Property="Visibility" Value="Hidden" />
+                                                            <Style.Triggers>
+                                                                <DataTrigger Binding="{Binding Path=TotalCandidates}" Value="0">
+                                                                    <Setter Property="Visibility" Value="Visible" />
+                                                                </DataTrigger>
+                                                            </Style.Triggers>
+                                                        </Style>
+                                                    </TextBlock.Style>
+                                                </TextBlock>
+                                            </Grid>
+                                            <ListBox ItemsSource="{Binding Items}"
+                                                     Margin="5,2"
+                                                     HorizontalContentAlignment="Stretch"
+                                                     ItemContainerStyle="{StaticResource BASEListBoxItemContainer}"
+                                                     BorderThickness="0"
+                                                     ItemTemplate="{StaticResource CandidateInfo}"
+                                                     Height="Auto"
+                                                     Width="Auto">
+                                                <ListBox.Style>
+                                                    <Style TargetType="ListBox" BasedOn="{StaticResource SingleSelectWrapListBox}">
+                                                        <Setter Property="Visibility" Value="Visible" />
+                                                        <Style.Triggers>
+                                                            <DataTrigger Binding="{Binding Path=TotalCandidates}" Value="0">
+                                                                <Setter Property="Visibility" Value="Hidden" />
+                                                            </DataTrigger>
+                                                        </Style.Triggers>
+                                                    </Style>
+                                                </ListBox.Style>
+                                            </ListBox>
+                                        </Grid>
+                                    </Expander>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </ScrollViewer>
                 </DockPanel>
             </DockPanel>
         </Grid>

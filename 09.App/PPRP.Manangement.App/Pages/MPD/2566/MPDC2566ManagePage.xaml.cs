@@ -34,6 +34,12 @@ namespace PPRP.Pages
 
         #endregion
 
+        #region Internal Variables
+
+        private string sFullNameFilter = string.Empty;
+
+        #endregion
+
         #region Button Handlers
 
         private void cmdAddNew_Click(object sender, RoutedEventArgs e)
@@ -71,6 +77,49 @@ namespace PPRP.Pages
             Print();
         }
 
+        private void cmdEdit_Click(object sender, RoutedEventArgs e)
+        {
+            // Edit selected item.
+        }
+
+        private void cmdDelete_Click(object sender, RoutedEventArgs e)
+        {
+            // Delete selected item.
+        }
+
+        #endregion
+
+        #region ComboBox Handlers
+
+        private void cbProvince_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            Dispatcher.BeginInvoke(new Action(() =>
+            {
+                RefreshList();
+            }), DispatcherPriority.Render);
+        }
+
+        #endregion
+
+        #region TextBox Handlers
+
+        private void txtFullNameFilter_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            if (e.Key == System.Windows.Input.Key.Enter)
+            {
+                e.Handled = true; // mark as handled
+                // search
+                Search();
+            }
+            else if (e.Key == System.Windows.Input.Key.Escape)
+            {
+                e.Handled = true; // mark as handled
+                // reset filter and search
+                txtFullNameFilter.Text = string.Empty;
+                Search();
+            }
+        }
+
         #endregion
 
         #region Private Methods
@@ -90,6 +139,21 @@ namespace PPRP.Pages
         private void Export()
         {
 
+        }
+
+        private void LoadProvinces()
+        {
+            cbProvince.ItemsSource = null;
+            var provinces = MProvince.Gets().Value();
+            if (null != provinces)
+            {
+                provinces.Insert(0, new MProvince { ProvinceNameTH = "ทุกจังหวัด" });
+            }
+            cbProvince.ItemsSource = (null != provinces) ? provinces : new List<MProvince>();
+            if (null != provinces)
+            {
+                cbProvince.SelectedIndex = 0;
+            }
         }
 
         private void Refresh()
@@ -113,6 +177,19 @@ namespace PPRP.Pages
 
         }
 
+        private void RefreshList()
+        {
+            // Check province.
+            var province = cbProvince.SelectedItem as MProvince;
+            string provinceName = (null != province) ? province.ProvinceNameTH : null;
+            if (null != provinceName && provinceName.Contains("ทุกจังหวัด"))
+            {
+                provinceName = null;
+            }
+
+            int thaiYear = 2566;
+        }
+
         #endregion
 
         #region Public Methods
@@ -125,8 +202,18 @@ namespace PPRP.Pages
         {
             if (reload)
             {
+                sFullNameFilter = string.Empty;
+
+                txtFullNameFilter.Text = string.Empty;
+
                 Dispatcher.BeginInvoke(new Action(() =>
                 {
+                    LoadProvinces();
+
+                    Dispatcher.BeginInvoke(new Action(() =>
+                    {
+                        txtFullNameFilter.Focus();
+                    }), DispatcherPriority.Render);
 
                 }), DispatcherPriority.Render);
             }
