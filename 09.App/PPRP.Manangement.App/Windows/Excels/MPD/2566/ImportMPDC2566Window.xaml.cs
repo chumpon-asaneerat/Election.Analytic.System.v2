@@ -155,14 +155,21 @@ namespace PPRP.Windows
                     var ret = MPDCImport.Import(obj);
                     if (ret.HasError)
                     {
-                        // get debug string.
-                        string dataString = obj.DebugString();
-                        errors.Add(new ImportError()
+                        if (string.IsNullOrWhiteSpace(obj.FullName))
                         {
-                            RowNo = iCnt,
-                            ErrMsg = ret.ErrMsg,
-                            DataString = dataString
-                        });
+                            // skip dump error in case empty fullname.
+                        }
+                        else 
+                        {
+                            // get debug string.
+                            string dataString = obj.DebugString();
+                            errors.Add(new ImportError()
+                            {
+                                RowNo = iCnt,
+                                ErrMsg = ret.ErrMsg,
+                                DataString = dataString
+                            });
+                        }
                     }
                 }
                 prog.Increment();
