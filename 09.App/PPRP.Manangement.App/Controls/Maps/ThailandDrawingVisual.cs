@@ -282,34 +282,106 @@ namespace PPRP.Controls
 
 namespace PPRP.Controls.v2
 {
+    // need class to load data into GeomertyGroup
+
+    #region ADMShapePoint
+
+    /// <summary>
+    /// The ADMShapePoint class.
+    /// </summary>
     public class ADMShapePoint
     {
+        #region Public Properties
+
+        /// <summary>
+        /// Gets or sets is RecordId.
+        /// </summary>
         public int RecordId { get; set; }
+        /// <summary>
+        /// Gets or sets is PartId.
+        /// </summary>
         public int PartId { get; set; }
+        /// <summary>
+        /// Gets or sets is PointId.
+        /// </summary>
         public int PointId { get; set; }
         public double X { get; set; }
         public double Y { get; set; }
+
+        #endregion
     }
 
+    #endregion
+
+    #region ADMShapePart
+
+    /// <summary>
+    /// The ADMShapePart class.
+    /// </summary>
     public class ADMShapePart
     {
+        #region Constructor
+
+        /// <summary>
+        /// Constructor.
+        /// </summary>
         public ADMShapePart() : base()
         {
             Loaded = false;
         }
+
+        #endregion
+
+        #region Public Properties
+
+        /// <summary>
+        /// Gets or sets is data loaded.
+        /// </summary>
         public bool Loaded { get; private set; }
+        /// <summary>
+        /// Gets or sets is RecordId.
+        /// </summary>
         public int RecordId { get; set; }
-        public int PartId { get; set; }        
+        /// <summary>
+        /// Gets or sets is PartId.
+        /// </summary>
+        public int PartId { get; set; }
+        /// <summary>
+        /// Gets Points's list.
+        /// </summary>
         public List<ADMShapePoint> Points { get; internal set; }
+
+        #endregion
     }
 
-    // need class to load data into GeomertyGroup
+    #endregion
+
+    #region ADMShape
+
+    /// <summary>
+    /// The ADMShape class.
+    /// </summary>
     public class ADMShape
     {
+        #region Internal Variables
+
+        private GeometryGroup _Shape = null;
+
+        #endregion
+
+        #region Constructor
+
+        /// <summary>
+        /// Constructor.
+        /// </summary>
         public ADMShape() : base()
         {
             Loaded = false;
         }
+
+        #endregion
+
+        #region Private Methods
 
         private void LoadPoints(ADMShapePart part, List<IADMPoint> points)
         {
@@ -355,16 +427,111 @@ namespace PPRP.Controls.v2
                 });
             }
         }
+        private GeometryGroup GetStreamGeometryGroup()
+        {
+            if (!Loaded)
+                return null;
+            // Decide if the line segments are stroked or not. For the PolyLine type it must be stroked.
+            bool isStroked = true;
+
+            GeometryGroup combine = new GeometryGroup();
+            // Create a new stream geometry.
+            StreamGeometry geometry = new StreamGeometry();
+            // Obtain the stream geometry context for drawing each part.
+            using (StreamGeometryContext ctx = geometry.Open())
+            {
+                if (null != Parts)
+                {
+                    foreach (var part in Parts)
+                    {
+                        var points = part.Points;
+                        if (null != points)
+                        {
+                            int iPt = 0;
+                            foreach (var point in points)
+                            {
+                                iPt++;
+                                Point pt = new Point(point.X, point.Y);
+
+                                if (iPt == 0)
+                                    ctx.BeginFigure(pt, true, false);
+                                else
+                                    ctx.LineTo(pt, isStroked, true);
+                            }
+                        }
+                    }
+                }
+            }
+            // add shape geometry
+            combine.Children.Add(geometry);
+
+            // Return the created stream geometry.
+            return combine;
+        }
+
+        #endregion
+
+        #region Public Methods
+
         public void Load(IADM adm)
         {
+            if (null == adm) return;
+            Bound = new RectangleD()
+            {
+                Left = adm.BT,
+                Top = adm.TP,
+                Right = adm.RT,
+                Bottom = adm.BT,
+            };
+            
             var parts = adm.GetADMParts();
             LoadParts(parts);
+
             Loaded = true;
         }
+
+        #endregion
+
+        #region Public Properties
+
+        /// <summary>
+        /// Gets or sets is data loaded.
+        /// </summary>
         public bool Loaded { get; private set; }
+        /// <summary>
+        /// Gets or sets is ADMCode.
+        /// </summary>
         public string ADMCode { get; set; }
+        /// <summary>
+        /// Gets or sets is Bound Rectangle.
+        /// </summary>
         public RectangleD Bound { get; set; }
+        /// <summary>
+        /// Gets Parts's list.
+        /// </summary>
         public List<ADMShapePart> Parts { get; private set; }
+        /// <summary>
+        /// Gets Shape (GeometryGroup).
+        /// </summary>
+        public GeometryGroup Shape 
+        {
+            get 
+            {
+                if (null == _Shape)
+                {
+                    lock (this)
+                    {
+                        _Shape = GetStreamGeometryGroup();
+                    }
+                }
+                return _Shape
+            }
+            set { }
+        }
+
+        #endregion
     }
+
+    #endregion
 }
 
