@@ -310,6 +310,8 @@ namespace PPRP.Controls.v2
         {
             Parts = new List<ADMShapePart>();
         }
+
+
         public string ADMCode { get; set; }
         public RectangleD Bound { get; set; }
         public List<ADMShapePart> Parts { get; private set; }

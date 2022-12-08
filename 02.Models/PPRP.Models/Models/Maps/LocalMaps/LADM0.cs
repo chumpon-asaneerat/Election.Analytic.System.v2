@@ -21,6 +21,49 @@ using Newtonsoft.Json.Bson;
 
 namespace PPRP.Models
 {
+    #region Interfaces
+
+    public interface IBound
+    {
+        double LF { get; set; }
+        double TP { get; set; }
+        double RT { get; set; }
+        double BT { get; set; }
+        double WD { get; set; }
+        double HT { get; set; }
+        double CX { get; set; }
+        double CY { get; set; }
+    }
+
+    public interface IADM : IBound
+    {
+        string ADMCode { get; }
+        string Name { get; }
+
+        List<IADMPart> GetADMParts();
+    }
+
+    public interface IADMPart
+    {
+        int RecordId { get; set; }
+        int PartId { get; set; }
+
+        List<IADMPoint> GetADMPoints();
+    }
+
+    public interface IADMPoint
+    {
+        /*
+        int RecordId { get; set; }
+        int PartId { get; set; }
+        */
+        int PointId { get; set; }
+        double X { get; set; }
+        double Y { get; set; }
+    }
+
+    #endregion
+
     #region LADM0
 
     /// <summary>
@@ -30,7 +73,7 @@ namespace PPRP.Models
     [Serializable]
     [JsonObject(MemberSerialization.OptOut)]
     //[Table("LADM0")]
-    public class LADM0 : NTable<LADM0>
+    public class LADM0 : NTable<LADM0>, IADM
     {
         #region Public Properties
 
@@ -112,6 +155,20 @@ namespace PPRP.Models
 
         #endregion
 
+        #region Interface Implements
+
+        [Ignore]
+        string IADM.ADMCode { get { return ADM0Code; } }
+        [Ignore]
+        string IADM.Name { get { return CountryNameTH; } }
+
+        List<IADMPart> IADM.GetADMParts()
+        {
+            return LADM0Part.Gets(ADM0Code).Value()?.ToList<IADMPart>();
+        }
+
+        #endregion
+
         #endregion
 
         #region Static Methods
@@ -150,7 +207,7 @@ namespace PPRP.Models
 
     #region LADM0Part
 
-    public class LADM0Part : NTable<LADM0Part>
+    public class LADM0Part : NTable<LADM0Part>, IADMPart
     {
         #region Public Properties
 
@@ -178,6 +235,16 @@ namespace PPRP.Models
         public int PointCount { get; set; }
 
         #endregion
+
+        #region Interface Implements
+
+        List<IADMPoint> IADMPart.GetADMPoints()
+        {
+            return LADM0Point.Gets(ADM0Code, RecordId, PartId).Value()?.ToList<IADMPoint>();
+        }
+
+        #endregion
+
 
         #region Static Methods
 
@@ -241,7 +308,7 @@ namespace PPRP.Models
 
     #region LADM0Point
 
-    public class LADM0Point : NTable<LADM0Point>
+    public class LADM0Point : NTable<LADM0Point>, IADMPoint
     {
         #region Public Properties
 
