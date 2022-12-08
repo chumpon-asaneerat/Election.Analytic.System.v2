@@ -131,8 +131,7 @@ namespace PPRP.Models
         [Ignore]
         string IADM.ADMCode { get { return ADM1Code; } }
         [Ignore]
-        string IADM.Name { get { return ProvinceNameTH; } }
-
+        string IADM.Name { get { return string.IsNullOrWhiteSpace(ProvinceNameTH) ? ProvinceNameEN : ProvinceNameTH; } }
         List<IADMPart> IADM.GetADMParts()
         {
             return LADM1Part.Gets(ADM1Code).Value()?.ToList<IADMPart>();

@@ -153,8 +153,7 @@ namespace PPRP.Models
         [Ignore]
         string IADM.ADMCode { get { return ADM3Code; } }
         [Ignore]
-        string IADM.Name { get { return SubdistrictNameTH; } }
-
+        string IADM.Name { get { return string.IsNullOrWhiteSpace(SubdistrictNameTH) ? SubdistrictNameEN : SubdistrictNameTH; } }
         List<IADMPart> IADM.GetADMParts()
         {
             return LADM3Part.Gets(ADM3Code).Value()?.ToList<IADMPart>();

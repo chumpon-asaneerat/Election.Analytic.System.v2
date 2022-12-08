@@ -119,8 +119,7 @@ namespace PPRP.Models
         [Ignore]
         string IADM.ADMCode { get { return ADM0Code; } }
         [Ignore]
-        string IADM.Name { get { return CountryNameTH; } }
-
+        string IADM.Name { get { return string.IsNullOrWhiteSpace(CountryNameTH) ? CountryNameEN: CountryNameTH; } }
         List<IADMPart> IADM.GetADMParts()
         {
             return LADM0Part.Gets(ADM0Code).Value()?.ToList<IADMPart>();

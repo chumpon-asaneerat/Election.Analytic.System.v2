@@ -142,8 +142,7 @@ namespace PPRP.Models
         [Ignore]
         string IADM.ADMCode { get { return ADM2Code; } }
         [Ignore]
-        string IADM.Name { get { return DistrictNameTH; } }
-
+        string IADM.Name { get { return string.IsNullOrWhiteSpace(DistrictNameTH) ? DistrictNameEN : DistrictNameTH; } }
         List<IADMPart> IADM.GetADMParts()
         {
             return LADM2Part.Gets(ADM2Code).Value()?.ToList<IADMPart>();
