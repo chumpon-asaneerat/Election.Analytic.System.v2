@@ -1,12 +1,12 @@
 ﻿<UserControl x:Class="PPRP.Pages.ShapeMapViewPage"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:sys="clr-namespace:System;assembly=mscorlib"
-             d:DesignHeight="450" 
+             d:DesignHeight="450"
              d:DesignWidth="800"
-             mc:Ignorable="d" >
+             mc:Ignorable="d">
     <UserControl.Resources>
         <!--  PAGE TITLE  -->
         <sys:String x:Key="PageTitle">ข้อมูลแผนที่</sys:String>
@@ -78,12 +78,29 @@
                     </DockPanel>
                     <!--  ITEMS  -->
                     <DockPanel LastChildFill="True">
+                        <ListView x:Name="lv" Width="200"
+                                  SelectionChanged="lv_SelectionChanged">
+                            <ListView.View>
+                                <GridView>
+                                    <GridViewColumn Header="จังหวัด">
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Width="120"
+                                                           Text="{Binding ProvinceName}"
+                                                           TextAlignment="Left" />
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
+                                </GridView>
+                            </ListView.View>
+                        </ListView>
+                        <!--
                         <DockPanel DockPanel.Dock="Left" LastChildFill="True"
                                    Width="180">
                             <StackPanel DockPanel.Dock="Top"
                                         Orientation="Vertical"
                                         HorizontalAlignment="Stretch">
-                                <Button x:Name="cmdLoadTH" Content="Load TH Map" 
+                                <Button x:Name="cmdLoadTH" Content="Load TH Map"
                                         Style="{StaticResource InlineButton}"
                                         Width="150"
                                         Height="30"
@@ -93,10 +110,11 @@
                             </StackPanel>
                             <Grid />
                         </DockPanel>
+                        -->
                         <Grid Background="WhiteSmoke">
-                            <Canvas x:Name="canvas" 
+                            <Canvas x:Name="canvas"
                                     ClipToBounds="True"
-                                    SizeChanged="canvas_SizeChanged"/>
+                                    SizeChanged="canvas_SizeChanged" />
                         </Grid>
                     </DockPanel>
                 </DockPanel>

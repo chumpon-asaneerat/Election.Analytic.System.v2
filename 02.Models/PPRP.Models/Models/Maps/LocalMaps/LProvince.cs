@@ -62,7 +62,6 @@ namespace PPRP.Models
             {
                 SQLiteConnection db = Default;
                 if (null == db) return ret;
-                if (string.IsNullOrWhiteSpace(RegionId)) return ret;
 
                 MethodBase med = MethodBase.GetCurrentMethod();
                 try

@@ -69,11 +69,13 @@ namespace PPRP.Pages
             ShapeMapDbService.Instance.Shutdown();
         }
 
+        #region v1 (unused now)
 
-        private VisualHost host;
+        //private VisualHost host;
 
         private void UpdateMaps()
         {
+            /*
             if (null == host)
             {
                 host = new VisualHost();
@@ -82,6 +84,16 @@ namespace PPRP.Pages
                 canvas.Children.Add(host);
             }
             //host.RefreshTransforms();
+            */
+        }
+
+        #endregion
+
+        private void LoadProvinces()
+        {
+            lv.ItemsSource = null;
+            var provinces = LProvince.Gets().Value();
+            lv.ItemsSource = provinces;
         }
 
         #endregion
@@ -94,18 +106,28 @@ namespace PPRP.Pages
         public void Setup()
         {
             Connect();
+            LoadProvinces();
         }
 
         #endregion
+
+        #region v1 (unused now)
 
         private void cmdLoadTH_Click(object sender, RoutedEventArgs e)
         {
             UpdateMaps();
         }
 
+        #endregion
+
         private void canvas_SizeChanged(object sender, SizeChangedEventArgs e)
         {
-            //if (null != host) host.RefreshTransforms();
+            //if (null != host) host.RefreshTransforms(); // v1 (unused now)
+        }
+
+        private void lv_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
         }
     }
 }

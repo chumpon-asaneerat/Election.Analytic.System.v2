@@ -17,7 +17,7 @@ using System.Windows.Threading;
 
 #endregion
 
-namespace PPRP.Controls
+namespace PPRP.Controls.v1
 {
     public class VisualHost : UIElement
     {
@@ -280,7 +280,7 @@ namespace PPRP.Controls
 }
 
 
-namespace PPRP.Controls.v2
+namespace PPRP.Controls
 {
     // need class to load data into GeomertyGroup
 
