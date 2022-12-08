@@ -112,6 +112,8 @@ namespace PPRP.Models
 
         #endregion
 
+        #endregion
+
         #region Interface Implements
 
         [Ignore]
@@ -123,8 +125,6 @@ namespace PPRP.Models
         {
             return LADM0Part.Gets(ADM0Code).Value()?.ToList<IADMPart>();
         }
-
-        #endregion
 
         #endregion
 
@@ -155,7 +155,6 @@ namespace PPRP.Models
                 return ret;
             }
         }
-
 
         #endregion
     }

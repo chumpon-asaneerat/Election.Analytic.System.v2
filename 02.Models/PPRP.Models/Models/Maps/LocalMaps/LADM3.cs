@@ -30,7 +30,7 @@ namespace PPRP.Models
     [Serializable]
     [JsonObject(MemberSerialization.OptOut)]
     //[Table("LADM3")]
-    public class LADM3 : NTable<LADM3>
+    public class LADM3 : NTable<LADM3>, IADM
     {
         #region Public Properties
 
@@ -148,7 +148,73 @@ namespace PPRP.Models
 
         #endregion
 
+        #region Interface Implements
+
+        [Ignore]
+        string IADM.ADMCode { get { return ADM3Code; } }
+        [Ignore]
+        string IADM.Name { get { return SubdistrictNameTH; } }
+
+        List<IADMPart> IADM.GetADMParts()
+        {
+            return LADM3Part.Gets(ADM3Code).Value()?.ToList<IADMPart>();
+        }
+
+        #endregion
+
         #region Static Methods
+
+        public static NDbResult<LADM3> Get(string ADM3Code)
+        {
+            NDbResult<LADM3> ret = new NDbResult<LADM3>();
+            lock (sync)
+            {
+                SQLiteConnection db = Default;
+                if (null == db) return ret;
+                if (string.IsNullOrWhiteSpace(ADM3Code)) return ret;
+                MethodBase med = MethodBase.GetCurrentMethod();
+                try
+                {
+                    string cmd = string.Empty;
+                    cmd += "SELECT * FROM LADM3 ";
+                    cmd += " WHERE ADM3Code = ? ";
+                    var results = NQuery.Query<LADM3>(cmd, ADM3Code).FirstOrDefault();
+                    ret.Success(results);
+                }
+                catch (Exception ex)
+                {
+                    med.Err(ex);
+                }
+
+                return ret;
+            }
+        }
+        public static NDbResult<List<LADM3>> Gets(string ADM2Code)
+        {
+            NDbResult<List<LADM3>> ret = new NDbResult<List<LADM3>>();
+            lock (sync)
+            {
+                SQLiteConnection db = Default;
+                if (null == db) return ret;
+                if (string.IsNullOrWhiteSpace(ADM2Code)) return ret;
+                MethodBase med = MethodBase.GetCurrentMethod();
+                try
+                {
+                    string cmd = string.Empty;
+                    cmd += "SELECT * FROM LADM3 ";
+                    cmd += " WHERE ADM2Code = ? ";
+                    cmd += " ORDER BY ADM3Code ";
+                    var results = NQuery.Query<LADM3>(cmd, ADM2Code).ToList();
+                    ret.Success(results);
+                }
+                catch (Exception ex)
+                {
+                    med.Err(ex);
+                }
+
+                return ret;
+            }
+        }
 
         #endregion
     }
