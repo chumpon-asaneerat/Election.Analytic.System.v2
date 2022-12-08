@@ -157,7 +157,7 @@ namespace PPRP.Models
 
     #region LADM3Part
 
-    public class LADM3Part : NTable<LADM3Part>
+    public class LADM3Part : NTable<LADM3Part>, IADMPart
     {
         #region Public Properties
 
@@ -201,6 +201,15 @@ namespace PPRP.Models
 
         #endregion
 
+        #region Interface Implements
+
+        List<IADMPoint> IADMPart.GetADMPoints()
+        {
+            return LADM3Point.Gets(ADM3Code, RecordId, PartId).Value()?.ToList<IADMPoint>();
+        }
+
+        #endregion
+
         #region Static Methods
 
         public static NDbResult<LADM3Part> Get(
@@ -240,6 +249,32 @@ namespace PPRP.Models
                 return ret;
             }
         }
+        public static NDbResult<List<LADM3Part>> Gets(string ADM3Code)
+        {
+            NDbResult<List<LADM3Part>> ret = new NDbResult<List<LADM3Part>>();
+            lock (sync)
+            {
+                SQLiteConnection db = Default;
+                if (null == db) return ret;
+                if (string.IsNullOrWhiteSpace(ADM3Code)) return ret;
+                MethodBase med = MethodBase.GetCurrentMethod();
+                try
+                {
+                    string cmd = string.Empty;
+                    cmd += "SELECT * FROM LADM3Part ";
+                    cmd += " WHERE ADM3Code = ? ";
+                    cmd += " ORDER BY ADM3Code, RecordId, PartId ";
+                    var results = NQuery.Query<LADM3Part>(cmd, ADM3Code).ToList();
+                    ret.Success(results);
+                }
+                catch (Exception ex)
+                {
+                    med.Err(ex);
+                }
+
+                return ret;
+            }
+        }
 
         #endregion
     }
@@ -248,7 +283,7 @@ namespace PPRP.Models
 
     #region LADM3Point
 
-    public class LADM3Point : NTable<LADM3Point>
+    public class LADM3Point : NTable<LADM3Point>, IADMPoint
     {
         #region Public Properties
 
@@ -330,6 +365,60 @@ namespace PPRP.Models
                     var results = NQuery.Query<LADM3Point>(cmd,
                         ADM0Code, ADM1Code, ADM2Code, ADM3Code,
                         recordId, partId, pointId).FirstOrDefault();
+                    ret.Success(results);
+                }
+                catch (Exception ex)
+                {
+                    med.Err(ex);
+                }
+
+                return ret;
+            }
+        }
+        public static NDbResult<List<LADM3Point>> Gets(string ADM3Code, int recordId, int partId)
+        {
+            NDbResult<List<LADM3Point>> ret = new NDbResult<List<LADM3Point>>();
+            lock (sync)
+            {
+                SQLiteConnection db = Default;
+                if (null == db) return ret;
+                if (string.IsNullOrWhiteSpace(ADM3Code)) return ret;
+                MethodBase med = MethodBase.GetCurrentMethod();
+                try
+                {
+                    string cmd = string.Empty;
+                    cmd += "SELECT * FROM LADM3Point ";
+                    cmd += " WHERE ADM3Code = ? ";
+                    cmd += "   AND RecordId = ? ";
+                    cmd += "   AND PartId = ? ";
+                    cmd += " ORDER BY ADM3Code, RecordId, PartId, PointId ";
+                    var results = NQuery.Query<LADM3Point>(cmd, ADM3Code, recordId, partId).ToList();
+                    ret.Success(results);
+                }
+                catch (Exception ex)
+                {
+                    med.Err(ex);
+                }
+
+                return ret;
+            }
+        }
+        public static NDbResult<List<LADM3Point>> Gets(string ADM3Code)
+        {
+            NDbResult<List<LADM3Point>> ret = new NDbResult<List<LADM3Point>>();
+            lock (sync)
+            {
+                SQLiteConnection db = Default;
+                if (null == db) return ret;
+                if (string.IsNullOrWhiteSpace(ADM3Code)) return ret;
+                MethodBase med = MethodBase.GetCurrentMethod();
+                try
+                {
+                    string cmd = string.Empty;
+                    cmd += "SELECT * FROM LADM3Point ";
+                    cmd += " WHERE ADM3Code = ? ";
+                    cmd += " ORDER BY ADM3Code, RecordId, PartId, PointId ";
+                    var results = NQuery.Query<LADM3Point>(cmd, ADM3Code).ToList();
                     ret.Success(results);
                 }
                 catch (Exception ex)

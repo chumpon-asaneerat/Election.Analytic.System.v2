@@ -21,49 +21,6 @@ using Newtonsoft.Json.Bson;
 
 namespace PPRP.Models
 {
-    #region Interfaces
-
-    public interface IBound
-    {
-        double LF { get; set; }
-        double TP { get; set; }
-        double RT { get; set; }
-        double BT { get; set; }
-        double WD { get; set; }
-        double HT { get; set; }
-        double CX { get; set; }
-        double CY { get; set; }
-    }
-
-    public interface IADM : IBound
-    {
-        string ADMCode { get; }
-        string Name { get; }
-
-        List<IADMPart> GetADMParts();
-    }
-
-    public interface IADMPart
-    {
-        int RecordId { get; set; }
-        int PartId { get; set; }
-
-        List<IADMPoint> GetADMPoints();
-    }
-
-    public interface IADMPoint
-    {
-        /*
-        int RecordId { get; set; }
-        int PartId { get; set; }
-        */
-        int PointId { get; set; }
-        double X { get; set; }
-        double Y { get; set; }
-    }
-
-    #endregion
-
     #region LADM0
 
     /// <summary>
@@ -245,7 +202,6 @@ namespace PPRP.Models
 
         #endregion
 
-
         #region Static Methods
 
         public static NDbResult<LADM0Part> Get(string ADM0Code, int recordId, int partId)
@@ -289,6 +245,7 @@ namespace PPRP.Models
                     string cmd = string.Empty;
                     cmd += "SELECT * FROM LADM0Part ";
                     cmd += " WHERE ADM0Code = ? ";
+                    cmd += " ORDER BY RecordId, PartId ";
                     var results = NQuery.Query<LADM0Part>(cmd, ADM0Code).ToList();
                     ret.Success(results);
                 }
@@ -375,7 +332,6 @@ namespace PPRP.Models
                 return ret;
             }
         }
-
         public static NDbResult<List<LADM0Point>> Gets(string ADM0Code, int recordId, int partId)
         {
             NDbResult<List<LADM0Point>> ret = new NDbResult<List<LADM0Point>>();
@@ -392,6 +348,7 @@ namespace PPRP.Models
                     cmd += " WHERE ADM0Code = ? ";
                     cmd += "   AND RecordId = ? ";
                     cmd += "   AND PartId = ? ";
+                    cmd += " ORDER BY RecordId, PartId, PointId ";
                     var results = NQuery.Query<LADM0Point>(cmd, ADM0Code, recordId, partId).ToList();
                     ret.Success(results);
                 }
@@ -403,7 +360,6 @@ namespace PPRP.Models
                 return ret;
             }
         }
-
         public static NDbResult<List<LADM0Point>> Gets(string ADM0Code)
         {
             NDbResult<List<LADM0Point>> ret = new NDbResult<List<LADM0Point>>();
@@ -418,6 +374,7 @@ namespace PPRP.Models
                     string cmd = string.Empty;
                     cmd += "SELECT * FROM LADM0Point ";
                     cmd += " WHERE ADM0Code = ? ";
+                    cmd += " ORDER BY RecordId, PartId, PointId ";
                     var results = NQuery.Query<LADM0Point>(cmd, ADM0Code).ToList();
                     ret.Success(results);
                 }

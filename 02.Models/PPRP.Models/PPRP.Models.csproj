@@ -130,6 +130,7 @@
     <Compile Include="Models\Excels\ExcelModels.cs" />
     <Compile Include="Models\ImageFiles\ImageFileModels.cs" />
     <Compile Include="Models\Maps\Json\JsonMapFiles.cs" />
+    <Compile Include="Models\Maps\LocalMaps\Interfaces.cs" />
     <Compile Include="Models\Maps\LocalMaps\LADM0.cs" />
     <Compile Include="Models\Maps\LocalMaps\LADM1.cs" />
     <Compile Include="Models\Maps\LocalMaps\LADM2.cs" />
