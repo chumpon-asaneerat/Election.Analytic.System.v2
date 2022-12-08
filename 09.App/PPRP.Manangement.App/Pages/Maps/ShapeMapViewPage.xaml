@@ -94,7 +94,9 @@
                             <Grid />
                         </DockPanel>
                         <Grid Background="WhiteSmoke">
-                            <Canvas x:Name="canvas" LayoutUpdated="canvas_LayoutUpdated"/>
+                            <Canvas x:Name="canvas" 
+                                    ClipToBounds="True"
+                                    SizeChanged="canvas_SizeChanged"/>
                         </Grid>
                     </DockPanel>
                 </DockPanel>

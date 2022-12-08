@@ -81,7 +81,7 @@ namespace PPRP.Pages
                 host.Canvas = canvas;
                 canvas.Children.Add(host);
             }
-            host.RefreshTransforms();
+            //host.RefreshTransforms();
         }
 
         #endregion
@@ -103,10 +103,9 @@ namespace PPRP.Pages
             UpdateMaps();
         }
 
-        private void canvas_LayoutUpdated(object sender, EventArgs e)
+        private void canvas_SizeChanged(object sender, SizeChangedEventArgs e)
         {
-            if (null !=  host) 
-                host.RefreshTransforms();
+            //if (null != host) host.RefreshTransforms();
         }
     }
 }
