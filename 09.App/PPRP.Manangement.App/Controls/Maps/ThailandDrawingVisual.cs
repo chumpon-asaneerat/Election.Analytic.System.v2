@@ -295,12 +295,12 @@ namespace PPRP.Controls.v2
     {
         public ADMShapePart() : base()
         {
-            this.Points = new List<ADMShapePoint>();
+            Loaded = false;
         }
-
+        public bool Loaded { get; private set; }
         public int RecordId { get; set; }
         public int PartId { get; set; }        
-        public List<ADMShapePoint> Points { get; private set; }
+        public List<ADMShapePoint> Points { get; internal set; }
     }
 
     // need class to load data into GeomertyGroup
@@ -308,10 +308,60 @@ namespace PPRP.Controls.v2
     {
         public ADMShape() : base()
         {
-            Parts = new List<ADMShapePart>();
+            Loaded = false;
         }
 
+        private void LoadPoints(ADMShapePart part, List<IADMPoint> points)
+        {
+            if (null == part) return;
+            if (null != points)
+            {
+                if (null == part.Points) part.Points = new List<ADMShapePoint>();
+                part.Points.Clear();
 
+                points.ForEach(point => 
+                {
+                    // create point instance
+                    var obj = new ADMShapePoint();
+                    obj.RecordId = point.PointId;
+                    obj.PartId = point.PartId;
+                    obj.PointId = point.PointId;
+                    obj.X = point.X;
+                    obj.Y = point.Y;
+                    // add part to list.
+                    part.Points.Add(obj);
+                });
+            }
+        }
+        private void LoadParts(List<IADMPart> parts)
+        {
+            if (null != parts)
+            {
+                Parts = new List<ADMShapePart>();
+                parts.ForEach(part =>
+                {
+                    if (null != part)
+                    {
+                        // create part instance
+                        var obj = new ADMShapePart();
+                        obj.RecordId = part.RecordId;
+                        obj.PartId = part.PartId;
+                        // load points for part
+                        var points = part.GetADMPoints();
+                        LoadPoints(obj, points);
+                        // add part to list.
+                        Parts.Add(obj);
+                    }
+                });
+            }
+        }
+        public void Load(IADM adm)
+        {
+            var parts = adm.GetADMParts();
+            LoadParts(parts);
+            Loaded = true;
+        }
+        public bool Loaded { get; private set; }
         public string ADMCode { get; set; }
         public RectangleD Bound { get; set; }
         public List<ADMShapePart> Parts { get; private set; }

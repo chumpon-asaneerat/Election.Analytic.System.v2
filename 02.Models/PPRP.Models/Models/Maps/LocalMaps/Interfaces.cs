@@ -38,10 +38,8 @@ namespace PPRP.Models
 
     public interface IADMPoint
     {
-        /*
         int RecordId { get; set; }
         int PartId { get; set; }
-        */
         int PointId { get; set; }
         double X { get; set; }
         double Y { get; set; }
