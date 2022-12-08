@@ -108,7 +108,7 @@ namespace PPRP.Pages
             shape.Load(adm);
             TimeSpan ts = DateTime.Now - dt;
 
-            Console.WriteLine("load time: {0:n3} ms.", ts.TotalMilliseconds);
+            txtElapse.Text = string.Format("load time: {0:n3} ms.", ts.TotalMilliseconds);
         }
 
         #endregion

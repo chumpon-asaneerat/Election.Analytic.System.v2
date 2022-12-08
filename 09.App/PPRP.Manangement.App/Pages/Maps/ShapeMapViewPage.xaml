@@ -125,7 +125,7 @@
                                             HorizontalAlignment="Center"
                                             VerticalAlignment="Center">
                                     <TextBlock Text="Elapse:" />
-                                    <TextBlock x:Name="txtElapse" Width="120" />
+                                    <TextBlock x:Name="txtElapse" />
                                 </StackPanel>
                                 <Grid />
                             </DockPanel>
