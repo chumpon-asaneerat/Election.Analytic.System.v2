@@ -124,8 +124,14 @@
                                             Margin="5,0"
                                             HorizontalAlignment="Center"
                                             VerticalAlignment="Center">
-                                    <TextBlock Text="Elapse:" />
-                                    <TextBlock x:Name="txtElapse" />
+                                    <TextBlock HorizontalAlignment="Left"
+                                               VerticalAlignment="Center"
+                                               Text="Elapse:" />
+                                    <TextBlock x:Name="txtElapse"
+                                               Margin="5,0"
+                                               HorizontalAlignment="Left"
+                                               VerticalAlignment="Center"
+                                               Text="-" />
                                 </StackPanel>
                                 <Grid />
                             </DockPanel>
