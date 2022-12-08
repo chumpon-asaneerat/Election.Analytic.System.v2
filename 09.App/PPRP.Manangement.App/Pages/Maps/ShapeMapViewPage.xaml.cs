@@ -96,6 +96,21 @@ namespace PPRP.Pages
             lv.ItemsSource = provinces;
         }
 
+        private void UpdateProvince(LProvince province)
+        {
+            if (null == province) return;
+            string admCode = province.ADM1Code;
+            var adm = LADM1.Get(admCode).Value();
+            if (null == adm) return;
+
+            DateTime dt = DateTime.Now;
+            ADMShape shape = new ADMShape();
+            shape.Load(adm);
+            TimeSpan ts = DateTime.Now - dt;
+
+            Console.WriteLine("load time: {0:n3} ms.", ts.TotalMilliseconds);
+        }
+
         #endregion
 
         #region Public Methods
@@ -127,7 +142,9 @@ namespace PPRP.Pages
 
         private void lv_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
+            var province = lv.SelectedItem as LProvince;
+            if (null == province) return;
+            UpdateProvince(province);
         }
     }
 }
