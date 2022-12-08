@@ -77,9 +77,26 @@
                         <Grid />
                     </DockPanel>
                     <!--  ITEMS  -->
-                    <Grid Background="WhiteSmoke">
-                        <Canvas x:Name="canvas" />
-                    </Grid>
+                    <DockPanel LastChildFill="True">
+                        <DockPanel DockPanel.Dock="Left" LastChildFill="True"
+                                   Width="180">
+                            <StackPanel DockPanel.Dock="Top"
+                                        Orientation="Vertical"
+                                        HorizontalAlignment="Stretch">
+                                <Button x:Name="cmdLoadTH" Content="Load TH Map" 
+                                        Style="{StaticResource InlineButton}"
+                                        Width="150"
+                                        Height="30"
+                                        FontFamily="{StaticResource THSarabun}"
+                                        FontSize="{StaticResource FontSize18}"
+                                        Click="cmdLoadTH_Click"/>
+                            </StackPanel>
+                            <Grid />
+                        </DockPanel>
+                        <Grid Background="WhiteSmoke">
+                            <Canvas x:Name="canvas" LayoutUpdated="canvas_LayoutUpdated"/>
+                        </Grid>
+                    </DockPanel>
                 </DockPanel>
             </DockPanel>
         </Grid>

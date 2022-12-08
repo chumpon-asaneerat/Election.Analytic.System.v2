@@ -69,9 +69,19 @@ namespace PPRP.Pages
             ShapeMapDbService.Instance.Shutdown();
         }
 
+
+        private VisualHost host;
+
         private void UpdateMaps()
         {
-            canvas.Children.Add(new VisualHost() { Visual = new ThailandDrawingVisual() });
+            if (null == host)
+            {
+                host = new VisualHost();
+                host.Visual = new ThailandDrawingVisual();
+                host.Canvas = canvas;
+                canvas.Children.Add(host);
+            }
+            host.RefreshTransforms();
         }
 
         #endregion
@@ -84,9 +94,19 @@ namespace PPRP.Pages
         public void Setup()
         {
             Connect();
-            UpdateMaps();
         }
 
         #endregion
+
+        private void cmdLoadTH_Click(object sender, RoutedEventArgs e)
+        {
+            UpdateMaps();
+        }
+
+        private void canvas_LayoutUpdated(object sender, EventArgs e)
+        {
+            if (null !=  host) 
+                host.RefreshTransforms();
+        }
     }
 }

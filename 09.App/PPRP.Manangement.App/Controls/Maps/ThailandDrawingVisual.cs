@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Input;
 using System.Windows.Shapes;
@@ -19,7 +20,8 @@ namespace PPRP.Controls
 {
     public class VisualHost : UIElement
     {
-        public Visual Visual { get; set; }
+        public Canvas Canvas { get; set; }
+        public ShapeDrawingVisual Visual { get; set; }
 
         protected override int VisualChildrenCount
         {
@@ -29,6 +31,212 @@ namespace PPRP.Controls
         protected override Visual GetVisualChild(int index)
         {
             return Visual;
+        }
+
+        public void RefreshTransforms()
+        {
+            Visual.ShapeTransform = null;
+            this.InvalidateVisual();
+        }
+
+        private GeometryGroup geometry;
+
+        protected override void OnRenderSizeChanged(SizeChangedInfo info)
+        {
+            base.OnRenderSizeChanged(info);
+            Visual.ShapeTransform = null;
+        }
+
+        protected override void OnRender(DrawingContext drawingContext)
+        {
+            if (null == geometry) 
+                geometry = Visual.GetStreamGeometryGroup();
+            if (null == Visual.ShapeTransform)
+                Visual.InitTransforms(Canvas);
+
+            geometry.Transform = Visual.ShapeTransform;
+            //geometry.Freeze();
+
+            drawingContext.DrawGeometry(Brushes.Gray, new Pen(Brushes.Salmon, 0.5), geometry);
+
+
+            base.OnRender(drawingContext);
+        }
+    }
+
+
+    public abstract class ShapeDrawingVisual : DrawingVisual
+    {
+        public TransformGroup ShapeTransform { get; set; }
+
+        public abstract RectangleD Bound { get; }
+
+        public void InitTransforms(FrameworkElement parent)
+        {
+            if (null == parent || null == Bound)
+                return;
+
+            // Bounding box for the shape.
+            double xmin = Bound.Left;
+            double xmax = Bound.Right;
+            double ymin = Bound.Top;
+            double ymax = Bound.Bottom;
+
+            // Width and height of the bounding box.
+            double shapeWd = Math.Abs(xmax - xmin);
+            double shapeHt = Math.Abs(ymax - ymin);
+
+            // Aspect ratio of the bounding box.
+            double aspectRatio = shapeWd / shapeHt;
+
+            // Aspect ratio of the current viewbox i.e canvas.
+            double viewBoxRatio = parent.ActualWidth / parent.ActualHeight;
+
+            // Compute a scale factor so that the shapefile geometry
+            // will maximize the space used on the canvas while still
+            // maintaining its aspect ratio.
+            double scaleFactor;
+            if (aspectRatio < viewBoxRatio)
+                scaleFactor = parent.ActualHeight / shapeHt;
+            else
+                scaleFactor = parent.ActualWidth / shapeWd;
+
+            // Compute the scale transformation. Note that we flip
+            // the Y-values because the lon/lat grid is like a cartesian
+            // coordinate system where Y-values increase upwards.
+            ScaleTransform xformScale = new ScaleTransform(scaleFactor, -scaleFactor);
+
+            // Compute the translate transformation so that the shapefile
+            // geometry will be centered on the canvas.
+            TranslateTransform xformTranslate = new TranslateTransform()
+            {
+                X = (parent.ActualWidth - (xmin + xmax) * scaleFactor) / 2,
+                Y = (parent.ActualHeight + (ymin + ymax) * scaleFactor) / 2
+            };
+
+            // create new transform group.
+            ShapeTransform = new TransformGroup();
+            // add scale transform
+            ShapeTransform.Children.Add(xformScale);
+            // add translate transform
+            ShapeTransform.Children.Add(xformTranslate);
+        }
+
+        public abstract GeometryGroup GetStreamGeometryGroup();
+    }
+
+    public class ThailandDrawingVisual : ShapeDrawingVisual
+    {
+        public LADM0 ADM { get; set; }
+        public List<LADM0Point> LADMPoints { get; set; }
+
+        public override RectangleD Bound 
+        {
+            get
+            {
+                RectangleD ret = null;
+                if (null != ADM)
+                {
+                    ret = new RectangleD()
+                    {
+                        Left = ADM.LF,
+                        Top = ADM.TP,
+                        Right = ADM.RT,
+                        Bottom = ADM.BT
+                    };
+
+                }
+                return ret;
+            }
+        }
+
+        public override GeometryGroup GetStreamGeometryGroup()
+        {
+            if (null == ADM) ADM = LADM0.Get().Value();
+            if (null == ADM) return null;
+
+            // Decide if the line segments are stroked or not. For the PolyLine type it must be stroked.
+            bool isStroked = true;
+
+            GeometryGroup combine = new GeometryGroup();
+            // Create a new stream geometry.
+            StreamGeometry geometry = new StreamGeometry();
+            // Obtain the stream geometry context for drawing each part.
+            using (StreamGeometryContext ctx = geometry.Open())
+            {
+                if (LADMPoints == null)
+                {
+                    DateTime dt = DateTime.Now;
+                    LADMPoints = LADM0Point.Gets(ADM.ADM0Code).Value();
+                    TimeSpan ts = DateTime.Now - dt;
+                    Console.WriteLine("load time: {0:n3} ms.", ts.TotalMilliseconds);
+                }
+
+                if (null != LADMPoints)
+                {
+                    int iRecNo = 0;
+                    int iPart = 0;
+                    int iPt = 0;
+                    foreach (var admPt in LADMPoints)
+                    {
+                        if (iRecNo != admPt.RecordId)
+                        {
+                            iRecNo = admPt.RecordId; // record changed.
+                            iPart = 0;
+                        }
+                        if (iPart != admPt.PartId)
+                        {
+                            iPart = admPt.PartId; // part changed
+                            iPt = 0;
+                        }
+
+                        Point pt = new Point(admPt.X, admPt.Y);
+
+                        if (iPt == 0)
+                            ctx.BeginFigure(pt, true, false);
+                        else
+                            ctx.LineTo(pt, isStroked, true);
+
+                        iPt++;
+                    }
+                }
+            }
+            // add shape geometry
+            combine.Children.Add(geometry);
+
+            // Return the created stream geometry.
+            return combine;
+        }
+    }
+}
+
+
+namespace PPRP.Controls.v1
+{
+    public class VisualHost : UIElement
+    {
+        public Canvas Canvas { get; set; }
+        public ShapeDrawingVisual Visual { get; set; }
+
+        protected override int VisualChildrenCount
+        {
+            get { return Visual != null ? 1 : 0; }
+        }
+
+        protected override Visual GetVisualChild(int index)
+        {
+            return Visual;
+        }
+
+        protected override void OnRender(DrawingContext drawingContext)
+        {
+            Geometry geometry = Visual.CreateStreamGeometry();
+            geometry.Freeze();
+
+            drawingContext.DrawGeometry(Brushes.Gray, new Pen(Brushes.Salmon, 0.5), geometry);
+
+
+            base.OnRender(drawingContext);
         }
     }
 
@@ -41,23 +249,25 @@ namespace PPRP.Controls
     {
         #region Internal Variables
 
-        private ScaleTransform _scaletransform = null;
-        private TransformGroup _ShapeTransformGroup = null;
-
         #endregion
 
         #region Constructor and Destructor
 
-        /// <summary>
-        /// Constructor.
-        /// </summary>
-        public ShapeDrawingVisual() : base()
+
+        private ShapeDrawingVisual() : base() 
         {
             Children = new VisualCollection(this);
             // Add the event handler for MouseLeftButtonUp.
             /*
             this.MouseLeftButtonUp += new System.Windows.Input.MouseButtonEventHandler(MyVisualHost_MouseLeftButtonUp);
             */
+        }
+        /// <summary>
+        /// Constructor.
+        /// </summary>
+        public ShapeDrawingVisual(VisualHost host) : this()
+        {
+            Host = host;
         }
         /// <summary>
         /// Destructor.
@@ -69,6 +279,7 @@ namespace PPRP.Controls
                 Children.Clear();
             }
             Children = null;
+            Host = null;
         }
 
         #endregion
@@ -84,6 +295,11 @@ namespace PPRP.Controls
 
         protected void InitTransforms(RectangleD shapeBound)
         {
+            if (null == Host || null == Host.Canvas)
+                return;
+
+            var canvas = Host.Canvas;
+
             // Bounding box for the shape.
             double xmin = shapeBound.Left;
             double xmax = shapeBound.Right;
@@ -97,17 +313,19 @@ namespace PPRP.Controls
             // Aspect ratio of the bounding box.
             double aspectRatio = shapeWd / shapeHt;
 
+            Measure(new Size(shapeWd, shapeHt));
+
             // Aspect ratio of the current viewbox i.e canvas.
-            double viewBoxRatio = this.ActualWidth / this.ActualHeight;
+            double viewBoxRatio = canvas.ActualWidth / canvas.ActualHeight;
 
             // Compute a scale factor so that the shapefile geometry
             // will maximize the space used on the canvas while still
             // maintaining its aspect ratio.
             double scaleFactor;
             if (aspectRatio < viewBoxRatio)
-                scaleFactor = this.ActualHeight / shapeHt;
+                scaleFactor = canvas.ActualHeight / shapeHt;
             else
-                scaleFactor = this.ActualWidth / shapeWd;
+                scaleFactor = canvas.ActualWidth / shapeWd;
 
             // Compute the scale transformation. Note that we flip
             // the Y-values because the lon/lat grid is like a cartesian
@@ -118,8 +336,8 @@ namespace PPRP.Controls
             // geometry will be centered on the canvas.
             TranslateTransform xformTranslate = new TranslateTransform()
             {
-                X = (this.ActualWidth - (xmin + xmax) * scaleFactor) / 2,
-                Y = (this.ActualHeight + (ymin + ymax) * scaleFactor) / 2
+                X = (ActualWidth - (xmin + xmax) * scaleFactor) / 2,
+                Y = (ActualHeight + (ymin + ymax) * scaleFactor) / 2
             };
 
             // create new transform group.
@@ -164,12 +382,12 @@ namespace PPRP.Controls
 
         #region Public Methods
 
-        public void InvalidateLayout()
-        {
-
-        }
+        public abstract Visual Create();
+        public abstract Geometry CreateStreamGeometry();
 
         #endregion
+
+        public VisualHost Host { get; private set; }
     }
 
     #endregion
@@ -192,11 +410,12 @@ namespace PPRP.Controls
 
         #region Constructor
 
-        public ThailandDrawingVisual() : base()
+        public ThailandDrawingVisual(VisualHost host) : base(host)
         {
+            /*
             var visual = Create();
             _ = Children.Add(visual);
-
+            *.
             // Add the event handler for MouseLeftButtonUp.
             /*
             this.MouseLeftButtonUp += new System.Windows.Input.MouseButtonEventHandler(MyVisualHost_MouseLeftButtonUp);
@@ -206,12 +425,17 @@ namespace PPRP.Controls
         #endregion
 
         #region Override Methods
-
+        /*
+        protected override void OnRender(DrawingContext drawingContext)
+        {
+            base.OnRender(drawingContext);
+        }
+        */
         #endregion
 
         #region Private Methods
 
-        private Visual Create()
+        public override Visual Create()
         {
             Geometry geometry = CreateStreamGeometry();
             geometry.Freeze();
@@ -232,7 +456,7 @@ namespace PPRP.Controls
         public LADM0 ADM { get; set; }
         public List<LADM0Point> LADMPoints { get; set; }
 
-        private Geometry CreateStreamGeometry()
+        public override Geometry CreateStreamGeometry()
         {
             if (null == ADM) ADM = LADM0.Get().Value();
             if (null == ADM) return null;
@@ -291,43 +515,6 @@ namespace PPRP.Controls
                         iPt++;
                     }
                 }
-
-                /*
-                var parts = LADM0Part.Gets(adm.ADM0Code).Value();
-                if (null != parts)
-                {
-                    int iPart = 1;
-                    foreach (var part in parts)
-                    {
-                        // Draw figures.
-                        DateTime dt = DateTime.Now;
-
-                        var points = LADM0Point.Gets(adm.ADM0Code, part.RecordId, part.PartId).Value();
-
-                        TimeSpan ts = DateTime.Now - dt;
-                        Console.WriteLine("Part: {0:n0} load time: {1:n3} ms.", iPart, ts.TotalMilliseconds);
-
-                        if (null != points)
-                        {
-                            int maxPts = points.Count;
-                            for (int i = 0; i < maxPts; ++i)
-                            {
-                                var point = points[i];
-                                Point pt = new Point(point.X, point.Y);
-
-                                if (i == 0)
-                                    ctx.BeginFigure(pt, true, false);
-                                else
-                                    ctx.LineTo(pt, isStroked, true);
-
-                                iCnt++; // count all points
-                            }
-                        }
-
-                        iPart++;
-                    }
-                }
-                */
             }
             // add shape geometry
             combine.Children.Add(geometry);
