@@ -108,8 +108,9 @@ namespace PPRP.Pages
             shape.Load(adm);
             TimeSpan ts = DateTime.Now - dt;
             // update elapse time.
-            txtElapse.Text = string.Format("Province: {0}, load time: {1:n3} ms.", 
-                province.ProvinceName, ts.TotalMilliseconds);
+            txtElapse.Text = string.Format("{0} (1), load time: {2:n3} ms.", 
+                province.ProvinceName, province.ADM1Code,
+                ts.TotalMilliseconds);
         }
 
         #endregion
