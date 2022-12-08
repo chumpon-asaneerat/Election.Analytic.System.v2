@@ -189,7 +189,9 @@
   <ItemGroup>
     <Resource Include="Images\Default\party.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="Views\ADMView.sql" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>REM xcopy "$(SolutionDir)References\Microsoft*.*" "$(TargetDir)\..\PPRP\Microsoft*.*" /Y/D/E

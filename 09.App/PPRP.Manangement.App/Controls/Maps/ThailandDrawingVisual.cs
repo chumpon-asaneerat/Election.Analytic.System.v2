@@ -21,7 +21,7 @@ namespace PPRP.Controls
 {
     public class VisualHost : UIElement
     {
-        DispatcherTimer timer = null;
+        private DispatcherTimer timer = null;
 
         public VisualHost()
         {
@@ -276,6 +276,43 @@ namespace PPRP.Controls
             // Return the created stream geometry.
             return combine;
         }
+    }
+}
+
+
+namespace PPRP.Controls.v2
+{
+    public class ADMShapePoint
+    {
+        public int RecordId { get; set; }
+        public int PartId { get; set; }
+        public int PointId { get; set; }
+        public double X { get; set; }
+        public double Y { get; set; }
+    }
+
+    public class ADMShapePart
+    {
+        public ADMShapePart() : base()
+        {
+            this.Points = new List<ADMShapePoint>();
+        }
+
+        public int RecordId { get; set; }
+        public int PartId { get; set; }        
+        public List<ADMShapePoint> Points { get; private set; }
+    }
+
+    // need class to load data into GeomertyGroup
+    public class ADMShape
+    {
+        public ADMShape() : base()
+        {
+            Parts = new List<ADMShapePart>();
+        }
+        public string ADMCode { get; set; }
+        public RectangleD Bound { get; set; }
+        public List<ADMShapePart> Parts { get; private set; }
     }
 }
 
