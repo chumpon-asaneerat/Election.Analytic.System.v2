@@ -116,6 +116,33 @@ namespace PPRP.Models
 
         #region Static Methods
 
+        public static NDbResult<LADM0> Get(string ADM0Code = "TH")
+        {
+            NDbResult<LADM0> ret = new NDbResult<LADM0>();
+            lock (sync)
+            {
+                SQLiteConnection db = Default;
+                if (null == db) return ret;
+                if (string.IsNullOrWhiteSpace(ADM0Code)) return ret;
+                MethodBase med = MethodBase.GetCurrentMethod();
+                try
+                {
+                    string cmd = string.Empty;
+                    cmd += "SELECT * FROM LADM0 ";
+                    cmd += " WHERE ADM0Code = ? ";
+                    var results = NQuery.Query<LADM0>(cmd, ADM0Code).FirstOrDefault();
+                    ret.Success(results);
+                }
+                catch (Exception ex)
+                {
+                    med.Err(ex);
+                }
+
+                return ret;
+            }
+        }
+
+
         #endregion
     }
 
@@ -171,6 +198,31 @@ namespace PPRP.Models
                     cmd += "   AND RecordId = ? ";
                     cmd += "   AND PartId = ? ";
                     var results = NQuery.Query<LADM0Part>(cmd, ADM0Code, recordId, partId).FirstOrDefault();
+                    ret.Success(results);
+                }
+                catch (Exception ex)
+                {
+                    med.Err(ex);
+                }
+
+                return ret;
+            }
+        }
+        public static NDbResult<List<LADM0Part>> Gets(string ADM0Code)
+        {
+            NDbResult<List<LADM0Part>> ret = new NDbResult<List<LADM0Part>>();
+            lock (sync)
+            {
+                SQLiteConnection db = Default;
+                if (null == db) return ret;
+                if (string.IsNullOrWhiteSpace(ADM0Code)) return ret;
+                MethodBase med = MethodBase.GetCurrentMethod();
+                try
+                {
+                    string cmd = string.Empty;
+                    cmd += "SELECT * FROM LADM0Part ";
+                    cmd += " WHERE ADM0Code = ? ";
+                    var results = NQuery.Query<LADM0Part>(cmd, ADM0Code).ToList();
                     ret.Success(results);
                 }
                 catch (Exception ex)
@@ -240,12 +292,66 @@ namespace PPRP.Models
                 try
                 {
                     string cmd = string.Empty;
-                    cmd += "SELECT * FROM ADM0Point ";
+                    cmd += "SELECT * FROM LADM0Point ";
                     cmd += " WHERE ADM0Code = ? ";
                     cmd += "   AND RecordId = ? ";
                     cmd += "   AND PartId = ? ";
                     cmd += "   AND PointId = ? ";
                     var results = NQuery.Query<LADM0Point>(cmd, ADM0Code, recordId, partId, pointId).FirstOrDefault();
+                    ret.Success(results);
+                }
+                catch (Exception ex)
+                {
+                    med.Err(ex);
+                }
+
+                return ret;
+            }
+        }
+
+        public static NDbResult<List<LADM0Point>> Gets(string ADM0Code, int recordId, int partId)
+        {
+            NDbResult<List<LADM0Point>> ret = new NDbResult<List<LADM0Point>>();
+            lock (sync)
+            {
+                SQLiteConnection db = Default;
+                if (null == db) return ret;
+                if (string.IsNullOrWhiteSpace(ADM0Code)) return ret;
+                MethodBase med = MethodBase.GetCurrentMethod();
+                try
+                {
+                    string cmd = string.Empty;
+                    cmd += "SELECT * FROM LADM0Point ";
+                    cmd += " WHERE ADM0Code = ? ";
+                    cmd += "   AND RecordId = ? ";
+                    cmd += "   AND PartId = ? ";
+                    var results = NQuery.Query<LADM0Point>(cmd, ADM0Code, recordId, partId).ToList();
+                    ret.Success(results);
+                }
+                catch (Exception ex)
+                {
+                    med.Err(ex);
+                }
+
+                return ret;
+            }
+        }
+
+        public static NDbResult<List<LADM0Point>> Gets(string ADM0Code)
+        {
+            NDbResult<List<LADM0Point>> ret = new NDbResult<List<LADM0Point>>();
+            lock (sync)
+            {
+                SQLiteConnection db = Default;
+                if (null == db) return ret;
+                if (string.IsNullOrWhiteSpace(ADM0Code)) return ret;
+                MethodBase med = MethodBase.GetCurrentMethod();
+                try
+                {
+                    string cmd = string.Empty;
+                    cmd += "SELECT * FROM LADM0Point ";
+                    cmd += " WHERE ADM0Code = ? ";
+                    var results = NQuery.Query<LADM0Point>(cmd, ADM0Code).ToList();
                     ret.Success(results);
                 }
                 catch (Exception ex)
