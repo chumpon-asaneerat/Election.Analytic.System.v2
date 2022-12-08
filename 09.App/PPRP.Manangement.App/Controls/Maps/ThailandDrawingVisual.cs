@@ -39,6 +39,13 @@ namespace PPRP.Controls
     /// </summary>
     public abstract class ShapeDrawingVisual : FrameworkElement
     {
+        #region Internal Variables
+
+        private ScaleTransform _scaletransform = null;
+        private TransformGroup _ShapeTransformGroup = null;
+
+        #endregion
+
         #region Constructor and Destructor
 
         /// <summary>
@@ -73,6 +80,56 @@ namespace PPRP.Controls
         /// </summary>
         protected VisualCollection Children { get; private set; }
 
+        protected TransformGroup ShapeTransform { get; private set; }
+
+        protected void InitTransforms(RectangleD shapeBound)
+        {
+            // Bounding box for the shape.
+            double xmin = shapeBound.Left;
+            double xmax = shapeBound.Right;
+            double ymin = shapeBound.Top;
+            double ymax = shapeBound.Bottom;
+
+            // Width and height of the bounding box.
+            double shapeWd = Math.Abs(xmax - xmin);
+            double shapeHt = Math.Abs(ymax - ymin);
+
+            // Aspect ratio of the bounding box.
+            double aspectRatio = shapeWd / shapeHt;
+
+            // Aspect ratio of the current viewbox i.e canvas.
+            double viewBoxRatio = this.ActualWidth / this.ActualHeight;
+
+            // Compute a scale factor so that the shapefile geometry
+            // will maximize the space used on the canvas while still
+            // maintaining its aspect ratio.
+            double scaleFactor;
+            if (aspectRatio < viewBoxRatio)
+                scaleFactor = this.ActualHeight / shapeHt;
+            else
+                scaleFactor = this.ActualWidth / shapeWd;
+
+            // Compute the scale transformation. Note that we flip
+            // the Y-values because the lon/lat grid is like a cartesian
+            // coordinate system where Y-values increase upwards.
+            ScaleTransform xformScale = new ScaleTransform(scaleFactor, -scaleFactor);
+
+            // Compute the translate transformation so that the shapefile
+            // geometry will be centered on the canvas.
+            TranslateTransform xformTranslate = new TranslateTransform()
+            {
+                X = (this.ActualWidth - (xmin + xmax) * scaleFactor) / 2,
+                Y = (this.ActualHeight + (ymin + ymax) * scaleFactor) / 2
+            };
+
+            // create new transform group.
+            ShapeTransform = new TransformGroup();
+            // add scale transform
+            ShapeTransform.Children.Add(xformScale);
+            // add translate transform
+            ShapeTransform.Children.Add(xformTranslate);
+        }
+
         #endregion
 
         #region Override Methods
@@ -104,6 +161,15 @@ namespace PPRP.Controls
         }
 
         #endregion
+
+        #region Public Methods
+
+        public void InvalidateLayout()
+        {
+
+        }
+
+        #endregion
     }
 
     #endregion
@@ -119,6 +185,8 @@ namespace PPRP.Controls
     public class ThailandDrawingVisual : ShapeDrawingVisual
     {
         #region Internal Variables
+
+        private Geometry _geometry = null;
 
         #endregion
 
@@ -161,33 +229,25 @@ namespace PPRP.Controls
             return drawingVisual;
         }
 
-        private Visual CreateShape()
-        {
-            Geometry geometry = CreateStreamGeometry();
-
-            // Create a new WPF Path.
-            Path path = new Path();
-
-
-            // Assign the geometry to the path and set its name.
-            path.Data = geometry;
-            //path.Name = shapeName;
-            // Set path properties.
-            path.StrokeThickness = 0.5;
-
-            path.Stroke = Brushes.Gray;
-            path.Fill = new SolidColorBrush(Colors.Green);
-
-            // Return the created WPF shape.
-            return path;
-        }
+        public LADM0 ADM { get; set; }
+        public List<LADM0Point> LADMPoints { get; set; }
 
         private Geometry CreateStreamGeometry()
         {
+            if (null == ADM) ADM = LADM0.Get().Value();
+            if (null == ADM) return null;
+
+            // Call to recalc current transform.
+            InitTransforms(new RectangleD() 
+            { 
+                Left = ADM.LF, 
+                Top = ADM.TP, 
+                Right = ADM.RT, 
+                Bottom = ADM.BT 
+            });
+
             // Decide if the line segments are stroked or not. For the PolyLine type it must be stroked.
             bool isStroked = true;
-
-            var adm = LADM0.Get().Value();
 
             GeometryGroup combine = new GeometryGroup();
             // Create a new stream geometry.
@@ -195,17 +255,20 @@ namespace PPRP.Controls
             // Obtain the stream geometry context for drawing each part.
             using (StreamGeometryContext ctx = geometry.Open())
             {
-                DateTime dt = DateTime.Now;
-                var admPts = LADM0Point.Gets(adm.ADM0Code).Value();
-                TimeSpan ts = DateTime.Now - dt;
-                Console.WriteLine("load time: {0:n3} ms.", ts.TotalMilliseconds);
+                if (LADMPoints == null)
+                {
+                    DateTime dt = DateTime.Now;
+                    LADMPoints = LADM0Point.Gets(ADM.ADM0Code).Value();
+                    TimeSpan ts = DateTime.Now - dt;
+                    Console.WriteLine("load time: {0:n3} ms.", ts.TotalMilliseconds);
+                }
 
-                if (null != admPts)
+                if (null != LADMPoints)
                 {
                     int iRecNo = 0;
                     int iPart = 0;
                     int iPt = 0;
-                    foreach (var admPt in admPts)
+                    foreach (var admPt in LADMPoints)
                     {
                         if (iRecNo != admPt.RecordId)
                         {
@@ -218,7 +281,7 @@ namespace PPRP.Controls
                             iPt = 0;
                         }
 
-                        Point pt = new Point(admPt.X, admPt.Y);
+                        Point pt = ShapeTransform.Transform(new Point(admPt.X, admPt.Y));
 
                         if (iPt == 0)
                             ctx.BeginFigure(pt, true, false);
