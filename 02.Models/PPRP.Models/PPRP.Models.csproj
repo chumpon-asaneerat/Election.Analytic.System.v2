@@ -192,6 +192,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\ADMView.sql" />
+    <Content Include="Views\LDM1View.sql" />
+    <Content Include="Views\LDM2View.sql" />
+    <Content Include="Views\LDM3View.sql" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
