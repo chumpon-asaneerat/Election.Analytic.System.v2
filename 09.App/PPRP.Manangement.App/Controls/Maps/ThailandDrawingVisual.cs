@@ -524,9 +524,36 @@ namespace PPRP.Controls.v2
                         _Shape = GetStreamGeometryGroup();
                     }
                 }
-                return _Shape
+                return _Shape;
             }
             set { }
+        }
+
+        #endregion
+    }
+
+    #endregion
+
+    #region ADMVisualHost
+
+    /// <summary>
+    /// The ADMVisualHost class.
+    /// </summary>
+    public class ADMVisualHost : UIElement
+    {
+        #region Constructor and Destructor
+
+        /// <summary>
+        /// Constructor.
+        /// </summary>
+        public ADMVisualHost()
+        {
+        }
+        /// <summary>
+        /// Destructor.
+        /// </summary>
+        ~ADMVisualHost()
+        {
         }
 
         #endregion
