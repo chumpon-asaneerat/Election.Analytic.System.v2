@@ -78,7 +78,8 @@
                     </DockPanel>
                     <!--  ITEMS  -->
                     <DockPanel LastChildFill="True">
-                        <ListView x:Name="lv" Width="200"
+                        <ListView x:Name="lv"
+                                  Width="200"
                                   SelectionChanged="lv_SelectionChanged">
                             <ListView.View>
                                 <GridView>
@@ -111,11 +112,29 @@
                             <Grid />
                         </DockPanel>
                         -->
-                        <Grid Background="WhiteSmoke">
-                            <Canvas x:Name="canvas"
-                                    ClipToBounds="True"
-                                    SizeChanged="canvas_SizeChanged" />
-                        </Grid>
+                        <DockPanel LastChildFill="True">
+                            <DockPanel LastChildFill="True"
+                                       DockPanel.Dock="Top"
+                                       Height="26"
+                                       Background="White"
+                                       HorizontalAlignment="Stretch"
+                                       VerticalAlignment="Stretch">
+                                <StackPanel DockPanel.Dock="Left"
+                                            Orientation="Horizontal"
+                                            Margin="5,0"
+                                            HorizontalAlignment="Center"
+                                            VerticalAlignment="Center">
+                                    <TextBlock Text="Elapse:" />
+                                    <TextBlock x:Name="txtElapse" Width="120" />
+                                </StackPanel>
+                                <Grid />
+                            </DockPanel>
+                            <Grid Background="WhiteSmoke">
+                                <Canvas x:Name="canvas"
+                                        ClipToBounds="True"
+                                        SizeChanged="canvas_SizeChanged" />
+                            </Grid>
+                        </DockPanel>
                     </DockPanel>
                 </DockPanel>
             </DockPanel>
