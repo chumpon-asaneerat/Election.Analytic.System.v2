@@ -3,6 +3,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Globalization;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -557,6 +558,26 @@ namespace PPRP.Controls
         }
 
         #endregion
+
+        private int iCnt = 0;
+
+        protected override void OnRender(DrawingContext drawingContext)
+        {
+            base.OnRender(drawingContext);
+
+            iCnt++;
+            var dc = drawingContext;
+            var cx = this.RenderSize.Width / 2;
+            var cy = this.RenderSize.Height / 2;
+            var pt = new Point(cx, cy);
+            var typeFace = new Typeface(new FontFamily("Tahoma"), 
+                FontStyles.Normal, FontWeights.Normal, FontStretches.Normal);
+            var foreColor = new SolidColorBrush(Colors.Black);
+            var fmtTxt = new FormattedText(
+                "Test " + iCnt.ToString("n0"), 
+                CultureInfo.InvariantCulture, FlowDirection.LeftToRight, typeFace, 18, foreColor, 120);
+            dc.DrawText(fmtTxt, pt);
+        }
     }
 
     #endregion

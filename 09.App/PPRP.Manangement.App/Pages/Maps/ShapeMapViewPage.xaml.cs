@@ -89,6 +89,17 @@ namespace PPRP.Pages
 
         #endregion
 
+        private ADMVisualHost admHost;
+
+        private void InitMap()
+        {
+            if (null == admHost)
+            {
+                admHost = new ADMVisualHost();
+                canvas.Children.Add(admHost);
+            }
+        }
+
         private void LoadProvinces()
         {
             lv.ItemsSource = null;
@@ -124,6 +135,8 @@ namespace PPRP.Pages
         {
             Connect();
             LoadProvinces();
+
+            InitMap();
         }
 
         #endregion
