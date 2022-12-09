@@ -13,8 +13,10 @@ Election.Analytic.System.v2 - PPRP  #387
 Election.Analytic.System.v2 - PPRP  #386
 - 
 
+[commited]
 Election.Analytic.System.v2 - PPRP  #385
-- 
+- PPRP.Manangement.App project
+  - Implements Map system #68 (sync from kik Pak 1-9).
 
 [commited]
 Election.Analytic.System.v2 - PPRP  #384
