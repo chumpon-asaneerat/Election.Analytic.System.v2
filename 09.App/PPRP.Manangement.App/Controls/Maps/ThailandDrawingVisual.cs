@@ -561,16 +561,27 @@ namespace PPRP.Controls
 
         private int iCnt = 0;
 
+        protected override void ParentLayoutInvalidated(UIElement child)
+        {
+            base.ParentLayoutInvalidated(child);
+        }
+
         protected override void OnRenderSizeChanged(SizeChangedInfo sizeInfo)
         {
             base.OnRenderSizeChanged(sizeInfo);
-            InvalidateVisual();
+            //InvalidateVisual();
         }
 
         protected override Size ArrangeOverride(Size finalSize)
         {
+            //InvalidateVisual();
             return base.ArrangeOverride(finalSize);
+        }
+
+        protected override Size MeasureOverride(Size availableSize)
+        {
             InvalidateVisual();
+            return base.MeasureOverride(availableSize);
         }
 
         protected override void OnRender(DrawingContext drawingContext)

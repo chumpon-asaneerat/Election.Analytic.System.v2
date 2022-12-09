@@ -97,6 +97,10 @@ namespace PPRP.Pages
             {
                 admHost = new ADMVisualHost();
                 canvas.Children.Add(admHost);
+                if (canvas != admHost.Parent)
+                {
+                    Console.WriteLine("invalid");
+                }
             }
         }
 
