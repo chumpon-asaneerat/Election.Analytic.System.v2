@@ -4,8 +4,8 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              mc:Ignorable="d"
-             d:DesignHeight="900"
-             d:DesignWidth="1300"
+             d:DesignHeight="1000"
+             d:DesignWidth="1920"
              Background="#2E75B7">
     <Grid>
         <Grid.Background>
@@ -107,5 +107,54 @@
             </Grid>
             <Grid />
         </DockPanel>
+        <Viewbox>
+            <Grid>
+                <Button x:Name="cmCmd01"
+                        Tag="ตาก"
+                        Margin="304,386,1587,483"
+                        Style="{StaticResource fa-location}"
+                        Click="cmCmd_Click" RenderTransformOrigin="-20.029,3.234" />
+                <Button x:Name="cmCmd02"
+                        Tag="อุตรดิตถ์"
+                        Margin="785,120,1105,745"
+                        Style="{StaticResource fa-location}"
+                        Click="cmCmd_Click" RenderTransformOrigin="-20.029,3.234" />
+                <Button x:Name="cmCmd03"
+                    Tag="สุโขทัย"
+                    Margin="575,197,1315,667"
+                    Style="{StaticResource fa-location}"
+                    Click="cmCmd_Click" RenderTransformOrigin="-20.029,3.234" />
+                <Button x:Name="cmCmd04"
+                    Tag="กำแพงเพชร"
+                    Margin="514,528,1376,337"
+                    Style="{StaticResource fa-location}"
+                    Click="cmCmd_Click" RenderTransformOrigin="-20.029,3.234" />
+                <Button x:Name="cmCmd05"
+                    Tag="เพชรบูรณ์"
+                    Margin="1002,505,888,359"
+                    Style="{StaticResource fa-location}"
+                    Click="cmCmd_Click" RenderTransformOrigin="-20.029,3.234" />
+                <Button x:Name="cmCmd06"
+                    Tag="พิจิตร"
+                    Margin="776,551,1114,313"
+                    Style="{StaticResource fa-location}"
+                    Click="cmCmd_Click" RenderTransformOrigin="-20.029,3.234" />
+                <Button x:Name="cmCmd07"
+                    Tag="พิษณุโลก"
+                    Margin="858,356,1032,508"
+                    Style="{StaticResource fa-location}"
+                    Click="cmCmd_Click" RenderTransformOrigin="-20.029,3.234" />
+                <Button x:Name="cmCmd08"
+                    Tag="นครสวรรค์"
+                    Margin="705,732,1185,132"
+                    Style="{StaticResource fa-location}"
+                    Click="cmCmd_Click" RenderTransformOrigin="-20.029,3.234" />
+                <Button x:Name="cmCmd09"
+                    Tag="อุทัยธานี"
+                    Margin="515,879,1375,-15"
+                    Style="{StaticResource fa-location}"
+                    Click="cmCmd_Click" RenderTransformOrigin="-20.029,3.234" />
+            </Grid>
+        </Viewbox>
     </Grid>
 </UserControl>

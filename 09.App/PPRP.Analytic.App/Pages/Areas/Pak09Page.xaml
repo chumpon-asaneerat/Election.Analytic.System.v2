@@ -4,8 +4,8 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              mc:Ignorable="d"
-             d:DesignHeight="900"
-             d:DesignWidth="1300"
+             d:DesignHeight="1000"
+             d:DesignWidth="1920"
              Background="#2E75B7">
     <Grid>
         <Grid.Background>
@@ -107,5 +107,46 @@
             </Grid>
             <Grid />
         </DockPanel>
+        <Viewbox>
+            <Grid>
+                <Button x:Name="cmCmd01"
+                        Tag="ตรัง"
+                        Margin="376,170,1515,699"
+                        Style="{StaticResource fa-location}"
+                        Click="cmCmd_Click" RenderTransformOrigin="-20.029,3.234" />
+                <Button x:Name="cmCmd02"
+                        Tag="พัทลุง"
+                        Margin="566,171,1324,692"
+                        Style="{StaticResource fa-location}"
+                        Click="cmCmd_Click" RenderTransformOrigin="-20.029,3.234" />
+                <Button x:Name="cmCmd03"
+                    Tag="สตูล"
+                    Margin="542,408,1348,456"
+                    Style="{StaticResource fa-location}"
+                    Click="cmCmd_Click" RenderTransformOrigin="-20.029,3.234" />
+                <Button x:Name="cmCmd04"
+                    Tag="นราธิวาส"
+                    Margin="1282,719,608,145"
+                    Style="{StaticResource fa-location}"
+                    Click="cmCmd_Click" RenderTransformOrigin="-20.029,3.234" />
+                <Button x:Name="cmCmd05"
+                    Tag="ปัตตานี"
+                    Margin="1155,507,735,358"
+                    Style="{StaticResource fa-location}"
+                    Click="cmCmd_Click" RenderTransformOrigin="-20.029,3.234" />
+                <Button x:Name="cmCmd06"
+                    Tag="ยะลา"
+                    Margin="1168,725,722,140"
+                    Style="{StaticResource fa-location}"
+                    Click="cmCmd_Click" RenderTransformOrigin="-20.029,3.234" />
+                <Button x:Name="cmCmd07"
+                    Tag="สงขลา"
+                    Margin="802,444,1088,420"
+                    Style="{StaticResource fa-location}"
+                    Click="cmCmd_Click" RenderTransformOrigin="-20.029,3.234" />
+
+
+            </Grid>
+        </Viewbox>
     </Grid>
 </UserControl>

@@ -4,8 +4,8 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              mc:Ignorable="d"
-             d:DesignHeight="900"
-             d:DesignWidth="1300"
+             d:DesignHeight="1000"
+             d:DesignWidth="1920"
              Background="#2E75B7">
     <Grid>
         <Grid.Background>
@@ -107,5 +107,69 @@
             </Grid>
             <Grid />
         </DockPanel>
+        <Viewbox>
+            <Grid>
+                <Button x:Name="cmCmd01"
+                        Tag="เลย"
+                        Margin="320,230,1571,639"
+                        Style="{StaticResource fa-location}"
+                        Click="cmCmd_Click" RenderTransformOrigin="-20.029,3.234" />
+                <Button x:Name="cmCmd02"
+                        Tag="หนองคาย"
+                        Margin="764,82,1126,782"
+                        Style="{StaticResource fa-location}"
+                        Click="cmCmd_Click" RenderTransformOrigin="-20.029,3.234" />
+                <Button x:Name="cmCmd03"
+                    Tag="หนองบัวลำภู"
+                    Margin="501,358,1389,506"
+                    Style="{StaticResource fa-location}"
+                    Click="cmCmd_Click" RenderTransformOrigin="-20.029,3.234" />
+                <Button x:Name="cmCmd04"
+                    Tag="บึงกาฬ"
+                    Margin="935,-36,955,900"
+                    Style="{StaticResource fa-location}"
+                    Click="cmCmd_Click" RenderTransformOrigin="-20.029,3.234" />
+                <Button x:Name="cmCmd05"
+                    Tag="สกลนคร"
+                    Margin="1033,278,857,585"
+                    Style="{StaticResource fa-location}"
+                    Click="cmCmd_Click" RenderTransformOrigin="-20.029,3.234" />
+                <Button x:Name="cmCmd06"
+                    Tag="มหาสารคาม"
+                    Margin="773,688,1117,176"
+                    Style="{StaticResource fa-location}"
+                    Click="cmCmd_Click" RenderTransformOrigin="-20.029,3.234" />
+                <Button x:Name="cmCmd07"
+                    Tag="ขอนแก่น"
+                    Margin="647,533,1243,331"
+                    Style="{StaticResource fa-location}"
+                    Click="cmCmd_Click" RenderTransformOrigin="-20.029,3.234" />
+                <Button x:Name="cmCmd08"
+                    Tag="อุดรธานี"
+                    Margin="662,228,1228,637"
+                    Style="{StaticResource fa-location}"
+                    Click="cmCmd_Click" RenderTransformOrigin="-20.029,3.234" />
+                <Button x:Name="cmCmd09"
+                    Tag="นครพนม"
+                    Margin="1332,303,558,561"
+                    Style="{StaticResource fa-location}"
+                    Click="cmCmd_Click" RenderTransformOrigin="-20.029,3.234" />
+                <Button x:Name="cmCmd10"
+                    Tag="กาฬสินธุ์"
+                    Margin="899,513,991,351"
+                    Style="{StaticResource fa-location}"
+                    Click="cmCmd_Click" RenderTransformOrigin="-20.029,3.234" />
+                <Button x:Name="cmCmd11"
+                    Tag="มุกดาหาร"
+                    Margin="1252,508,638,356"
+                    Style="{StaticResource fa-location}"
+                    Click="cmCmd_Click" RenderTransformOrigin="-20.029,3.234" />
+                <Button x:Name="cmCmd12"
+                    Tag="ร้อยเอ็ด"
+                    Margin="952,796,938,68"
+                    Style="{StaticResource fa-location}"
+                    Click="cmCmd_Click" RenderTransformOrigin="-20.029,3.234" />
+            </Grid>
+        </Viewbox>
     </Grid>
 </UserControl>

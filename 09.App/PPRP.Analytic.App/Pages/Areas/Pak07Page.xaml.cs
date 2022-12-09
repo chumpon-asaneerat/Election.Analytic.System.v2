@@ -110,5 +110,20 @@ namespace PPRP.Pages
         }
 
         #endregion
+
+        #region Nav Click
+
+        private void cmCmd_Click(object sender, RoutedEventArgs e)
+        {
+            Button btn = (sender as Button);
+            string provinceName = btn.Tag.ToString();
+            var province = Provinces.Find((prov) => { return prov.ProvinceNameTH == provinceName; });
+            if (null != province)
+            {
+                GotoVoteSummaryPage(province);
+            }
+        }
+
+        #endregion
     }
 }

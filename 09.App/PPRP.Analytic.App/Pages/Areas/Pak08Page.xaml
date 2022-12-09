@@ -4,8 +4,8 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              mc:Ignorable="d"
-             d:DesignHeight="900"
-             d:DesignWidth="1300"
+             d:DesignHeight="1000"
+             d:DesignWidth="1920"
              Background="#2E75B7">
     <Grid>
         <Grid.Background>
@@ -107,5 +107,46 @@
             </Grid>
             <Grid />
         </DockPanel>
+        <Viewbox>
+            <Grid>
+                <Button x:Name="cmCmd01"
+                        Tag="ระนอง"
+                        Margin="683,219,1208,650"
+                        Style="{StaticResource fa-location}"
+                        Click="cmCmd_Click" RenderTransformOrigin="-20.029,3.234" />
+                <Button x:Name="cmCmd02"
+                        Tag="ชุมพร"
+                        Margin="727,110,1163,753"
+                        Style="{StaticResource fa-location}"
+                        Click="cmCmd_Click" RenderTransformOrigin="-20.029,3.234" />
+                <Button x:Name="cmCmd03"
+                    Tag="สุราษฎร์ธานี"
+                    Margin="680,537,1210,327"
+                    Style="{StaticResource fa-location}"
+                    Click="cmCmd_Click" RenderTransformOrigin="-20.029,3.234" />
+                <Button x:Name="cmCmd04"
+                    Tag="นครศรีธรรมราช"
+                    Margin="891,732,999,132"
+                    Style="{StaticResource fa-location}"
+                    Click="cmCmd_Click" RenderTransformOrigin="-20.029,3.234" />
+                <Button x:Name="cmCmd05"
+                    Tag="กระบี่"
+                    Margin="727,733,1163,132"
+                    Style="{StaticResource fa-location}"
+                    Click="cmCmd_Click" RenderTransformOrigin="-20.029,3.234" />
+                <Button x:Name="cmCmd06"
+                    Tag="ภูเก็ต"
+                    Margin="542,827,1348,38"
+                    Style="{StaticResource fa-location}"
+                    Click="cmCmd_Click" RenderTransformOrigin="-20.029,3.234" />
+                <Button x:Name="cmCmd07"
+                    Tag="พังงา"
+                    Margin="529,606,1361,258"
+                    Style="{StaticResource fa-location}"
+                    Click="cmCmd_Click" RenderTransformOrigin="-20.029,3.234" />
+
+
+            </Grid>
+        </Viewbox>
     </Grid>
 </UserControl>
