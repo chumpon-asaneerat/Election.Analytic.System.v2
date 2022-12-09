@@ -540,7 +540,7 @@ namespace PPRP.Controls
     /// <summary>
     /// The ADMVisualHost class.
     /// </summary>
-    public class ADMVisualHost : UIElement
+    public class ADMVisualHost : FrameworkElement   //UIElement
     {
         #region Constructor and Destructor
 
@@ -560,6 +560,18 @@ namespace PPRP.Controls
         #endregion
 
         private int iCnt = 0;
+
+        protected override void OnRenderSizeChanged(SizeChangedInfo sizeInfo)
+        {
+            base.OnRenderSizeChanged(sizeInfo);
+            InvalidateVisual();
+        }
+
+        protected override Size ArrangeOverride(Size finalSize)
+        {
+            return base.ArrangeOverride(finalSize);
+            InvalidateVisual();
+        }
 
         protected override void OnRender(DrawingContext drawingContext)
         {
