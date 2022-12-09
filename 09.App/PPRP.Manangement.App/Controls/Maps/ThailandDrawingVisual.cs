@@ -535,7 +535,7 @@ namespace PPRP.Controls
 
     #endregion
 
-    #region ADMVisualHost
+    #region ADMVisualHost (!!!MAY BE TRY TO USE CANVAS AS BASE CLASS!!!)
 
     /// <summary>
     /// The ADMVisualHost class.
