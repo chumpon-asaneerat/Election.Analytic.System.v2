@@ -107,5 +107,15 @@
             </Grid>
             <Grid />
         </DockPanel>
+        <!--  CLICKABLE LABEL  -->
+        <Viewbox>
+            <Grid>
+                <Button x:Name="cmCmd01"
+                        Tag="ชัยนาท"
+                        Margin="19,158,894.8,637.2"
+                        Style="{StaticResource fa-location}"
+                        Click="cmCmd_Click" RenderTransformOrigin="-20.029,3.234" />
+            </Grid>
+        </Viewbox>
     </Grid>
 </UserControl>

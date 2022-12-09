@@ -317,7 +317,6 @@
         <Setter Property="Foreground" Value="DarkRed" />
     </Style>
 
-
     <!--  GO FIRST  -->
     <Style x:Key="fa-go-first"
            TargetType="TextBlock"
@@ -341,5 +340,28 @@
            TargetType="TextBlock"
            BasedOn="{StaticResource fa-base}">
         <Setter Property="Text" Value="&#xf050;" />
+    </Style>
+
+    <!--  LOCATION BUTTON  -->
+    <Style x:Key="fa-location" TargetType="Button">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <TextBlock TextDecorations="None"
+                               HorizontalAlignment="Center"
+                               VerticalAlignment="Center"
+                               FontFamily="{StaticResource FontAwesome}"
+                               FontSize="{StaticResource FontSize20}"
+                               Text="&#xf3c5;" />
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Foreground" Value="White" />
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="true">
+                <Setter Property="Foreground" Value="Yellow" />
+                <Setter Property="Cursor" Value="Hand" />
+            </Trigger>
+        </Style.Triggers>
     </Style>
 </ResourceDictionary>
