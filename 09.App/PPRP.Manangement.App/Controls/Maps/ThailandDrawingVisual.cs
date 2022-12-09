@@ -549,6 +549,8 @@ namespace PPRP.Controls
         /// </summary>
         public ADMVisualHost()
         {
+            _children = new VisualCollection(this);
+            _children.Add(new ADMVisual());
         }
         /// <summary>
         /// Destructor.
@@ -559,7 +561,24 @@ namespace PPRP.Controls
 
         #endregion
 
-        private int iCnt = 0;
+        // Create a collection of child visual objects.
+        private VisualCollection _children;
+
+        // Provide a required override for the VisualChildrenCount property.
+        protected override int VisualChildrenCount
+        {
+            get { return _children.Count; }
+        }
+
+        // Provide a required override for the GetVisualChild method.
+        protected override Visual GetVisualChild(int index)
+        {
+            if (index < 0 || index >= _children.Count)
+            {
+                throw new ArgumentOutOfRangeException();
+            }
+            return _children[index];
+        }
 
         protected override void ParentLayoutInvalidated(UIElement child)
         {
@@ -584,6 +603,8 @@ namespace PPRP.Controls
             return base.MeasureOverride(availableSize);
         }
 
+        private int iCnt = 0;
+
         protected override void OnRender(DrawingContext drawingContext)
         {
             base.OnRender(drawingContext);
@@ -593,11 +614,34 @@ namespace PPRP.Controls
             var cx = this.RenderSize.Width / 2;
             var cy = this.RenderSize.Height / 2;
             var pt = new Point(cx, cy);
-            var typeFace = new Typeface(new FontFamily("Tahoma"), 
+            var typeFace = new Typeface(new FontFamily("Tahoma"),
                 FontStyles.Normal, FontWeights.Normal, FontStretches.Normal);
             var foreColor = new SolidColorBrush(Colors.Black);
             var fmtTxt = new FormattedText(
-                "Test " + iCnt.ToString("n0"), 
+                "Test " + iCnt.ToString("n0"),
+                CultureInfo.InvariantCulture, FlowDirection.LeftToRight, typeFace, 18, foreColor, 120);
+            dc.DrawText(fmtTxt, pt);
+        }
+    }
+
+    public class ADMVisual : UIElement
+    {
+        private int iCnt = 0;
+
+        protected override void OnRender(DrawingContext drawingContext)
+        {
+            base.OnRender(drawingContext);
+
+            iCnt++;
+            var dc = drawingContext;
+            var cx = this.RenderSize.Width / 2;
+            var cy = this.RenderSize.Height / 2;
+            var pt = new Point(cx, cy);
+            var typeFace = new Typeface(new FontFamily("Tahoma"),
+                FontStyles.Normal, FontWeights.Normal, FontStretches.Normal);
+            var foreColor = new SolidColorBrush(Colors.Black);
+            var fmtTxt = new FormattedText(
+                "Test " + iCnt.ToString("n0"),
                 CultureInfo.InvariantCulture, FlowDirection.LeftToRight, typeFace, 18, foreColor, 120);
             dc.DrawText(fmtTxt, pt);
         }
