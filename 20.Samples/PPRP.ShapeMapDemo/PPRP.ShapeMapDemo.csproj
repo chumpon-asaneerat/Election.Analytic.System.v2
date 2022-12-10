@@ -114,6 +114,10 @@
       <Project>{41a9d6c0-c833-403f-9bc1-eecdc246a428}</Project>
       <Name>NLib</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\01.Core\PPRP.Core\PPRP.Core.csproj">
+      <Project>{25f76701-c7d6-4cc4-beb9-db40d2bbbd9d}</Project>
+      <Name>PPRP.Core</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
