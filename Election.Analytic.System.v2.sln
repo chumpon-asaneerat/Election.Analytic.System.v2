@@ -59,7 +59,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Extended", "Extended", "{B2
 		Imports\Excels\Extended\07.ข้อมูลผลคะแนนทั่วไปแบบแบ่งเขตปี 2562 extend.xlsx = Imports\Excels\Extended\07.ข้อมูลผลคะแนนทั่วไปแบบแบ่งเขตปี 2562 extend.xlsx
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShapeMapDemo", "20.Samples\ShapeMapDemo\ShapeMapDemo.csproj", "{B0EFC873-329F-4A8E-A403-CB93CFE41420}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PPRP.ShapeMapDemo", "20.Samples\PPRP.ShapeMapDemo\PPRP.ShapeMapDemo.csproj", "{B0EFC873-329F-4A8E-A403-CB93CFE41420}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
