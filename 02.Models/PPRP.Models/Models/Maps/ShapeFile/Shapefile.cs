@@ -10,14 +10,15 @@ using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Text;
 using System.IO;
-using System.Drawing;
+using System.Data;
 using System.Data.OleDb;
+using System.Drawing;
 
 #endregion
 
 namespace PPRP.Models.ShapeFiles
 {
-    #region EndianBitConverter.cs
+    #region EndianBitConverter classes
 
     #region ProvidedOrder (Enum)
 
@@ -106,6 +107,391 @@ namespace PPRP.Models.ShapeFiles
                 return BitConverter.ToDouble(value, startIndex);
             }
         }
+    }
+
+    #endregion
+
+    #endregion
+
+    #region FileFormat classes
+
+    #region ShapeType enum
+
+    /// <summary>
+    /// The ShapeType of a shape in a Shapefile
+    /// </summary>
+    public enum ShapeType
+    {
+        /// <summary>Null Shape</summary>
+        Null = 0,
+        /// <summary>Point Shape</summary>
+        Point = 1,
+        /// <summary>PolyLine Shape</summary>
+        PolyLine = 3,
+        /// <summary>Polygon Shape</summary>
+        Polygon = 5,
+        /// <summary>MultiPoint Shape</summary>
+        MultiPoint = 8,
+        /// <summary>PointZ Shape</summary>
+        PointZ = 11,
+        /// <summary>PolyLineZ Shape</summary>
+        PolyLineZ = 13,
+        /// <summary>PolygonZ Shape</summary>
+        PolygonZ = 15,
+        /// <summary>MultiPointZ Shape</summary>
+        MultiPointZ = 18,
+        /// <summary>PointM Shape</summary>
+        PointM = 21,
+        /// <summary>PolyLineM Shape</summary>
+        PolyLineM = 23,
+        /// <summary>PolygonM Shape</summary>
+        PolygonM = 25,
+        /// <summary>MultiPointM Shape</summary>
+        MultiPointM = 28,
+        /// <summary>MultiPatch Shape</summary>
+        MultiPatch = 31
+    }
+
+    #endregion
+
+    #region Header
+
+    /// <summary>
+    /// The header data for a Shapefile main file or Index file
+    /// </summary>
+    class Header
+    {
+        #region Static Const and Variables
+
+        /// <summary>The length of a Shapefile header in bytes</summary>
+        public const int HeaderLength = 100;
+
+        /// <summary>The Expected File Code is 9994</summary>
+        private const int ExpectedFileCode = 9994;
+        /// <summary>The Expected File Version is 1000</summary>
+        private const int ExpectedVersion = 1000;
+
+        #endregion
+
+        #region Constructor
+
+        /// <summary>
+        /// The header data for a Shapefile main file or Index file
+        /// </summary>
+        /// <param name="headerBytes">The first 100 bytes of the Shapefile main file or Index file</param>
+        /// <exception cref="ArgumentNullException">Thrown if headerBytes is null</exception>
+        /// <exception cref="InvalidOperationException">Thrown if an error occurs parsing the header</exception>
+        public Header(byte[] headerBytes)
+        {
+            if (headerBytes == null)
+            {
+                throw new ArgumentNullException("headerBytes");
+            }
+
+            if (headerBytes.Length != HeaderLength)
+            {
+                throw new InvalidOperationException(string.Format("headerBytes must be {0} bytes long",
+                    HeaderLength));
+            }
+
+            // Position  Field           Value       Type        Order
+            // Byte 0    File Code       9994        Integer     Big
+            // Byte 4    Unused          0           Integer     Big
+            // Byte 8    Unused          0           Integer     Big
+            // Byte 12   Unused          0           Integer     Big
+            // Byte 16   Unused          0           Integer     Big
+            // Byte 20   Unused          0           Integer     Big
+            // Byte 24   File Length     File Length Integer     Big
+            // Byte 28   Version         1000        Integer     Little
+            // Byte 32   Shape Type      Shape Type  Integer     Little
+            // Byte 36   Bounding Box    Xmin        Double      Little
+            // Byte 44   Bounding Box    Ymin        Double      Little
+            // Byte 52   Bounding Box    Xmax        Double      Little
+            // Byte 60   Bounding Box    Ymax        Double      Little
+            // Byte 68*  Bounding Box    Zmin        Double      Little
+            // Byte 76*  Bounding Box    Zmax        Double      Little
+            // Byte 84*  Bounding Box    Mmin        Double      Little
+            // Byte 92*  Bounding Box    Mmax        Double      Little
+
+            FileCode = EndianBitConverter.ToInt32(headerBytes, 0, ProvidedOrder.Big);
+            if (FileCode != ExpectedFileCode)
+            {
+                throw new InvalidOperationException(string.Format("Header File code is {0}, expected {1}",
+                    FileCode,
+                    ExpectedFileCode));
+            }
+
+            Version = EndianBitConverter.ToInt32(headerBytes, 28, ProvidedOrder.Little);
+            if (Version != ExpectedVersion)
+            {
+                throw new InvalidOperationException(string.Format("Header version is {0}, expected {1}",
+                    Version,
+                    ExpectedVersion));
+            }
+
+            FileLength = EndianBitConverter.ToInt32(headerBytes, 24, ProvidedOrder.Big);
+            ShapeType = (ShapeType)EndianBitConverter.ToInt32(headerBytes, 32, ProvidedOrder.Little);
+            XMin = EndianBitConverter.ToDouble(headerBytes, 36, ProvidedOrder.Little);
+            YMin = EndianBitConverter.ToDouble(headerBytes, 44, ProvidedOrder.Little);
+            XMax = EndianBitConverter.ToDouble(headerBytes, 52, ProvidedOrder.Little);
+            YMax = EndianBitConverter.ToDouble(headerBytes, 60, ProvidedOrder.Little);
+            ZMin = EndianBitConverter.ToDouble(headerBytes, 68, ProvidedOrder.Little);
+            ZMax = EndianBitConverter.ToDouble(headerBytes, 76, ProvidedOrder.Little);
+            MMin = EndianBitConverter.ToDouble(headerBytes, 84, ProvidedOrder.Little);
+            MMax = EndianBitConverter.ToDouble(headerBytes, 92, ProvidedOrder.Little);
+        }
+
+        #endregion
+
+        #region Public Properties
+
+        /// <summary>Gets the FileCode</summary>
+        public int FileCode { get; }
+        /// <summary>Gets the file length, in 16-bit words, including the header bytes</summary>
+        public int FileLength { get; }
+        /// <summary>Gets the file version</summary>
+        public int Version { get; }
+        /// <summary>Gets the ShapeType contained in this Shapefile</summary>
+        public ShapeType ShapeType { get; }
+        /// <summary>Gets min x for the bounding box</summary>
+        public double XMin { get; }
+        /// <summary>Gets min y for the bounding box</summary>
+        public double YMin { get; }
+        /// <summary>Gets max x for the bounding box</summary>
+        public double XMax { get; }
+        /// <summary>Gets max y for the bounding box</summary>
+        public double YMax { get; }
+        /// <summary>Gets min z for the bounding box (0 if unused)</summary>
+        public double ZMin { get; }
+        /// <summary>Gets max z for the bounding box (0 if unused)</summary>
+        public double ZMax { get; }
+        /// <summary>Gets min m for the bounding box (0 if unused)</summary>
+        public double MMin { get; }
+        /// <summary>Gets max m for the bounding box (0 if unused)</summary>
+        public double MMax { get; }
+
+        #endregion
+    }
+
+    #endregion
+
+    #region ShapeFactory
+
+    /// <summary>
+    /// Static factory class to create shape objects from a shape record
+    /// </summary>
+    static class ShapeFactory
+    {
+        #region Static Methods
+
+        /// <summary>
+        /// Creates a Shape object (or derived object) from a shape record
+        /// </summary>
+        /// <param name="shapeData">The shape record as a byte array</param>
+        /// <param name="metadata">Metadata associated with this shape (optional)</param>
+        /// <param name="dataRecord">IDataRecord associated with the metadata</param>
+        /// <returns>A Shape, or derived class</returns>
+        /// <exception cref="ArgumentNullException">Thrown if shapeData or metadata are null</exception>
+        /// <exception cref="ArgumentException">Thrown if shapeData is less than 12 bytes long</exception>
+        /// <exception cref="InvalidOperationException">Thrown if an error occurs parsing shapeData</exception>
+        public static Shape ParseShape(byte[] shapeData, StringDictionary metadata, IDataRecord dataRecord)
+        {
+            if (shapeData == null)
+            {
+                throw new ArgumentNullException("shapeData");
+            }
+
+            if (shapeData.Length < 12)
+            {
+                throw new ArgumentException("shapeData must be at least 12 bytes long");
+            }
+
+            // shape data contains a header (shape number and content length)
+            // the first field in each shape is the shape type
+
+            // Position  Field           Value                   Type        Order
+            // Byte 0    Record          Number Record Number    Integer     Big
+            // Byte 4    Content Length  Content Length          Integer     Big
+
+            // Position  Field       Value                   Type        Number      Order
+            // Byte 0    Shape Type  Shape Type              Integer     1           Little
+
+            int recordNumber = EndianBitConverter.ToInt32(shapeData, 0, ProvidedOrder.Big);
+            int contentLengthInWords = EndianBitConverter.ToInt32(shapeData, 4, ProvidedOrder.Big);
+            ShapeType shapeType = (ShapeType)EndianBitConverter.ToInt32(shapeData, 8, ProvidedOrder.Little);
+
+            // test that we have the expected amount of data - need to take the 8 byte header into account
+            if (shapeData.Length != (contentLengthInWords * 2) + 8)
+            {
+                throw new InvalidOperationException("Shape data length does not match shape header length");
+            }
+
+            Shape shape = null;
+
+            switch (shapeType)
+            {
+                case ShapeType.Null:
+                    shape = new Shape(shapeType, recordNumber, metadata, dataRecord);
+                    break;
+                case ShapeType.Point:
+                    shape = new ShapePoint(recordNumber, metadata, dataRecord, shapeData);
+                    break;
+                case ShapeType.MultiPoint:
+                    shape = new ShapeMultiPoint(recordNumber, metadata, dataRecord, shapeData);
+                    break;
+                case ShapeType.PolyLine:
+                    shape = new ShapePolyLine(recordNumber, metadata, dataRecord, shapeData);
+                    break;
+                case ShapeType.PolyLineM:
+                    shape = new ShapePolyLineM(recordNumber, metadata, dataRecord, shapeData);
+                    break;
+                case ShapeType.Polygon:
+                    shape = new ShapePolygon(recordNumber, metadata, dataRecord, shapeData);
+                    break;
+                default:
+                    throw new NotImplementedException(string.Format("Shapetype {0} is not implemented", shapeType));
+            }
+
+            return shape;
+        }
+
+        #endregion
+    }
+
+    #endregion
+
+    #region ShapeFileEnumerator (private class)
+
+    class ShapeFileEnumerator : IEnumerator<Shape>
+    {
+        #region Internal Variables
+
+        private OleDbCommand _dbCommand;
+        private OleDbDataReader _dbReader;
+        private int _currentIndex = -1;
+        private bool _rawMetadataOnly;
+        private FileStream _mainStream;
+        private FileStream _indexStream;
+        private int _count;
+
+        #endregion
+
+        #region Constructor
+
+        /// <summary>
+        /// Constructor.
+        /// </summary>
+        /// <param name="dbConnection">The connection string.</param>
+        /// <param name="selectString">The select string.</param>
+        /// <param name="rawMetadataOnly">True for read metada only.</param>
+        /// <param name="mainStream">The shp main file stream.</param>
+        /// <param name="indexStream">The shp index file stream.</param>
+        /// <param name="count"></param>
+        public ShapeFileEnumerator(OleDbConnection dbConnection
+            , string selectString
+            , bool rawMetadataOnly
+            , FileStream mainStream
+            , FileStream indexStream
+            , int count)
+        {
+            _rawMetadataOnly = rawMetadataOnly;
+            _mainStream = mainStream;
+            _indexStream = indexStream;
+            _count = count;
+            _dbCommand = new OleDbCommand(selectString, dbConnection);
+            _dbReader = _dbCommand.ExecuteReader();
+        }
+
+        #endregion
+
+        #region IEnumerator<Shape> Members
+
+        /// <summary>
+        /// Gets the current shape in the collection
+        /// </summary>
+        public Shape Current
+        {
+            get
+            {
+                // get the metadata
+                StringDictionary metadata = null;
+                if (!_rawMetadataOnly)
+                {
+                    metadata = new StringDictionary();
+                    for (int i = 0; i < _dbReader.FieldCount; i++)
+                    {
+                        metadata.Add(_dbReader.GetName(i),
+                            _dbReader.GetValue(i).ToString());
+                    }
+                }
+
+                // get the index record
+                byte[] indexHeaderBytes = new byte[8];
+                _indexStream.Seek(Header.HeaderLength + _currentIndex * 8, SeekOrigin.Begin);
+                _indexStream.Read(indexHeaderBytes, 0, indexHeaderBytes.Length);
+                int contentOffsetInWords = EndianBitConverter.ToInt32(indexHeaderBytes, 0, ProvidedOrder.Big);
+                int contentLengthInWords = EndianBitConverter.ToInt32(indexHeaderBytes, 4, ProvidedOrder.Big);
+
+                // get the data chunk from the main file - need to factor in 8 byte record header
+                int bytesToRead = (contentLengthInWords * 2) + 8;
+                byte[] shapeData = new byte[bytesToRead];
+                _mainStream.Seek(contentOffsetInWords * 2, SeekOrigin.Begin);
+                _mainStream.Read(shapeData, 0, bytesToRead);
+
+                return ShapeFactory.ParseShape(shapeData, metadata, _dbReader);
+            }
+        }
+
+        #endregion
+
+        #region IEnumerator Members
+
+        /// <summary>
+        /// Gets the current item in the collection
+        /// </summary>
+        object System.Collections.IEnumerator.Current { get { return this.Current; } }
+
+        /// <summary>
+        /// Dispose.
+        /// </summary>
+        public void Dispose()
+        {
+            _dbReader.Close();
+            _dbCommand.Dispose();
+        }
+
+        /// <summary>
+        /// Move to the next item in the collection (returns false if at the end)
+        /// </summary>
+        /// <returns>false if there are no more items in the collection</returns>
+        public bool MoveNext()
+        {
+            if (_currentIndex++ < (_count - 1))
+            {
+                // try to read the next database record
+                if (!_dbReader.Read())
+                {
+                    throw new InvalidOperationException("Metadata database does not contain a record for the next shape");
+                }
+                return true;
+            }
+            else
+            {
+                // reached the last shape
+                return false;
+            }
+        }
+        /// <summary>
+        /// Reset the enumerator
+        /// </summary>
+        public void Reset()
+        {
+            _dbReader.Close();
+            _dbReader = _dbCommand.ExecuteReader();
+            _currentIndex = -1;
+        }
+
+        #endregion
     }
 
     #endregion

@@ -22,8 +22,10 @@ Election.Analytic.System.v2 - PPRP  #394
 Election.Analytic.System.v2 - PPRP  #393
 - 
 
+[commited]
 Election.Analytic.System.v2 - PPRP  #392
-- 
+- PPRP.Manangement.App project
+  - Merge shape file related class in to single file #2.
 
 [commited]
 Election.Analytic.System.v2 - PPRP  #391

@@ -139,9 +139,6 @@
     <Compile Include="Models\Maps\LocalMaps\LPAK.cs" />
     <Compile Include="Models\Maps\LocalMaps\LProvince.cs" />
     <Compile Include="Models\Maps\LocalMaps\LSubdistrict.cs" />
-    <Compile Include="Models\Maps\ShapeFile\FileFormat\Header.cs" />
-    <Compile Include="Models\Maps\ShapeFile\FileFormat\ShapeFactory.cs" />
-    <Compile Include="Models\Maps\ShapeFile\FileFormat\ShapeFileEnumerator.cs" />
     <Compile Include="Models\Maps\ShapeFile\Shapefile.cs" />
     <Compile Include="Models\Maps\ShapeFile\ShapeFileDbImport.cs" />
     <Compile Include="Models\Maps\ShapeFile\Shapes\Shape.cs" />
