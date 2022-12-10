@@ -193,6 +193,204 @@ namespace PPRP.Models.ShapeFiles
 
     #endregion
 
+    #region Shape classes
+
+    #region Shape
+
+    /// <summary>
+    /// Base Shapefile shape - contains only the shape type and metadata plus helper methods.
+    /// An instance of Shape is the Null ShapeType. If the Type field is not ShapeType.Null then
+    /// cast to the more specific shape (i.e. ShapePolygon).
+    /// </summary>
+    public class Shape
+    {
+        #region Internal Variables
+
+        private StringDictionary _metadata;
+
+        #endregion
+
+        #region Constructor
+
+        /// <summary>
+        /// Base Shapefile shape - contains only the shape type and metadata plus helper methods.
+        /// An instance of Shape is the Null ShapeType. If the Type field is not ShapeType.Null then
+        /// cast to the more specific shape (i.e. ShapePolygon).
+        /// </summary>
+        /// <param name="shapeType">The ShapeType of the shape</param>
+        /// <param name="recordNumber">The record number in the Shapefile</param>
+        /// <param name="metadata">Metadata about the shape (optional)</param>
+        /// <param name="dataRecord">IDataRecord associated with the shape</param>
+        protected internal Shape(ShapeType shapeType, int recordNumber, StringDictionary metadata, IDataRecord dataRecord)
+        {
+            Type = shapeType;
+            _metadata = metadata;
+            RecordNumber = recordNumber;
+            DataRecord = dataRecord;
+        }
+
+        #endregion
+
+        #region Protected Methods
+
+        /// <summary>
+        /// Extracts a double precision rectangle (RectangleD) from a byte array - assumes that
+        /// the called has validated that there is enough space in the byte array for four
+        /// doubles (32 bytes)
+        /// </summary>
+        /// <param name="value">byte array</param>
+        /// <param name="startIndex">start index in the array</param>
+        /// <param name="order">byte order of the doubles to be extracted</param>
+        /// <returns>The RectangleD</returns>
+        protected RectangleD ParseBoundingBox(byte[] value, int startIndex, ProvidedOrder order)
+        {
+            return new RectangleD(EndianBitConverter.ToDouble(value, startIndex, order),
+                EndianBitConverter.ToDouble(value, startIndex + 8, order),
+                EndianBitConverter.ToDouble(value, startIndex + 16, order),
+                EndianBitConverter.ToDouble(value, startIndex + 24, order));
+        }
+        /// <summary>
+        /// The PolyLine and Polygon shapes share the same structure, this method parses the bounding box
+        /// and list of parts for both
+        /// </summary>
+        /// <param name="shapeData">The shape record as a byte array</param>
+        /// <param name="boundingBox">Returns the bounding box</param>
+        /// <param name="parts">Returns the list of parts</param>
+        protected void ParsePolyLineOrPolygon(byte[] shapeData, out RectangleD boundingBox, out List<PointD[]> parts)
+        {
+            boundingBox = new RectangleD();
+            parts = null;
+
+            // metadata is validated by the base class
+            if (shapeData == null)
+            {
+                throw new ArgumentNullException("shapeData");
+            }
+
+            // Note, shapeData includes an 8 byte header so positions below are +8
+            // Position     Field       Value       Type        Number      Order
+            // Byte 0       Shape Type  3 or 5      Integer     1           Little
+            // Byte 4       Box         Box         Double      4           Little
+            // Byte 36      NumParts    NumParts    Integer     1           Little
+            // Byte 40      NumPoints   NumPoints   Integer     1           Little
+            // Byte 44      Parts       Parts       Integer     NumParts    Little
+            // Byte X       Points      Points      Point       NumPoints   Little
+            //
+            // Note: X = 44 + 4 * NumParts
+
+            // validation step 1 - must have at least 8 + 4 + (4*8) + 4 + 4 bytes = 52
+            if (shapeData.Length < 44)
+            {
+                throw new InvalidOperationException("Invalid shape data");
+            }
+
+            // extract bounding box, number of parts and number of points
+            boundingBox = ParseBoundingBox(shapeData, 12, ProvidedOrder.Little);
+            int numParts = EndianBitConverter.ToInt32(shapeData, 44, ProvidedOrder.Little);
+            int numPoints = EndianBitConverter.ToInt32(shapeData, 48, ProvidedOrder.Little);
+
+            // validation step 2 - we're expecting 4 * numParts + 16 * numPoints + 52 bytes total
+            if (shapeData.Length != 52 + (4 * numParts) + (16 * numPoints))
+            {
+                throw new InvalidOperationException("Invalid shape data");
+            }
+
+            // now extract the parts
+            int partsOffset = 52 + (4 * numParts);
+            parts = new List<PointD[]>(numParts);
+            for (int part = 0; part < numParts; part++)
+            {
+                // this is the index of the start of the part in the points array
+                int startPart = (EndianBitConverter.ToInt32(shapeData, 52 + (4 * part), ProvidedOrder.Little) * 16) + partsOffset;
+
+                int numBytes;
+                if (part == numParts - 1)
+                {
+                    // it's the last part so we go to the end of the point array
+                    numBytes = shapeData.Length - startPart;
+                }
+                else
+                {
+                    // we need to get the next part
+                    int nextPart = (EndianBitConverter.ToInt32(shapeData, 52 + (4 * (part + 1)), ProvidedOrder.Little) * 16) + partsOffset;
+                    numBytes = nextPart - startPart;
+                }
+
+                // the number of 16-byte points to read for this segment
+                int numPointsInPart = numBytes / 16;
+
+                PointD[] points = new PointD[numPointsInPart];
+                for (int point = 0; point < numPointsInPart; point++)
+                {
+                    points[point] = new PointD(EndianBitConverter.ToDouble(shapeData, startPart + (16 * point), ProvidedOrder.Little),
+                        EndianBitConverter.ToDouble(shapeData, startPart + 8 + (16 * point), ProvidedOrder.Little));
+                }
+
+                parts.Add(points);
+            }
+        }
+
+        #endregion
+
+        #region Public Methods
+
+        /// <summary>
+        /// Gets the metadata (as a string) for a given name (key). Valid names
+        /// for this shape can be retrieved by calling GetMetadataNames().
+        /// </summary>
+        /// <param name="name">The name to retreieve</param>
+        /// <returns>The metadata string, or null if the requested name does not exist</returns>
+        public string GetMetadata(string name)
+        {
+            if ((_metadata != null) && (_metadata.ContainsKey(name)))
+            {
+                return _metadata[name];
+            }
+            else
+            {
+                return null;
+            }
+        }
+        /// <summary>
+        /// Gets an array of valid metadata names (keys) for this shape. Returns
+        /// null if not metadata exists.
+        /// </summary>
+        /// <returns>Array of metadata names, or null of no metadata exists</returns>
+        public string[] GetMetadataNames()
+        {
+            if ((_metadata != null) && (_metadata.Keys.Count > 0))
+            {
+                List<string> names = new List<string>(_metadata.Keys.Count);
+                foreach (string key in _metadata.Keys)
+                {
+                    names.Add(key);
+                }
+                return names.ToArray();
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        #endregion
+
+        #region Public Properties
+
+        /// <summary>Returns the IDataRecord associated with the shape metadata</summary>
+        public IDataRecord DataRecord { get; }
+        /// <summary>Gets the record number associated with this shape</summary>
+        public int RecordNumber { get; }
+        /// <summary>Get the ShapeType of this shape</summary>
+        public ShapeType Type { get; protected set; }
+
+        #endregion
+    }
+
+    #endregion
+
+    #endregion
+
     #region FileFormat classes
 
     #region ShapeType enum
@@ -230,127 +428,6 @@ namespace PPRP.Models.ShapeFiles
         MultiPointM = 28,
         /// <summary>MultiPatch Shape</summary>
         MultiPatch = 31
-    }
-
-    #endregion
-
-    #region Header
-
-    /// <summary>
-    /// The header data for a Shapefile main file or Index file
-    /// </summary>
-    class Header
-    {
-        #region Static Const and Variables
-
-        /// <summary>The length of a Shapefile header in bytes</summary>
-        public const int HeaderLength = 100;
-
-        /// <summary>The Expected File Code is 9994</summary>
-        private const int ExpectedFileCode = 9994;
-        /// <summary>The Expected File Version is 1000</summary>
-        private const int ExpectedVersion = 1000;
-
-        #endregion
-
-        #region Constructor
-
-        /// <summary>
-        /// The header data for a Shapefile main file or Index file
-        /// </summary>
-        /// <param name="headerBytes">The first 100 bytes of the Shapefile main file or Index file</param>
-        /// <exception cref="ArgumentNullException">Thrown if headerBytes is null</exception>
-        /// <exception cref="InvalidOperationException">Thrown if an error occurs parsing the header</exception>
-        public Header(byte[] headerBytes)
-        {
-            if (headerBytes == null)
-            {
-                throw new ArgumentNullException("headerBytes");
-            }
-
-            if (headerBytes.Length != HeaderLength)
-            {
-                throw new InvalidOperationException(string.Format("headerBytes must be {0} bytes long",
-                    HeaderLength));
-            }
-
-            // Position  Field           Value       Type        Order
-            // Byte 0    File Code       9994        Integer     Big
-            // Byte 4    Unused          0           Integer     Big
-            // Byte 8    Unused          0           Integer     Big
-            // Byte 12   Unused          0           Integer     Big
-            // Byte 16   Unused          0           Integer     Big
-            // Byte 20   Unused          0           Integer     Big
-            // Byte 24   File Length     File Length Integer     Big
-            // Byte 28   Version         1000        Integer     Little
-            // Byte 32   Shape Type      Shape Type  Integer     Little
-            // Byte 36   Bounding Box    Xmin        Double      Little
-            // Byte 44   Bounding Box    Ymin        Double      Little
-            // Byte 52   Bounding Box    Xmax        Double      Little
-            // Byte 60   Bounding Box    Ymax        Double      Little
-            // Byte 68*  Bounding Box    Zmin        Double      Little
-            // Byte 76*  Bounding Box    Zmax        Double      Little
-            // Byte 84*  Bounding Box    Mmin        Double      Little
-            // Byte 92*  Bounding Box    Mmax        Double      Little
-
-            FileCode = EndianBitConverter.ToInt32(headerBytes, 0, ProvidedOrder.Big);
-            if (FileCode != ExpectedFileCode)
-            {
-                throw new InvalidOperationException(string.Format("Header File code is {0}, expected {1}",
-                    FileCode,
-                    ExpectedFileCode));
-            }
-
-            Version = EndianBitConverter.ToInt32(headerBytes, 28, ProvidedOrder.Little);
-            if (Version != ExpectedVersion)
-            {
-                throw new InvalidOperationException(string.Format("Header version is {0}, expected {1}",
-                    Version,
-                    ExpectedVersion));
-            }
-
-            FileLength = EndianBitConverter.ToInt32(headerBytes, 24, ProvidedOrder.Big);
-            ShapeType = (ShapeType)EndianBitConverter.ToInt32(headerBytes, 32, ProvidedOrder.Little);
-            XMin = EndianBitConverter.ToDouble(headerBytes, 36, ProvidedOrder.Little);
-            YMin = EndianBitConverter.ToDouble(headerBytes, 44, ProvidedOrder.Little);
-            XMax = EndianBitConverter.ToDouble(headerBytes, 52, ProvidedOrder.Little);
-            YMax = EndianBitConverter.ToDouble(headerBytes, 60, ProvidedOrder.Little);
-            ZMin = EndianBitConverter.ToDouble(headerBytes, 68, ProvidedOrder.Little);
-            ZMax = EndianBitConverter.ToDouble(headerBytes, 76, ProvidedOrder.Little);
-            MMin = EndianBitConverter.ToDouble(headerBytes, 84, ProvidedOrder.Little);
-            MMax = EndianBitConverter.ToDouble(headerBytes, 92, ProvidedOrder.Little);
-        }
-
-        #endregion
-
-        #region Public Properties
-
-        /// <summary>Gets the FileCode</summary>
-        public int FileCode { get; }
-        /// <summary>Gets the file length, in 16-bit words, including the header bytes</summary>
-        public int FileLength { get; }
-        /// <summary>Gets the file version</summary>
-        public int Version { get; }
-        /// <summary>Gets the ShapeType contained in this Shapefile</summary>
-        public ShapeType ShapeType { get; }
-        /// <summary>Gets min x for the bounding box</summary>
-        public double XMin { get; }
-        /// <summary>Gets min y for the bounding box</summary>
-        public double YMin { get; }
-        /// <summary>Gets max x for the bounding box</summary>
-        public double XMax { get; }
-        /// <summary>Gets max y for the bounding box</summary>
-        public double YMax { get; }
-        /// <summary>Gets min z for the bounding box (0 if unused)</summary>
-        public double ZMin { get; }
-        /// <summary>Gets max z for the bounding box (0 if unused)</summary>
-        public double ZMax { get; }
-        /// <summary>Gets min m for the bounding box (0 if unused)</summary>
-        public double MMin { get; }
-        /// <summary>Gets max m for the bounding box (0 if unused)</summary>
-        public double MMax { get; }
-
-        #endregion
     }
 
     #endregion
@@ -575,6 +652,127 @@ namespace PPRP.Models.ShapeFiles
     }
 
     #endregion
+
+    #endregion
+
+    #region Header
+
+    /// <summary>
+    /// The header data for a Shapefile main file or Index file
+    /// </summary>
+    class Header
+    {
+        #region Static Const and Variables
+
+        /// <summary>The length of a Shapefile header in bytes</summary>
+        public const int HeaderLength = 100;
+
+        /// <summary>The Expected File Code is 9994</summary>
+        private const int ExpectedFileCode = 9994;
+        /// <summary>The Expected File Version is 1000</summary>
+        private const int ExpectedVersion = 1000;
+
+        #endregion
+
+        #region Constructor
+
+        /// <summary>
+        /// The header data for a Shapefile main file or Index file
+        /// </summary>
+        /// <param name="headerBytes">The first 100 bytes of the Shapefile main file or Index file</param>
+        /// <exception cref="ArgumentNullException">Thrown if headerBytes is null</exception>
+        /// <exception cref="InvalidOperationException">Thrown if an error occurs parsing the header</exception>
+        public Header(byte[] headerBytes)
+        {
+            if (headerBytes == null)
+            {
+                throw new ArgumentNullException("headerBytes");
+            }
+
+            if (headerBytes.Length != HeaderLength)
+            {
+                throw new InvalidOperationException(string.Format("headerBytes must be {0} bytes long",
+                    HeaderLength));
+            }
+
+            // Position  Field           Value       Type        Order
+            // Byte 0    File Code       9994        Integer     Big
+            // Byte 4    Unused          0           Integer     Big
+            // Byte 8    Unused          0           Integer     Big
+            // Byte 12   Unused          0           Integer     Big
+            // Byte 16   Unused          0           Integer     Big
+            // Byte 20   Unused          0           Integer     Big
+            // Byte 24   File Length     File Length Integer     Big
+            // Byte 28   Version         1000        Integer     Little
+            // Byte 32   Shape Type      Shape Type  Integer     Little
+            // Byte 36   Bounding Box    Xmin        Double      Little
+            // Byte 44   Bounding Box    Ymin        Double      Little
+            // Byte 52   Bounding Box    Xmax        Double      Little
+            // Byte 60   Bounding Box    Ymax        Double      Little
+            // Byte 68*  Bounding Box    Zmin        Double      Little
+            // Byte 76*  Bounding Box    Zmax        Double      Little
+            // Byte 84*  Bounding Box    Mmin        Double      Little
+            // Byte 92*  Bounding Box    Mmax        Double      Little
+
+            FileCode = EndianBitConverter.ToInt32(headerBytes, 0, ProvidedOrder.Big);
+            if (FileCode != ExpectedFileCode)
+            {
+                throw new InvalidOperationException(string.Format("Header File code is {0}, expected {1}",
+                    FileCode,
+                    ExpectedFileCode));
+            }
+
+            Version = EndianBitConverter.ToInt32(headerBytes, 28, ProvidedOrder.Little);
+            if (Version != ExpectedVersion)
+            {
+                throw new InvalidOperationException(string.Format("Header version is {0}, expected {1}",
+                    Version,
+                    ExpectedVersion));
+            }
+
+            FileLength = EndianBitConverter.ToInt32(headerBytes, 24, ProvidedOrder.Big);
+            ShapeType = (ShapeType)EndianBitConverter.ToInt32(headerBytes, 32, ProvidedOrder.Little);
+            XMin = EndianBitConverter.ToDouble(headerBytes, 36, ProvidedOrder.Little);
+            YMin = EndianBitConverter.ToDouble(headerBytes, 44, ProvidedOrder.Little);
+            XMax = EndianBitConverter.ToDouble(headerBytes, 52, ProvidedOrder.Little);
+            YMax = EndianBitConverter.ToDouble(headerBytes, 60, ProvidedOrder.Little);
+            ZMin = EndianBitConverter.ToDouble(headerBytes, 68, ProvidedOrder.Little);
+            ZMax = EndianBitConverter.ToDouble(headerBytes, 76, ProvidedOrder.Little);
+            MMin = EndianBitConverter.ToDouble(headerBytes, 84, ProvidedOrder.Little);
+            MMax = EndianBitConverter.ToDouble(headerBytes, 92, ProvidedOrder.Little);
+        }
+
+        #endregion
+
+        #region Public Properties
+
+        /// <summary>Gets the FileCode</summary>
+        public int FileCode { get; }
+        /// <summary>Gets the file length, in 16-bit words, including the header bytes</summary>
+        public int FileLength { get; }
+        /// <summary>Gets the file version</summary>
+        public int Version { get; }
+        /// <summary>Gets the ShapeType contained in this Shapefile</summary>
+        public ShapeType ShapeType { get; }
+        /// <summary>Gets min x for the bounding box</summary>
+        public double XMin { get; }
+        /// <summary>Gets min y for the bounding box</summary>
+        public double YMin { get; }
+        /// <summary>Gets max x for the bounding box</summary>
+        public double XMax { get; }
+        /// <summary>Gets max y for the bounding box</summary>
+        public double YMax { get; }
+        /// <summary>Gets min z for the bounding box (0 if unused)</summary>
+        public double ZMin { get; }
+        /// <summary>Gets max z for the bounding box (0 if unused)</summary>
+        public double ZMax { get; }
+        /// <summary>Gets min m for the bounding box (0 if unused)</summary>
+        public double MMin { get; }
+        /// <summary>Gets max m for the bounding box (0 if unused)</summary>
+        public double MMax { get; }
+
+        #endregion
+    }
 
     #endregion
 

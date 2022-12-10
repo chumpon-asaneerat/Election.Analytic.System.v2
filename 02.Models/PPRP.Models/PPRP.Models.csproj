@@ -141,7 +141,6 @@
     <Compile Include="Models\Maps\LocalMaps\LSubdistrict.cs" />
     <Compile Include="Models\Maps\ShapeFile\Shapefile.cs" />
     <Compile Include="Models\Maps\ShapeFile\ShapeFileDbImport.cs" />
-    <Compile Include="Models\Maps\ShapeFile\Shapes\Shape.cs" />
     <Compile Include="Models\Maps\ShapeFile\Shapes\ShapeMultiPoint.cs" />
     <Compile Include="Models\Maps\ShapeFile\Shapes\ShapePoint.cs" />
     <Compile Include="Models\Maps\ShapeFile\Shapes\ShapePolygon.cs" />
