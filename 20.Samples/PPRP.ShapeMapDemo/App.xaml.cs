@@ -10,7 +10,7 @@ using NLib.Logs;
 
 #endregion
 
-namespace ShapeMapDemo
+namespace PPRP
 {
     /// <summary>
     /// Interaction logic for App.xaml
