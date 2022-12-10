@@ -22,8 +22,9 @@ Election.Analytic.System.v2 - PPRP  #424
 Election.Analytic.System.v2 - PPRP  #423
 - 
 
+[commited]
 Election.Analytic.System.v2 - PPRP  #422
-- 
+- Rebuild all projects and do simple run
 
 [commited]
 Election.Analytic.System.v2 - PPRP  #421
