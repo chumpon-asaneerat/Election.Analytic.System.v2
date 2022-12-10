@@ -59,7 +59,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Extended", "Extended", "{B2
 		Imports\Excels\Extended\07.ข้อมูลผลคะแนนทั่วไปแบบแบ่งเขตปี 2562 extend.xlsx = Imports\Excels\Extended\07.ข้อมูลผลคะแนนทั่วไปแบบแบ่งเขตปี 2562 extend.xlsx
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShapeMapDemo", "ShapeMapDemo\ShapeMapDemo.csproj", "{B0EFC873-329F-4A8E-A403-CB93CFE41420}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShapeMapDemo", "20.Samples\ShapeMapDemo\ShapeMapDemo.csproj", "{B0EFC873-329F-4A8E-A403-CB93CFE41420}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -118,6 +118,7 @@ Global
 		{454A7013-4FFD-44CB-B589-1E4CD7369DED} = {4F0C0FC9-4A72-4F19-8376-A94278FE1A8C}
 		{C9BA9067-F4D5-4577-BCFF-2562D2C81603} = {7295E074-0CD7-40CC-A85F-21F880B8BE24}
 		{B2AE6116-D5B8-44BE-BD2C-C04A93869E46} = {C9BA9067-F4D5-4577-BCFF-2562D2C81603}
+		{B0EFC873-329F-4A8E-A403-CB93CFE41420} = {451DB8A0-796E-490E-8F30-2EDFF88FA1E8}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {FED4ECF3-40B5-4470-B84E-1E2C421EF10F}
