@@ -139,7 +139,7 @@
     <Compile Include="Models\Maps\LocalMaps\LPAK.cs" />
     <Compile Include="Models\Maps\LocalMaps\LProvince.cs" />
     <Compile Include="Models\Maps\LocalMaps\LSubdistrict.cs" />
-    <Compile Include="Models\Maps\ShapeFile\Shapefile.cs" />
+    <Compile Include="Models\Maps\ShapeFile\ShapeFiles.cs" />
     <Compile Include="Models\Maps\ShapeFile\ShapeFileDbImport.cs" />
     <Compile Include="Models\Masters\MAge.cs" />
     <Compile Include="Models\Masters\MEducation.cs" />
