@@ -4,7 +4,7 @@
 		  xmlns:asmv1="urn:schemas-microsoft-com:asm.v1"
 		  xmlns:asmv2="urn:schemas-microsoft-com:asm.v2"
 		  xmlns:asmv3="urn:schemas-microsoft-com:asm.v3">
-	<assemblyIdentity version="1.0.0.0" name="PPRP.Manangement.App"/>
+	<assemblyIdentity version="1.0.0.0" name="PPRP.SpapeMapDemo.App"/>
 	<trustInfo xmlns="urn:schemas-microsoft-com:asm.v2">
 		<security>
 			<requestedPrivileges xmlns="urn:schemas-microsoft-com:asm.v3">
