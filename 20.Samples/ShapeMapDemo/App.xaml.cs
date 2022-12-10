@@ -49,7 +49,7 @@ namespace ShapeMapDemo
                     Version = "1",
                     Minor = "0",
                     Build = "1",
-                    LastUpdate = new DateTime(20222, 12, 10, 19, 30, 0)
+                    LastUpdate = new DateTime(2022, 12, 10, 19, 30, 0)
                 },
                 /* Setup Storage */
                 Storage = new NAppStorage()
