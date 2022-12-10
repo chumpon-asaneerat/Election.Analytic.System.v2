@@ -44,7 +44,7 @@ namespace PPRP
                     /*  This property is required */
                     CompanyName = "PPRP",
                     /*  This property is required */
-                    ProductName = "ShapeFileDemo",
+                    ProductName = "PPRP.ShapeMapDemo",
                     /* For Application Version */
                     Version = "1",
                     Minor = "0",
