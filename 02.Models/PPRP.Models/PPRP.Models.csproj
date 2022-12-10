@@ -142,8 +142,6 @@
     <Compile Include="Models\Maps\ShapeFile\Shapefile.cs" />
     <Compile Include="Models\Maps\ShapeFile\ShapeFileDbImport.cs" />
     <Compile Include="Models\Maps\ShapeFile\Shapes\ShapePolygon.cs" />
-    <Compile Include="Models\Maps\ShapeFile\Shapes\ShapePolyLine.cs" />
-    <Compile Include="Models\Maps\ShapeFile\Shapes\ShapePolyLineM.cs" />
     <Compile Include="Models\Masters\MAge.cs" />
     <Compile Include="Models\Masters\MEducation.cs" />
     <Compile Include="Models\Masters\MGender.cs" />
