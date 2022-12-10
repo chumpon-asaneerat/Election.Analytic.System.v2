@@ -59,6 +59,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Extended", "Extended", "{B2
 		Imports\Excels\Extended\07.ข้อมูลผลคะแนนทั่วไปแบบแบ่งเขตปี 2562 extend.xlsx = Imports\Excels\Extended\07.ข้อมูลผลคะแนนทั่วไปแบบแบ่งเขตปี 2562 extend.xlsx
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShapeMapDemo", "ShapeMapDemo\ShapeMapDemo.csproj", "{B0EFC873-329F-4A8E-A403-CB93CFE41420}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -97,6 +99,10 @@ Global
 		{454A7013-4FFD-44CB-B589-1E4CD7369DED}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{454A7013-4FFD-44CB-B589-1E4CD7369DED}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{454A7013-4FFD-44CB-B589-1E4CD7369DED}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B0EFC873-329F-4A8E-A403-CB93CFE41420}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B0EFC873-329F-4A8E-A403-CB93CFE41420}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B0EFC873-329F-4A8E-A403-CB93CFE41420}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B0EFC873-329F-4A8E-A403-CB93CFE41420}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
