@@ -35,5 +35,19 @@ namespace PPRP
         }
 
         #endregion
+
+        #region Loaded/Unloaded
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Window_Unloaded(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        #endregion
     }
 }
