@@ -32,6 +32,7 @@ namespace PPRP.Models
 
         private bool _isDefault = true;
         private bool _ImageLoading = false;
+        private byte[] _data = null;
         private ImageSource _img = null;
 
         #endregion
@@ -92,7 +93,17 @@ namespace PPRP.Models
         /// <summary>
         /// Gets or sets Image Data buffers.
         /// </summary>
-        public byte[] Data { get; set; }
+        public byte[] Data 
+        {
+            get { return _data; }
+            set
+            {
+                _data = value;
+                _img = null; // reset image.
+                Raise(() => Data);
+                Raise(() => Image);
+            }
+        }
         /// <summary>
         /// Gets ImageSource.
         /// </summary>
