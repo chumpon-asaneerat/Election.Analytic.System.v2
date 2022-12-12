@@ -214,7 +214,7 @@ namespace PPRP.Models
             od.Multiselect = false;
             od.InitialDirectory = initDir;
             od.Title = string.IsNullOrEmpty(title) ? "กรุณาเลือก image file ที่ต้องการอ่านข้อมูล" : title;
-            od.Filter = "Excel Files(*.xls, *.xlsx)|*.xls;*.xlsx";
+            od.Filter = "Image Files(*.jpg, *.jpeg)|*.jpg;*.jpeg";
 
             var ret = od.ShowDialog(owner) == true;
             if (ret)

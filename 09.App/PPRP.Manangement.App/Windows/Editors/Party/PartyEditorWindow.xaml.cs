@@ -67,7 +67,13 @@ namespace PPRP.Windows
 
         private void ChangeImage()
         {
+            if (null == _item) 
+                return;
 
+            var img = ImageFile.OpenFile();
+            if (null == img) return;
+
+            _item.Data = img.Data; // assign data to current item.
         }
 
         private void Save()
