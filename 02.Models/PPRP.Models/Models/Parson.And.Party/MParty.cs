@@ -287,10 +287,6 @@ namespace PPRP.Models
                 return ret;
             }
 
-            if (partyName == "อนาคตใหม่")
-            {
-                Console.WriteLine("detected");
-            }
             var p = new DynamicParameters();
             p.Add("@PartyName", partyName);
             p.Add("@Data", data, dbType: DbType.Binary, direction: ParameterDirection.Input, size: -1);
@@ -301,6 +297,110 @@ namespace PPRP.Models
             try
             {
                 cnn.Execute("ImportMPartyImage", p, commandType: CommandType.StoredProcedure);
+                ret.Success();
+                // Set error number/message
+                ret.ErrNum = p.Get<int>("@errNum");
+                ret.ErrMsg = p.Get<string>("@errMsg");
+            }
+            catch (Exception ex)
+            {
+                med.Err(ex);
+                // Set error number/message
+                ret.ErrNum = 9999;
+                ret.ErrMsg = ex.Message;
+            }
+
+            return ret;
+        }
+        /// <summary>
+        /// Save
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        public static NDbResult Save(MParty value)
+        {
+            MethodBase med = MethodBase.GetCurrentMethod();
+
+            NDbResult ret = new NDbResult();
+
+            IDbConnection cnn = DbServer.Instance.Db;
+            if (null == cnn || !DbServer.Instance.Connected)
+            {
+                string msg = "Connection is null or cannot connect to database server.";
+                med.Err(msg);
+                // Set error number/message
+                ret.ErrNum = 8000;
+                ret.ErrMsg = msg;
+
+                return ret;
+            }
+
+            var p = new DynamicParameters();
+            int? partyId = (value.PartyId <= 0) ? new int?() : value.PartyId;
+            p.Add("@PartyId", partyId);
+            p.Add("@PartyName", value.PartyName);
+
+            p.Add("@errNum", dbType: DbType.Int32, direction: ParameterDirection.Output);
+            p.Add("@errMsg", dbType: DbType.String, direction: ParameterDirection.Output, size: -1);
+
+            try
+            {
+                cnn.Execute("SaveMParty", p, commandType: CommandType.StoredProcedure);
+                ret.Success();
+                // Set error number/message
+                ret.ErrNum = p.Get<int>("@errNum");
+                ret.ErrMsg = p.Get<string>("@errMsg");
+
+                partyId = p.Get<int>("@PartyId"); // in case addnew
+                value.PartyId = (partyId.HasValue) ? partyId.Value : 0;
+                if (value.PartyId > 0)
+                {
+                    SaveImage(value); // now save image.
+                }
+            }
+            catch (Exception ex)
+            {
+                med.Err(ex);
+                // Set error number/message
+                ret.ErrNum = 9999;
+                ret.ErrMsg = ex.Message;
+            }
+
+            return ret;
+        }
+        /// <summary>
+        /// Save Image.
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        public static NDbResult SaveImage(MParty value)
+        {
+            MethodBase med = MethodBase.GetCurrentMethod();
+
+            NDbResult ret = new NDbResult();
+
+            IDbConnection cnn = DbServer.Instance.Db;
+            if (null == cnn || !DbServer.Instance.Connected)
+            {
+                string msg = "Connection is null or cannot connect to database server.";
+                med.Err(msg);
+                // Set error number/message
+                ret.ErrNum = 8000;
+                ret.ErrMsg = msg;
+
+                return ret;
+            }
+
+            var p = new DynamicParameters();
+            p.Add("@PartyId", value.PartyId);
+            p.Add("@Data", value.Data, dbType: DbType.Binary, direction: ParameterDirection.Input, size: -1);
+
+            p.Add("@errNum", dbType: DbType.Int32, direction: ParameterDirection.Output);
+            p.Add("@errMsg", dbType: DbType.String, direction: ParameterDirection.Output, size: -1);
+
+            try
+            {
+                cnn.Execute("SaveMPartyImage", p, commandType: CommandType.StoredProcedure);
                 ret.Success();
                 // Set error number/message
                 ret.ErrNum = p.Get<int>("@errNum");

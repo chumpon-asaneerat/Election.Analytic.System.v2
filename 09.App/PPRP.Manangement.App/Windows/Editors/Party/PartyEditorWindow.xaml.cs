@@ -80,7 +80,29 @@ namespace PPRP.Windows
         {
             if (null != _item)
             {
-                MParty.Save(_item);
+                var ret = MParty.Save(_item);
+                if (ret.Ok)
+                {
+                    var win = PPRPWindows.Windows.MessageBox;
+                    win.Setup("บันทึกข้อมูลสำเร็จ", "PPRP");
+                    win.ShowDialog();
+                }
+                else
+                {
+                    var win = PPRPWindows.Windows.MessageBox;
+                    win.Setup("บันทึกข้อมูลไม่สำเร็จ" + Environment.NewLine + ret.ErrMsg, "PPRP");
+                    win.ShowDialog();
+                    return;
+                }
+            }
+            if (_addNew)
+            {
+                // in add new mode so clear data and wait for new entry.
+            }
+            else
+            {
+                // in edit mode so exit window.
+                DialogResult = true;
             }
         }
 
