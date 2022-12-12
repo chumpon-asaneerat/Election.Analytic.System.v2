@@ -80,7 +80,7 @@ namespace PPRP.Windows
         {
             if (null != _item)
             {
-                Console.WriteLine("Save Item.");
+                MParty.Save(_item);
             }
         }
 
