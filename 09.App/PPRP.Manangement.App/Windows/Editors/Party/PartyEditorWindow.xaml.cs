@@ -106,6 +106,11 @@ namespace PPRP.Windows
             }
         }
 
+        private void CheckPartyName()
+        {
+            if (null == _item) return;
+        }
+
         #endregion
 
         #region Public Methods
@@ -117,6 +122,12 @@ namespace PPRP.Windows
         public void Setup(MParty value, bool addNew = false)
         {
             _item = value;
+            // set callback.
+            if (null != _item)
+            {
+                _item.WhenPartyNameChanged(CheckPartyName);
+            }
+
             _addNew = addNew;
 
             DataContext = _item;

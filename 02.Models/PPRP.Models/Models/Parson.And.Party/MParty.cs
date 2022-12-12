@@ -27,6 +27,8 @@ namespace PPRP.Models
     {
         #region Internal Variables
 
+        private Action _partyNameChangdAction = null;
+
         private int _PartyId = 0;
         private string _PartyName = null;
 
@@ -51,10 +53,20 @@ namespace PPRP.Models
         /// </summary>
         ~MParty()
         {
-
+            _action = null;
         }
 
         #endregion
+
+        #region Public Methods
+
+        public void WhenPartyNameChanged(Action partyNameChangdAction)
+        {
+            _partyNameChangdAction = partyNameChangdAction;
+        }
+
+        #endregion
+
 
         #region Public Properties
 
@@ -87,6 +99,8 @@ namespace PPRP.Models
                     _PartyName = value;
                     // Raise Event
                     Raise(() => PartyName);
+
+                    if (null != _partyNameChangdAction) _partyNameChangdAction(); // raise action callback
                 }
             }
         }
@@ -416,6 +430,59 @@ namespace PPRP.Models
 
             return ret;
         }
+
+        public static NDbResult<MParty> Get(string partyName)
+        {
+            MethodBase med = MethodBase.GetCurrentMethod();
+
+            NDbResult<MParty> rets = new NDbResult<MParty>();
+
+            IDbConnection cnn = DbServer.Instance.Db;
+            if (null == cnn || !DbServer.Instance.Connected)
+            {
+                string msg = "Connection is null or cannot connect to database server.";
+                med.Err(msg);
+                // Set error number/message
+                rets.ErrNum = 8000;
+                rets.ErrMsg = msg;
+
+                return rets;
+            }
+
+            var p = new DynamicParameters();
+            p.Add("@PartyName", partyName);
+
+            p.Add("@errNum", dbType: DbType.Int32, direction: ParameterDirection.Output);
+            p.Add("@errMsg", dbType: DbType.String, direction: ParameterDirection.Output, size: -1);
+
+            try
+            {
+                var items = cnn.Query<MParty>("GetMPartyByName", p,
+                    commandType: CommandType.StoredProcedure);
+                var data = (null != items) ? items.FirstOrDefault() : null;
+                rets.Success(data);
+
+                // Set error number/message
+                rets.ErrNum = p.Get<int>("@errNum");
+                rets.ErrMsg = p.Get<string>("@errMsg");
+            }
+            catch (Exception ex)
+            {
+                med.Err(ex);
+                // Set error number/message
+                rets.ErrNum = 9999;
+                rets.ErrMsg = ex.Message;
+            }
+
+            if (null == rets.data)
+            {
+                // set as null.
+                rets.data = null;
+            }
+
+            return rets;
+        }
+
 
         #endregion
     }
