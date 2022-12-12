@@ -47,7 +47,7 @@ namespace PPRP.Pages
 
         private void cmdAddNew_Click(object sender, RoutedEventArgs e)
         {
-
+            AddNew();
         }
 
         private void cmdImport_Click(object sender, RoutedEventArgs e)
@@ -191,12 +191,28 @@ namespace PPRP.Pages
 
         }
 
+        private void AddNew()
+        {
+            MParty item = new MParty();
+            var editor = PPRPApp.Windows.PartyEditor;
+            editor.Setup(item, true); // add new mode
+            if (editor.ShowDialog() == true)
+            {
+            }
+
+            Dispatcher.BeginInvoke(new Action(() =>
+            {
+                // there are case change current item image and cancel so need to refresh.
+                RefreshList(true);
+            }), DispatcherPriority.Render);
+        }
+
         private void Edit(MParty item)
         {
             if (null == item)
                 return;
             var editor = PPRPApp.Windows.PartyEditor;
-            editor.Setup(item);
+            editor.Setup(item); // edit mode
             if (editor.ShowDialog() == true)
             {
             }

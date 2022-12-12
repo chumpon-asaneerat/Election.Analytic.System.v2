@@ -65,6 +65,44 @@ namespace PPRP.Windows
 
         #region Private Methods
 
+        private MParty GetByName(string partyName)
+        {
+            return MParty.Get(partyName).Value();
+        }
+
+        private void CheckPartyName()
+        {
+            if (null == _item) return;
+            var existItem = GetByName(_item.PartyName);
+            if (null != existItem)
+            {
+                var win = PPRPWindows.Windows.MessageBoxOKCancel;
+                string msg = string.Empty;
+                msg += string.Format("'{0}' มีอยู่ในระบบฐานข้อมูลอยู่แล้ว", _item.PartyName) + Environment.NewLine;
+                msg += "ต้องการเรียกข้อมูลที่มีอยู่ขึ้นมาแก้ไขหรือไม่ ?";
+
+                win.Setup(msg, "PPRP");
+                if (win.ShowDialog() == true)
+                {
+                    // load exist data;
+                    Setup(existItem);
+                }
+            }
+        }
+
+        private bool AllowSave()
+        {
+            bool ret = false;
+            if (null != _item)
+            {
+                var existItem = GetByName(_item.PartyName);
+                if (null != existItem && existItem.PartyId != _item.PartyId)
+                    ret = false;
+                else ret = true;
+            }
+            return ret;
+        }
+
         private void ChangeImage()
         {
             if (null == _item) 
@@ -80,6 +118,18 @@ namespace PPRP.Windows
         {
             if (null != _item)
             {
+                if (!AllowSave())
+                {
+                    var win = PPRPWindows.Windows.MessageBox;
+                    string msg = string.Empty;
+                    msg += string.Format("'{0}' มีอยู่ในระบบฐานข้อมูลอยู่แล้ว", _item.PartyName) + Environment.NewLine;
+                    msg += "ไม่สามารถบันทึกซ้ำได้ กรุณาตรวจสอบข้อมูลอีกครั้ง";
+
+                    win.Setup(msg, "PPRP");
+                    win.ShowDialog();
+
+                    return;
+                }
                 var ret = MParty.Save(_item);
                 if (ret.Ok)
                 {
@@ -104,11 +154,6 @@ namespace PPRP.Windows
                 // in edit mode so exit window.
                 DialogResult = true;
             }
-        }
-
-        private void CheckPartyName()
-        {
-            if (null == _item) return;
         }
 
         #endregion

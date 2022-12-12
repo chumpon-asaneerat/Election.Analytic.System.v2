@@ -53,7 +53,7 @@ namespace PPRP.Models
         /// </summary>
         ~MParty()
         {
-            _action = null;
+            _partyNameChangdAction = null;
         }
 
         #endregion
