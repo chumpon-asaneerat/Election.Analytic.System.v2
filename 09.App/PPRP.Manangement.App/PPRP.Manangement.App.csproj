@@ -485,6 +485,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\MPD2562StatVoterPrintSummary.rdlc" />
     <EmbeddedResource Include="Reports\MPD2562VoteSummaryReport.rdlc" />
+    <EmbeddedResource Include="Reports\MPDC2566SummaryReport.rdlc" />
     <None Include="app.manifest" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
