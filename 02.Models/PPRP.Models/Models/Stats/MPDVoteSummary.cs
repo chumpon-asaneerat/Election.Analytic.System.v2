@@ -410,4 +410,202 @@ namespace PPRP.Models
     }
 
     #endregion
+
+    #region MPDPersonalVoteSummary
+
+    public class MPDPersonalVoteSummary : NInpc
+    {
+        #region Internal Variables
+
+        // for party logo
+        private byte[] _LogoData = null;
+        private bool _PartyLogoLoading = false;
+        private ImageSource _PartyLogo = null;
+        // for person image
+        private byte[] _PersonImageData = null;
+        private bool _PersonImageLoading = false;
+        private ImageSource _PersonImage = null;
+
+        #endregion
+
+        #region Public Properties
+
+        public int ThaiYear { get; set; }
+        public string ADM1Code { get; set; }
+        public string ProvinceNameTH { get; set; }
+        public int PollingUnitNo { get; set; }
+
+        public string FullName { get; set; }
+
+        public byte[] PersonImageData
+        {
+            get { return _PersonImageData; }
+            set
+            {
+                _PersonImageData = value;
+                if (null == _PersonImageData)
+                {
+                    _PersonImage = null;
+                }
+            }
+        }
+
+        public ImageSource PersonImage
+        {
+            get
+            {
+                if (null == _PersonImage && !_PersonImageLoading)
+                {
+                    _PersonImageLoading = true;
+
+                    Defaults.RunInBackground(() =>
+                    {
+                        ImageSource imgSrc;
+                        if (null == _PersonImageData)
+                        {
+                            imgSrc = Defaults.Person;
+                        }
+                        else
+                        {
+                            imgSrc = ByteUtils.GetImageSource(PersonImageData);
+                        }
+                        _PersonImage = imgSrc;
+
+                        _PersonImageLoading = false;
+                        Raise(() => PersonImage);
+                    });
+                }
+
+                return _PersonImage;
+            }
+            set { }
+        }
+
+        public string PartyId { get; set; }
+        public string PartyName { get; set; }
+
+        public byte[] LogoData
+        {
+            get { return _LogoData; }
+            set
+            {
+                _LogoData = value;
+                if (null == _LogoData)
+                {
+                    _PartyLogo = null;
+                }
+            }
+        }
+        public ImageSource PartyLogo
+        {
+            get
+            {
+                if (null == _PartyLogo && null != _LogoData && !_PartyLogoLoading)
+                {
+                    _PartyLogoLoading = true;
+
+                    Defaults.RunInBackground(() =>
+                    {
+                        _PartyLogo = ByteUtils.GetImageSource(LogoData);
+                        _PartyLogoLoading = false;
+                        Raise(() => PartyLogo);
+                    });
+                }
+                return _PartyLogo;
+            }
+            set { }
+        }
+
+        public int VoteNo { get; set; }
+        public int VoteCount { get; set; }
+
+        #endregion
+
+        #region Static Methods
+
+        public static NDbResult<List<MPDPersonalVoteSummary>> Gets(int top, int thaiYear, string adm1Code, 
+            int pollingUnitNo)
+        {
+            MethodBase med = MethodBase.GetCurrentMethod();
+
+            NDbResult<List<MPDPersonalVoteSummary>> rets = new NDbResult<List<MPDPersonalVoteSummary>>();
+
+            IDbConnection cnn = DbServer.Instance.Db;
+            if (null == cnn || !DbServer.Instance.Connected)
+            {
+                string msg = "Connection is null or cannot connect to database server.";
+                med.Err(msg);
+                // Set error number/message
+                rets.ErrNum = 8000;
+                rets.ErrMsg = msg;
+
+                return rets;
+            }
+
+            var p = new DynamicParameters();
+            p.Add("@ThaiYear", thaiYear);
+            p.Add("@ADM1Code", adm1Code);
+            p.Add("@PollingUnitNo", pollingUnitNo);
+            p.Add("@Top", top);
+
+            try
+            {
+                var items = cnn.Query<MPDPersonalVoteSummary>("GetMPDTopVoteSummaries", p,
+                    commandType: CommandType.StoredProcedure);
+                var results = (null != items) ? items.ToList() : new List<MPDPersonalVoteSummary>();
+                rets.Success(results);
+            }
+            catch (Exception ex)
+            {
+                med.Err(ex);
+                // Set error number/message
+                rets.ErrNum = 9999;
+                rets.ErrMsg = ex.Message;
+            }
+
+            if (null == rets.data)
+            {
+                // create empty list.
+                rets.data = new List<MPDPersonalVoteSummary>();
+            }
+
+            return rets;
+        }
+
+        public static int GetTotalVotes(int thaiYear, string adm1Code, int pollingUnitNo)
+        {
+            MethodBase med = MethodBase.GetCurrentMethod();
+
+            int ret = 0;
+
+            IDbConnection cnn = DbServer.Instance.Db;
+            if (null == cnn || !DbServer.Instance.Connected)
+            {
+                string msg = "Connection is null or cannot connect to database server.";
+                med.Err(msg);
+                return ret;
+            }
+
+            var p = new DynamicParameters();
+            p.Add("@ThaiYear", thaiYear);
+            p.Add("@ADM1Code", adm1Code);
+            p.Add("@PollingUnitNo", pollingUnitNo);
+
+            try
+            {
+                ret = cnn.ExecuteScalar<int>("GetMPDTotalVotes", p,
+                    commandType: CommandType.StoredProcedure);
+            }
+            catch (Exception ex)
+            {
+                med.Err(ex);
+            }
+
+            return ret;
+        }
+
+        #endregion
+    }
+
+    #endregion
 }

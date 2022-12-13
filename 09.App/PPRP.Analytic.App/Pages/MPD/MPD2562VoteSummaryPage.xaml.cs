@@ -261,8 +261,9 @@ namespace PPRP.Pages
 
             txtPollingUnitInfo.Text = pollingUnit.DisplayText;
 
-            var top6 = MPD2562PersonalVoteSummary.Gets(6,
-                _pullingUnitItem.ProvinceId, _pullingUnitItem.PollingUnitNo).Value;
+            int thaiYear = 2562;
+            var top6 = MPDPersonalVoteSummary.Gets(6, thaiYear,
+                _pullingUnitItem.ADM1Code, _pullingUnitItem.PollingUnitNo).Value();
 
             int sum6 = 0;
             if (null != top6 && top6.Count > 0)
