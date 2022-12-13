@@ -26,7 +26,7 @@
                             HorizontalAlignment="Left">
                     <elem:PrefixFieldControl x:Name="ctrlPrefix" Width="150" />
                     <elem:FirstNameFieldControl x:Name="ctrlFirstName" Width="200" />
-                    <elem:LastNameFieldControl x:Name="ctrlLastName" Width="250" />
+                    <elem:LastNameFieldControl x:Name="ctrlLastName" Width="300" />
                 </StackPanel>
                 <!--  DOB  -->
                 <StackPanel Orientation="Horizontal"
@@ -42,7 +42,7 @@
                             HorizontalAlignment="Left">
                     <elem:GenderIdFieldControl x:Name="ctrlGenderId" Width="150" />
                     <elem:EducationIdFieldControl x:Name="ctrlEducationId" Width="200" />
-                    <elem:OccupationIdFieldControl x:Name="ctrlOccupationId" Width="250" />
+                    <elem:OccupationIdFieldControl x:Name="ctrlOccupationId" Width="300" />
                 </StackPanel>
                 <!--  REMARK  -->
                 <StackPanel Orientation="Horizontal"
@@ -50,7 +50,7 @@
                             DockPanel.Dock="Top"
                             HorizontalAlignment="Left">
                     <elem:RemarkFieldControl x:Name="ctrlRemark"
-                                             Width="600"
+                                             Width="650"
                                              Height="200" />
                 </StackPanel>
             </DockPanel>
