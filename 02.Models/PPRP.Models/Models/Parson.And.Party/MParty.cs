@@ -333,6 +333,110 @@ namespace PPRP.Models
             return ret;
         }
         /// <summary>
+        /// Get By Name.
+        /// </summary>
+        /// <param name="partyName"></param>
+        /// <returns></returns>
+        public static NDbResult<MParty> Get(string partyName)
+        {
+            MethodBase med = MethodBase.GetCurrentMethod();
+
+            NDbResult<MParty> rets = new NDbResult<MParty>();
+
+            IDbConnection cnn = DbServer.Instance.Db;
+            if (null == cnn || !DbServer.Instance.Connected)
+            {
+                string msg = "Connection is null or cannot connect to database server.";
+                med.Err(msg);
+                // Set error number/message
+                rets.ErrNum = 8000;
+                rets.ErrMsg = msg;
+
+                return rets;
+            }
+
+            var p = new DynamicParameters();
+            p.Add("@PartyName", partyName);
+
+            p.Add("@errNum", dbType: DbType.Int32, direction: ParameterDirection.Output);
+            p.Add("@errMsg", dbType: DbType.String, direction: ParameterDirection.Output, size: -1);
+
+            try
+            {
+                var items = cnn.Query<MParty>("GetMPartyByName", p,
+                    commandType: CommandType.StoredProcedure);
+                var data = (null != items) ? items.FirstOrDefault() : null;
+                rets.Success(data);
+
+                // Set error number/message
+                rets.ErrNum = p.Get<int>("@errNum");
+                rets.ErrMsg = p.Get<string>("@errMsg");
+            }
+            catch (Exception ex)
+            {
+                med.Err(ex);
+                // Set error number/message
+                rets.ErrNum = 9999;
+                rets.ErrMsg = ex.Message;
+            }
+
+            if (null == rets.data)
+            {
+                // set as null.
+                rets.data = null;
+            }
+
+            return rets;
+        }
+        /// <summary>
+        /// Save Image.
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        public static NDbResult SaveImage(MParty value)
+        {
+            MethodBase med = MethodBase.GetCurrentMethod();
+
+            NDbResult ret = new NDbResult();
+
+            IDbConnection cnn = DbServer.Instance.Db;
+            if (null == cnn || !DbServer.Instance.Connected)
+            {
+                string msg = "Connection is null or cannot connect to database server.";
+                med.Err(msg);
+                // Set error number/message
+                ret.ErrNum = 8000;
+                ret.ErrMsg = msg;
+
+                return ret;
+            }
+
+            var p = new DynamicParameters();
+            p.Add("@PartyId", value.PartyId);
+            p.Add("@Data", value.Data, dbType: DbType.Binary, direction: ParameterDirection.Input, size: -1);
+
+            p.Add("@errNum", dbType: DbType.Int32, direction: ParameterDirection.Output);
+            p.Add("@errMsg", dbType: DbType.String, direction: ParameterDirection.Output, size: -1);
+
+            try
+            {
+                cnn.Execute("SaveMPartyImage", p, commandType: CommandType.StoredProcedure);
+                ret.Success();
+                // Set error number/message
+                ret.ErrNum = p.Get<int>("@errNum");
+                ret.ErrMsg = p.Get<string>("@errMsg");
+            }
+            catch (Exception ex)
+            {
+                med.Err(ex);
+                // Set error number/message
+                ret.ErrNum = 9999;
+                ret.ErrMsg = ex.Message;
+            }
+
+            return ret;
+        }
+        /// <summary>
         /// Save
         /// </summary>
         /// <param name="value"></param>
@@ -388,107 +492,6 @@ namespace PPRP.Models
 
             return ret;
         }
-        /// <summary>
-        /// Save Image.
-        /// </summary>
-        /// <param name="value"></param>
-        /// <returns></returns>
-        public static NDbResult SaveImage(MParty value)
-        {
-            MethodBase med = MethodBase.GetCurrentMethod();
-
-            NDbResult ret = new NDbResult();
-
-            IDbConnection cnn = DbServer.Instance.Db;
-            if (null == cnn || !DbServer.Instance.Connected)
-            {
-                string msg = "Connection is null or cannot connect to database server.";
-                med.Err(msg);
-                // Set error number/message
-                ret.ErrNum = 8000;
-                ret.ErrMsg = msg;
-
-                return ret;
-            }
-
-            var p = new DynamicParameters();
-            p.Add("@PartyId", value.PartyId);
-            p.Add("@Data", value.Data, dbType: DbType.Binary, direction: ParameterDirection.Input, size: -1);
-
-            p.Add("@errNum", dbType: DbType.Int32, direction: ParameterDirection.Output);
-            p.Add("@errMsg", dbType: DbType.String, direction: ParameterDirection.Output, size: -1);
-
-            try
-            {
-                cnn.Execute("SaveMPartyImage", p, commandType: CommandType.StoredProcedure);
-                ret.Success();
-                // Set error number/message
-                ret.ErrNum = p.Get<int>("@errNum");
-                ret.ErrMsg = p.Get<string>("@errMsg");
-            }
-            catch (Exception ex)
-            {
-                med.Err(ex);
-                // Set error number/message
-                ret.ErrNum = 9999;
-                ret.ErrMsg = ex.Message;
-            }
-
-            return ret;
-        }
-
-        public static NDbResult<MParty> Get(string partyName)
-        {
-            MethodBase med = MethodBase.GetCurrentMethod();
-
-            NDbResult<MParty> rets = new NDbResult<MParty>();
-
-            IDbConnection cnn = DbServer.Instance.Db;
-            if (null == cnn || !DbServer.Instance.Connected)
-            {
-                string msg = "Connection is null or cannot connect to database server.";
-                med.Err(msg);
-                // Set error number/message
-                rets.ErrNum = 8000;
-                rets.ErrMsg = msg;
-
-                return rets;
-            }
-
-            var p = new DynamicParameters();
-            p.Add("@PartyName", partyName);
-
-            p.Add("@errNum", dbType: DbType.Int32, direction: ParameterDirection.Output);
-            p.Add("@errMsg", dbType: DbType.String, direction: ParameterDirection.Output, size: -1);
-
-            try
-            {
-                var items = cnn.Query<MParty>("GetMPartyByName", p,
-                    commandType: CommandType.StoredProcedure);
-                var data = (null != items) ? items.FirstOrDefault() : null;
-                rets.Success(data);
-
-                // Set error number/message
-                rets.ErrNum = p.Get<int>("@errNum");
-                rets.ErrMsg = p.Get<string>("@errMsg");
-            }
-            catch (Exception ex)
-            {
-                med.Err(ex);
-                // Set error number/message
-                rets.ErrNum = 9999;
-                rets.ErrMsg = ex.Message;
-            }
-
-            if (null == rets.data)
-            {
-                // set as null.
-                rets.data = null;
-            }
-
-            return rets;
-        }
-
 
         #endregion
     }
