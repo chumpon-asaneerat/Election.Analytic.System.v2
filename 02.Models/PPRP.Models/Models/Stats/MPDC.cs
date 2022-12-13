@@ -149,13 +149,14 @@ namespace PPRP.Models
 
         #region Public Properties
 
-        public string ProvinceName { get; set; }
+        public int ThaiYear { get; set; }
+        public string ProvinceNameTH { get; set; }
         public int PollingUnitNo { get; set; }
         public int TotalCandidates { get; set; }
         public string FullNameFilter { get; set; }
         public string GroupName
         {
-            get { return string.Format("{0} เขต {1}", ProvinceName, PollingUnitNo); }
+            get { return string.Format("{0} เขต {1}", ProvinceNameTH, PollingUnitNo); }
             set { }
         }
         public List<MPDC> Items
@@ -166,7 +167,7 @@ namespace PPRP.Models
                 {
                     if (TotalCandidates > 0)
                     {
-                        _items = MPDC.Gets(ProvinceName, PollingUnitNo, FullNameFilter).Value;
+                        _items = MPDC.Gets(ThaiYear, ProvinceNameTH, PollingUnitNo, FullNameFilter).Value();
                     }
                     _loaded = true;
 
@@ -179,7 +180,8 @@ namespace PPRP.Models
 
         #region Static Methods
 
-        public static NDbResult<List<MPDCPollingUnit>> Gets(string provinceName = null, string fullName = null,
+        public static NDbResult<List<MPDCPollingUnit>> Gets(int thaiYear, string provinceName = null, 
+            string fullName = null,
             int pageNo = 1, int pollingUnitPerPage = 4)
         {
             MethodBase med = MethodBase.GetCurrentMethod();
@@ -211,11 +213,12 @@ namespace PPRP.Models
             }
 
             var p = new DynamicParameters();
+            p.Add("@ThaiYear", thaiYear);
             p.Add("@ProvinceName", sProvinceName);
             p.Add("@FullName", sFullName);
 
             p.Add("@pageNum", value: pageNo, dbType: DbType.Int32, direction: ParameterDirection.InputOutput);
-            p.Add("@pollingUnitPerPage", value: pollingUnitPerPage, dbType: DbType.Int32, direction: ParameterDirection.InputOutput);
+            p.Add("@rowsPerPage", value: pollingUnitPerPage, dbType: DbType.Int32, direction: ParameterDirection.InputOutput);
             p.Add("@totalRecords", value: 0, dbType: DbType.Int32, direction: ParameterDirection.Output);
             p.Add("@maxPage", value: 0, dbType: DbType.Int32, direction: ParameterDirection.Output);
 
@@ -231,7 +234,7 @@ namespace PPRP.Models
 
                 // Get Paging parameters
                 rets.PageNo = p.Get<int>("@pageNum");
-                rets.RowsPerPage = p.Get<int>("@pollingUnitPerPage");
+                rets.RowsPerPage = p.Get<int>("@rowsPerPage");
                 //rets.TotalRecords = p.Get<int>("@totalRecords");
                 rets.MaxPage = p.Get<int>("@maxPage");
                 // Set error number/message
@@ -276,23 +279,6 @@ namespace PPRP.Models
 
         #region Public Properties
 
-        /*
-  @ThaiYear int    
-, @ADM1Code nvarchar(20)
-, @PollingUnitNo int
-, @CandidateNo int
-, @Prefix nvarchar(100)
-, @FirstName nvarchar(200)
-, @LastName nvarchar(200)
-, @PrevPartyId int = NULL
-, @Remark nvarchar(max) = NULL
-, @SubGroup nvarchar(max) = NULL
-, @ADM1CodeOri nvarchar(100) = NULL
-, @PollingUnitNoOri int = NULL
-, @CandidateNoOri int = NULL
-
-        */
-        /*
         /// <summary>
         /// Gets or sets ThaiYear.
         /// </summary>
@@ -316,21 +302,30 @@ namespace PPRP.Models
         /// </summary>
         [ExcelColumn("ลำดับที่", 3)]
         public int CandidateNo { get; set; }
+
+        /// <summary>
+        /// Gets or sets PersonId.
+        /// </summary>
+        public int PersonId { get; set; }
         /// <summary>
         /// Gets or sets FullName.
         /// </summary>
         [ExcelColumn("ชื่อผู้สมัคร", 4)]
         public string FullName { get; set; }
+
+        /// <summary>
+        /// Gets or sets PartyId.
+        /// </summary>
+        public int PartyId { get; set; }
         /// <summary>
         /// Gets or sets Prev PartyName.
         /// </summary>
         [ExcelColumn("สังกัดพรรคเดิม", 5)]
         public string PrevPartyName { get; set; }
-        public string EducationLevel { get; set; }
-        public string SubGroup { get; set; }
-        public string Remark { get; set; }
+        public string EducationName { get; set; }
+        public string CandidateSubGroup { get; set; }
+        public string CandidateRemark { get; set; }
 
-        public string ImageFullName { get; set; }
         public byte[] Data { get; set; }
 
         public ImageSource Image
@@ -366,14 +361,93 @@ namespace PPRP.Models
         public string ProvinceNameOri { get; set; }
         public int PollingUnitNoOri { get; set; }
         public int CandidateNoOri { get; set; }
-        public string FullNameOri { get; set; }
 
         public string GroupName
         {
-            get { return string.Format("{0} เขต {1}", ProvinceName, PollingUnitNo); }
+            get { return string.Format("{0} เขต {1}", ProvinceNameTH, PollingUnitNo); }
             set { }
         }
-        */
+
+        #endregion
+
+        #region Public Methods
+
+        public void LoadImageFile(string fileName)
+        {
+            this.Data = ByteUtils.GetFileBuffer(fileName);
+            Raise(() => Data);
+            _img = null;
+            Raise(() => Image);
+        }
+
+        #endregion
+
+        #region Static Methods
+
+        public static NDbResult<List<MPDC>> Gets(int thaiYear, string provinceName, int pollingUnitNo, 
+            string fullName = null)
+        {
+            MethodBase med = MethodBase.GetCurrentMethod();
+
+            string sProvinceName = provinceName;
+
+            string sFullName = fullName;
+            if (string.IsNullOrWhiteSpace(sFullName))
+            {
+                sFullName = null;
+            }
+
+            NDbResult<List<MPDC>> rets = new NDbResult<List<MPDC>>();
+
+            IDbConnection cnn = DbServer.Instance.Db;
+            if (null == cnn || !DbServer.Instance.Connected)
+            {
+                string msg = "Connection is null or cannot connect to database server.";
+                med.Err(msg);
+                // Set error number/message
+                rets.ErrNum = 8000;
+                rets.ErrMsg = msg;
+
+                return rets;
+            }
+
+            var p = new DynamicParameters();
+            p.Add("@ThaiYear", thaiYear);
+            p.Add("@ProvinceNameTH", sProvinceName);
+            p.Add("@PollingUnitNo", pollingUnitNo);
+            p.Add("@FullName", sFullName);
+
+            p.Add("@errNum", dbType: DbType.Int32, direction: ParameterDirection.Output);
+            p.Add("@errMsg", dbType: DbType.String, direction: ParameterDirection.Output, size: -1);
+
+            try
+            {
+                var items = cnn.Query<MPDC>("GetMPDCs", p,
+                    commandType: CommandType.StoredProcedure);
+                var results = (null != items) ? items.ToList() : new List<MPDC>();
+                rets.Success(results);
+
+                // Set error number/message
+                rets.ErrNum = p.Get<int>("@errNum");
+                rets.ErrMsg = p.Get<string>("@errMsg");
+            }
+            catch (Exception ex)
+            {
+                med.Err(ex);
+                // Set error number/message
+                rets.ErrNum = 9999;
+                rets.ErrMsg = ex.Message;
+            }
+
+            if (null == rets.data)
+            {
+                // create empty list.
+                rets.data = new List<MPDC>();
+            }
+
+            return rets;
+        }
+
         #endregion
     }
 

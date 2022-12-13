@@ -250,13 +250,13 @@ namespace PPRP.Pages
             int thaiYear = 2566;
 
             lvMPDC2566.ItemsSource = null;
-            //var candidates = MPDC2566PullingUnit.Gets(provinceName, sFullNameFilter, iPageNo, iRowsPerPage);
+            var candidates = MPDCPollingUnit.Gets(thaiYear, provinceName, sFullNameFilter, iPageNo, iRowsPerPage);
 
-            //lvMPDC2566.ItemsSource = (null != candidates) ? candidates.Value : new List<MPDC2566PullingUnit>();
-            //sv.ScrollToHome(); // scroll to home position
+            lvMPDC2566.ItemsSource = (null != candidates) ? candidates.Value() : new List<MPDCPollingUnit>();
+            sv.ScrollToHome(); // scroll to home position
 
-            //iPageNo = (null != candidates) ? candidates.PageNo : 1;
-            //iMaxPage = (null != candidates) ? candidates.MaxPage : 1;
+            iPageNo = (null != candidates) ? candidates.PageNo : 1;
+            iMaxPage = (null != candidates) ? candidates.MaxPage : 1;
 
             nav.Setup(iPageNo, iMaxPage);
         }

@@ -98,27 +98,27 @@
                                        TextAlignment="Left"
                                        TextWrapping="Wrap" />
                             <Grid Height="5" />
-                            <!--  EDUCATION LEVEL  -->
+                            <!--  EDUCATION NAME  -->
                             <TextBlock Text="วุฒิการศึกษา: " Foreground="{StaticResource BlueHeavyBrush2}" />
-                            <TextBlock Text="{Binding EducationLevel}"
+                            <TextBlock Text="{Binding EducationName}"
                                        Height="Auto"
                                        VerticalAlignment="Center"
                                        HorizontalAlignment="Left"
                                        TextAlignment="Left"
                                        TextWrapping="Wrap" />
                             <Grid Height="5" />
-                            <!--  SUB GROUP  -->
+                            <!--  CANDIDATE SUB GROUP  -->
                             <TextBlock Height="Auto"
                                        VerticalAlignment="Center"
                                        HorizontalAlignment="Left"
                                        TextAlignment="Left"
                                        TextWrapping="Wrap">
                                 <Run Text="* " />
-                                <Run Text="{Binding SubGroup}" />
+                                <Run Text="{Binding CandidateSubGroup}" />
                             </TextBlock>
-                            <!--  REMARK  -->
+                            <!--  CANDIDATE REMARK  -->
                             <TextBlock Text="หมายเหตุ: " Foreground="{StaticResource BlueHeavyBrush2}" />
-                            <TextBlock Text="{Binding Remark}"
+                            <TextBlock Text="{Binding CandidateRemark}"
                                        Height="Auto"
                                        VerticalAlignment="Center"
                                        HorizontalAlignment="Left"
@@ -361,7 +361,7 @@
                                                 </Grid.ColumnDefinitions>
                                                 <StackPanel Orientation="Horizontal" Grid.Column="0">
                                                     <TextBlock Width="5" />
-                                                    <TextBlock Text="{Binding ProvinceName}"
+                                                    <TextBlock Text="{Binding ProvinceNameTH}"
                                                                FontSize="{StaticResource FontSize18}"
                                                                Foreground="{StaticResource BlackBlush}" />
                                                     <TextBlock Text=" - " />
