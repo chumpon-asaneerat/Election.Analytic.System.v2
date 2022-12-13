@@ -18,16 +18,16 @@ using System.Reflection;
 namespace PPRP.Pages
 {
     /// <summary>
-    /// Interaction logic for MPD2562StatVoterPrintSummaryPreviewPage.xaml
+    /// Interaction logic for MPD2562PreviewStatVoterSummaryPage.xaml
     /// </summary>
-    public partial class MPD2562StatVoterPrintSummaryPreviewPage : UserControl
+    public partial class MPD2562PreviewStatVoterSummaryPage : UserControl
     {
         #region Constructor
 
         /// <summary>
         /// Constructor.
         /// </summary>
-        public MPD2562StatVoterPrintSummaryPreviewPage()
+        public MPD2562PreviewStatVoterSummaryPage()
         {
             InitializeComponent();
         }

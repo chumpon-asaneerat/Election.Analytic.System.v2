@@ -351,21 +351,21 @@ namespace PPRP
 
             #region MPD 2562 Preview Vote Stat Summary
 
-            private static MPD2562StatVoterPrintSummaryPreviewPage _MPD2562StatVoterPrintSummaryPreview;
+            private static MPD2562PreviewStatVoterSummaryPage _MPD2562PreviewStatVoterSummary;
 
             /// <summary>Gets MPD 2562 Vote Stat Summary Preview Page.</summary>
-            public static MPD2562StatVoterPrintSummaryPreviewPage MPD2562StatVoterPrintSummaryPreview
+            public static MPD2562PreviewStatVoterSummaryPage MPD2562PreviewStatVoterSummary
             {
                 get
                 {
-                    if (null == _MPD2562StatVoterPrintSummaryPreview)
+                    if (null == _MPD2562PreviewStatVoterSummary)
                     {
                         lock (typeof(PPRPApp))
                         {
-                            _MPD2562StatVoterPrintSummaryPreview = new MPD2562StatVoterPrintSummaryPreviewPage();
+                            _MPD2562PreviewStatVoterSummary = new MPD2562PreviewStatVoterSummaryPage();
                         }
                     }
-                    return _MPD2562StatVoterPrintSummaryPreview;
+                    return _MPD2562PreviewStatVoterSummary;
                 }
             }
 

@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="PPRP.Pages.MPD2562StatVoterPrintSummaryPreviewPage"
+﻿<UserControl x:Class="PPRP.Pages.MPD2562PreviewStatVoterSummaryPage"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -9,6 +9,10 @@
              d:DesignWidth="1000"
              Background="#2E75B7"
              mc:Ignorable="d">
+    <UserControl.Resources>
+        <!--  INLINE BUTTON TEXT FONT SIZE  -->
+        <sys:Double x:Key="IBFSize">18</sys:Double>
+    </UserControl.Resources>
     <Grid Background="Transparent">
         <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
             <Grid.ColumnDefinitions>
@@ -37,8 +41,16 @@
                             Margin="5,0"
                             Style="{StaticResource InlineButton}"
                             Width="150"
-                            Height="30"
-                            Content="พิมพ์" />
+                            Height="30">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Style="{StaticResource fa-print}" FontSize="{StaticResource IBFSize}" />
+                            <TextBlock Margin="3,0"
+                                       FontFamily="{StaticResource THSarabun}"
+                                       FontSize="{StaticResource IBFSize}"
+                                       Text="พิมพ์"
+                                       VerticalAlignment="Center" />
+                        </StackPanel>
+                    </Button>
                     <Grid Width="5" DockPanel.Dock="Left" />
                     <Button x:Name="cmdCancel"
                             Click="cmdCancel_Click"
@@ -46,8 +58,16 @@
                             Margin="5,0"
                             Style="{StaticResource InlineButton}"
                             Width="150"
-                            Height="30"
-                            Content="ยกเลิก" />
+                            Height="30">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Style="{StaticResource fa-cancel}" FontSize="{StaticResource IBFSize}" />
+                            <TextBlock Margin="3,0"
+                                       FontFamily="{StaticResource THSarabun}"
+                                       FontSize="{StaticResource IBFSize}"
+                                       Text="ยกเลิก"
+                                       VerticalAlignment="Center" />
+                        </StackPanel>
+                    </Button>
                     <Grid />
                 </DockPanel>
                 <!--  WORK AREA  -->
