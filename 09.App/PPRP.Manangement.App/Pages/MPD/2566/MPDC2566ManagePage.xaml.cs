@@ -290,7 +290,24 @@ namespace PPRP.Pages
 
         private void Print()
         {
+            // Check province.
+            var province = cbProvince.SelectedItem as MProvince;
+            string provinceName = (null != province) ? province.ProvinceNameTH : null;
+            if (null != provinceName && provinceName.Contains("ทุกจังหวัด"))
+            {
+                provinceName = null;
+            }
 
+            int thaiYear = 2566;
+            var items = MPDC.Gets(thaiYear, provinceName).Value();
+            if (null == items)
+            {
+                // Show Dialog.
+                return;
+            }
+            var page = PPRPApp.Pages.MPDC2566PreviewSummaryPage;
+            page.Setup(items);
+            PageContentManager.Instance.Current = page;
         }
 
         private void RefreshList(bool refresh)

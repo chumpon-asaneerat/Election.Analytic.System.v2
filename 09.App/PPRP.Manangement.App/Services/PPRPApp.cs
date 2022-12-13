@@ -371,6 +371,28 @@ namespace PPRP
 
             #endregion
 
+            #region MPDC2566 Preview Summary
+
+            private static MPDC2566PreviewSummaryPage _MPDC2566PreviewSummaryPage;
+
+            /// <summary>Gets MPDC 2566 Preview Summary Page.</summary>
+            public static MPDC2566PreviewSummaryPage MPDC2566PreviewSummaryPage
+            {
+                get
+                {
+                    if (null == _MPDC2566PreviewSummaryPage)
+                    {
+                        lock (typeof(PPRPApp))
+                        {
+                            _MPDC2566PreviewSummaryPage = new MPDC2566PreviewSummaryPage();
+                        }
+                    }
+                    return _MPDC2566PreviewSummaryPage;
+                }
+            }
+
+            #endregion
+
             #region Shape Maps (Create)
 
             private static ImportShapeMapsManangePage _ImportShapeMapsManange;
