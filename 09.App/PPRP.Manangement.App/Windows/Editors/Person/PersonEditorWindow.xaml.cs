@@ -123,7 +123,55 @@ namespace PPRP.Windows
         {
             if (null != _item)
             {
-                Console.WriteLine("Save Item.");
+                if (string.IsNullOrWhiteSpace(_item.FirstName) ||
+                    string.IsNullOrWhiteSpace(_item.LastName))
+                {
+                    var win = PPRPWindows.Windows.MessageBox;
+                    string msg = string.Empty;
+                    msg += "กรุณาป้อนข้อมูล ชื่อ และนามสกุล ของ ผู้สมัคร/ว่าที่ผู้สมัคร";
+
+                    win.Setup(msg, "PPRP");
+                    win.ShowDialog();
+
+                    return;
+                }
+                if (!AllowSave())
+                {
+                    var win = PPRPWindows.Windows.MessageBox;
+                    string msg = string.Empty;
+                    msg += string.Format("'{0}' มีอยู่ในระบบฐานข้อมูลอยู่แล้ว", _item.FullName) + Environment.NewLine;
+                    msg += "ไม่สามารถบันทึกซ้ำได้ กรุณาตรวจสอบข้อมูลอีกครั้ง";
+
+                    win.Setup(msg, "PPRP");
+                    win.ShowDialog();
+
+                    return;
+                }
+                var ret = MPerson.Save(_item);
+                if (ret.Ok)
+                {
+                    var win = PPRPWindows.Windows.MessageBox;
+                    win.Setup("บันทึกข้อมูลสำเร็จ", "PPRP");
+                    win.ShowDialog();
+                }
+                else
+                {
+                    var win = PPRPWindows.Windows.MessageBox;
+                    win.Setup("บันทึกข้อมูลไม่สำเร็จ" + Environment.NewLine + ret.ErrMsg, "PPRP");
+                    win.ShowDialog();
+                    return;
+                }
+
+                if (_addNew)
+                {
+                    // in add new mode so clear data and wait for new entry.
+                    Setup(new MPerson(), _addNew);
+                }
+                else
+                {
+                    // in edit mode so exit window.
+                    DialogResult = true;
+                }
             }
         }
 
