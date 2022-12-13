@@ -122,6 +122,11 @@ namespace PPRP.Models
                     // Raise Event
                     Raise(() => FirstName);
                     Raise(() => FullName);
+
+                    if (_FirstName != FirstNameOri)
+                    {
+                        if (null != _personNameChangdAction) _personNameChangdAction(); // raise action callback
+                    }
                 }
             }
         }
@@ -139,6 +144,11 @@ namespace PPRP.Models
                     // Raise Event
                     Raise(() => LastName);
                     Raise(() => FullName);
+
+                    if (_LastName != LastNameOri)
+                    {
+                        if (null != _personNameChangdAction) _personNameChangdAction(); // raise action callback
+                    }
                 }
             }
         }
