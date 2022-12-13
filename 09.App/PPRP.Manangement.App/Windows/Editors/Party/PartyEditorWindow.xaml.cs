@@ -87,6 +87,10 @@ namespace PPRP.Windows
                     // load exist data;
                     Setup(existItem);
                 }
+                else
+                {
+                    _item.PartyName = _item.PartyNameOri; // restore back
+                }
             }
         }
 
@@ -170,7 +174,8 @@ namespace PPRP.Windows
             // set callback.
             if (null != _item)
             {
-                _item.WhenPartyNameChanged(CheckPartyName);
+                // keep original name to detect changed.
+                _item.WhenPartyNameChanged(_item.PartyName, CheckPartyName);
             }
 
             _addNew = addNew;

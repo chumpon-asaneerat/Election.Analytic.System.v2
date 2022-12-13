@@ -60,8 +60,9 @@ namespace PPRP.Models
 
         #region Public Methods
 
-        public void WhenPartyNameChanged(Action partyNameChangdAction)
+        public void WhenPartyNameChanged(string partyNameOri, Action partyNameChangdAction)
         {
+            PartyNameOri = partyNameOri;
             _partyNameChangdAction = partyNameChangdAction;
         }
 
@@ -100,7 +101,10 @@ namespace PPRP.Models
                     // Raise Event
                     Raise(() => PartyName);
 
-                    if (null != _partyNameChangdAction) _partyNameChangdAction(); // raise action callback
+                    if (_PartyName != PartyNameOri)
+                    {
+                        if (null != _partyNameChangdAction) _partyNameChangdAction(); // raise action callback
+                    }
                 }
             }
         }
@@ -156,6 +160,8 @@ namespace PPRP.Models
         /// Checks is default image.
         /// </summary>
         public bool IsDefault { get { return _isDefault; } }
+
+        public string PartyNameOri { get; private set; }
 
         #endregion
 
@@ -351,7 +357,7 @@ namespace PPRP.Models
 
             var p = new DynamicParameters();
             int? partyId = (value.PartyId <= 0) ? new int?() : value.PartyId;
-            p.Add("@PartyId", partyId);
+            p.Add("@PartyId", partyId, dbType: DbType.Int32, direction: ParameterDirection.InputOutput);
             p.Add("@PartyName", value.PartyName);
 
             p.Add("@errNum", dbType: DbType.Int32, direction: ParameterDirection.Output);
