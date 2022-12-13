@@ -47,7 +47,7 @@ namespace PPRP.Pages
 
         private void cmdAddNew_Click(object sender, RoutedEventArgs e)
         {
-
+            AddNew();
         }
 
         private void cmdImport_Click(object sender, RoutedEventArgs e)
@@ -82,12 +82,18 @@ namespace PPRP.Pages
 
         private void cmdEdit_Click(object sender, RoutedEventArgs e)
         {
-            // Edit selected item.
+            var btn = sender as Button;
+            if (null == btn) return;
+            var item = btn.DataContext as MPDC;
+            Edit(item);
         }
 
         private void cmdDelete_Click(object sender, RoutedEventArgs e)
         {
-            // Delete selected item.
+            var btn = sender as Button;
+            if (null == btn) return;
+            var item = btn.DataContext as MPDC;
+            Delete(item);
         }
 
         #endregion
@@ -190,6 +196,53 @@ namespace PPRP.Pages
             msgBox.Setup(msg, "ผลการส่งออกข้อมูล");
             msgBox.ShowDialog();
             */
+        }
+
+        private void AddNew()
+        {
+            MPDC item = new MPDC();
+            /*
+            var editor = PPRPApp.Windows.MPDC2566Editor;
+            editor.Setup(item, true);
+            editor.ShowDialog();
+
+                Dispatcher.BeginInvoke(new Action(() =>
+                {
+                    RefreshList(true);
+                }), DispatcherPriority.Render);
+            */
+        }
+
+        private void Edit(MPDC item)
+        {
+            if (null == item)
+                return;
+            /*
+            var editor = PPRPApp.Windows.MPDC2566Editor;
+            editor.Setup(item, false);
+            editor.ShowDialog();
+
+                Dispatcher.BeginInvoke(new Action(() =>
+                {
+                    RefreshList(true);
+                }), DispatcherPriority.Render);
+            */
+        }
+
+        private void Delete(MPDC item)
+        {
+            if (null == item)
+                return;
+            string msg = string.Format("ต้องการลบข้อมูล '{0}' ?", item.FullName);
+            if (MessageBox.Show(msg, "ยืนยันการลบข้อมูล", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+            {
+                MPDC.Delete(item);
+
+                Dispatcher.BeginInvoke(new Action(() =>
+                {
+                    RefreshList(true);
+                }), DispatcherPriority.Render);
+            }
         }
 
         private void LoadProvinces()
