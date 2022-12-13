@@ -637,6 +637,21 @@ namespace PPRP
             }
 
             #endregion
+
+            #region MPDC 2566 Editor
+
+            /// <summary>Gets MPDC 2566 Editor Window.</summary>
+            public static PPRP.Windows.MPDC2566EditorWindow MPDC2566Editor
+            {
+                get
+                {
+                    var ret = new PPRP.Windows.MPDC2566EditorWindow();
+                    ret.Owner = Application.Current.MainWindow;
+                    return ret;
+                }
+            }
+
+            #endregion
         }
     }
 }
