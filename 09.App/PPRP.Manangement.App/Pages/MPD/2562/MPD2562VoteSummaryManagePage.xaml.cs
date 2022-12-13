@@ -233,11 +233,10 @@ namespace PPRP.Pages
                 // Show Dialog.
                 return;
             }
-            /*
+
             var page = PPRPApp.Pages.MPD2562PreviewVoteSummary;
             page.Setup(items);
             PageContentManager.Instance.Current = page;
-            */
         }
 
         private void LoadProvinces()

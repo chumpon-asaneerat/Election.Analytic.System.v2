@@ -327,6 +327,28 @@ namespace PPRP
 
             #endregion
 
+            #region MPD 2562 Preview Vote Summary
+
+            private static MPD2562PreviewVoteSummaryPage _MPD2562PreviewVoteSummary;
+
+            /// <summary>Gets MPD 2562 Preview Vote Summary Page.</summary>
+            public static MPD2562PreviewVoteSummaryPage MPD2562PreviewVoteSummary
+            {
+                get
+                {
+                    if (null == _MPD2562PreviewVoteSummary)
+                    {
+                        lock (typeof(PPRPApp))
+                        {
+                            _MPD2562PreviewVoteSummary = new MPD2562PreviewVoteSummaryPage();
+                        }
+                    }
+                    return _MPD2562PreviewVoteSummary;
+                }
+            }
+
+            #endregion
+
             #region Shape Maps (Create)
 
             private static ImportShapeMapsManangePage _ImportShapeMapsManange;
