@@ -367,7 +367,7 @@ namespace PPRP.Models
             set { }
         }
 
-        public string ProvinceNameOri { get; set; }
+        public string ADM1CodeOri { get; set; }
         public int PollingUnitNoOri { get; set; }
         public int CandidateNoOri { get; set; }
 
@@ -499,6 +499,65 @@ namespace PPRP.Models
             try
             {
                 cnn.Execute("DeleteMPDC", p, commandType: CommandType.StoredProcedure);
+                ret.Success();
+                // Set error number/message
+                ret.ErrNum = p.Get<int>("@errNum");
+                ret.ErrMsg = p.Get<string>("@errMsg");
+            }
+            catch (Exception ex)
+            {
+                med.Err(ex);
+                // Set error number/message
+                ret.ErrNum = 9999;
+                ret.ErrMsg = ex.Message;
+            }
+
+            return ret;
+        }
+        /// <summary>
+        /// Delete
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        public static NDbResult Save(MPDC value)
+        {
+            MethodBase med = MethodBase.GetCurrentMethod();
+
+            NDbResult ret = new NDbResult();
+
+            IDbConnection cnn = DbServer.Instance.Db;
+            if (null == cnn || !DbServer.Instance.Connected)
+            {
+                string msg = "Connection is null or cannot connect to database server.";
+                med.Err(msg);
+                // Set error number/message
+                ret.ErrNum = 8000;
+                ret.ErrMsg = msg;
+
+                return ret;
+            }
+
+            var p = new DynamicParameters();
+            p.Add("@ThaiYear", value.ThaiYear);
+            p.Add("@ADM1Code", value.ADM1Code);
+            p.Add("@PollingUnitNo", value.PollingUnitNo);
+            p.Add("@CandidateNo", value.CandidateNo);
+            p.Add("@PersonId", value.PersonId);
+            p.Add("@PrevPartyId", value.PartyId);
+            p.Add("@Remark", value.CandidateRemark);
+            p.Add("@SubGroup", value.CandidateSubGroup);
+
+            p.Add("@ADM1CodeOri", value.ADM1CodeOri);
+            p.Add("@PollingUnitNoOri", value.PollingUnitNoOri);
+            p.Add("@CandidateNoOri", value.CandidateNoOri);
+
+
+            p.Add("@errNum", dbType: DbType.Int32, direction: ParameterDirection.Output);
+            p.Add("@errMsg", dbType: DbType.String, direction: ParameterDirection.Output, size: -1);
+
+            try
+            {
+                cnn.Execute("SaveMPDC2", p, commandType: CommandType.StoredProcedure);
                 ret.Success();
                 // Set error number/message
                 ret.ErrNum = p.Get<int>("@errNum");
