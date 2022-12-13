@@ -349,6 +349,28 @@ namespace PPRP
 
             #endregion
 
+            #region MPD 2562 Preview Vote Stat Summary
+
+            private static MPD2562StatVoterPrintSummaryPreviewPage _MPD2562StatVoterPrintSummaryPreview;
+
+            /// <summary>Gets MPD 2562 Vote Stat Summary Preview Page.</summary>
+            public static MPD2562StatVoterPrintSummaryPreviewPage MPD2562StatVoterPrintSummaryPreview
+            {
+                get
+                {
+                    if (null == _MPD2562StatVoterPrintSummaryPreview)
+                    {
+                        lock (typeof(PPRPApp))
+                        {
+                            _MPD2562StatVoterPrintSummaryPreview = new MPD2562StatVoterPrintSummaryPreviewPage();
+                        }
+                    }
+                    return _MPD2562StatVoterPrintSummaryPreview;
+                }
+            }
+
+            #endregion
+
             #region Shape Maps (Create)
 
             private static ImportShapeMapsManangePage _ImportShapeMapsManange;
