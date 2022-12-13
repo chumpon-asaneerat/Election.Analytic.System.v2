@@ -70,7 +70,7 @@ namespace PPRP.Windows
             return MPerson.Get(firstName, lastName).Value();
         }
 
-        private void CheckPartyName()
+        private void CheckPersonName()
         {
             if (null == _item) return;
             var existItem = GetByName(_item.FirstName, _item.LastName);
@@ -186,6 +186,14 @@ namespace PPRP.Windows
         public void Setup(MPerson value, bool addNew = false)
         {
             _item = value;
+
+            // set callback.
+            if (null != _item)
+            {
+                // keep original name to detect changed.
+                _item.WhenPartyNameChanged(_item.FirstName, _item.LastName, CheckPersonName);
+            }
+
             _addNew = addNew;
 
             DataContext = _item;
