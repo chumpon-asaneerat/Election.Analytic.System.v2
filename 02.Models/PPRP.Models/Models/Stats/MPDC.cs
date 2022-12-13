@@ -405,10 +405,15 @@ namespace PPRP.Models
 
         #region Static Methods
 
-
-        public static NDbResult<List<MPDC>> Gets(int thaiYear)
+        public static NDbResult<List<MPDC>> Gets(int thaiYear, string provinceName = null)
         {
             MethodBase med = MethodBase.GetCurrentMethod();
+
+            string sProvinceName = provinceName;
+            if (string.IsNullOrWhiteSpace(sProvinceName))
+            {
+                sProvinceName = null;
+            }
 
             NDbResult<List<MPDC>> rets = new NDbResult<List<MPDC>>();
 
@@ -426,6 +431,7 @@ namespace PPRP.Models
 
             var p = new DynamicParameters();
             p.Add("@ThaiYear", thaiYear);
+            p.Add("@ProvinceNameTH", sProvinceName);
 
             p.Add("@errNum", dbType: DbType.Int32, direction: ParameterDirection.Output);
             p.Add("@errMsg", dbType: DbType.String, direction: ParameterDirection.Output, size: -1);
