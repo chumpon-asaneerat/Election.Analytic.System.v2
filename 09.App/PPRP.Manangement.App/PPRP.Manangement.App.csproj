@@ -462,6 +462,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Reports\MPD2562VoteSummaryReport.rdlc" />
     <None Include="app.manifest" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -485,9 +486,7 @@
     <Resource Include="Images\Users\online-user.png" />
     <Resource Include="Images\Users\red-user.png" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Reports\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Resource Include="Images\Logo\PPRPLogo.png" />
   </ItemGroup>
