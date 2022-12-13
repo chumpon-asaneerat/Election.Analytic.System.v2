@@ -276,7 +276,12 @@ namespace PPRP.Pages
 
         private void ViewDetail(MPDVoteSummary item)
         {
-
+            var win = PPRPApp.Windows.MPD2562Viewer;
+            win.Setup(item);
+            if (win.ShowDialog() == false)
+            {
+                return;
+            }
         }
 
         #endregion

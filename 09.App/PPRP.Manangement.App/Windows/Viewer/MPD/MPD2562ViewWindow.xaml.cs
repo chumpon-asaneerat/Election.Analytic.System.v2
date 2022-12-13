@@ -62,28 +62,13 @@ namespace PPRP.Windows
             if (null != _item)
             {
                 // set load person image.
-                Defaults.RunInBackground(() =>
-                {
-                    var person = MPerson.Get(_item.PersonId).Value();
-
-                    if (null != person)
-                    {
-                        var imgSrc = ByteUtils.GetImageSource(person.Data);
-                        imgPreson.Source = imgSrc;
-                    }
-                    else
-                    {
-                        imgPreson.Source = Defaults.Person;
-                    }
-                });
+                var person = MPerson.Get(_item.PersonId).Value();
+                imgPreson.DataContext = person;
             }
             else
             {
-                // set default image.
-                Defaults.RunInBackground(() => {
-                    imgPreson.Source = Defaults.Person;
-                });
-                
+                // set default image by assigned new person instance.
+                imgPreson.DataContext = new MPerson();
             }
         }
 

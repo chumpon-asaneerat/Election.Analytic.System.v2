@@ -696,6 +696,21 @@ namespace PPRP
             }
 
             #endregion
+
+            #region MPD2562 Viewer
+
+            /// <summary>Gets MPD 2562 Viewer Window.</summary>
+            public static PPRP.Windows.MPD2562ViewWindow MPD2562Viewer
+            {
+                get
+                {
+                    var ret = new PPRP.Windows.MPD2562ViewWindow();
+                    ret.Owner = Application.Current.MainWindow;
+                    return ret;
+                }
+            }
+
+            #endregion
         }
     }
 }

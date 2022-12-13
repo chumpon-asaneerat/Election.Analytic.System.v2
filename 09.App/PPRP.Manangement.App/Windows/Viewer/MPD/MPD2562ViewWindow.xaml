@@ -91,7 +91,8 @@
                            Margin="2"
                            Width="300"
                            Height="345"
-                           Stretch="Uniform" />
+                           Stretch="Uniform" 
+                           Source="{Binding Image}"/>
                 </Border>
                 <TextBlock DockPanel.Dock="Left" Width="10" />
                 <!--  VOTE INFO  -->
@@ -111,7 +112,7 @@
                                        TextAlignment="Left"
                                        FontSize="{StaticResource FontSize30}"
                                        Width="300"
-                                       Text="{Binding ProvinceName}" />
+                                       Text="{Binding ProvinceNameTH}" />
                             <TextBlock Width="5" />
                             <TextBlock Foreground="{StaticResource BlackBlush}"
                                        FontSize="{StaticResource FontSize30}"
@@ -135,7 +136,7 @@
                                        Text="หมายเลข: "
                                        Width="120" />
                             <TextBlock x:Name="txtVoteNo"
-                                       Text="{Binding VoteNo}"
+                                       Text="{Binding CandidateNo}"
                                        FontFamily="{StaticResource THSarabun}"
                                        FontSize="{StaticResource FontSize30}"
                                        VerticalAlignment="Center"
