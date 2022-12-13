@@ -469,6 +469,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Reports\MPD2562StatVoterPrintSummary.rdlc" />
     <EmbeddedResource Include="Reports\MPD2562VoteSummaryReport.rdlc" />
     <None Include="app.manifest" />
     <None Include="Properties\Settings.settings">

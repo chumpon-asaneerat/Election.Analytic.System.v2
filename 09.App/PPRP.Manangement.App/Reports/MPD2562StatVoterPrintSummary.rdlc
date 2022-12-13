@@ -955,7 +955,7 @@
   </Page>
   <AutoRefresh>0</AutoRefresh>
   <DataSources>
-    <DataSource Name="PPRPDomains">
+    <DataSource Name="PPRPModels">
       <ConnectionProperties>
         <DataProvider>System.Data.DataSet</DataProvider>
         <ConnectString>/* Local Connection */</ConnectString>
@@ -966,7 +966,7 @@
   <DataSets>
     <DataSet Name="main">
       <Query>
-        <DataSourceName>PPRPDomains</DataSourceName>
+        <DataSourceName>PPRPModels</DataSourceName>
         <CommandText>/* Local Query */</CommandText>
       </Query>
       <Fields>
@@ -1024,9 +1024,9 @@
         </Field>
       </Fields>
       <rd:DataSetInfo>
-        <rd:DataSetName>PPRP.Domains</rd:DataSetName>
-        <rd:TableName>MPD2562x350PrintUnitSummary</rd:TableName>
-        <rd:ObjectDataSourceType>PPRP.Domains.MPD2562x350PrintUnitSummary, PPRP.Domains, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</rd:ObjectDataSourceType>
+        <rd:DataSetName>PPRP.PPRPModels</rd:DataSetName>
+        <rd:TableName>MPDStatVoterPrintSummary</rd:TableName>
+        <rd:ObjectDataSourceType>PPRP.PPRPModels.MPDStatVoterPrintSummary, PPRP.PPRPModels, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</rd:ObjectDataSourceType>
       </rd:DataSetInfo>
     </DataSet>
   </DataSets>
