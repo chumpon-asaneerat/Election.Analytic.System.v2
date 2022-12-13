@@ -239,7 +239,7 @@
     <Compile Include="Windows\Editors\Person\PersonEditorWindow.xaml.cs">
       <DependentUpon>PersonEditorWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Windows\MPDC2566EditorWindow.xaml.cs">
+    <Compile Include="Windows\Editors\MPDC\MPDC2566EditorWindow.xaml.cs">
       <DependentUpon>MPDC2566EditorWindow.xaml</DependentUpon>
     </Compile>
     <None Include="Properties\DataSources\PPRP.Domains.MPD2562PrintVoteSummary.datasource" />
@@ -429,7 +429,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Windows\MPDC2566EditorWindow.xaml">
+    <Page Include="Windows\Editors\MPDC\MPDC2566EditorWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -481,7 +481,6 @@
   <ItemGroup>
     <Folder Include="Pages\Preview\" />
     <Folder Include="Reports\" />
-    <Folder Include="Windows\Editors\MPDC\" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\Logo\PPRPLogo.png" />
