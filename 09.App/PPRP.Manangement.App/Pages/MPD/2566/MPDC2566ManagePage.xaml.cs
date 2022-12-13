@@ -177,7 +177,7 @@ namespace PPRP.Pages
         {
             string msg = string.Empty;
             int thaiYear = 2566;
-            var items = MPDC.Gets(thaiYear, null, null).Value();
+            var items = MPDC.Gets(thaiYear).Value();
 
             if (ExcelModel.SaveAs(items, "ว่าที่ผู้สมัคร " + thaiYear.ToString(), "รายชื่อว่าที่ผู้สมัครปี " + thaiYear + ".xlsx"))
             {

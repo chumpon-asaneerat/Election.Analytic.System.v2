@@ -331,8 +331,20 @@ namespace PPRP.Models
         /// </summary>
         [ExcelColumn("สังกัดพรรคเดิม", 5)]
         public string PrevPartyName { get; set; }
+        /// <summary>
+        /// Gets or sets Education Name
+        /// </summary>
+        [ExcelColumn("วุฒิการศึกษา", 6)]
         public string EducationName { get; set; }
+        /// <summary>
+        /// Gets or sets Candidate SubGroup
+        /// </summary>
+        [ExcelColumn("ผู้แนะนำ", 7)]
+        /// <summary>
+        /// Gets or sets Candidate Remark
+        /// </summary>
         public string CandidateSubGroup { get; set; }
+        [ExcelColumn("หมายเหตุ", 8)]
         public string CandidateRemark { get; set; }
 
         public byte[] Data { get; set; }
