@@ -245,7 +245,7 @@
     <Compile Include="Windows\Editors\MPDC\MPDC2566EditorWindow.xaml.cs">
       <DependentUpon>MPDC2566EditorWindow.xaml</DependentUpon>
     </Compile>
-    <None Include="Properties\DataSources\PPRP.Domains.MPD2562PrintVoteSummary.datasource" />
+    <None Include="Properties\DataSources\PPRP.Models.MPDPrintVoteSummary.datasource" />
     <None Include="Properties\DataSources\PPRP.Domains.MPD2562x350PrintUnitSummary.datasource" />
     <None Include="Properties\DataSources\PPRP.Domains.MPDC2566PrintSummary.datasource" />
     <Page Include="Controls\Elements\Person\DOBFieldControl.xaml">
