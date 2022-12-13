@@ -393,6 +393,59 @@ namespace PPRP.Models
 
         #region Static Methods
 
+
+        public static NDbResult<List<MPDC>> Gets(int thaiYear)
+        {
+            MethodBase med = MethodBase.GetCurrentMethod();
+
+            NDbResult<List<MPDC>> rets = new NDbResult<List<MPDC>>();
+
+            IDbConnection cnn = DbServer.Instance.Db;
+            if (null == cnn || !DbServer.Instance.Connected)
+            {
+                string msg = "Connection is null or cannot connect to database server.";
+                med.Err(msg);
+                // Set error number/message
+                rets.ErrNum = 8000;
+                rets.ErrMsg = msg;
+
+                return rets;
+            }
+
+            var p = new DynamicParameters();
+            p.Add("@ThaiYear", thaiYear);
+
+            p.Add("@errNum", dbType: DbType.Int32, direction: ParameterDirection.Output);
+            p.Add("@errMsg", dbType: DbType.String, direction: ParameterDirection.Output, size: -1);
+
+            try
+            {
+                var items = cnn.Query<MPDC>("GetMPDCExports", p,
+                    commandType: CommandType.StoredProcedure);
+                var results = (null != items) ? items.ToList() : new List<MPDC>();
+                rets.Success(results);
+
+                // Set error number/message
+                rets.ErrNum = p.Get<int>("@errNum");
+                rets.ErrMsg = p.Get<string>("@errMsg");
+            }
+            catch (Exception ex)
+            {
+                med.Err(ex);
+                // Set error number/message
+                rets.ErrNum = 9999;
+                rets.ErrMsg = ex.Message;
+            }
+
+            if (null == rets.data)
+            {
+                // create empty list.
+                rets.data = new List<MPDC>();
+            }
+
+            return rets;
+        }
+
         /// <summary>
         /// Gets
         /// </summary>
@@ -407,6 +460,10 @@ namespace PPRP.Models
             MethodBase med = MethodBase.GetCurrentMethod();
 
             string sProvinceName = provinceName;
+            if (string.IsNullOrWhiteSpace(sProvinceName))
+            {
+                sProvinceName = null;
+            }
 
             string sFullName = fullName;
             if (string.IsNullOrWhiteSpace(sFullName))

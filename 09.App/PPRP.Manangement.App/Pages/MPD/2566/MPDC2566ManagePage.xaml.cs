@@ -175,10 +175,9 @@ namespace PPRP.Pages
 
         private void Export()
         {
-            /*
             string msg = string.Empty;
             int thaiYear = 2566;
-            var items = MPDVoteSummary.Gets(thaiYear).Value();
+            var items = MPDC.Gets(thaiYear, null, null).Value();
 
             if (ExcelModel.SaveAs(items, "ว่าที่ผู้สมัคร " + thaiYear.ToString(), "รายชื่อว่าที่ผู้สมัครปี " + thaiYear + ".xlsx"))
             {
@@ -195,7 +194,6 @@ namespace PPRP.Pages
             var msgBox = PPRPApp.Windows.MessageBox;
             msgBox.Setup(msg, "ผลการส่งออกข้อมูล");
             msgBox.ShowDialog();
-            */
         }
 
         private void AddNew()
