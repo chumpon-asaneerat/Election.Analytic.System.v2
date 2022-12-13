@@ -225,7 +225,19 @@ namespace PPRP.Pages
             {
                 provinceName = null;
             }
+            int thaiYear = 2562;
 
+            var items = MPDPrintVoteSummary.Gets(thaiYear, provinceName, sPartyNameFilter, sFullNameFilter).Value();
+            if (null == items)
+            {
+                // Show Dialog.
+                return;
+            }
+            /*
+            var page = PPRPApp.Pages.MPD2562PreviewVoteSummary;
+            page.Setup(items);
+            PageContentManager.Instance.Current = page;
+            */
         }
 
         private void LoadProvinces()

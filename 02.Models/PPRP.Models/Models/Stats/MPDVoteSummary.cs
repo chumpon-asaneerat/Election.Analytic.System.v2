@@ -290,9 +290,9 @@ namespace PPRP.Models
 
     #endregion
 
-    #region MPD2562PrintVoteSummary
+    #region MPDPrintVoteSummary
 
-    public class MPD2562PrintVoteSummary
+    public class MPDPrintVoteSummary
     {
         #region Public Properties
 
@@ -327,7 +327,7 @@ namespace PPRP.Models
         /// <param name="fullName"></param>
         /// <returns></returns>
 
-        public static NDbResult<List<MPD2562PrintVoteSummary>> Gets(
+        public static NDbResult<List<MPDPrintVoteSummary>> Gets(
             int thaiYear,
             string provinceNameTH = null,
             string partyName = null,
@@ -354,7 +354,7 @@ namespace PPRP.Models
             }
 
 
-            NDbResult<List<MPD2562PrintVoteSummary>> rets = new NDbResult<List<MPD2562PrintVoteSummary>>();
+            NDbResult<List<MPDPrintVoteSummary>> rets = new NDbResult<List<MPDPrintVoteSummary>>();
 
             IDbConnection cnn = DbServer.Instance.Db;
             if (null == cnn || !DbServer.Instance.Connected)
@@ -379,7 +379,7 @@ namespace PPRP.Models
 
             try
             {
-                var data = cnn.Query<MPD2562PrintVoteSummary>("GetMPDVoteSummaries", p,
+                var data = cnn.Query<MPDPrintVoteSummary>("GetMPDVoteSummaries", p,
                     commandType: CommandType.StoredProcedure).ToList();
                 rets.Success(data);
             }
@@ -394,7 +394,7 @@ namespace PPRP.Models
             if (null == rets.data)
             {
                 // create empty list.
-                rets.data = new List<MPD2562PrintVoteSummary>();
+                rets.data = new List<MPDPrintVoteSummary>();
             }
 
             return rets;
