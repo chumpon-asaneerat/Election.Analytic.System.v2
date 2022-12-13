@@ -180,6 +180,15 @@ namespace PPRP.Models
 
         #region Static Methods
 
+        /// <summary>
+        /// Gets
+        /// </summary>
+        /// <param name="thaiYear"></param>
+        /// <param name="provinceName"></param>
+        /// <param name="fullName"></param>
+        /// <param name="pageNo"></param>
+        /// <param name="pollingUnitPerPage"></param>
+        /// <returns></returns>
         public static NDbResult<List<MPDCPollingUnit>> Gets(int thaiYear, string provinceName = null, 
             string fullName = null,
             int pageNo = 1, int pollingUnitPerPage = 4)
@@ -384,6 +393,14 @@ namespace PPRP.Models
 
         #region Static Methods
 
+        /// <summary>
+        /// Gets
+        /// </summary>
+        /// <param name="thaiYear"></param>
+        /// <param name="provinceName"></param>
+        /// <param name="pollingUnitNo"></param>
+        /// <param name="fullName"></param>
+        /// <returns></returns>
         public static NDbResult<List<MPDC>> Gets(int thaiYear, string provinceName, int pollingUnitNo, 
             string fullName = null)
         {
@@ -446,6 +463,56 @@ namespace PPRP.Models
             }
 
             return rets;
+        }
+        /// <summary>
+        /// Delete
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        public static NDbResult Delete(MPDC value)
+        {
+            MethodBase med = MethodBase.GetCurrentMethod();
+
+            NDbResult ret = new NDbResult();
+
+            IDbConnection cnn = DbServer.Instance.Db;
+            if (null == cnn || !DbServer.Instance.Connected)
+            {
+                string msg = "Connection is null or cannot connect to database server.";
+                med.Err(msg);
+                // Set error number/message
+                ret.ErrNum = 8000;
+                ret.ErrMsg = msg;
+
+                return ret;
+            }
+
+            var p = new DynamicParameters();
+            p.Add("@ThaiYear", value.ThaiYear);
+            p.Add("@ADM1Code", value.ADM1Code);
+            p.Add("@PollingUnitNo", value.PollingUnitNo);
+            p.Add("@PersonId", value.PersonId);
+
+            p.Add("@errNum", dbType: DbType.Int32, direction: ParameterDirection.Output);
+            p.Add("@errMsg", dbType: DbType.String, direction: ParameterDirection.Output, size: -1);
+
+            try
+            {
+                cnn.Execute("DeleteMPDC", p, commandType: CommandType.StoredProcedure);
+                ret.Success();
+                // Set error number/message
+                ret.ErrNum = p.Get<int>("@errNum");
+                ret.ErrMsg = p.Get<string>("@errMsg");
+            }
+            catch (Exception ex)
+            {
+                med.Err(ex);
+                // Set error number/message
+                ret.ErrNum = 9999;
+                ret.ErrMsg = ex.Message;
+            }
+
+            return ret;
         }
 
         #endregion
