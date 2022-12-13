@@ -64,8 +64,9 @@ namespace PPRP.Models
 
         #region Public Methods
 
-        public void WhenPartyNameChanged(string firstNameOri, string lastNameOri, Action partyNameChangdAction)
+        public void WhenPartyNameChanged(string prefixOri, string firstNameOri, string lastNameOri, Action partyNameChangdAction)
         {
+            PrefixOri = prefixOri;
             FirstNameOri = firstNameOri;
             LastNameOri = lastNameOri;
             _personNameChangdAction = partyNameChangdAction;
@@ -273,6 +274,7 @@ namespace PPRP.Models
             }
         }
 
+        public string PrefixOri { get; private set; }
         public string FirstNameOri { get; private set; }
         public string LastNameOri { get; private set; }
 

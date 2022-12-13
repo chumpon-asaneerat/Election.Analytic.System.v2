@@ -78,7 +78,7 @@ namespace PPRP.Windows
             {
                 var win = PPRPWindows.Windows.MessageBoxOKCancel;
                 string msg = string.Empty;
-                msg += string.Format("'{0}' มีอยู่ในระบบฐานข้อมูลอยู่แล้ว", _item.FullName) + Environment.NewLine;
+                msg += string.Format("'{0} {1}' มีอยู่ในระบบฐานข้อมูลอยู่แล้ว", _item.FirstName, _item.LastName) + Environment.NewLine;
                 msg += "ต้องการเรียกข้อมูลที่มีอยู่ขึ้นมาแก้ไขหรือไม่ ?";
 
                 win.Setup(msg, "PPRP");
@@ -89,6 +89,7 @@ namespace PPRP.Windows
                 }
                 else
                 {
+                    _item.Prefix = _item.PrefixOri; // restore back
                     _item.FirstName = _item.FirstNameOri; // restore back
                     _item.LastName = _item.LastNameOri; // restore back
                 }
@@ -139,7 +140,7 @@ namespace PPRP.Windows
                 {
                     var win = PPRPWindows.Windows.MessageBox;
                     string msg = string.Empty;
-                    msg += string.Format("'{0}' มีอยู่ในระบบฐานข้อมูลอยู่แล้ว", _item.FullName) + Environment.NewLine;
+                    msg += string.Format("'{0} {1}' มีอยู่ในระบบฐานข้อมูลอยู่แล้ว", _item.FirstName, _item.LastName) + Environment.NewLine;
                     msg += "ไม่สามารถบันทึกซ้ำได้ กรุณาตรวจสอบข้อมูลอีกครั้ง";
 
                     win.Setup(msg, "PPRP");
@@ -191,7 +192,7 @@ namespace PPRP.Windows
             if (null != _item)
             {
                 // keep original name to detect changed.
-                _item.WhenPartyNameChanged(_item.FirstName, _item.LastName, CheckPersonName);
+                _item.WhenPartyNameChanged(_item.Prefix, _item.FirstName, _item.LastName, CheckPersonName);
             }
 
             _addNew = addNew;
