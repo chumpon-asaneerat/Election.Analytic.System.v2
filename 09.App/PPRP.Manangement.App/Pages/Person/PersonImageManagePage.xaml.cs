@@ -242,7 +242,18 @@ namespace PPRP.Pages
 
         private void AddNew()
         {
+            MPerson item = new MPerson();
+            var editor = PPRPApp.Windows.PersonEditor;
+            editor.Setup(item, true); // add new mode
+            if (editor.ShowDialog() == true)
+            {
+            }
 
+            Dispatcher.BeginInvoke(new Action(() =>
+            {
+                // there are case change current item image and cancel so need to refresh.
+                RefreshList(true);
+            }), DispatcherPriority.Render);
         }
 
         private void Edit(MPerson item)
@@ -253,11 +264,13 @@ namespace PPRP.Pages
             editor.Setup(item);
             if (editor.ShowDialog() == true)
             {
-                Dispatcher.BeginInvoke(new Action(() =>
-                {
-                    RefreshList(true);
-                }), DispatcherPriority.Render);
             }
+
+            Dispatcher.BeginInvoke(new Action(() =>
+            {
+                // there are case change current item image and cancel so need to refresh.
+                RefreshList(true);
+            }), DispatcherPriority.Render);
         }
 
         private void Delete(MPerson item)
