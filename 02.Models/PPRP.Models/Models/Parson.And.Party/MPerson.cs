@@ -64,6 +64,13 @@ namespace PPRP.Models
 
         #region Public Methods
 
+        public void WhenPartyNameChanged(string firstNameOri, string lastNameOri, Action partyNameChangdAction)
+        {
+            FirstNameOri = firstNameOri;
+            LastNameOri = lastNameOri;
+            _personNameChangdAction = partyNameChangdAction;
+        }
+
         #endregion
 
         #region Public Properties
