@@ -27,6 +27,8 @@ namespace PPRP.Models
     {
         #region Internal Variables
 
+        private Action _personNameChangdAction = null;
+
         private int _PersonId = 0;
         private string _Prefix = null;
         private string _FirstName = null;
@@ -36,6 +38,7 @@ namespace PPRP.Models
 
         private bool _isDefault = true;
         private bool _ImageLoading = false;
+        private byte[] _data = null;
         private ImageSource _img = null;
 
         #endregion
@@ -54,19 +57,12 @@ namespace PPRP.Models
         /// </summary>
         ~MPerson()
         {
-
+            _personNameChangdAction = null;
         }
 
         #endregion
 
-        #region Private Methods
-
-        private void CheckExist()
-        {
-            this.DisableNotify();
-
-            this.EnableNotify();
-        }
+        #region Public Methods
 
         #endregion
 
@@ -189,7 +185,17 @@ namespace PPRP.Models
         /// <summary>
         /// Gets or sets Image Data buffers.
         /// </summary>
-        public byte[] Data { get; set; }
+        public byte[] Data
+        {
+            get { return _data; }
+            set
+            {
+                _data = value;
+                _img = null; // reset image.
+                Raise(() => Data);
+                Raise(() => Image);
+            }
+        }
         /// <summary>
         /// Gets ImageSource.
         /// </summary>
@@ -249,6 +255,9 @@ namespace PPRP.Models
                 return YearsPassed.ToString();
             }
         }
+
+        public string FirstNameOri { get; private set; }
+        public string LastNameOri { get; private set; }
 
         #endregion
 
