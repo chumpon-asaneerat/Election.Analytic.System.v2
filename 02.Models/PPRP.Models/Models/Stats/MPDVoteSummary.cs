@@ -197,6 +197,10 @@ namespace PPRP.Models
         [ExcelColumn("ชื่อพรรค", 6)]
         public string PartyName { get; set; }
         /// <summary>
+        /// Gets or sets Person Id.
+        /// </summary>
+        public int PersonId { get; set; }
+        /// <summary>
         /// Gets or sets FullName.
         /// </summary>
         [ExcelColumn("ชื่อผู้สมัคร", 4)]

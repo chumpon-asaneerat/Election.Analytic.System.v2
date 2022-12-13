@@ -248,6 +248,9 @@
     <Compile Include="Windows\Editors\MPDC\MPDC2566EditorWindow.xaml.cs">
       <DependentUpon>MPDC2566EditorWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Windows\Viewer\MPD\MPD2562ViewWindow.xaml.cs">
+      <DependentUpon>MPD2562ViewWindow.xaml</DependentUpon>
+    </Compile>
     <None Include="Properties\DataSources\PPRP.Models.MPDPrintVoteSummary.datasource" />
     <None Include="Properties\DataSources\PPRP.Models.MPDStatVoterPrintSummary.datasource" />
     <None Include="Properties\DataSources\PPRP.Domains.MPDC2566PrintSummary.datasource" />
@@ -446,6 +449,10 @@
     <Page Include="Windows\Editors\MPDC\MPDC2566EditorWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\Viewer\MPD\MPD2562ViewWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
   <ItemGroup>

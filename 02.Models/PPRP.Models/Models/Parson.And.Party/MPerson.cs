@@ -468,6 +468,62 @@ namespace PPRP.Models
             return ret;
         }
         /// <summary>
+        /// Get By Id.
+        /// </summary>
+        /// <param name="personId"></param>
+        /// <returns></returns>
+        public static NDbResult<MPerson> Get(int personId)
+        {
+            MethodBase med = MethodBase.GetCurrentMethod();
+
+            NDbResult<MPerson> rets = new NDbResult<MPerson>();
+
+            IDbConnection cnn = DbServer.Instance.Db;
+            if (null == cnn || !DbServer.Instance.Connected)
+            {
+                string msg = "Connection is null or cannot connect to database server.";
+                med.Err(msg);
+                // Set error number/message
+                rets.ErrNum = 8000;
+                rets.ErrMsg = msg;
+
+                return rets;
+            }
+
+            var p = new DynamicParameters();
+            p.Add("@PersonId", personId);
+
+            p.Add("@errNum", dbType: DbType.Int32, direction: ParameterDirection.Output);
+            p.Add("@errMsg", dbType: DbType.String, direction: ParameterDirection.Output, size: -1);
+
+            try
+            {
+                var items = cnn.Query<MPerson>("GetMPersonById", p,
+                    commandType: CommandType.StoredProcedure);
+                var data = (null != items) ? items.FirstOrDefault() : null;
+                rets.Success(data);
+
+                // Set error number/message
+                rets.ErrNum = p.Get<int>("@errNum");
+                rets.ErrMsg = p.Get<string>("@errMsg");
+            }
+            catch (Exception ex)
+            {
+                med.Err(ex);
+                // Set error number/message
+                rets.ErrNum = 9999;
+                rets.ErrMsg = ex.Message;
+            }
+
+            if (null == rets.data)
+            {
+                // set as null.
+                rets.data = null;
+            }
+
+            return rets;
+        }
+        /// <summary>
         /// Get By Name.
         /// </summary>
         /// <param name="firstName"></param>
