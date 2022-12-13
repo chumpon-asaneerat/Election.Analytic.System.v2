@@ -280,4 +280,115 @@ namespace PPRP.Models
     }
 
     #endregion
+
+    #region MPDStatVoterPrintSummary
+
+    public class MPDStatVoterPrintSummary
+    {
+        #region Public Properties
+
+        public string ProvinceNameTH { get; set; }
+        public string ProvinceName { get { return ProvinceNameTH; } }
+        public int PollingUnitNo { get; set; }
+        public int PollingUnitCount { get; set; }
+        public int RightCount { get; set; }
+
+        public int ExerciseCount { get; set; }
+        public decimal ExercisePercent
+        {
+            get
+            {
+                if (RightCount <= 0) return decimal.Zero;
+                decimal val = Math.Round(Convert.ToDecimal((double)((double)ExerciseCount / (double)RightCount) * (double)100), 2);
+                return val;
+            }
+            set { }
+        }
+        public int InvalidCount { get; set; }
+        public decimal InvalidPercent
+        {
+            get
+            {
+                if (ExerciseCount <= 0) return decimal.Zero;
+                decimal val = Math.Round(Convert.ToDecimal((double)((double)InvalidCount / (double)ExerciseCount) * (double)100), 2);
+                return val;
+            }
+            set { }
+        }
+        public int NoVoteCount { get; set; }
+        public decimal NoVotePercent
+        {
+            get
+            {
+                if (ExerciseCount <= 0) return decimal.Zero;
+                decimal val = Math.Round(Convert.ToDecimal((double)((double)NoVoteCount / (double)ExerciseCount) * (double)100), 2);
+                return val;
+            }
+            set { }
+        }
+
+        public string FullName { get; set; }
+        public string PartyName { get; set; }
+        public int VoteCount { get; set; }
+
+        #endregion
+
+        #region Static Methods
+
+        public static NDbResult<List<MPDStatVoterPrintSummary>> Gets(int thaiYear, string provinceName = null)
+        {
+            MethodBase med = MethodBase.GetCurrentMethod();
+
+            string sProvinceName = provinceName;
+            if (string.IsNullOrWhiteSpace(sProvinceName) || sProvinceName.Contains("ทุกจังหวัด"))
+            {
+                sProvinceName = null;
+            }
+
+            NDbResult<List<MPDStatVoterPrintSummary>> rets = new NDbResult<List<MPDStatVoterPrintSummary>>();
+
+            IDbConnection cnn = DbServer.Instance.Db;
+            if (null == cnn || !DbServer.Instance.Connected)
+            {
+                string msg = "Connection is null or cannot connect to database server.";
+                med.Err(msg);
+                // Set error number/message
+                rets.ErrNum = 8000;
+                rets.ErrMsg = msg;
+
+                return rets;
+            }
+
+            var p = new DynamicParameters();
+            p.Add("@ThaiYear", thaiYear);
+            p.Add("@ProvinceNameTH", sProvinceName);
+
+            try
+            {
+                var items = cnn.Query<MPDStatVoterPrintSummary>("GetMPDStatVoterSummaries", p,
+                    commandType: CommandType.StoredProcedure);
+                var results = (null != items) ? items.ToList() : new List<MPDStatVoterPrintSummary>();
+                rets.Success(results);
+            }
+            catch (Exception ex)
+            {
+                med.Err(ex);
+                // Set error number/message
+                rets.ErrNum = 9999;
+                rets.ErrMsg = ex.Message;
+            }
+
+            if (null == rets.data)
+            {
+                // create empty list.
+                rets.data = new List<MPDStatVoterPrintSummary>();
+            }
+
+            return rets;
+        }
+
+        #endregion
+    }
+
+    #endregion
 }
