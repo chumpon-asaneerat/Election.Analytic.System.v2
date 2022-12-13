@@ -253,7 +253,7 @@
     </Compile>
     <None Include="Properties\DataSources\PPRP.Models.MPDPrintVoteSummary.datasource" />
     <None Include="Properties\DataSources\PPRP.Models.MPDStatVoterPrintSummary.datasource" />
-    <None Include="Properties\DataSources\PPRP.Domains.MPDC2566PrintSummary.datasource" />
+    <None Include="Properties\DataSources\PPRP.Models.MPDC.datasource" />
     <Page Include="Controls\Elements\Person\DOBFieldControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
