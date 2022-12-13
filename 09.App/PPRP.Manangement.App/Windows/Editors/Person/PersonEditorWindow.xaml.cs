@@ -65,6 +65,36 @@ namespace PPRP.Windows
 
         #region Private Methods
 
+        private MPerson GetByName(string firstName, string lastName)
+        {
+            return MPerson.Get(firstName, lastName).Value();
+        }
+
+        private void CheckPartyName()
+        {
+            if (null == _item) return;
+            var existItem = GetByName(_item.FirstName, _item.LastName);
+            if (null != existItem)
+            {
+                var win = PPRPWindows.Windows.MessageBoxOKCancel;
+                string msg = string.Empty;
+                msg += string.Format("'{0}' มีอยู่ในระบบฐานข้อมูลอยู่แล้ว", _item.FullName) + Environment.NewLine;
+                msg += "ต้องการเรียกข้อมูลที่มีอยู่ขึ้นมาแก้ไขหรือไม่ ?";
+
+                win.Setup(msg, "PPRP");
+                if (win.ShowDialog() == true)
+                {
+                    // load exist data with same mode
+                    Setup(existItem, _addNew);
+                }
+                else
+                {
+                    _item.FirstName = _item.FirstNameOri; // restore back
+                    _item.LastName = _item.LastNameOri; // restore back
+                }
+            }
+        }
+
         private void ChangeImage()
         {
 

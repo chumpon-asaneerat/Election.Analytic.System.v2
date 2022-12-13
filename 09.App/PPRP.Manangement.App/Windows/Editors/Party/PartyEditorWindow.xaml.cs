@@ -122,6 +122,17 @@ namespace PPRP.Windows
         {
             if (null != _item)
             {
+                if (string.IsNullOrWhiteSpace(_item.PartyName))
+                {
+                    var win = PPRPWindows.Windows.MessageBox;
+                    string msg = string.Empty;
+                    msg += "กรุณาป้อนข้อมูล ชื่อพรรค";
+
+                    win.Setup(msg, "PPRP");
+                    win.ShowDialog();
+
+                    return;
+                }
                 if (!AllowSave())
                 {
                     var win = PPRPWindows.Windows.MessageBox;
@@ -148,16 +159,17 @@ namespace PPRP.Windows
                     win.ShowDialog();
                     return;
                 }
-            }
-            if (_addNew)
-            {
-                // in add new mode so clear data and wait for new entry.
-                Setup(new MParty(), _addNew);
-            }
-            else
-            {
-                // in edit mode so exit window.
-                DialogResult = true;
+
+                if (_addNew)
+                {
+                    // in add new mode so clear data and wait for new entry.
+                    Setup(new MParty(), _addNew);
+                }
+                else
+                {
+                    // in edit mode so exit window.
+                    DialogResult = true;
+                }
             }
         }
 
