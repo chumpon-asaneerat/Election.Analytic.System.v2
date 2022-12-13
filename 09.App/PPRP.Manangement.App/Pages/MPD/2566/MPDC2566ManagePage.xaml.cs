@@ -201,7 +201,7 @@ namespace PPRP.Pages
         private void AddNew()
         {
             MPDC item = new MPDC();
-            /*
+
             var editor = PPRPApp.Windows.MPDC2566Editor;
             editor.Setup(item, true);
             editor.ShowDialog();
@@ -210,14 +210,12 @@ namespace PPRP.Pages
                 {
                     RefreshList(true);
                 }), DispatcherPriority.Render);
-            */
         }
 
         private void Edit(MPDC item)
         {
             if (null == item)
                 return;
-            /*
             var editor = PPRPApp.Windows.MPDC2566Editor;
             editor.Setup(item, false);
             editor.ShowDialog();
@@ -226,7 +224,6 @@ namespace PPRP.Pages
                 {
                     RefreshList(true);
                 }), DispatcherPriority.Render);
-            */
         }
 
         private void Delete(MPDC item)

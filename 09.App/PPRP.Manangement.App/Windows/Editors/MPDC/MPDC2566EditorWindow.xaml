@@ -116,6 +116,7 @@
                         <Grid />
                     </DockPanel>
                     <!--  EDITOR  -->
+                    <Grid />
                     <!--
                     <ctrl:MPersonEditorControl x:Name="ed" />
                     -->
