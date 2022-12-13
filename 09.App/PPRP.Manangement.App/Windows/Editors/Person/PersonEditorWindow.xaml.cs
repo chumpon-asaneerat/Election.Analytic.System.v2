@@ -95,9 +95,28 @@ namespace PPRP.Windows
             }
         }
 
+        private bool AllowSave()
+        {
+            bool ret = false;
+            if (null != _item)
+            {
+                var existItem = GetByName(_item.FirstName, _item.LastName);
+                if (null != existItem && existItem.PersonId != _item.PersonId)
+                    ret = false;
+                else ret = true;
+            }
+            return ret;
+        }
+
         private void ChangeImage()
         {
+            if (null == _item)
+                return;
 
+            var img = ImageFile.OpenFile();
+            if (null == img) return;
+
+            _item.Data = img.Data; // assign data to current item.
         }
 
         private void Save()
