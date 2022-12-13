@@ -491,7 +491,7 @@ namespace PPRP.Models
             p.Add("@ThaiYear", value.ThaiYear);
             p.Add("@ADM1Code", value.ADM1Code);
             p.Add("@PollingUnitNo", value.PollingUnitNo);
-            p.Add("@PersonId", value.PersonId);
+            p.Add("@CandidateNo", value.CandidateNo);
 
             p.Add("@errNum", dbType: DbType.Int32, direction: ParameterDirection.Output);
             p.Add("@errMsg", dbType: DbType.String, direction: ParameterDirection.Output, size: -1);
