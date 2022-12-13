@@ -83,7 +83,14 @@ namespace PPRP.Controls
         {
             PageNo = pageNo;
             MaxPage = maxPage;
-            txtCurrentPage.Text = string.Format("หน้าที่ {0}/{1}", PageNo, MaxPage);
+            if (MaxPage == 0)
+            {
+                txtCurrentPage.Text = string.Format("หน้าที่ {0}/{1}", 0, MaxPage);
+            }
+            else
+            {
+                txtCurrentPage.Text = string.Format("หน้าที่ {0}/{1}", PageNo, MaxPage);
+            }
 
             UpdateUI();
         }
