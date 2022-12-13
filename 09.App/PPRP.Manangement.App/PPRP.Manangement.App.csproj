@@ -196,6 +196,9 @@
     <Compile Include="Pages\Preview\MPD2562PreviewVoteSummaryPage.xaml.cs">
       <DependentUpon>MPD2562PreviewVoteSummaryPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\Preview\MPD2562StatVoterPrintSummaryPreviewPage.xaml.cs">
+      <DependentUpon>MPD2562StatVoterPrintSummaryPreviewPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Services\PPRPApp.cs" />
     <Compile Include="Windows\Common\ImportReportWindow.xaml.cs">
       <DependentUpon>ImportReportWindow.xaml</DependentUpon>
@@ -373,6 +376,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\Preview\MPD2562PreviewVoteSummaryPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\Preview\MPD2562StatVoterPrintSummaryPreviewPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
