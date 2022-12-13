@@ -471,11 +471,11 @@ namespace PPRP.Models
         /// <param name="firstName"></param>
         /// <param name="lastName"></param>
         /// <returns></returns>
-        public static NDbResult<MParty> Get(string firstName, string lastName)
+        public static NDbResult<MPerson> Get(string firstName, string lastName)
         {
             MethodBase med = MethodBase.GetCurrentMethod();
 
-            NDbResult<MParty> rets = new NDbResult<MParty>();
+            NDbResult<MPerson> rets = new NDbResult<MPerson>();
 
             IDbConnection cnn = DbServer.Instance.Db;
             if (null == cnn || !DbServer.Instance.Connected)
@@ -498,7 +498,7 @@ namespace PPRP.Models
 
             try
             {
-                var items = cnn.Query<MParty>("GetMPersonByName", p,
+                var items = cnn.Query<MPerson>("GetMPersonByName", p,
                     commandType: CommandType.StoredProcedure);
                 var data = (null != items) ? items.FirstOrDefault() : null;
                 rets.Success(data);
@@ -560,6 +560,69 @@ namespace PPRP.Models
                 // Set error number/message
                 ret.ErrNum = p.Get<int>("@errNum");
                 ret.ErrMsg = p.Get<string>("@errMsg");
+            }
+            catch (Exception ex)
+            {
+                med.Err(ex);
+                // Set error number/message
+                ret.ErrNum = 9999;
+                ret.ErrMsg = ex.Message;
+            }
+
+            return ret;
+        }
+        /// <summary>
+        /// Save
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        public static NDbResult Save(MPerson value)
+        {
+            MethodBase med = MethodBase.GetCurrentMethod();
+
+            NDbResult ret = new NDbResult();
+
+            IDbConnection cnn = DbServer.Instance.Db;
+            if (null == cnn || !DbServer.Instance.Connected)
+            {
+                string msg = "Connection is null or cannot connect to database server.";
+                med.Err(msg);
+                // Set error number/message
+                ret.ErrNum = 8000;
+                ret.ErrMsg = msg;
+
+                return ret;
+            }
+
+            var p = new DynamicParameters();
+            int? personId = (value.PersonId <= 0) ? new int?() : value.PersonId;
+            p.Add("@PersonId", personId, dbType: DbType.Int32, direction: ParameterDirection.InputOutput);
+            p.Add("@Prefix", value.Prefix);
+            p.Add("@FirstName", value.FirstName);
+            p.Add("@LastName", value.LastName);
+            p.Add("@DOB", value.DOB);
+            p.Add("@GenderId", value.GenderId);
+            p.Add("@EducationId", value.EducationId);
+            p.Add("@OccupationId", value.OccupationId);
+            p.Add("@Remark", value.Remark);
+
+            p.Add("@errNum", dbType: DbType.Int32, direction: ParameterDirection.Output);
+            p.Add("@errMsg", dbType: DbType.String, direction: ParameterDirection.Output, size: -1);
+
+            try
+            {
+                cnn.Execute("SaveMPerson", p, commandType: CommandType.StoredProcedure);
+                ret.Success();
+                // Set error number/message
+                ret.ErrNum = p.Get<int>("@errNum");
+                ret.ErrMsg = p.Get<string>("@errMsg");
+
+                personId = p.Get<int>("@PersonId"); // in case addnew
+                value.PersonId = (personId.HasValue) ? personId.Value : 0;
+                if (value.PersonId > 0)
+                {
+                    SaveImage(value); // now save image.
+                }
             }
             catch (Exception ex)
             {
