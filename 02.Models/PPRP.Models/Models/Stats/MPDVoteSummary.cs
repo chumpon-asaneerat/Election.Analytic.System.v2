@@ -20,7 +20,6 @@ namespace PPRP.Models
 {
     #region MPDVoteSummaryImport
 
-
     /// <summary>
     /// The MPDVoteSummaryImport class.
     /// </summary>
@@ -285,6 +284,123 @@ namespace PPRP.Models
 
             return rets;
         }
+
+        #endregion
+    }
+
+    #endregion
+
+    #region MPD2562PrintVoteSummary
+
+    public class MPD2562PrintVoteSummary
+    {
+        #region Public Properties
+
+        /// <summary>
+        /// Gets or sets ThaiYear.
+        /// </summary>
+        public int ThaiYear { get; set; }
+
+        public int RowNo { get; set; }
+        public int RankNo { get; set; }
+        public string ProvinceNameTH { get; set; }
+        public string ProvinceName { get { return ProvinceNameTH; } }
+        public int PollingUnitNo { get; set; }
+        public string FullName { get; set; }
+        public int VoteNo { get; set; }
+        public string PartyName { get; set; }
+        public int VoteCount { get; set; }
+        public int RevoteNo { get; set; }
+
+        #endregion
+
+        #region Static Methods
+
+        #region Static Methods
+
+        /// <summary>
+        /// Gets.
+        /// </summary>
+        /// <param name="thaiYear"></param>
+        /// <param name="provinceNameTH"></param>
+        /// <param name="partyName"></param>
+        /// <param name="fullName"></param>
+        /// <returns></returns>
+
+        public static NDbResult<List<MPD2562PrintVoteSummary>> Gets(
+            int thaiYear,
+            string provinceNameTH = null,
+            string partyName = null,
+            string fullName = null)
+        {
+            MethodBase med = MethodBase.GetCurrentMethod();
+
+            string sProvinceName = provinceNameTH;
+            if (string.IsNullOrWhiteSpace(sProvinceName) || sProvinceName.Contains("ทุกจังหวัด"))
+            {
+                sProvinceName = null;
+            }
+
+            string sPartyName = partyName;
+            if (string.IsNullOrWhiteSpace(sPartyName))
+            {
+                sPartyName = null;
+            }
+
+            string sFullName = fullName;
+            if (string.IsNullOrWhiteSpace(sFullName))
+            {
+                sFullName = null;
+            }
+
+
+            NDbResult<List<MPD2562PrintVoteSummary>> rets = new NDbResult<List<MPD2562PrintVoteSummary>>();
+
+            IDbConnection cnn = DbServer.Instance.Db;
+            if (null == cnn || !DbServer.Instance.Connected)
+            {
+                string msg = "Connection is null or cannot connect to database server.";
+                med.Err(msg);
+                // Set error number/message
+                rets.ErrNum = 8000;
+                rets.ErrMsg = msg;
+
+                return rets;
+            }
+
+            var p = new DynamicParameters();
+
+            p.Add("@ThaiYear", thaiYear);
+            p.Add("@RegionId", null);
+            p.Add("@RegionName", null);
+            p.Add("@ProvinceNameTH", sProvinceName);
+            p.Add("@PartyName", sPartyName);
+            p.Add("@FullName", sFullName);
+
+            try
+            {
+                var data = cnn.Query<MPD2562PrintVoteSummary>("GetMPDVoteSummaries", p,
+                    commandType: CommandType.StoredProcedure).ToList();
+                rets.Success(data);
+            }
+            catch (Exception ex)
+            {
+                med.Err(ex);
+                // Set error number/message
+                rets.ErrNum = 9999;
+                rets.ErrMsg = ex.Message;
+            }
+
+            if (null == rets.data)
+            {
+                // create empty list.
+                rets.data = new List<MPD2562PrintVoteSummary>();
+            }
+
+            return rets;
+        }
+
+        #endregion
 
         #endregion
     }
