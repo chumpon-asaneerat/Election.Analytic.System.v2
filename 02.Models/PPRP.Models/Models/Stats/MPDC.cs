@@ -140,7 +140,122 @@ namespace PPRP.Models
 
     public class MPDCPollingUnit : NInpc
     {
+        #region Internal Variables
 
+        private bool _loaded = false;
+        private List<MPDC> _items = null;
+
+        #endregion
+
+        #region Public Properties
+
+        public string ProvinceName { get; set; }
+        public int PollingUnitNo { get; set; }
+        public int TotalCandidates { get; set; }
+        public string FullNameFilter { get; set; }
+        public string GroupName
+        {
+            get { return string.Format("{0} เขต {1}", ProvinceName, PollingUnitNo); }
+            set { }
+        }
+        public List<MPDC> Items
+        {
+            get
+            {
+                if (!_loaded)
+                {
+                    if (TotalCandidates > 0)
+                    {
+                        _items = MPDC.Gets(ProvinceName, PollingUnitNo, FullNameFilter).Value;
+                    }
+                    _loaded = true;
+
+                }
+                return _items;
+            }
+        }
+
+        #endregion
+
+        #region Static Methods
+
+        public static NDbResult<List<MPDCPollingUnit>> Gets(string provinceName = null, string fullName = null,
+            int pageNo = 1, int pollingUnitPerPage = 4)
+        {
+            MethodBase med = MethodBase.GetCurrentMethod();
+
+            string sProvinceName = provinceName;
+            if (string.IsNullOrWhiteSpace(sProvinceName) || sProvinceName.Contains("ทุกจังหวัด"))
+            {
+                sProvinceName = null;
+            }
+
+            string sFullName = fullName;
+            if (string.IsNullOrWhiteSpace(sFullName))
+            {
+                sFullName = null;
+            }
+
+            NDbResult<List<MPDCPollingUnit>> rets = new NDbResult<List<MPDCPollingUnit>>();
+
+            IDbConnection cnn = DbServer.Instance.Db;
+            if (null == cnn || !DbServer.Instance.Connected)
+            {
+                string msg = "Connection is null or cannot connect to database server.";
+                med.Err(msg);
+                // Set error number/message
+                rets.ErrNum = 8000;
+                rets.ErrMsg = msg;
+
+                return rets;
+            }
+
+            var p = new DynamicParameters();
+            p.Add("@ProvinceName", sProvinceName);
+            p.Add("@FullName", sFullName);
+
+            p.Add("@pageNum", value: pageNo, dbType: DbType.Int32, direction: ParameterDirection.InputOutput);
+            p.Add("@pollingUnitPerPage", value: pollingUnitPerPage, dbType: DbType.Int32, direction: ParameterDirection.InputOutput);
+            p.Add("@totalRecords", value: 0, dbType: DbType.Int32, direction: ParameterDirection.Output);
+            p.Add("@maxPage", value: 0, dbType: DbType.Int32, direction: ParameterDirection.Output);
+
+            p.Add("@errNum", dbType: DbType.Int32, direction: ParameterDirection.Output);
+            p.Add("@errMsg", dbType: DbType.String, direction: ParameterDirection.Output, size: -1);
+
+            try
+            {
+                var items = cnn.Query<MPDCPollingUnit>("GetMPDCPullingUnitsPaging", p,
+                    commandType: CommandType.StoredProcedure);
+                var results = (null != items) ? items.ToList() : new List<MPDCPollingUnit>();
+                rets.Success(results);
+
+                // Get Paging parameters
+                rets.PageNo = p.Get<int>("@pageNum");
+                rets.RowsPerPage = p.Get<int>("@pollingUnitPerPage");
+                //rets.TotalRecords = p.Get<int>("@totalRecords");
+                rets.MaxPage = p.Get<int>("@maxPage");
+                // Set error number/message
+                rets.ErrNum = p.Get<int>("@errNum");
+                rets.ErrMsg = p.Get<string>("@errMsg");
+            }
+            catch (Exception ex)
+            {
+                med.Err(ex);
+                // Set error number/message
+                rets.ErrNum = 9999;
+                rets.ErrMsg = ex.Message;
+            }
+
+            if (null == rets.data)
+            {
+                // create empty list.
+                rets.data = new List<MPDCPollingUnit>();
+            }
+
+            return rets;
+        }
+
+        #endregion
     }
 
     #endregion
