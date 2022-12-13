@@ -84,8 +84,8 @@ namespace PPRP.Windows
                 win.Setup(msg, "PPRP");
                 if (win.ShowDialog() == true)
                 {
-                    // load exist data;
-                    Setup(existItem);
+                    // load exist data with same mode
+                    Setup(existItem, _addNew);
                 }
                 else
                 {
@@ -152,6 +152,7 @@ namespace PPRP.Windows
             if (_addNew)
             {
                 // in add new mode so clear data and wait for new entry.
+                Setup(new MParty(), _addNew);
             }
             else
             {

@@ -13,8 +13,8 @@
     <DockPanel LastChildFill="True" Margin="5">
         <StackPanel Orientation="Vertical"
                     DockPanel.Dock="Top"
-                    HorizontalAlignment="Left">
-            <elem:PartyNameFieldControl x:Name="ctrlPartyName" Width="440" />
+                    HorizontalAlignment="Stretch">
+            <elem:PartyNameFieldControl x:Name="ctrlPartyName" />
         </StackPanel>
         <Grid VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
             <ctrl:MPartyImageEditorControl x:Name="ctrlPartyImage" />
