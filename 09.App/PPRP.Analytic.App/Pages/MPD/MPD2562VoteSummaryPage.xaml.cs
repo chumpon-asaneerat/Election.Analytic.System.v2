@@ -92,12 +92,12 @@ namespace PPRP.Pages
 
         private void cmdAreaInfo_Click(object sender, RoutedEventArgs e)
         {
-
+            ShowAreaInfo();
         }
 
         private void cmdPrint_Click(object sender, RoutedEventArgs e)
         {
-
+            GotoPrintPreview();
         }
 
         #endregion
@@ -214,13 +214,11 @@ namespace PPRP.Pages
 
         private void ShowPreview(MPDCSummary inst)
         {
-            /*
             if (null == inst) return;
 
-            var win = PPRPApp.Windows.MPDC2566Preview;
+            var win = PPRPApp.Windows.MPDCPreview;
             win.Setup(inst);
             win.ShowDialog();
-            */
         }
 
         private void ShowAreaInfo()
@@ -235,11 +233,9 @@ namespace PPRP.Pages
                     pollingUnitNo: _pullingUnitItem.PollingUnitNo).Value();
             }
 
-            /*
-            var win = PPRPApp.Windows.MPDC2562AreaRemark;
+            var win = PPRPApp.Windows.MPDCAreaRemark;
             win.Setup(summary);
             win.ShowDialog();
-            */
         }
 
         private void LoadSummary(PollingUnitMenuItem pollingUnit)

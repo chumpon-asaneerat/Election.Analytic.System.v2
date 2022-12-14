@@ -333,7 +333,7 @@ namespace PPRP
             #region MPDC Preview
 
             /// <summary>Gets MPDC Preview Window.</summary>
-            public static PPRP.Windows.MPDCPreviewWindow MPDC2566Preview
+            public static PPRP.Windows.MPDCPreviewWindow MPDCPreview
             {
                 get
                 {
@@ -348,7 +348,7 @@ namespace PPRP
             #region MPDC Area Remark
 
             /// <summary>Gets MPDC Area Remark Window.</summary>
-            public static PPRP.Windows.MPDCAreaRemarkWindow MPDC2562AreaRemark
+            public static PPRP.Windows.MPDCAreaRemarkWindow MPDCAreaRemark
             {
                 get
                 {
