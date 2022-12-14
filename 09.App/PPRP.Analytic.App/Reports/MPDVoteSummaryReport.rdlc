@@ -2307,8 +2307,8 @@
       </Fields>
       <rd:DataSetInfo>
         <rd:DataSetName>PPRP.Models</rd:DataSetName>
-        <rd:TableName>MPDPrintVoteSummary</rd:TableName>
-        <rd:ObjectDataSourceType>PPRP.Models.MPDPrintVoteSummary, PPRP.Models, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</rd:ObjectDataSourceType>
+        <rd:TableName>MPDPrintVoteSummary2</rd:TableName>
+        <rd:ObjectDataSourceType>PPRP.Models.MPDPrintVoteSummary2, PPRP.Models, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</rd:ObjectDataSourceType>
       </rd:DataSetInfo>
     </DataSet>
   </DataSets>
