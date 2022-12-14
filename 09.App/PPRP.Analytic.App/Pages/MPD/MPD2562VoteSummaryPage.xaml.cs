@@ -235,9 +235,11 @@ namespace PPRP.Pages
                     pollingUnitNo: _pullingUnitItem.PollingUnitNo).Value();
             }
 
+            /*
             var win = PPRPApp.Windows.MPDC2562AreaRemark;
             win.Setup(summary);
             win.ShowDialog();
+            */
         }
 
         private void LoadSummary(PollingUnitMenuItem pollingUnit)

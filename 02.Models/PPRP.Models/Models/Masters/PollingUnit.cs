@@ -344,14 +344,14 @@ namespace PPRP.Models
         /// <param name="adm1code">The ADM1 Code.</param>
         /// <param name="regionId">The region id.</param>
         /// <returns>Returns list of MProvince instance.</returns>
-        public static NDbResult<List<PollingUnit>> Get(
+        public static NDbResult<PollingUnit> Get(
             int thaiYear = 0,
             string adm1code = null,
             int pollingUnitNo = 0)
         {
             MethodBase med = MethodBase.GetCurrentMethod();
 
-            NDbResult<List<PollingUnit>> rets = new NDbResult<List<PollingUnit>>();
+            NDbResult<PollingUnit> rets = new NDbResult<PollingUnit>();
 
             IDbConnection cnn = DbServer.Instance.Db;
             if (null == cnn || !DbServer.Instance.Connected)
@@ -375,7 +375,7 @@ namespace PPRP.Models
             try
             {
                 var data = cnn.Query<PollingUnit>("GetPollingUnit", p,
-                    commandType: CommandType.StoredProcedure).ToList();
+                    commandType: CommandType.StoredProcedure).FirstOrDefault();
                 rets.Success(data);
             }
             catch (Exception ex)
@@ -389,7 +389,7 @@ namespace PPRP.Models
             if (null == rets.data)
             {
                 // create empty list.
-                rets.data = new List<PollingUnit>();
+                rets.data = null;
             }
 
             return rets;
