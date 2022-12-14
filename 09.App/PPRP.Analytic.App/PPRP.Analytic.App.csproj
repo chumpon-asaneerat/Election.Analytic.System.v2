@@ -131,6 +131,12 @@
     </Compile>
     <Compile Include="Services\AreaNavigator.cs" />
     <Compile Include="Services\PPRPApp.cs" />
+    <Compile Include="Windows\MPDC\MPDCAreaRemarkWindow.xaml.cs">
+      <DependentUpon>MPDCAreaRemarkWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\MPDC\MPDCPreviewWindow.xaml.cs">
+      <DependentUpon>MPDCPreviewWindow.xaml</DependentUpon>
+    </Compile>
     <Page Include="Controls\ThailandMenuControl.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -195,6 +201,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Windows\MPDC\MPDCAreaRemarkWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Windows\MPDC\MPDCPreviewWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -246,7 +260,6 @@
   <ItemGroup>
     <Folder Include="Pages\Preview\" />
     <Folder Include="Reports\" />
-    <Folder Include="Windows\MPDC\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\00.NLib\NLib.Reports\NLib.Reports.csproj">

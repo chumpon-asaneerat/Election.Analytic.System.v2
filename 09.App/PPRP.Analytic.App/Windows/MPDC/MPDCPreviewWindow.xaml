@@ -1,0 +1,159 @@
+﻿<Window x:Class="PPRP.Windows.MPDCPreviewWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        Title="ข้อมูลว่าที่ผู้สมัครสมาชิกสภาผู้แทน ปี 2566"
+        Height="500"
+        MinHeight="500"
+        MaxHeight="900"
+        Width="900"
+        MinWidth="900"
+        MaxWidth="1550"
+        HorizontalAlignment="Center"
+        VerticalAlignment="Center"
+        ResizeMode="CanResizeWithGrip"
+        ShowInTaskbar="False"
+        WindowStartupLocation="CenterOwner"
+        SizeToContent="WidthAndHeight"
+        mc:Ignorable="d">
+    <Window.Resources>
+        <!--  PAGE TITLE  -->
+        <sys:String x:Key="PageTitle">ข้อมูลว่าที่ผู้สมัครสมาชิกสภาผู้แทน ปี 2566</sys:String>
+    </Window.Resources>
+    <Grid Background="{StaticResource PageBG}">
+        <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="{StaticResource PageMargin}" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="{StaticResource PageMargin}" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="{StaticResource PageMargin}" />
+                <RowDefinition Height="{StaticResource CaptionHeight}" />
+                <RowDefinition Height="{StaticResource PageMargin}" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="{StaticResource PageMargin}" />
+            </Grid.RowDefinitions>
+            <!--  CAPTION AREA  -->
+            <Border Grid.Column="1"
+                    Grid.ColumnSpan="1"
+                    Grid.Row="1"
+                    Grid.RowSpan="1"
+                    Background="{StaticResource CaptionBackground}"
+                    BorderBrush="{StaticResource CaptionBorderColor}"
+                    BorderThickness="{StaticResource CaptionBorderThickness}"
+                    CornerRadius="{StaticResource CaptionBorderCornerRadius}">
+                <TextBlock Foreground="{StaticResource CaptionForeground}"
+                           FontSize="{StaticResource FontSize30}"
+                           Margin="0,2"
+                           TextAlignment="Center"
+                           Text="{StaticResource PageTitle}" />
+            </Border>
+            <!--  CLIENT AREA  -->
+            <DockPanel Grid.Column="1"
+                       Grid.ColumnSpan="1"
+                       Grid.Row="3"
+                       Grid.RowSpan="1"
+                       Background="{StaticResource WhiteBrush}"
+                       LastChildFill="True">
+                <!--  WORK AREA  -->
+                <DockPanel LastChildFill="True" Margin="20">
+                    <!--  PERSON PICTURE  -->
+                    <Border Margin="3"
+                            DockPanel.Dock="Left"
+                            VerticalAlignment="Top"
+                            HorizontalAlignment="Center"
+                            BorderBrush="{StaticResource BlueLightBrush2}"
+                            BorderThickness="1"
+                            CornerRadius="3">
+                        <Image Source="{Binding PersonImage}"
+                               Margin="2"
+                               Width="300"
+                               Height="345"
+                               Stretch="Uniform" />
+                    </Border>
+                    <TextBlock DockPanel.Dock="Left" Width="20" />
+                    <!--  CANDIDATE INFO  -->
+                    <DockPanel LastChildFill="True">
+                        <StackPanel Orientation="Vertical"
+                                    DockPanel.Dock="Top"
+                                    Margin="5">
+                            <TextBlock Height="5" />
+                            <!--  PROVINCE NAME/PollingNo  -->
+                            <TextBlock Foreground="{StaticResource BlackBlush}"
+                                       FontSize="{StaticResource FontSize24}"
+                                       FontWeight="Bold">
+                                <Run Text="จังหวัด " />
+                                <Run Text="{Binding ProvinceName}" />
+                                <Run Text=" เขต " />
+                                <Run Text="{Binding PollingUnitNo}" />
+                            </TextBlock>
+                            <TextBlock Height="5" />
+                            <!--  FULL NAME  -->
+                            <TextBlock x:Name="txtCandidateNo"
+                                       Foreground="{StaticResource BlackBlush}"
+                                       FontSize="{StaticResource FontSize24}">
+                                <Run Text="ว่าที่ผู้สมัครอันดับที่ " />
+                                <Run Text="{Binding CandidateNo}" />
+                            </TextBlock>
+                            <TextBlock Height="5" />
+                            <TextBlock Foreground="{StaticResource BlackBlush}"
+                                       FontSize="{StaticResource FontSize24}"
+                                       VerticalAlignment="Center"
+                                       TextWrapping="Wrap"
+                                       Text="{Binding FullName}" />
+                            <TextBlock Height="5" />
+                            <!--  AGE  -->
+                            <TextBlock Foreground="{StaticResource BlackBlush}"
+                                       FontSize="{StaticResource FontSize24}"
+                                       VerticalAlignment="Center"
+                                       TextWrapping="Wrap">
+                                <Run Text="อายุ : " />
+                                <Run Text="-" />
+                            </TextBlock>
+                            <!--  PREV PARTY NAME  -->
+                            <TextBlock Height="5" />
+                            <TextBlock Foreground="{StaticResource BlackBlush}"
+                                       FontSize="{StaticResource FontSize24}"
+                                       VerticalAlignment="Center"
+                                       TextWrapping="Wrap">
+                                <Run Text="ต้นสังกัดเดิม : " />
+                                <Run Text="{Binding PrevPartyName}" />
+                            </TextBlock>
+                            <TextBlock Height="5" />
+                            <!--  SUB GROUP  -->
+                            <TextBlock Foreground="{StaticResource BlackBlush}"
+                                       FontSize="{StaticResource FontSize24}"
+                                       VerticalAlignment="Center"
+                                       TextWrapping="Wrap">
+                                <!--
+                                <Run Text="สังกัดย่อย : " />
+                                -->
+                                <Run Text="{Binding SubGroup}" />
+                            </TextBlock>
+                            <TextBlock Height="10" />
+                            <!--  REMARK  -->
+                            <TextBlock Foreground="{StaticResource BlackBlush}"
+                                       FontWeight="Bold"
+                                       FontSize="{StaticResource FontSize24}"
+                                       VerticalAlignment="Center"
+                                       TextWrapping="Wrap"
+                                       Text="บันทึกเพิ่มเติม : " />
+                            <TextBlock Height="5" />
+                            <TextBlock Foreground="{StaticResource BlackBlush}"
+                                       FontSize="{StaticResource FontSize24}"
+                                       Height="Auto"
+                                       VerticalAlignment="Top"
+                                       TextWrapping="Wrap"
+                                       Text="{Binding Remark}" />
+                            <TextBlock Height="5" />
+                        </StackPanel>
+                        <Grid />
+                    </DockPanel>
+                </DockPanel>
+            </DockPanel>
+        </Grid>
+    </Grid>
+</Window>
