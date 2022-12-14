@@ -687,6 +687,28 @@ namespace PPRP.Models
         public int CandidateNo { get; set; }
         public string FullName { get; set; }
         public string PrevPartyName { get; set; }
+        public DateTime? DOB { get; set; }
+        /// <summary>
+        /// Gets Age estiamate.
+        /// </summary>
+        public string AgeEst
+        {
+            get
+            {
+                if (!DOB.HasValue)
+                    return "-";
+
+                int YearsPassed = DateTime.Now.Year - DOB.Value.Year;
+                // Are we before the birth date this year? If so subtract one year from the mix
+                if (DateTime.Now.Month < DOB.Value.Month ||
+                    (DateTime.Now.Month == DOB.Value.Month && DateTime.Now.Day < DOB.Value.Day))
+                {
+                    YearsPassed--;
+                }
+
+                return YearsPassed.ToString();
+            }
+        }
         public string EducationLevel { get; set; }
         public string SubGroup { get; set; }
         public string Remark { get; set; }
