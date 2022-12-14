@@ -287,6 +287,7 @@ namespace PPRP.Models
         public static NDbResult<List<PollingUnit>> Gets(
             int thaiYear = 0,
             string adm1code = null, string provinceNameTH = null,
+            int pollingUnitNo = 0,
             string regionId = null, string regionName = null,
             string geoGroup = null, string geoSubGroup = null)
         {
@@ -306,9 +307,12 @@ namespace PPRP.Models
                 return rets;
             }
 
+            int? pNo = pollingUnitNo == 0 ? new int?() : pollingUnitNo;
+
             var p = new DynamicParameters();
             p.Add("@ThaiYear", thaiYear);
             p.Add("@ADM1Code", adm1code);
+            p.Add("@PollingUnitNo", pNo);
             p.Add("@ProvinceNameTH", provinceNameTH);
             p.Add("@RegionId", regionId);
             p.Add("@RegionName", regionName);

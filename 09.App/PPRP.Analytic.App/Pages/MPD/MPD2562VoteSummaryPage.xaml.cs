@@ -214,11 +214,13 @@ namespace PPRP.Pages
 
         private void ShowPreview(MPDCSummary inst)
         {
+            /*
             if (null == inst) return;
 
             var win = PPRPApp.Windows.MPDC2566Preview;
             win.Setup(inst);
             win.ShowDialog();
+            */
         }
 
         private void ShowAreaInfo()
@@ -227,8 +229,11 @@ namespace PPRP.Pages
 
             if (null != _pullingUnitItem)
             {
-                summary = MPD2562PollingUnitSummary.Get(
-                    _pullingUnitItem.ProvinceNameTH, _pullingUnitItem.PollingUnitNo).Value;
+                int thaiYear = 2562;
+                summary = PollingUnit.Gets(thaiYear,
+                    adm1code: _pullingUnitItem.ADM1Code, 
+                    regionId: _pullingUnitItem.RegionId, 
+                    po _pullingUnitItem.PollingUnitNo).Value;
             }
 
             var win = PPRPApp.Windows.MPDC2562AreaRemark;
