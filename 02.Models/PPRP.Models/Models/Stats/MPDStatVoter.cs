@@ -222,6 +222,62 @@ namespace PPRP.Models
             return ret;
         }
         /// <summary>
+        /// Get.
+        /// </summary>
+        /// <param name="thaiYear"></param>
+        /// <param name="provinceNameTH"></param>
+        /// <returns></returns>
+
+        public static NDbResult<MPDStatVoter> Get(
+            int thaiYear,
+            string adm1Code = null,
+            int pollingUnitNo = 0)
+        {
+            MethodBase med = MethodBase.GetCurrentMethod();
+
+            NDbResult<MPDStatVoter> rets = new NDbResult<MPDStatVoter>();
+
+            IDbConnection cnn = DbServer.Instance.Db;
+            if (null == cnn || !DbServer.Instance.Connected)
+            {
+                string msg = "Connection is null or cannot connect to database server.";
+                med.Err(msg);
+                // Set error number/message
+                rets.ErrNum = 8000;
+                rets.ErrMsg = msg;
+
+                return rets;
+            }
+
+            var p = new DynamicParameters();
+
+            p.Add("@ThaiYear", thaiYear);
+            p.Add("@ADM1Code", adm1Code);
+            p.Add("@PollingUnitNo", pollingUnitNo);
+
+            try
+            {
+                var data = cnn.Query<MPDStatVoter>("GetMPDStatVoterSummary", p,
+                    commandType: CommandType.StoredProcedure).FirstOrDefault();
+                rets.Success(data);
+            }
+            catch (Exception ex)
+            {
+                med.Err(ex);
+                // Set error number/message
+                rets.ErrNum = 9999;
+                rets.ErrMsg = ex.Message;
+            }
+
+            if (null == rets.data)
+            {
+                // create empty list.
+                rets.data = null;
+            }
+
+            return rets;
+        }
+        /// <summary>
         /// Gets.
         /// </summary>
         /// <param name="thaiYear"></param>
