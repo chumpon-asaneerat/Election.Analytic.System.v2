@@ -664,4 +664,131 @@ namespace PPRP.Models
     }
 
     #endregion
+
+
+    #region MPDCSummary
+
+    public class MPDCSummary : NInpc
+    {
+        #region Internal Variables
+
+        // for person image
+        private byte[] _PersonImageData = null;
+        private bool _PersonImageLoading = false;
+        private ImageSource _PersonImage = null;
+
+        #endregion
+
+        #region Public Properties
+
+        public string ADM1Code { get; set; }
+        public string ProvinceName { get; set; }
+        public int PollingUnitNo { get; set; }
+        public int CandidateNo { get; set; }
+        public string FullName { get; set; }
+        public string PrevPartyName { get; set; }
+        public string EducationLevel { get; set; }
+        public string SubGroup { get; set; }
+        public string Remark { get; set; }
+
+        public byte[] PersonImageData
+        {
+            get { return _PersonImageData; }
+            set
+            {
+                _PersonImageData = value;
+                if (null == _PersonImageData)
+                {
+                    _PersonImage = null;
+                }
+            }
+        }
+
+        public ImageSource PersonImage
+        {
+            get
+            {
+                if (null == _PersonImage && !_PersonImageLoading)
+                {
+                    _PersonImageLoading = true;
+
+                    Defaults.RunInBackground(() =>
+                    {
+                        ImageSource imgSrc;
+                        if (null == _PersonImageData)
+                        {
+                            imgSrc = Defaults.Person;
+                        }
+                        else
+                        {
+                            imgSrc = ByteUtils.GetImageSource(PersonImageData);
+                        }
+
+                        _PersonImage = imgSrc;
+                        _PersonImageLoading = false;
+                        Raise(() => PersonImage);
+                    });
+                }
+
+                return _PersonImage;
+            }
+            set { }
+        }
+
+        #endregion
+
+        #region Static Methods
+
+        public static NDbResult<List<MPDCSummary>> Gets(int thaiYear, string adm1Code, int pollingUnitNo, int top = 4)
+        {
+            MethodBase med = MethodBase.GetCurrentMethod();
+
+            NDbResult<List<MPDCSummary>> rets = new NDbResult<List<MPDCSummary>>();
+
+            IDbConnection cnn = DbServer.Instance.Db;
+            if (null == cnn || !DbServer.Instance.Connected)
+            {
+                string msg = "Connection is null or cannot connect to database server.";
+                med.Err(msg);
+                // Set error number/message
+                rets.ErrNum = 8000;
+                rets.ErrMsg = msg;
+
+                return rets;
+            }
+
+            var p = new DynamicParameters();
+            p.Add("@ThaiYear", thaiYear);
+            p.Add("@ADM1Code", adm1Code);
+            p.Add("@PollingUnitNo", pollingUnitNo);
+            p.Add("@Top", top);
+
+            try
+            {
+                var items = cnn.Query<MPDCSummary>("GetMPDCSummaries", p,
+                    commandType: CommandType.StoredProcedure);
+                var results = (null != items) ? items.ToList() : new List<MPDCSummary>();
+                rets.Success(results);
+            }
+            catch (Exception ex)
+            {
+                med.Err(ex);
+                // Set error number/message
+                rets.ErrNum = 9999;
+                rets.ErrMsg = ex.Message;
+            }
+
+            if (null == rets.data)
+            {
+                // create empty list.
+                rets.data = new List<MPDCSummary>();
+            }
+
+            return rets;
+        }
+
+        #endregion
+    }
+
+    #endregion
 }

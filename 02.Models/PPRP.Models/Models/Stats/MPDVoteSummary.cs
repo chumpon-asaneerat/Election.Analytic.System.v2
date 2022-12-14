@@ -523,8 +523,8 @@ namespace PPRP.Models
 
         #region Static Methods
 
-        public static NDbResult<List<MPDPersonalVoteSummary>> Gets(int top, int thaiYear, string adm1Code, 
-            int pollingUnitNo)
+        public static NDbResult<List<MPDPersonalVoteSummary>> Gets(int thaiYear, string adm1Code, 
+            int pollingUnitNo, int top = 6)
         {
             MethodBase med = MethodBase.GetCurrentMethod();
 

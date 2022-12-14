@@ -261,9 +261,9 @@ namespace PPRP.Pages
 
             txtPollingUnitInfo.Text = pollingUnit.DisplayText;
 
-            int thaiYear = 2562;
-            var top6 = MPDPersonalVoteSummary.Gets(6, thaiYear,
-                _pullingUnitItem.ADM1Code, _pullingUnitItem.PollingUnitNo).Value();
+            int MPDThaiYear = 2562;
+            var top6 = MPDPersonalVoteSummary.Gets(MPDThaiYear,
+                _pullingUnitItem.ADM1Code, _pullingUnitItem.PollingUnitNo, 6).Value();
 
             int sum6 = 0;
             if (null != top6 && top6.Count > 0)
@@ -280,7 +280,8 @@ namespace PPRP.Pages
                 txtSummaryNoInfo.Visibility = Visibility.Visible;
             }
 
-            int sumAll = MPD2562PersonalVoteSummary.GetTotalVotes(_pullingUnitItem.ProvinceId, _pullingUnitItem.PollingUnitNo);
+            int sumAll = MPDPersonalVoteSummary.GetTotalVotes(MPDThaiYear, 
+                _pullingUnitItem.ADM1Code, _pullingUnitItem.PollingUnitNo);
 
             int diff = sumAll - sum6; // sum from 7-last
             txtTotalVotes.Text = diff.ToString("n0");
@@ -288,7 +289,9 @@ namespace PPRP.Pages
             lstSummary.ItemsSource = top6;
 
             // get candidates.
-            var candidates = MPDC2566Summary.Gets(4, _pullingUnitItem.ProvinceId, _pullingUnitItem.PollingUnitNo).Value;
+            int candidateThaiYear = 2566;
+            var candidates = MPDCSummary.Gets(
+                candidateThaiYear, _pullingUnitItem.ProvinceId, _pullingUnitItem.PollingUnitNo, 4).Value();
             lstCandidates.ItemsSource = candidates;
 
             if (null == candidates || candidates.Count <= 0)
