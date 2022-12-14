@@ -416,7 +416,7 @@ namespace PPRP.Models
 
         #region Static Methods
 
-        public static NDbResult<List<MPDC>> Gets(int thaiYear, string provinceName = null)
+        public static NDbResult<List<MPDC>> GetExports(int thaiYear, string provinceName = null)
         {
             MethodBase med = MethodBase.GetCurrentMethod();
 
