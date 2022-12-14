@@ -129,6 +129,9 @@
     <Compile Include="Pages\MPD\MPD2562VoteSummaryPage.xaml.cs">
       <DependentUpon>MPD2562VoteSummaryPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\Preview\MPDPreviewVoteSummaryPage.xaml.cs">
+      <DependentUpon>MPDPreviewVoteSummaryPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Services\AreaNavigator.cs" />
     <Compile Include="Services\PPRPApp.cs" />
     <Compile Include="Windows\MPDC\MPDCAreaRemarkWindow.xaml.cs">
@@ -201,6 +204,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Pages\Preview\MPDPreviewVoteSummaryPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Windows\MPDC\MPDCAreaRemarkWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -258,7 +265,6 @@
     <Resource Include="Images\Maps\Thailand.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Pages\Preview\" />
     <Folder Include="Reports\" />
   </ItemGroup>
   <ItemGroup>
