@@ -319,19 +319,19 @@ namespace PPRP.Pages
             _generalSummary.CandidateNo1 = (null != candidates && candidates.Count > 0) ? candidates[0] : null;
             _generalSummary.VoteCount7toLast = diff;
 
-            UpdatePollingUnitSummary(_pullingUnitItem.ProvinceNameTH, _pullingUnitItem.PollingUnitNo);
+            UpdatePollingUnitSummary(MPDThaiYear, _pullingUnitItem.ADM1Code, _pullingUnitItem.PollingUnitNo);
         }
 
-        private void UpdatePollingUnitSummary(string provinceName, int pollingUnitNo)
+        private void UpdatePollingUnitSummary(int thaiYaer, string adm1Code, int pollingUnitNo)
         {
             txtPollingUnitCount.Text = "-";
             txtRightCount.Text = "-";
             txtExerciseCount.Text = "-";
 
-            if (string.IsNullOrWhiteSpace(provinceName) || pollingUnitNo <= 0)
+            if (string.IsNullOrWhiteSpace(adm1Code) || pollingUnitNo <= 0)
                 return;
 
-            var unitSum = MPD2562x350UnitSummary.Get(provinceName, pollingUnitNo).Value;
+            var unitSum = MPDStatVoter.Get(thaiYaer, adm1Code, pollingUnitNo).Value();
             if (null == unitSum) return;
 
             txtPollingUnitCount.Text = unitSum.PollingUnitCount.ToString("n0");
