@@ -104,9 +104,17 @@
                                         DockPanel.Dock="Right"
                                         Margin="2"
                                         Width="100"
-                                        Content="พิมพ์"
                                         Style="{StaticResource InlineButton}"
-                                        Click="cmdPrint_Click" />
+                                        Click="cmdPrint_Click">
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Style="{StaticResource fa-print}" FontSize="{StaticResource IBFSize}" />
+                                        <TextBlock Margin="3,0"
+                                                   FontFamily="{StaticResource THSarabun}"
+                                                   FontSize="{StaticResource IBFSize}"
+                                                   Text="พิมพ์"
+                                                   VerticalAlignment="Center" />
+                                    </StackPanel>
+                                </Button>
                                 <TextBlock DockPanel.Dock="Right" Width="5" />
                                 <TextBlock x:Name="txtPollingUnitInfo"
                                            Foreground="DimGray"
