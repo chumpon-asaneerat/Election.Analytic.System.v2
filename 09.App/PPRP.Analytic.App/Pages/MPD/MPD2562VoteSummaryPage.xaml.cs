@@ -348,12 +348,13 @@ namespace PPRP.Pages
 
         private void GotoPrintPreview()
         {
+            /*
             // prepare report item.
             MPDPrintVoteSummary item = new MPDPrintVoteSummary();
             if (null != _generalSummary)
             {
                 // Province Name/PollingUnitNo
-                item.ProvinceName = _generalSummary.ProvinceName;
+                item.ProvinceNameTH = _generalSummary.ProvinceName;
                 item.PollingUnitNo = _generalSummary.PollingUnitNo;
 
                 if (null != _generalSummary.Top6 && _generalSummary.Top6.Count > 0)
@@ -469,6 +470,7 @@ namespace PPRP.Pages
             int idx = lstPollingUnits.SelectedIndex;
             page.Setup(_provinceItem, idx, item);
             PageContentManager.Instance.Current = page;
+            */
         }
 
         #endregion

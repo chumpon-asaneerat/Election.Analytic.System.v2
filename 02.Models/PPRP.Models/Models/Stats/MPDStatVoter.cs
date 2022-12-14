@@ -150,6 +150,10 @@ namespace PPRP.Models
             }
             set { }
         }
+        /// <summary>
+        /// Gets or sets PollingUnitCount.
+        /// </summary>
+        public int PollingUnitCount { get; set; }
 
         #endregion
 
