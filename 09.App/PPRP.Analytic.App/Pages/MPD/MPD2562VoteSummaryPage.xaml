@@ -91,19 +91,25 @@
                             <DockPanel LastChildFill="True">
                                 <TextBlock DockPanel.Dock="Right" Width="5" />
                                 <Button x:Name="cmdAreaInfo"
-                                        Foreground="DimGray"
                                         DockPanel.Dock="Right"
                                         Margin="2"
-                                        Width="100"
-                                        Content="ข้อมูลพื้นที่"
+                                        Width="120"
                                         Style="{StaticResource InlineButton}"
-                                        Click="cmdAreaInfo_Click" />
+                                        Click="cmdAreaInfo_Click">
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Style="{StaticResource fa-info}" FontSize="{StaticResource IBFSize}" />
+                                        <TextBlock Margin="3,0"
+                                                   FontFamily="{StaticResource THSarabun}"
+                                                   FontSize="{StaticResource IBFSize}"
+                                                   Text="ข้อมูลพื้นที่"
+                                                   VerticalAlignment="Center" />
+                                    </StackPanel>
+                                </Button>
                                 <TextBlock DockPanel.Dock="Right" Width="5" />
                                 <Button x:Name="cmdPrint"
-                                        Foreground="DimGray"
                                         DockPanel.Dock="Right"
                                         Margin="2"
-                                        Width="100"
+                                        Width="120"
                                         Style="{StaticResource InlineButton}"
                                         Click="cmdPrint_Click">
                                     <StackPanel Orientation="Horizontal">
