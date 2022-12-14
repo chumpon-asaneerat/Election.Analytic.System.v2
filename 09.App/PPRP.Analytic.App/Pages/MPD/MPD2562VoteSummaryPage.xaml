@@ -3,10 +3,15 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
              xmlns:util="clr-namespace:PPRP.Controls.Utils;assembly=PPRP.Controls"
              mc:Ignorable="d"
              d:DesignHeight="900"
              d:DesignWidth="1300">
+    <UserControl.Resources>
+        <!--  INLINE BUTTON TEXT FONT SIZE  -->
+        <sys:Double x:Key="IBFSize">18</sys:Double>
+    </UserControl.Resources>
     <Grid>
         <DockPanel LastChildFill="True">
             <DockPanel LastChildFill="True">
