@@ -232,6 +232,13 @@
         <Setter Property="Foreground" Value="DarkGreen" />
     </Style>
 
+    <!--  INFO  -->
+    <Style x:Key="fa-info"
+           TargetType="TextBlock"
+           BasedOn="{StaticResource fa-base}">
+        <Setter Property="Text" Value="&#xf059;" />
+    </Style>
+
     <!--  IMPORT  -->
     <Style x:Key="fa-import"
            TargetType="TextBlock"
