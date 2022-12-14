@@ -7,8 +7,10 @@ Election.Analytic.System.v2 - PPRP  #529
 Election.Analytic.System.v2 - PPRP  #528
 - 
 
+[commited]
 Election.Analytic.System.v2 - PPRP  #527
-- 
+- PPRP.Manangement.App project
+  - Update Excel files.
 
 [commited]
 Election.Analytic.System.v2 - PPRP  #526
