@@ -329,6 +329,36 @@ namespace PPRP
             }
 
             #endregion
+
+            #region MPDC Preview
+
+            /// <summary>Gets MPDC Preview Window.</summary>
+            public static PPRP.Windows.MPDCPreviewWindow MPDC2566Preview
+            {
+                get
+                {
+                    var ret = new PPRP.Windows.MPDCPreviewWindow();
+                    ret.Owner = Application.Current.MainWindow;
+                    return ret;
+                }
+            }
+
+            #endregion
+
+            #region MPDC Area Remark
+
+            /// <summary>Gets MPDC Area Remark Window.</summary>
+            public static PPRP.Windows.MPDCAreaRemarkWindow MPDC2562AreaRemark
+            {
+                get
+                {
+                    var ret = new PPRP.Windows.MPDCAreaRemarkWindow();
+                    ret.Owner = Application.Current.MainWindow;
+                    return ret;
+                }
+            }
+
+            #endregion
         }
     }
 }
