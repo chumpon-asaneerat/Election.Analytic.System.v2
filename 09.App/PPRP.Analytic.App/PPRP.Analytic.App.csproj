@@ -235,6 +235,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Reports\MPDVoteSummaryReport.rdlc" />
     <None Include="app.manifest" />
     <None Include="Properties\DataSources\PPRP.Domains.MPDPrintVoteSummary.datasource" />
     <None Include="Properties\Settings.settings">
@@ -264,9 +265,7 @@
     <Resource Include="Images\Maps\Pak9.jpg" />
     <Resource Include="Images\Maps\Thailand.jpg" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Reports\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\..\00.NLib\NLib.Reports\NLib.Reports.csproj">
       <Project>{5879d92a-f850-4a70-8d88-99d29f6a46f3}</Project>
