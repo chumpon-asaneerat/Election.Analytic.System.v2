@@ -206,7 +206,7 @@ namespace PPRP.Models
         }
 
         public string RegionId { get; set; }
-        public string ProvinceId { get; set; }
+        public string ADM1Code { get; set; }
         public string ProvinceNameTH { get; set; }
 
         public int MinUnitCount { get; set; }
@@ -341,7 +341,7 @@ namespace PPRP.Models
 
         #region Static Methods
 
-        public static NDbResult<List<PollingUnitMenuItem>> Gets(string regionId, string provinceId)
+        public static NDbResult<List<PollingUnitMenuItem>> Gets(string regionId, string adm1Code)
         {
             MethodBase med = MethodBase.GetCurrentMethod();
 
@@ -361,7 +361,7 @@ namespace PPRP.Models
 
             var p = new DynamicParameters();
             p.Add("@RegionId", regionId);
-            p.Add("@ProvinceId", provinceId);
+            p.Add("@ADM1Code", adm1Code);
 
             try
             {

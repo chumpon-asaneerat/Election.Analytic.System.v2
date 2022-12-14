@@ -481,7 +481,7 @@ namespace PPRP.Pages
                 return;
 
             txtProvinceName.Text = "จ." + province.ProvinceNameTH;
-            var items = PollingUnitMenuItem.Gets(province.RegionId, province.ProvinceId).Value;
+            var items = PollingUnitMenuItem.Gets(province.RegionId, province.ADM1Code).Value();
             lstPollingUnits.ItemsSource = items;
             if (null != items && items.Count > 0)
             {
@@ -506,7 +506,7 @@ namespace PPRP.Pages
                 return;
 
             txtProvinceName.Text = "จ." + province.ProvinceNameTH;
-            var items = PollingUnitMenuItem.Gets(province.RegionId, province.ProvinceId).Value;
+            var items = PollingUnitMenuItem.Gets(province.RegionId, province.ADM1Code).Value();
             lstPollingUnits.ItemsSource = items;
             if (null != items && items.Count > 0)
             {
