@@ -708,6 +708,7 @@ namespace PPRP.Models
 
                 return YearsPassed.ToString();
             }
+            set { }
         }
         public string EducationLevel { get; set; }
         public string SubGroup { get; set; }

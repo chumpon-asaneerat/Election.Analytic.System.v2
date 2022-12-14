@@ -272,6 +272,7 @@ namespace PPRP.Models
 
                 return YearsPassed.ToString();
             }
+            set { }
         }
 
         public string PrefixOri { get; private set; }

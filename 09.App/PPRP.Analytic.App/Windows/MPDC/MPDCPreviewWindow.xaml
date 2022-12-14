@@ -113,7 +113,7 @@
                                        VerticalAlignment="Center"
                                        TextWrapping="Wrap">
                                 <Run Text="อายุ : " />
-                                <Run Text="-" />
+                                <Run Text="{Binding AgeEst}" />
                             </TextBlock>
                             <!--  PREV PARTY NAME  -->
                             <TextBlock Height="5" />
