@@ -248,7 +248,7 @@ namespace PPRP.Pages
 
                 Dispatcher.BeginInvoke(new Action(() =>
                 {
-                    RefreshList(true);
+                    RefreshList(false);
                 }), DispatcherPriority.Render);
             }
         }
@@ -335,6 +335,8 @@ namespace PPRP.Pages
 
             iPageNo = (null != candidates) ? candidates.PageNo : 1;
             iMaxPage = (null != candidates) ? candidates.MaxPage : 1;
+
+            if (iPageNo > iMaxPage) iPageNo = iMaxPage;
 
             nav.Setup(iPageNo, iMaxPage);
         }
