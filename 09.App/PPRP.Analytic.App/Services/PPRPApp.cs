@@ -287,6 +287,29 @@ namespace PPRP
             }
 
             #endregion
+
+            #region MPDPreviewVoteSummary
+
+
+            private static MPDPreviewVoteSummaryPage _MPDPreviewVoteSummary;
+
+            /// <summary>Gets MPDPreviewVoteSummary Page.</summary>
+            public static MPDPreviewVoteSummaryPage MPDPreviewVoteSummary
+            {
+                get
+                {
+                    if (null == _MPDPreviewVoteSummary)
+                    {
+                        lock (typeof(MPDPreviewVoteSummaryPage))
+                        {
+                            _MPDPreviewVoteSummary = new MPDPreviewVoteSummaryPage();
+                        }
+                    }
+                    return _MPDPreviewVoteSummary;
+                }
+            }
+
+            #endregion
         }
         /// <summary>
         /// Windows Static class.

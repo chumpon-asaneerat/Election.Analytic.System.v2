@@ -38,7 +38,7 @@ namespace PPRP.Pages
 
         private ProvinceMenuItem _provinceMenuItem = null;
         private int _PollingItemIndex = 0;
-        private MPDPrintVoteSummary _item = null;
+        private MPDPrintVoteSummary2 _item = null;
 
         #endregion
 
@@ -113,7 +113,7 @@ namespace PPRP.Pages
             // clear reprot datasource.
             inst.DataSources.Clear();
 
-            List<MPDPrintVoteSummary> items = new List<MPDPrintVoteSummary>();
+            List<MPDPrintVoteSummary2> items = new List<MPDPrintVoteSummary2>();
             if (null != _item)
             {
                 items.Add(_item); // Add new because is blank.
@@ -140,7 +140,7 @@ namespace PPRP.Pages
 
         #region Public Methods
 
-        public void Setup(ProvinceMenuItem menuItem, int pollingItemIndex, MPDPrintVoteSummary item)
+        public void Setup(ProvinceMenuItem menuItem, int pollingItemIndex, MPDPrintVoteSummary2 item)
         {
             _provinceMenuItem = menuItem;
             _PollingItemIndex = pollingItemIndex;
