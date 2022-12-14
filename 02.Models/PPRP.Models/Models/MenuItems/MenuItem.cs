@@ -333,7 +333,7 @@ namespace PPRP.Models
 
         public int ThaiYear { get; set; }
         public string RegionId { get; set; }
-        public string ProvinceId { get; set; }
+        public string ADM1Code { get; set; }
         public string ProvinceNameTH { get; set; }
         public int PollingUnitNo { get; set; }
 

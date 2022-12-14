@@ -41,12 +41,12 @@ namespace PPRP.Pages
             public string ProvinceName { get; set; }
             public int PollingUnitNo { get; set; }
 
-            public List<MPD2562PersonalVoteSummary> Top6 { get; set; }
+            public List<MPDPersonalVoteSummary> Top6 { get; set; }
             public int PollingUnitCount { get; set; }
             public int RightCount { get; set; }
             public int ExerciseCount { get; set; }
             public int VoteCount7toLast { get; set; }
-            public MPDC2566Summary CandidateNo1 { get; set; }
+            public MPDCSummary CandidateNo1 { get; set; }
         }
 
         #endregion
@@ -119,7 +119,7 @@ namespace PPRP.Pages
             // Uncomment code in xaml to use this method.
             var item = sender as ListBoxItem;
             if (null == item || null == item.DataContext) return;
-            var inst = item.DataContext as MPDC2566Summary;
+            var inst = item.DataContext as MPDCSummary;
             ShowPreview(inst);
         }
 
@@ -127,7 +127,7 @@ namespace PPRP.Pages
         {
             var item = sender as ListBoxItem;
             if (null == item || null == item.DataContext) return;
-            var inst = item.DataContext as MPDC2566Summary;
+            var inst = item.DataContext as MPDCSummary;
             ShowPreview(inst);
         }
 
@@ -212,7 +212,7 @@ namespace PPRP.Pages
             }
         }
 
-        private void ShowPreview(MPDC2566Summary inst)
+        private void ShowPreview(MPDCSummary inst)
         {
             if (null == inst) return;
 
@@ -240,7 +240,7 @@ namespace PPRP.Pages
         {
             if (null != _pullingUnitItem && null != pollingUnit)
             {
-                if (_pullingUnitItem.ProvinceId == pollingUnit.ProvinceId &&
+                if (_pullingUnitItem.ADM1Code == pollingUnit.ADM1Code &&
                     _pullingUnitItem.PollingUnitNo == pollingUnit.PollingUnitNo)
                 {
                     // same item.
@@ -291,7 +291,7 @@ namespace PPRP.Pages
             // get candidates.
             int candidateThaiYear = 2566;
             var candidates = MPDCSummary.Gets(
-                candidateThaiYear, _pullingUnitItem.ProvinceId, _pullingUnitItem.PollingUnitNo, 4).Value();
+                candidateThaiYear, _pullingUnitItem.ADM1Code, _pullingUnitItem.PollingUnitNo, 4).Value();
             lstCandidates.ItemsSource = candidates;
 
             if (null == candidates || candidates.Count <= 0)
