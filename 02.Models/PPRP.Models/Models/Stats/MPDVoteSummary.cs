@@ -418,9 +418,9 @@ namespace PPRP.Models
         #region Internal Variables
 
         // for party logo
-        private byte[] _LogoData = null;
-        private bool _PartyLogoLoading = false;
-        private ImageSource _PartyLogo = null;
+        private byte[] _PartyImageData = null;
+        private bool _PartyImageLoading = false;
+        private ImageSource _PartyImage = null;
         // for person image
         private byte[] _PersonImageData = null;
         private bool _PersonImageLoading = false;
@@ -484,34 +484,34 @@ namespace PPRP.Models
         public string PartyId { get; set; }
         public string PartyName { get; set; }
 
-        public byte[] LogoData
+        public byte[] PartyImageData
         {
-            get { return _LogoData; }
+            get { return _PartyImageData; }
             set
             {
-                _LogoData = value;
-                if (null == _LogoData)
+                _PartyImageData = value;
+                if (null == _PartyImageData)
                 {
-                    _PartyLogo = null;
+                    _PartyImageData = null;
                 }
             }
         }
-        public ImageSource PartyLogo
+        public ImageSource PartyImage
         {
             get
             {
-                if (null == _PartyLogo && null != _LogoData && !_PartyLogoLoading)
+                if (null == _PartyImage && null != _PartyImage && !_PartyImageLoading)
                 {
-                    _PartyLogoLoading = true;
+                    _PartyImageLoading = true;
 
                     Defaults.RunInBackground(() =>
                     {
-                        _PartyLogo = ByteUtils.GetImageSource(LogoData);
-                        _PartyLogoLoading = false;
-                        Raise(() => PartyLogo);
+                        _PartyImage = ByteUtils.GetImageSource(_PartyImageData);
+                        _PartyImageLoading = false;
+                        Raise(() => PartyImage);
                     });
                 }
-                return _PartyLogo;
+                return _PartyImage;
             }
             set { }
         }

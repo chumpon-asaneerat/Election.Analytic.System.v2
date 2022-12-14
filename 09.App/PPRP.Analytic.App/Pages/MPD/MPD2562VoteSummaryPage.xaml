@@ -372,7 +372,7 @@
                                                     HorizontalAlignment="Center">
                                                 <Image RenderOptions.BitmapScalingMode="LowQuality"
                                                        RenderOptions.EdgeMode="Aliased"
-                                                       Source="{Binding PartyLogo}"
+                                                       Source="{Binding PartyImageData}"
                                                        Width="100"
                                                        Height="100"
                                                        Stretch="Uniform" />
