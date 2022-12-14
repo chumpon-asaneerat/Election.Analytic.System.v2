@@ -287,9 +287,67 @@ namespace PPRP.Models
         public static NDbResult<List<PollingUnit>> Gets(
             int thaiYear = 0,
             string adm1code = null, string provinceNameTH = null,
-            int pollingUnitNo = 0,
             string regionId = null, string regionName = null,
             string geoGroup = null, string geoSubGroup = null)
+        {
+            MethodBase med = MethodBase.GetCurrentMethod();
+
+            NDbResult<List<PollingUnit>> rets = new NDbResult<List<PollingUnit>>();
+
+            IDbConnection cnn = DbServer.Instance.Db;
+            if (null == cnn || !DbServer.Instance.Connected)
+            {
+                string msg = "Connection is null or cannot connect to database server.";
+                med.Err(msg);
+                // Set error number/message
+                rets.ErrNum = 8000;
+                rets.ErrMsg = msg;
+
+                return rets;
+            }
+
+            var p = new DynamicParameters();
+            p.Add("@ThaiYear", thaiYear);
+            p.Add("@ADM1Code", adm1code);
+            p.Add("@ProvinceNameTH", provinceNameTH);
+            p.Add("@RegionId", regionId);
+            p.Add("@RegionName", regionName);
+            p.Add("@GeoGroup", geoGroup);
+            p.Add("@GeoSubGroup", geoSubGroup);
+
+            try
+            {
+                var data = cnn.Query<PollingUnit>("GetPollingUnits", p,
+                    commandType: CommandType.StoredProcedure).ToList();
+                rets.Success(data);
+            }
+            catch (Exception ex)
+            {
+                med.Err(ex);
+                // Set error number/message
+                rets.ErrNum = 9999;
+                rets.ErrMsg = ex.Message;
+            }
+
+            if (null == rets.data)
+            {
+                // create empty list.
+                rets.data = new List<PollingUnit>();
+            }
+
+            return rets;
+        }
+        /// <summary>
+        /// Gets.
+        /// </summary>
+        /// <param name="thaiYear">The year in thai.</param>
+        /// <param name="adm1code">The ADM1 Code.</param>
+        /// <param name="regionId">The region id.</param>
+        /// <returns>Returns list of MProvince instance.</returns>
+        public static NDbResult<List<PollingUnit>> Get(
+            int thaiYear = 0,
+            string adm1code = null,
+            int pollingUnitNo = 0)
         {
             MethodBase med = MethodBase.GetCurrentMethod();
 
@@ -313,15 +371,10 @@ namespace PPRP.Models
             p.Add("@ThaiYear", thaiYear);
             p.Add("@ADM1Code", adm1code);
             p.Add("@PollingUnitNo", pNo);
-            p.Add("@ProvinceNameTH", provinceNameTH);
-            p.Add("@RegionId", regionId);
-            p.Add("@RegionName", regionName);
-            p.Add("@GeoGroup", geoGroup);
-            p.Add("@GeoSubGroup", geoSubGroup);
 
             try
             {
-                var data = cnn.Query<PollingUnit>("GetPollingUnits", p,
+                var data = cnn.Query<PollingUnit>("GetPollingUnit", p,
                     commandType: CommandType.StoredProcedure).ToList();
                 rets.Success(data);
             }

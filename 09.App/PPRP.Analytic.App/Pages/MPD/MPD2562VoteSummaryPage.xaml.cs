@@ -225,15 +225,14 @@ namespace PPRP.Pages
 
         private void ShowAreaInfo()
         {
-            MPD2562PollingUnitSummary summary = null;
+            PollingUnit summary = null;
 
             if (null != _pullingUnitItem)
             {
                 int thaiYear = 2562;
-                summary = PollingUnit.Gets(thaiYear,
+                summary = PollingUnit.Get(thaiYear,
                     adm1code: _pullingUnitItem.ADM1Code, 
-                    regionId: _pullingUnitItem.RegionId, 
-                    po _pullingUnitItem.PollingUnitNo).Value;
+                    pollingUnitNo: _pullingUnitItem.PollingUnitNo).Value();
             }
 
             var win = PPRPApp.Windows.MPDC2562AreaRemark;
