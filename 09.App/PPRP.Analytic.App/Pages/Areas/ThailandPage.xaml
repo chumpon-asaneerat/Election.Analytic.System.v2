@@ -74,6 +74,24 @@
                                 Canvas.Top="258"
                                 Style="{StaticResource fa-location}"
                                 Click="cmCmd_Click" />
+                        <Button x:Name="cmCmd07"
+                                Tag="ภาค 7"
+                                Canvas.Left="101"
+                                Canvas.Top="572"
+                                Style="{StaticResource fa-location}"
+                                Click="cmCmd_Click" />
+                        <Button x:Name="cmCmd08"
+                                Tag="ภาค 8"
+                                Canvas.Left="69"
+                                Canvas.Top="811"
+                                Style="{StaticResource fa-location}"
+                                Click="cmCmd_Click" />
+                        <Button x:Name="cmCmd09"
+                                Tag="ภาค 9"
+                                Canvas.Left="162"
+                                Canvas.Top="963"
+                                Style="{StaticResource fa-location}"
+                                Click="cmCmd_Click" />
                     </Canvas>
                 </Viewbox>
             </Grid>
