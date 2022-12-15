@@ -10,8 +10,10 @@ Election.Analytic.System.v2 - PPRP  #548
 Election.Analytic.System.v2 - PPRP  #547
 - 
 
+[commited]
 Election.Analytic.System.v2 - PPRP  #546
-- 
+- PPRP.Analytic.App project
+  - Update UI for PAK #12.
 
 [commited]
 Election.Analytic.System.v2 - PPRP  #545
