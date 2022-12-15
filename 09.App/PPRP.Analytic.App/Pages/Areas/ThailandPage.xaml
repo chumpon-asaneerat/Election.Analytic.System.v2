@@ -5,13 +5,13 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:menu="clr-namespace:PPRP.Controls"
              mc:Ignorable="d"
-             d:DesignHeight="800"
-             d:DesignWidth="1200"
+             d:DesignHeight="1000"
+             d:DesignWidth="1920"
              Background="#2E75B7">
     <DockPanel LastChildFill="True" Background="{StaticResource BlueLightBrush}">
         <!--  MAPS  -->
         <Border DockPanel.Dock="Left"
-                Width="500"
+                Width="600"
                 Background="{StaticResource BlueHeavyBrush}">
             <Grid>
                 <Grid.Background>
