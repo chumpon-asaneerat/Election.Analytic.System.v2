@@ -348,26 +348,51 @@
         <Setter Property="Text" Value="&#xf050;" />
     </Style>
 
+    <!--  LOCATION BUTTON FONT SIZE, COLOR  -->
+    <Visibility x:Key="LocationShowSymbol" PresentationOptions:Freeze="True">Visible</Visibility>
+    <sys:Double x:Key="LocationFontSize" PresentationOptions:Freeze="True">24</sys:Double>
+    <SolidColorBrush x:Key="LocationTextColor"
+                     PresentationOptions:Freeze="True"
+                     Color="WhiteSmoke" />
+    <SolidColorBrush x:Key="LocationHoverColor"
+                     PresentationOptions:Freeze="True"
+                     Color="Yellow" />
     <!--  LOCATION BUTTON  -->
     <Style x:Key="fa-location" TargetType="Button">
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
-                    <TextBlock TextDecorations="None"
-                               HorizontalAlignment="Center"
-                               VerticalAlignment="Center"
-                               FontFamily="{StaticResource FontAwesome}"
-                               FontSize="{StaticResource FontSize20}"
-                               Text="&#xf3c5;" />
+                    <StackPanel Orientation="Horizontal"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center">
+                        <TextBlock Name="txtDisplaySymbol"
+                                   TextDecorations="None"
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Center"
+                                   Foreground="{DynamicResource LocationTextColor}"
+                                   FontFamily="{StaticResource FontAwesome}"
+                                   FontSize="{DynamicResource LocationFontSize}"
+                                   Visibility="{DynamicResource LocationShowSymbol}"
+                                   Text="&#xf3c5;" />
+                        <TextBlock Name="txtDisplayLocation"
+                                   Margin="5,0,0,0"
+                                   TextDecorations="None"
+                                   Foreground="{DynamicResource LocationTextColor}"
+                                   FontFamily="{StaticResource THSarabun}"
+                                   FontSize="{DynamicResource LocationFontSize}"
+                                   Text="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Button}}, Path=Tag}" />
+                    </StackPanel>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="true">
+                            <Setter Property="Foreground" Value="Yellow" />
+                            <Setter Property="Cursor" Value="Hand" />
+                            <Setter TargetName="txtDisplaySymbol" Property="Foreground" Value="{DynamicResource LocationHoverColor}" />
+                            <Setter TargetName="txtDisplayLocation" Property="Foreground" Value="{DynamicResource LocationHoverColor}" />
+                            <Setter TargetName="txtDisplayLocation" Property="TextDecorations" Value="Underline" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
-        <Setter Property="Foreground" Value="White" />
-        <Style.Triggers>
-            <Trigger Property="IsMouseOver" Value="true">
-                <Setter Property="Foreground" Value="Yellow" />
-                <Setter Property="Cursor" Value="Hand" />
-            </Trigger>
-        </Style.Triggers>
     </Style>
 </ResourceDictionary>

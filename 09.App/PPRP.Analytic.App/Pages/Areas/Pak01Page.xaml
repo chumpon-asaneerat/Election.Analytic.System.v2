@@ -3,10 +3,20 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
              mc:Ignorable="d"
              d:DesignHeight="1000"
              d:DesignWidth="1920"
              Background="#2E75B7">
+    <UserControl.Resources>
+        <sys:Double x:Key="LocationFontSize">32</sys:Double>
+        <!--
+        <Visibility x:Key="LocationShowSymbol">Collapsed</Visibility>
+        -->
+        <Visibility x:Key="LocationShowSymbol">Visible</Visibility>
+        <SolidColorBrush x:Key="LocationTextColor" Color="WhiteSmoke" />
+        <SolidColorBrush x:Key="LocationHoverColor" Color="Yellow" />
+    </UserControl.Resources>
     <Grid>
         <Grid.Background>
             <ImageBrush ImageSource="/PPRP.Analytic.App;component/Images/Maps/Pak1.jpg" Stretch="UniformToFill" />
@@ -114,47 +124,56 @@
                         Tag="ชัยนาท"
                         Margin="374,118,1517,751"
                         Style="{StaticResource fa-location}"
-                        Click="cmCmd_Click" RenderTransformOrigin="-20.029,3.234" />
+                        Click="cmCmd_Click"
+                        RenderTransformOrigin="-20.029,3.234" />
                 <Button x:Name="cmCmd02"
                         Tag="ลพบุรี"
                         Margin="786,179,1104,685"
                         Style="{StaticResource fa-location}"
-                        Click="cmCmd_Click" RenderTransformOrigin="-20.029,3.234" />
+                        Click="cmCmd_Click"
+                        RenderTransformOrigin="-20.029,3.234" />
                 <Button x:Name="cmCmd03"
-                    Tag="สิงห์บุรี"
-                    Margin="630,224,1260,640"
-                    Style="{StaticResource fa-location}"
-                    Click="cmCmd_Click" RenderTransformOrigin="-20.029,3.234" />
+                        Tag="สิงห์บุรี"
+                        Margin="630,224,1260,640"
+                        Style="{StaticResource fa-location}"
+                        Click="cmCmd_Click"
+                        RenderTransformOrigin="-20.029,3.234" />
                 <Button x:Name="cmCmd04"
-                    Tag="อ่างทอง"
-                    Margin="593,353,1297,511"
-                    Style="{StaticResource fa-location}"
-                    Click="cmCmd_Click" RenderTransformOrigin="-20.029,3.234" />
+                        Tag="อ่างทอง"
+                        Margin="593,353,1297,511"
+                        Style="{StaticResource fa-location}"
+                        Click="cmCmd_Click"
+                        RenderTransformOrigin="-20.029,3.234" />
                 <Button x:Name="cmCmd05"
-                    Tag="สระบุรี"
-                    Margin="924,441,966,423"
-                    Style="{StaticResource fa-location}"
-                    Click="cmCmd_Click" RenderTransformOrigin="-20.029,3.234" />
+                        Tag="สระบุรี"
+                        Margin="924,441,966,423"
+                        Style="{StaticResource fa-location}"
+                        Click="cmCmd_Click"
+                        RenderTransformOrigin="-20.029,3.234" />
                 <Button x:Name="cmCmd06"
-                    Tag="พระนครศรีอยุธยา"
-                    Margin="619,526,1271,338"
-                    Style="{StaticResource fa-location}"
-                    Click="cmCmd_Click" RenderTransformOrigin="-20.029,3.234" />
+                        Tag="พระนครศรีอยุธยา"
+                        Margin="619,526,1271,338"
+                        Style="{StaticResource fa-location}"
+                        Click="cmCmd_Click"
+                        RenderTransformOrigin="-20.029,3.234" />
                 <Button x:Name="cmCmd07"
-                    Tag="ปทุมธานี"
-                    Margin="748,645,1142,219"
-                    Style="{StaticResource fa-location}"
-                    Click="cmCmd_Click" RenderTransformOrigin="-20.029,3.234" />
+                        Tag="ปทุมธานี"
+                        Margin="748,645,1142,219"
+                        Style="{StaticResource fa-location}"
+                        Click="cmCmd_Click"
+                        RenderTransformOrigin="-20.029,3.234" />
                 <Button x:Name="cmCmd08"
-                    Tag="นนทบุรี"
-                    Margin="649,725,1241,139"
-                    Style="{StaticResource fa-location}"
-                    Click="cmCmd_Click" RenderTransformOrigin="-20.029,3.234" />
+                        Tag="นนทบุรี"
+                        Margin="649,725,1241,139"
+                        Style="{StaticResource fa-location}"
+                        Click="cmCmd_Click"
+                        RenderTransformOrigin="-20.029,3.234" />
                 <Button x:Name="cmCmd09"
-                    Tag="สมุทรปราการ"
-                    Margin="742,883,1148,-19"
-                    Style="{StaticResource fa-location}"
-                    Click="cmCmd_Click" RenderTransformOrigin="-20.029,3.234" />
+                        Tag="สมุทรปราการ"
+                        Margin="742,883,1148,-19"
+                        Style="{StaticResource fa-location}"
+                        Click="cmCmd_Click"
+                        RenderTransformOrigin="-20.029,3.234" />
             </Grid>
         </Viewbox>
     </Grid>
