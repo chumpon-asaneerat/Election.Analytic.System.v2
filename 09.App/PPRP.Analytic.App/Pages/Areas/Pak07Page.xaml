@@ -117,58 +117,71 @@
             </Grid>
             <Grid />
         </DockPanel>
-        <Viewbox>
-            <Grid>
+        <Viewbox Stretch="UniformToFill"
+                 HorizontalAlignment="Stretch"
+                 VerticalAlignment="Stretch">
+            <Canvas Width="1920"
+                    Height="1080"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Stretch">
                 <Button x:Name="cmCmd01"
                         Tag="กาญจนบุรี"
-                        Margin="489,167,1402,702"
+                        Canvas.Left="510"
+                        Canvas.Top="208"
+                        FontSize="20"
                         Style="{StaticResource fa-location}"
-                        Click="cmCmd_Click"
-                        RenderTransformOrigin="-20.029,3.234" />
+                        Click="cmCmd_Click" />
                 <Button x:Name="cmCmd02"
                         Tag="สุพรรณบุรี"
-                        Margin="753,137,1137,726"
+                        Canvas.Left="716"
+                        Canvas.Top="243"
+                        FontSize="20"
                         Style="{StaticResource fa-location}"
-                        Click="cmCmd_Click"
-                        RenderTransformOrigin="-20.029,3.234" />
+                        Click="cmCmd_Click"/>
                 <Button x:Name="cmCmd03"
                         Tag="ประจวบคีรีขันธ์"
-                        Margin="695,698,1195,166"
+                        Canvas.Left="635"
+                        Canvas.Top="726"
+                        FontSize="20"
                         Style="{StaticResource fa-location}"
-                        Click="cmCmd_Click"
-                        RenderTransformOrigin="-20.029,3.234" />
+                        Click="cmCmd_Click" />
                 <Button x:Name="cmCmd04"
                         Tag="สมุทรสาคร"
-                        Margin="798,363,1092,501"
+                        Canvas.Left="773"
+                        Canvas.Top="430"
+                        FontSize="20"
                         Style="{StaticResource fa-location}"
-                        Click="cmCmd_Click"
-                        RenderTransformOrigin="-20.029,3.234" />
+                        Click="cmCmd_Click"/>
                 <Button x:Name="cmCmd05"
                         Tag="สมุทรสงคราม"
-                        Margin="737,418,1153,446"
+                        Canvas.Left="729"
+                        Canvas.Top="472"
+                        FontSize="20"
                         Style="{StaticResource fa-location}"
-                        Click="cmCmd_Click"
-                        RenderTransformOrigin="-20.029,3.234" />
+                        Click="cmCmd_Click"/>
                 <Button x:Name="cmCmd06"
                         Tag="ราชบุรี"
-                        Margin="609,393,1281,471"
+                        Canvas.Left="622"
+                        Canvas.Top="438"
+                        FontSize="20"
                         Style="{StaticResource fa-location}"
-                        Click="cmCmd_Click"
-                        RenderTransformOrigin="-20.029,3.234" />
+                        Click="cmCmd_Click"/>
                 <Button x:Name="cmCmd07"
                         Tag="เพชรบุรี"
-                        Margin="625,513,1265,351"
+                        Canvas.Left="635"
+                        Canvas.Top="564"
+                        FontSize="20"
                         Style="{StaticResource fa-location}"
-                        Click="cmCmd_Click"
-                        RenderTransformOrigin="-20.029,3.234" />
+                        Click="cmCmd_Click"/>
                 <Button x:Name="cmCmd08"
                         Tag="นครปฐม"
-                        Margin="792,306,1098,558"
+                        Canvas.Left="737"
+                        Canvas.Top="356"
+                        FontSize="20"
                         Style="{StaticResource fa-location}"
-                        Click="cmCmd_Click"
-                        RenderTransformOrigin="-20.029,3.234" />
+                        Click="cmCmd_Click"/>
 
-            </Grid>
+            </Canvas>
         </Viewbox>
     </Grid>
 </UserControl>

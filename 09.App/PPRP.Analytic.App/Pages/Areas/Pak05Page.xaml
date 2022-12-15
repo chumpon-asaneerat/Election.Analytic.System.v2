@@ -117,57 +117,62 @@
             </Grid>
             <Grid />
         </DockPanel>
-        <Viewbox>
-            <Grid>
+        <Viewbox Stretch="UniformToFill"
+                 HorizontalAlignment="Stretch"
+                 VerticalAlignment="Stretch">
+            <Canvas Width="1920"
+                    Height="1080"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Stretch">
                 <Button x:Name="cmCmd01"
                         Tag="แม่ฮ่องสอน"
-                        Margin="383,339,1508,530"
+                        Canvas.Left="200"
+                        Canvas.Top="352"
                         Style="{StaticResource fa-location}"
-                        Click="cmCmd_Click"
-                        RenderTransformOrigin="-20.029,3.234" />
+                        Click="cmCmd_Click"/>
                 <Button x:Name="cmCmd02"
                         Tag="พะเยา"
-                        Margin="1045,309,845,556"
+                        Canvas.Left="909"
+                        Canvas.Top="338"
                         Style="{StaticResource fa-location}"
-                        Click="cmCmd_Click"
-                        RenderTransformOrigin="-20.029,3.234" />
+                        Click="cmCmd_Click" />
                 <Button x:Name="cmCmd03"
                         Tag="เชียงใหม่"
-                        Margin="560,260,1330,604"
+                        Canvas.Left="458"
+                        Canvas.Top="399"
                         Style="{StaticResource fa-location}"
-                        Click="cmCmd_Click"
-                        RenderTransformOrigin="-20.029,3.234" />
+                        Click="cmCmd_Click"/>
                 <Button x:Name="cmCmd04"
                         Tag="น่าน"
-                        Margin="1150,436,740,428"
+                        Canvas.Left="1096"
+                        Canvas.Top="533"
                         Style="{StaticResource fa-location}"
-                        Click="cmCmd_Click"
-                        RenderTransformOrigin="-20.029,3.234" />
+                        Click="cmCmd_Click"/>
                 <Button x:Name="cmCmd05"
                         Tag="แพร่"
-                        Margin="983,646,907,218"
+                        Canvas.Left="880"
+                        Canvas.Top="688"
                         Style="{StaticResource fa-location}"
-                        Click="cmCmd_Click"
-                        RenderTransformOrigin="-20.029,3.234" />
+                        Click="cmCmd_Click"/>
                 <Button x:Name="cmCmd06"
                         Tag="ลำปาง"
-                        Margin="805,558,1085,306"
+                        Canvas.Left="666"
+                        Canvas.Top="656"
                         Style="{StaticResource fa-location}"
-                        Click="cmCmd_Click"
-                        RenderTransformOrigin="-20.029,3.234" />
+                        Click="cmCmd_Click" />
                 <Button x:Name="cmCmd07"
                         Tag="ลำพูน"
-                        Margin="634,578,1256,286"
+                        Canvas.Left="465"
+                        Canvas.Top="644"
                         Style="{StaticResource fa-location}"
-                        Click="cmCmd_Click"
-                        RenderTransformOrigin="-20.029,3.234" />
+                        Click="cmCmd_Click"/>
                 <Button x:Name="cmCmd08"
                         Tag="เชียงราย"
-                        Margin="832,101,1058,763"
+                        Canvas.Left="755"
+                        Canvas.Top="160"
                         Style="{StaticResource fa-location}"
-                        Click="cmCmd_Click"
-                        RenderTransformOrigin="-20.029,3.234" />
-            </Grid>
+                        Click="cmCmd_Click" />
+            </Canvas>
         </Viewbox>
     </Grid>
 </UserControl>
