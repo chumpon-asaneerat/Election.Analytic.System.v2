@@ -1,8 +1,9 @@
 ﻿Election.Analytic.System.v2 - PPRP  #560
 - 
 
+[commited]
 Election.Analytic.System.v2 - PPRP  #559
-- 
+- Prepare history.txt
 
 [commited]
 Election.Analytic.System.v2 - PPRP  #558
