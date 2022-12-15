@@ -123,51 +123,59 @@
                         Tag="นครราชสีมา"
                         Margin="347,592,1544,277"
                         Style="{StaticResource fa-location}"
-                        Click="cmCmd_Click" RenderTransformOrigin="-20.029,3.234" />
+                        Click="cmCmd_Click"
+                        RenderTransformOrigin="-20.029,3.234" />
                 <Button x:Name="cmCmd02"
                         Tag="อุบลราชธานี"
                         Margin="1310,575,580,289"
                         Style="{StaticResource fa-location}"
-                        Click="cmCmd_Click" RenderTransformOrigin="-20.029,3.234" />
+                        Click="cmCmd_Click"
+                        RenderTransformOrigin="-20.029,3.234" />
                 <Button x:Name="cmCmd03"
-                    Tag="ชัยภูมิ"
-                    Margin="257,208,1633,656"
-                    Style="{StaticResource fa-location}"
-                    Click="cmCmd_Click" RenderTransformOrigin="-20.029,3.234" />
+                        Tag="ชัยภูมิ"
+                        Margin="257,208,1633,656"
+                        Style="{StaticResource fa-location}"
+                        Click="cmCmd_Click"
+                        RenderTransformOrigin="-20.029,3.234" />
                 <Button x:Name="cmCmd04"
-                    Tag="อำนาจเจริญ"
-                    Margin="1293,208,597,656"
-                    Style="{StaticResource fa-location}"
-                    Click="cmCmd_Click" RenderTransformOrigin="-20.029,3.234" >
+                        Tag="อำนาจเจริญ"
+                        Margin="1293,208,597,656"
+                        Style="{StaticResource fa-location}"
+                        Click="cmCmd_Click"
+                        RenderTransformOrigin="-20.029,3.234">
                     <Button.RenderTransform>
                         <TransformGroup>
-                            <ScaleTransform/>
-                            <SkewTransform/>
-                            <RotateTransform Angle="6.635"/>
-                            <TranslateTransform/>
+                            <ScaleTransform />
+                            <SkewTransform />
+                            <RotateTransform Angle="6.635" />
+                            <TranslateTransform />
                         </TransformGroup>
                     </Button.RenderTransform>
                 </Button>
                 <Button x:Name="cmCmd05"
-                    Tag="ศรีสะเกษ"
-                    Margin="1092,537,798,327"
-                    Style="{StaticResource fa-location}"
-                    Click="cmCmd_Click" RenderTransformOrigin="-20.029,3.234" />
+                        Tag="ศรีสะเกษ"
+                        Margin="1092,537,798,327"
+                        Style="{StaticResource fa-location}"
+                        Click="cmCmd_Click"
+                        RenderTransformOrigin="-20.029,3.234" />
                 <Button x:Name="cmCmd06"
-                    Tag="สุรินทร์"
-                    Margin="839,609,1051,255"
-                    Style="{StaticResource fa-location}"
-                    Click="cmCmd_Click" RenderTransformOrigin="-20.029,3.234" />
+                        Tag="สุรินทร์"
+                        Margin="839,609,1051,255"
+                        Style="{StaticResource fa-location}"
+                        Click="cmCmd_Click"
+                        RenderTransformOrigin="-20.029,3.234" />
                 <Button x:Name="cmCmd07"
-                    Tag="บุรีรัมย์"
-                    Margin="670,563,1220,302"
-                    Style="{StaticResource fa-location}"
-                    Click="cmCmd_Click" RenderTransformOrigin="-20.029,3.234" />
+                        Tag="บุรีรัมย์"
+                        Margin="670,563,1220,302"
+                        Style="{StaticResource fa-location}"
+                        Click="cmCmd_Click"
+                        RenderTransformOrigin="-20.029,3.234" />
                 <Button x:Name="cmCmd08"
-                    Tag="ยโสธร"
-                    Margin="1051,250,839,614"
-                    Style="{StaticResource fa-location}"
-                    Click="cmCmd_Click" RenderTransformOrigin="-20.029,3.234" />
+                        Tag="ยโสธร"
+                        Margin="1051,250,839,614"
+                        Style="{StaticResource fa-location}"
+                        Click="cmCmd_Click"
+                        RenderTransformOrigin="-20.029,3.234" />
 
             </Grid>
         </Viewbox>

@@ -123,42 +123,50 @@
                         Tag="แม่ฮ่องสอน"
                         Margin="383,339,1508,530"
                         Style="{StaticResource fa-location}"
-                        Click="cmCmd_Click" RenderTransformOrigin="-20.029,3.234" />
+                        Click="cmCmd_Click"
+                        RenderTransformOrigin="-20.029,3.234" />
                 <Button x:Name="cmCmd02"
                         Tag="พะเยา"
                         Margin="1045,309,845,556"
                         Style="{StaticResource fa-location}"
-                        Click="cmCmd_Click" RenderTransformOrigin="-20.029,3.234" />
+                        Click="cmCmd_Click"
+                        RenderTransformOrigin="-20.029,3.234" />
                 <Button x:Name="cmCmd03"
-                    Tag="เชียงใหม่"
-                    Margin="560,260,1330,604"
-                    Style="{StaticResource fa-location}"
-                    Click="cmCmd_Click" RenderTransformOrigin="-20.029,3.234" />
+                        Tag="เชียงใหม่"
+                        Margin="560,260,1330,604"
+                        Style="{StaticResource fa-location}"
+                        Click="cmCmd_Click"
+                        RenderTransformOrigin="-20.029,3.234" />
                 <Button x:Name="cmCmd04"
-                    Tag="น่าน"
-                    Margin="1150,436,740,428"
-                    Style="{StaticResource fa-location}"
-                    Click="cmCmd_Click" RenderTransformOrigin="-20.029,3.234" />
+                        Tag="น่าน"
+                        Margin="1150,436,740,428"
+                        Style="{StaticResource fa-location}"
+                        Click="cmCmd_Click"
+                        RenderTransformOrigin="-20.029,3.234" />
                 <Button x:Name="cmCmd05"
-                    Tag="แพร่"
-                    Margin="983,646,907,218"
-                    Style="{StaticResource fa-location}"
-                    Click="cmCmd_Click" RenderTransformOrigin="-20.029,3.234" />
+                        Tag="แพร่"
+                        Margin="983,646,907,218"
+                        Style="{StaticResource fa-location}"
+                        Click="cmCmd_Click"
+                        RenderTransformOrigin="-20.029,3.234" />
                 <Button x:Name="cmCmd06"
-                    Tag="ลำปาง"
-                    Margin="805,558,1085,306"
-                    Style="{StaticResource fa-location}"
-                    Click="cmCmd_Click" RenderTransformOrigin="-20.029,3.234" />
+                        Tag="ลำปาง"
+                        Margin="805,558,1085,306"
+                        Style="{StaticResource fa-location}"
+                        Click="cmCmd_Click"
+                        RenderTransformOrigin="-20.029,3.234" />
                 <Button x:Name="cmCmd07"
-                    Tag="ลำพูน"
-                    Margin="634,578,1256,286"
-                    Style="{StaticResource fa-location}"
-                    Click="cmCmd_Click" RenderTransformOrigin="-20.029,3.234" />
+                        Tag="ลำพูน"
+                        Margin="634,578,1256,286"
+                        Style="{StaticResource fa-location}"
+                        Click="cmCmd_Click"
+                        RenderTransformOrigin="-20.029,3.234" />
                 <Button x:Name="cmCmd08"
-                    Tag="เชียงราย"
-                    Margin="832,101,1058,763"
-                    Style="{StaticResource fa-location}"
-                    Click="cmCmd_Click" RenderTransformOrigin="-20.029,3.234" />
+                        Tag="เชียงราย"
+                        Margin="832,101,1058,763"
+                        Style="{StaticResource fa-location}"
+                        Click="cmCmd_Click"
+                        RenderTransformOrigin="-20.029,3.234" />
             </Grid>
         </Viewbox>
     </Grid>

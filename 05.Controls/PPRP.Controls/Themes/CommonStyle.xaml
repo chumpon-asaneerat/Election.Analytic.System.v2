@@ -373,6 +373,7 @@
                                    VerticalAlignment="Center"
                                    Foreground="{DynamicResource LocationTextColor}"
                                    FontFamily="{StaticResource FontAwesome}"
+                                   FontWeight="Normal"
                                    Visibility="{DynamicResource LocationShowSymbol}"
                                    Text="&#xf3c5;" />
                         <TextBlock Name="txtDisplayLocation"
@@ -380,7 +381,6 @@
                                    TextDecorations="None"
                                    Foreground="{DynamicResource LocationTextColor}"
                                    FontFamily="{StaticResource THSarabun}"
-                                   FontWeight="SemiBold"
                                    Text="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Button}}, Path=Tag}" />
                     </StackPanel>
                     <ControlTemplate.Triggers>
