@@ -14,8 +14,8 @@
         <Visibility x:Key="LocationShowSymbol">Collapsed</Visibility>
         -->
         <Visibility x:Key="LocationShowSymbol">Visible</Visibility>
-        <SolidColorBrush x:Key="LocationTextColor" Color="WhiteSmoke" />
-        <SolidColorBrush x:Key="LocationHoverColor" Color="Yellow" />
+        <SolidColorBrush x:Key="LocationTextColor" Color="DarkRed" />
+        <SolidColorBrush x:Key="LocationHoverColor" Color="DarkBlue" />
     </UserControl.Resources>
     <Grid>
         <Grid.Background>
