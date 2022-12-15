@@ -359,7 +359,8 @@
                      Color="Yellow" />
     <!--  LOCATION BUTTON  -->
     <Style x:Key="fa-location" TargetType="Button">
-        <Setter Property="FontSize" Value="{DynamicResource LocationFontSize}"/>
+        <Setter Property="FontSize" Value="{DynamicResource LocationFontSize}" />
+        <Setter Property="FontFamily" Value="{DynamicResource THSarabun}" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
@@ -376,11 +377,11 @@
                                    FontSize="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Button}}, Path=FontSize}"
                                    Visibility="{DynamicResource LocationShowSymbol}"
                                    Text="&#xf3c5;" />
-                        <Grid Width="5"/>
+                        <Grid Width="5" />
                         <TextBlock Name="txtDisplayLocation"
                                    TextDecorations="None"
                                    Foreground="{DynamicResource LocationTextColor}"
-                                   FontFamily="{StaticResource THSarabun}"
+                                   FontFamily="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Button}}, Path=FontFamily}"
                                    FontSize="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Button}}, Path=FontSize}"
                                    Text="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Button}}, Path=Tag}" />
                     </StackPanel>
