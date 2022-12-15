@@ -359,6 +359,7 @@
                      Color="Yellow" />
     <!--  LOCATION BUTTON  -->
     <Style x:Key="fa-location" TargetType="Button">
+        <Setter Property="Foreground" Value="{DynamicResource LocationTextColor}" />
         <Setter Property="FontSize" Value="{DynamicResource LocationFontSize}" />
         <Setter Property="FontFamily" Value="{DynamicResource THSarabun}" />
         <Setter Property="Template">
@@ -371,7 +372,7 @@
                                    TextDecorations="None"
                                    HorizontalAlignment="Center"
                                    VerticalAlignment="Center"
-                                   Foreground="{DynamicResource LocationTextColor}"
+                                   Foreground="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Button}}, Path=Foreground}"
                                    FontFamily="{StaticResource FontAwesome}"
                                    FontWeight="Normal"
                                    FontSize="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Button}}, Path=FontSize}"
@@ -380,9 +381,10 @@
                         <Grid Width="5" />
                         <TextBlock Name="txtDisplayLocation"
                                    TextDecorations="None"
-                                   Foreground="{DynamicResource LocationTextColor}"
+                                   Foreground="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Button}}, Path=Foreground}"
                                    FontFamily="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Button}}, Path=FontFamily}"
                                    FontSize="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Button}}, Path=FontSize}"
+                                   FontWeight="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Button}}, Path=FontWeight}"
                                    Text="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Button}}, Path=Tag}" />
                     </StackPanel>
                     <ControlTemplate.Triggers>
