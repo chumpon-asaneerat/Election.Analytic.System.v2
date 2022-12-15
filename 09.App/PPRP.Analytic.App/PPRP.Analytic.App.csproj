@@ -248,11 +248,6 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\Logo\PPRPLogo.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="app.ico" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Images\Maps\Pak1.jpg" />
     <Resource Include="Images\Maps\Pak10.jpg" />
     <Resource Include="Images\Maps\Pak2.jpg" />
@@ -264,6 +259,9 @@
     <Resource Include="Images\Maps\Pak8.jpg" />
     <Resource Include="Images\Maps\Pak9.jpg" />
     <Resource Include="Images\Maps\Thailand.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="app.ico" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
