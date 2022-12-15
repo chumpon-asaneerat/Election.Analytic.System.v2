@@ -367,20 +367,21 @@
                                 HorizontalAlignment="Center"
                                 VerticalAlignment="Center">
                         <TextBlock Name="txtDisplaySymbol"
-                                   Margin="5,0"
                                    TextDecorations="None"
                                    HorizontalAlignment="Center"
                                    VerticalAlignment="Center"
                                    Foreground="{DynamicResource LocationTextColor}"
                                    FontFamily="{StaticResource FontAwesome}"
                                    FontWeight="Normal"
+                                   FontSize="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Button}}, Path=FontSize}"
                                    Visibility="{DynamicResource LocationShowSymbol}"
                                    Text="&#xf3c5;" />
+                        <Grid Width="5"/>
                         <TextBlock Name="txtDisplayLocation"
-                                   Margin="0,0,5,0"
                                    TextDecorations="None"
                                    Foreground="{DynamicResource LocationTextColor}"
                                    FontFamily="{StaticResource THSarabun}"
+                                   FontSize="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Button}}, Path=FontSize}"
                                    Text="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Button}}, Path=Tag}" />
                     </StackPanel>
                     <ControlTemplate.Triggers>
