@@ -381,6 +381,7 @@
                                    Foreground="{DynamicResource LocationTextColor}"
                                    FontFamily="{StaticResource THSarabun}"
                                    FontSize="{DynamicResource LocationFontSize}"
+                                   FontWeight="SemiBold"
                                    Text="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Button}}, Path=Tag}" />
                     </StackPanel>
                     <ControlTemplate.Triggers>
