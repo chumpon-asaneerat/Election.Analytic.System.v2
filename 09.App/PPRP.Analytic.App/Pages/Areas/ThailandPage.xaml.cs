@@ -34,6 +34,20 @@ namespace PPRP.Pages
 
         #endregion
 
+        #region Helper Peroperties
+
+        private List<PakMenuItem> Regions
+        {
+            get
+            {
+                var regions = (AreaNavi.Instance.HasRegions && null != AreaNavi.Instance.Regions) ?
+                    AreaNavi.Instance.Regions : null;
+                return regions;
+            }
+        }
+
+        #endregion
+
         #region Private Methods
 
         private void GotoPak(PakMenuItem pak)
@@ -167,6 +181,21 @@ namespace PPRP.Pages
             }
 
             navPaks.Setup(menuItems, this.CmdPakProvinceClickCallback);
+        }
+
+        #endregion
+
+        #region Nav Click
+
+        private void cmCmd_Click(object sender, RoutedEventArgs e)
+        {
+            Button btn = (sender as Button);
+            string pakName = btn.Tag.ToString();
+            var pak = Regions.Find((region) => { return region.RegionName == pakName; });
+            if (null != pak)
+            {
+                GotoPak(pak);
+            }
         }
 
         #endregion
