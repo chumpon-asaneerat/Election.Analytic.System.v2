@@ -123,37 +123,44 @@
                         Tag="ระนอง"
                         Margin="683,219,1208,650"
                         Style="{StaticResource fa-location}"
-                        Click="cmCmd_Click" RenderTransformOrigin="-20.029,3.234" />
+                        Click="cmCmd_Click"
+                        RenderTransformOrigin="-20.029,3.234" />
                 <Button x:Name="cmCmd02"
                         Tag="ชุมพร"
                         Margin="727,110,1163,753"
                         Style="{StaticResource fa-location}"
-                        Click="cmCmd_Click" RenderTransformOrigin="-20.029,3.234" />
+                        Click="cmCmd_Click"
+                        RenderTransformOrigin="-20.029,3.234" />
                 <Button x:Name="cmCmd03"
-                    Tag="สุราษฎร์ธานี"
-                    Margin="680,537,1210,327"
-                    Style="{StaticResource fa-location}"
-                    Click="cmCmd_Click" RenderTransformOrigin="-20.029,3.234" />
+                        Tag="สุราษฎร์ธานี"
+                        Margin="680,537,1210,327"
+                        Style="{StaticResource fa-location}"
+                        Click="cmCmd_Click"
+                        RenderTransformOrigin="-20.029,3.234" />
                 <Button x:Name="cmCmd04"
-                    Tag="นครศรีธรรมราช"
-                    Margin="891,732,999,132"
-                    Style="{StaticResource fa-location}"
-                    Click="cmCmd_Click" RenderTransformOrigin="-20.029,3.234" />
+                        Tag="นครศรีธรรมราช"
+                        Margin="891,732,999,132"
+                        Style="{StaticResource fa-location}"
+                        Click="cmCmd_Click"
+                        RenderTransformOrigin="-20.029,3.234" />
                 <Button x:Name="cmCmd05"
-                    Tag="กระบี่"
-                    Margin="727,733,1163,132"
-                    Style="{StaticResource fa-location}"
-                    Click="cmCmd_Click" RenderTransformOrigin="-20.029,3.234" />
+                        Tag="กระบี่"
+                        Margin="727,733,1163,132"
+                        Style="{StaticResource fa-location}"
+                        Click="cmCmd_Click"
+                        RenderTransformOrigin="-20.029,3.234" />
                 <Button x:Name="cmCmd06"
-                    Tag="ภูเก็ต"
-                    Margin="542,827,1348,38"
-                    Style="{StaticResource fa-location}"
-                    Click="cmCmd_Click" RenderTransformOrigin="-20.029,3.234" />
+                        Tag="ภูเก็ต"
+                        Margin="542,827,1348,38"
+                        Style="{StaticResource fa-location}"
+                        Click="cmCmd_Click"
+                        RenderTransformOrigin="-20.029,3.234" />
                 <Button x:Name="cmCmd07"
-                    Tag="พังงา"
-                    Margin="529,606,1361,258"
-                    Style="{StaticResource fa-location}"
-                    Click="cmCmd_Click" RenderTransformOrigin="-20.029,3.234" />
+                        Tag="พังงา"
+                        Margin="529,606,1361,258"
+                        Style="{StaticResource fa-location}"
+                        Click="cmCmd_Click"
+                        RenderTransformOrigin="-20.029,3.234" />
 
 
             </Grid>

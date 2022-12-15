@@ -123,42 +123,50 @@
                         Tag="กาญจนบุรี"
                         Margin="489,167,1402,702"
                         Style="{StaticResource fa-location}"
-                        Click="cmCmd_Click" RenderTransformOrigin="-20.029,3.234" />
+                        Click="cmCmd_Click"
+                        RenderTransformOrigin="-20.029,3.234" />
                 <Button x:Name="cmCmd02"
                         Tag="สุพรรณบุรี"
                         Margin="753,137,1137,726"
                         Style="{StaticResource fa-location}"
-                        Click="cmCmd_Click" RenderTransformOrigin="-20.029,3.234" />
+                        Click="cmCmd_Click"
+                        RenderTransformOrigin="-20.029,3.234" />
                 <Button x:Name="cmCmd03"
-                    Tag="ประจวบคีรีขันธ์"
-                    Margin="695,698,1195,166"
-                    Style="{StaticResource fa-location}"
-                    Click="cmCmd_Click" RenderTransformOrigin="-20.029,3.234" />
+                        Tag="ประจวบคีรีขันธ์"
+                        Margin="695,698,1195,166"
+                        Style="{StaticResource fa-location}"
+                        Click="cmCmd_Click"
+                        RenderTransformOrigin="-20.029,3.234" />
                 <Button x:Name="cmCmd04"
-                    Tag="สมุทรสาคร"
-                    Margin="798,363,1092,501"
-                    Style="{StaticResource fa-location}"
-                    Click="cmCmd_Click" RenderTransformOrigin="-20.029,3.234" />
+                        Tag="สมุทรสาคร"
+                        Margin="798,363,1092,501"
+                        Style="{StaticResource fa-location}"
+                        Click="cmCmd_Click"
+                        RenderTransformOrigin="-20.029,3.234" />
                 <Button x:Name="cmCmd05"
-                    Tag="สมุทรสงคราม"
-                    Margin="737,418,1153,446"
-                    Style="{StaticResource fa-location}"
-                    Click="cmCmd_Click" RenderTransformOrigin="-20.029,3.234" />
+                        Tag="สมุทรสงคราม"
+                        Margin="737,418,1153,446"
+                        Style="{StaticResource fa-location}"
+                        Click="cmCmd_Click"
+                        RenderTransformOrigin="-20.029,3.234" />
                 <Button x:Name="cmCmd06"
-                    Tag="ราชบุรี"
-                    Margin="609,393,1281,471"
-                    Style="{StaticResource fa-location}"
-                    Click="cmCmd_Click" RenderTransformOrigin="-20.029,3.234" />
+                        Tag="ราชบุรี"
+                        Margin="609,393,1281,471"
+                        Style="{StaticResource fa-location}"
+                        Click="cmCmd_Click"
+                        RenderTransformOrigin="-20.029,3.234" />
                 <Button x:Name="cmCmd07"
-                    Tag="เพชรบุรี"
-                    Margin="625,513,1265,351"
-                    Style="{StaticResource fa-location}"
-                    Click="cmCmd_Click" RenderTransformOrigin="-20.029,3.234" />
+                        Tag="เพชรบุรี"
+                        Margin="625,513,1265,351"
+                        Style="{StaticResource fa-location}"
+                        Click="cmCmd_Click"
+                        RenderTransformOrigin="-20.029,3.234" />
                 <Button x:Name="cmCmd08"
-                    Tag="นครปฐม"
-                    Margin="792,306,1098,558"
-                    Style="{StaticResource fa-location}"
-                    Click="cmCmd_Click" RenderTransformOrigin="-20.029,3.234" />
+                        Tag="นครปฐม"
+                        Margin="792,306,1098,558"
+                        Style="{StaticResource fa-location}"
+                        Click="cmCmd_Click"
+                        RenderTransformOrigin="-20.029,3.234" />
 
             </Grid>
         </Viewbox>
