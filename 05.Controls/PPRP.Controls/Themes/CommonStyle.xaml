@@ -359,6 +359,7 @@
                      Color="Yellow" />
     <!--  LOCATION BUTTON  -->
     <Style x:Key="fa-location" TargetType="Button">
+        <Setter Property="FontSize" Value="{DynamicResource LocationFontSize}"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
@@ -372,7 +373,6 @@
                                    VerticalAlignment="Center"
                                    Foreground="{DynamicResource LocationTextColor}"
                                    FontFamily="{StaticResource FontAwesome}"
-                                   FontSize="{DynamicResource LocationFontSize}"
                                    Visibility="{DynamicResource LocationShowSymbol}"
                                    Text="&#xf3c5;" />
                         <TextBlock Name="txtDisplayLocation"
@@ -380,7 +380,6 @@
                                    TextDecorations="None"
                                    Foreground="{DynamicResource LocationTextColor}"
                                    FontFamily="{StaticResource THSarabun}"
-                                   FontSize="{DynamicResource LocationFontSize}"
                                    FontWeight="SemiBold"
                                    Text="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Button}}, Path=Tag}" />
                     </StackPanel>
