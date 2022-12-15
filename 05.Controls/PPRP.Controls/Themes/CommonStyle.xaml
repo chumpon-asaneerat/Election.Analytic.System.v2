@@ -366,6 +366,7 @@
                                 HorizontalAlignment="Center"
                                 VerticalAlignment="Center">
                         <TextBlock Name="txtDisplaySymbol"
+                                   Margin="5,0"
                                    TextDecorations="None"
                                    HorizontalAlignment="Center"
                                    VerticalAlignment="Center"
@@ -375,7 +376,7 @@
                                    Visibility="{DynamicResource LocationShowSymbol}"
                                    Text="&#xf3c5;" />
                         <TextBlock Name="txtDisplayLocation"
-                                   Margin="5,0,0,0"
+                                   Margin="0,0,5,0"
                                    TextDecorations="None"
                                    Foreground="{DynamicResource LocationTextColor}"
                                    FontFamily="{StaticResource THSarabun}"
