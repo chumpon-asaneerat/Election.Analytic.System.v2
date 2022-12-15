@@ -3,11 +3,21 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
              xmlns:menu="clr-namespace:PPRP.Controls"
              mc:Ignorable="d"
              d:DesignHeight="1000"
              d:DesignWidth="1920"
              Background="#2E75B7">
+    <UserControl.Resources>
+        <sys:Double x:Key="LocationFontSize">36</sys:Double>
+        <!--
+        <Visibility x:Key="LocationShowSymbol">Collapsed</Visibility>
+        -->
+        <Visibility x:Key="LocationShowSymbol">Visible</Visibility>
+        <SolidColorBrush x:Key="LocationTextColor" Color="DarkRed" />
+        <SolidColorBrush x:Key="LocationHoverColor" Color="DarkBlue" />
+    </UserControl.Resources>
     <DockPanel LastChildFill="True" Background="{StaticResource BlueLightBrush}">
         <!--  MAPS  -->
         <Border DockPanel.Dock="Left"
@@ -17,6 +27,22 @@
                 <Grid.Background>
                     <ImageBrush ImageSource="/PPRP.Analytic.App;component/Images/Maps/Thailand.jpg" Stretch="UniformToFill" />
                 </Grid.Background>
+                <!--  LOCATION  -->
+                <Viewbox Stretch="UniformToFill"
+                         HorizontalAlignment="Stretch"
+                         VerticalAlignment="Stretch">
+                    <Canvas Width="600"
+                            Height="1080"
+                            HorizontalAlignment="Stretch"
+                            VerticalAlignment="Stretch">
+                        <Button x:Name="cmCmd01"
+                                Tag="ภาค 1"
+                                Canvas.Left="328"
+                                Canvas.Top="198"
+                                Style="{StaticResource fa-location}"
+                                Click="cmCmd_Click" />
+                    </Canvas>
+                </Viewbox>
             </Grid>
         </Border>
         <!--  NAVIAGE MENU AREAS  -->

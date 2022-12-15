@@ -117,6 +117,7 @@
             </Grid>
             <Grid />
         </DockPanel>
+        <!--  LOCATION  -->
         <Viewbox Stretch="UniformToFill"
                  HorizontalAlignment="Stretch"
                  VerticalAlignment="Stretch">
@@ -129,7 +130,7 @@
                         Canvas.Left="200"
                         Canvas.Top="352"
                         Style="{StaticResource fa-location}"
-                        Click="cmCmd_Click"/>
+                        Click="cmCmd_Click" />
                 <Button x:Name="cmCmd02"
                         Tag="พะเยา"
                         Canvas.Left="909"
@@ -141,19 +142,19 @@
                         Canvas.Left="458"
                         Canvas.Top="399"
                         Style="{StaticResource fa-location}"
-                        Click="cmCmd_Click"/>
+                        Click="cmCmd_Click" />
                 <Button x:Name="cmCmd04"
                         Tag="น่าน"
                         Canvas.Left="1096"
                         Canvas.Top="533"
                         Style="{StaticResource fa-location}"
-                        Click="cmCmd_Click"/>
+                        Click="cmCmd_Click" />
                 <Button x:Name="cmCmd05"
                         Tag="แพร่"
                         Canvas.Left="880"
                         Canvas.Top="688"
                         Style="{StaticResource fa-location}"
-                        Click="cmCmd_Click"/>
+                        Click="cmCmd_Click" />
                 <Button x:Name="cmCmd06"
                         Tag="ลำปาง"
                         Canvas.Left="666"
@@ -165,7 +166,7 @@
                         Canvas.Left="465"
                         Canvas.Top="644"
                         Style="{StaticResource fa-location}"
-                        Click="cmCmd_Click"/>
+                        Click="cmCmd_Click" />
                 <Button x:Name="cmCmd08"
                         Tag="เชียงราย"
                         Canvas.Left="755"

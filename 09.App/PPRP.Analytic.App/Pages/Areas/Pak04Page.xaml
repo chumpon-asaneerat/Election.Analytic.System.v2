@@ -117,6 +117,7 @@
             </Grid>
             <Grid />
         </DockPanel>
+        <!--  LOCATION  -->
         <Viewbox Stretch="UniformToFill"
                  HorizontalAlignment="Stretch"
                  VerticalAlignment="Stretch">
@@ -129,25 +130,25 @@
                         Canvas.Left="224"
                         Canvas.Top="303"
                         Style="{StaticResource fa-location}"
-                        Click="cmCmd_Click"/>
+                        Click="cmCmd_Click" />
                 <Button x:Name="cmCmd02"
                         Tag="หนองคาย"
                         Canvas.Left="662"
                         Canvas.Top="119"
                         Style="{StaticResource fa-location}"
-                        Click="cmCmd_Click"/>
+                        Click="cmCmd_Click" />
                 <Button x:Name="cmCmd03"
                         Tag="หนองบัวลำภู"
                         Canvas.Left="408"
                         Canvas.Top="443"
                         Style="{StaticResource fa-location}"
-                        Click="cmCmd_Click"/>
+                        Click="cmCmd_Click" />
                 <Button x:Name="cmCmd04"
                         Tag="บึงกาฬ"
                         Canvas.Left="899"
                         Canvas.Top="42"
                         Style="{StaticResource fa-location}"
-                        Click="cmCmd_Click"/>
+                        Click="cmCmd_Click" />
                 <Button x:Name="cmCmd05"
                         Tag="สกลนคร"
                         Canvas.Left="892"
@@ -159,13 +160,13 @@
                         Canvas.Left="670"
                         Canvas.Top="738"
                         Style="{StaticResource fa-location}"
-                        Click="cmCmd_Click"/>
+                        Click="cmCmd_Click" />
                 <Button x:Name="cmCmd07"
                         Tag="ขอนแก่น"
                         Canvas.Left="545"
                         Canvas.Top="571"
                         Style="{StaticResource fa-location}"
-                        Click="cmCmd_Click"/>
+                        Click="cmCmd_Click" />
                 <Button x:Name="cmCmd08"
                         Tag="อุดรธานี"
                         Canvas.Left="618"
@@ -189,13 +190,13 @@
                         Canvas.Left="1125"
                         Canvas.Top="561"
                         Style="{StaticResource fa-location}"
-                        Click="cmCmd_Click"/>
+                        Click="cmCmd_Click" />
                 <Button x:Name="cmCmd12"
                         Tag="ร้อยเอ็ด"
                         Canvas.Left="898"
                         Canvas.Top="859"
                         Style="{StaticResource fa-location}"
-                        Click="cmCmd_Click"/>
+                        Click="cmCmd_Click" />
             </Canvas>
         </Viewbox>
     </Grid>

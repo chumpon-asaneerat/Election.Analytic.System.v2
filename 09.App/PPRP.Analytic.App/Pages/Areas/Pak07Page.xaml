@@ -117,6 +117,7 @@
             </Grid>
             <Grid />
         </DockPanel>
+        <!--  LOCATION  -->
         <Viewbox Stretch="UniformToFill"
                  HorizontalAlignment="Stretch"
                  VerticalAlignment="Stretch">
@@ -137,7 +138,7 @@
                         Canvas.Top="243"
                         FontSize="20"
                         Style="{StaticResource fa-location}"
-                        Click="cmCmd_Click"/>
+                        Click="cmCmd_Click" />
                 <Button x:Name="cmCmd03"
                         Tag="ประจวบคีรีขันธ์"
                         Canvas.Left="635"
@@ -151,35 +152,35 @@
                         Canvas.Top="430"
                         FontSize="20"
                         Style="{StaticResource fa-location}"
-                        Click="cmCmd_Click"/>
+                        Click="cmCmd_Click" />
                 <Button x:Name="cmCmd05"
                         Tag="สมุทรสงคราม"
                         Canvas.Left="729"
                         Canvas.Top="472"
                         FontSize="20"
                         Style="{StaticResource fa-location}"
-                        Click="cmCmd_Click"/>
+                        Click="cmCmd_Click" />
                 <Button x:Name="cmCmd06"
                         Tag="ราชบุรี"
                         Canvas.Left="622"
                         Canvas.Top="438"
                         FontSize="20"
                         Style="{StaticResource fa-location}"
-                        Click="cmCmd_Click"/>
+                        Click="cmCmd_Click" />
                 <Button x:Name="cmCmd07"
                         Tag="เพชรบุรี"
                         Canvas.Left="635"
                         Canvas.Top="564"
                         FontSize="20"
                         Style="{StaticResource fa-location}"
-                        Click="cmCmd_Click"/>
+                        Click="cmCmd_Click" />
                 <Button x:Name="cmCmd08"
                         Tag="นครปฐม"
                         Canvas.Left="737"
                         Canvas.Top="356"
                         FontSize="20"
                         Style="{StaticResource fa-location}"
-                        Click="cmCmd_Click"/>
+                        Click="cmCmd_Click" />
 
             </Canvas>
         </Viewbox>

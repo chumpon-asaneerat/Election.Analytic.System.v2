@@ -117,6 +117,7 @@
             </Grid>
             <Grid />
         </DockPanel>
+        <!--  LOCATION  -->
         <Viewbox Stretch="UniformToFill"
                  HorizontalAlignment="Stretch"
                  VerticalAlignment="Stretch">
@@ -135,37 +136,37 @@
                         Canvas.Left="777"
                         Canvas.Top="202"
                         Style="{StaticResource fa-location}"
-                        Click="cmCmd_Click"/>
+                        Click="cmCmd_Click" />
                 <Button x:Name="cmCmd03"
                         Tag="สุโขทัย"
                         Canvas.Left="566"
                         Canvas.Top="251"
                         Style="{StaticResource fa-location}"
-                        Click="cmCmd_Click"/>
+                        Click="cmCmd_Click" />
                 <Button x:Name="cmCmd04"
                         Tag="กำแพงเพชร"
                         Canvas.Left="483"
                         Canvas.Top="586"
                         Style="{StaticResource fa-location}"
-                        Click="cmCmd_Click"/>
+                        Click="cmCmd_Click" />
                 <Button x:Name="cmCmd05"
                         Tag="เพชรบูรณ์"
                         Canvas.Left="939"
                         Canvas.Top="608"
                         Style="{StaticResource fa-location}"
-                        Click="cmCmd_Click"/>
+                        Click="cmCmd_Click" />
                 <Button x:Name="cmCmd06"
                         Tag="พิจิตร"
                         Canvas.Left="771"
                         Canvas.Top="596"
                         Style="{StaticResource fa-location}"
-                        Click="cmCmd_Click"/>
+                        Click="cmCmd_Click" />
                 <Button x:Name="cmCmd07"
                         Tag="พิษณุโลก"
                         Canvas.Left="796"
                         Canvas.Top="376"
                         Style="{StaticResource fa-location}"
-                        Click="cmCmd_Click"/>
+                        Click="cmCmd_Click" />
                 <Button x:Name="cmCmd08"
                         Tag="นครสวรรค์"
                         Canvas.Left="677"

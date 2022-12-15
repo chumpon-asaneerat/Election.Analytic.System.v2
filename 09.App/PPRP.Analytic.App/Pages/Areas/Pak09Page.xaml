@@ -117,6 +117,7 @@
             </Grid>
             <Grid />
         </DockPanel>
+        <!--  LOCATION  -->
         <Viewbox Stretch="UniformToFill"
                  HorizontalAlignment="Stretch"
                  VerticalAlignment="Stretch">
@@ -129,19 +130,19 @@
                         Canvas.Left="328"
                         Canvas.Top="198"
                         Style="{StaticResource fa-location}"
-                        Click="cmCmd_Click"/>
+                        Click="cmCmd_Click" />
                 <Button x:Name="cmCmd02"
                         Tag="พัทลุง"
                         Canvas.Left="518"
                         Canvas.Top="216"
                         Style="{StaticResource fa-location}"
-                        Click="cmCmd_Click"/>
+                        Click="cmCmd_Click" />
                 <Button x:Name="cmCmd03"
                         Tag="สตูล"
                         Canvas.Left="480"
                         Canvas.Top="470"
                         Style="{StaticResource fa-location}"
-                        Click="cmCmd_Click"/>
+                        Click="cmCmd_Click" />
                 <Button x:Name="cmCmd04"
                         Tag="นราธิวาส"
                         Canvas.Left="1232"
@@ -159,13 +160,13 @@
                         Canvas.Left="1039"
                         Canvas.Top="776"
                         Style="{StaticResource fa-location}"
-                        Click="cmCmd_Click"/>
+                        Click="cmCmd_Click" />
                 <Button x:Name="cmCmd07"
                         Tag="สงขลา"
                         Canvas.Left="707"
                         Canvas.Top="457"
                         Style="{StaticResource fa-location}"
-                        Click="cmCmd_Click"/>
+                        Click="cmCmd_Click" />
             </Canvas>
         </Viewbox>
     </Grid>

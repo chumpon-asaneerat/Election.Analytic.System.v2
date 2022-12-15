@@ -117,7 +117,7 @@
             </Grid>
             <Grid />
         </DockPanel>
-        <!--  CLICKABLE LABEL  -->
+        <!--  LOCATION  -->
         <Viewbox Stretch="UniformToFill"
                  HorizontalAlignment="Stretch"
                  VerticalAlignment="Stretch">
