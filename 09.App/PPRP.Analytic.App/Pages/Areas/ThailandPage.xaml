@@ -35,13 +35,13 @@
                             HorizontalAlignment="Stretch"
                             VerticalAlignment="Stretch">
                         <Canvas.Background>
-                            <ImageBrush ImageSource="/PPRP.Analytic.App;component/Images/Maps/Thailand.jpg" 
-                                        Stretch="Fill" />
+                            <ImageBrush ImageSource="/PPRP.Analytic.App;component/Images/Maps/Thailand.jpg" Stretch="Fill" />
                         </Canvas.Background>
                         <Button x:Name="cmCmd01"
                                 Tag="ภาค 1"
-                                Canvas.Left="208"
-                                Canvas.Top="398"
+                                Canvas.Left="216"
+                                Canvas.Top="391"
+                                FontSize="25"
                                 Style="{StaticResource fa-location}"
                                 Click="cmCmd_Click" />
                         <Button x:Name="cmCmd02"
