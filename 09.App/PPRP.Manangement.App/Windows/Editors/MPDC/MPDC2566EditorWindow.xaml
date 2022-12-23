@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:sys="clr-namespace:System;assembly=mscorlib"
         xmlns:ctrl="clr-namespace:PPRP.Controls"
+        xmlns:util="clr-namespace:PPRP.Controls.Utils;assembly=PPRP.Controls"
         Title="ข้อมูลว่าที่ผู้สมัคร 2566"
         HorizontalAlignment="Center"
         VerticalAlignment="Center"
@@ -12,7 +13,7 @@
         WindowStartupLocation="CenterOwner"
         SizeToContent="Width"
         ResizeMode="NoResize"
-        Height="500"
+        Height="700"
         Width="950"
         mc:Ignorable="d">
     <Window.Resources>
@@ -116,10 +117,168 @@
                         <Grid />
                     </DockPanel>
                     <!--  EDITOR  -->
-                    <Grid />
-                    <!--
-                    <ctrl:MPersonEditorControl x:Name="ed" />
-                    -->
+                    <DockPanel LastChildFill="True">
+                        <!--  PERSON EDITOR  -->
+                        <ctrl:MPersonEditorControl x:Name="personEditor"
+                                                   DockPanel.Dock="Top"
+                                                   Height="350" />
+                        <!--  CANDIDATE EDITOR  -->
+                        <DockPanel LastChildFill="True">
+                            <StackPanel Orientation="Vertical" DockPanel.Dock="Left">
+                                <!--  PROVINCE/POLLING UNIT NO/CANDIDATE NO/SUB GROUP  -->
+                                <StackPanel Orientation="Horizontal"
+                                            DockPanel.Dock="Top"
+                                            VerticalAlignment="Center"
+                                            HorizontalAlignment="Left">
+                                    <!--  PROVINCE  -->
+                                    <StackPanel Orientation="Vertical" VerticalAlignment="Center">
+                                        <TextBlock Text="จังหวัด"
+                                                   Margin="5,0"
+                                                   VerticalAlignment="Center"
+                                                   TextAlignment="Left"
+                                                   Foreground="WhiteSmoke" />
+                                        <ComboBox x:Name="cbProvince"
+                                                  Margin="5,0"
+                                                  Width="275"
+                                                  FontFamily="{StaticResource THSarabun}"
+                                                  FontSize="{StaticResource FontSize18}"
+                                                  VerticalContentAlignment="Center"
+                                                  IsSynchronizedWithCurrentItem="False"
+                                                  DisplayMemberPath="ProvinceNameTH"
+                                                  SelectedValuePath="ADM1Code"
+                                                  SelectedValue="{Binding Path=ADM1Code}" />
+                                    </StackPanel>
+                                    <!--  POLLING UNIT NO  -->
+                                    <StackPanel Orientation="Vertical"
+                                                Width="50"
+                                                VerticalAlignment="Center">
+                                        <TextBlock Text="เขต"
+                                                   Margin="5,0"
+                                                   VerticalAlignment="Center"
+                                                   TextAlignment="Left"
+                                                   Foreground="WhiteSmoke" />
+                                        <TextBox x:Name="txtPollingUnitNo"
+                                                 Margin="5,0"
+                                                 VerticalAlignment="Center"
+                                                 TextAlignment="Center"
+                                                 util:FocusOptions.SelectAll="True"
+                                                 util:KeyboardOptions.Enabled="True"
+                                                 util:KeyboardOptions.EnterAsTab="True"
+                                                 util:KeyboardOptions.LeftRightNavigation="True"
+                                                 util:KeyboardOptions.UpDownNavigation="True"
+                                                 Style="{StaticResource CommonTextBox}"
+                                                 FontFamily="{StaticResource THSarabun}"
+                                                 FontSize="{StaticResource FontSize20}"
+                                                 Text="{Binding PollingUnitNo}" />
+                                    </StackPanel>
+                                    <!--  CANDIDATE NO  -->
+                                    <StackPanel Orientation="Vertical"
+                                                Width="75"
+                                                VerticalAlignment="Center">
+                                        <TextBlock Text="ลำดับที่"
+                                                   Margin="5,0"
+                                                   DockPanel.Dock="Left"
+                                                   VerticalAlignment="Center"
+                                                   TextAlignment="Left"
+                                                   Foreground="WhiteSmoke" />
+                                        <TextBox x:Name="txtCandidateNo"
+                                                 Margin="5,0"
+                                                 VerticalAlignment="Center"
+                                                 TextAlignment="Center"
+                                                 util:FocusOptions.SelectAll="True"
+                                                 util:KeyboardOptions.Enabled="True"
+                                                 util:KeyboardOptions.EnterAsTab="True"
+                                                 util:KeyboardOptions.LeftRightNavigation="True"
+                                                 util:KeyboardOptions.UpDownNavigation="True"
+                                                 Style="{StaticResource CommonTextBox}"
+                                                 FontFamily="{StaticResource THSarabun}"
+                                                 FontSize="{StaticResource FontSize20}"
+                                                 Text="{Binding CandidateNo}" />
+                                    </StackPanel>
+                                    <!--  SUB GROUP  -->
+                                    <StackPanel Orientation="Vertical"
+                                                Width="250"
+                                                VerticalAlignment="Center">
+                                        <TextBlock Text="**"
+                                                   Margin="5,0"
+                                                   DockPanel.Dock="Left"
+                                                   VerticalAlignment="Center"
+                                                   TextAlignment="Left"
+                                                   Foreground="WhiteSmoke" />
+                                        <TextBox x:Name="txtCandidateSubGroup"
+                                                 Margin="5,0"
+                                                 VerticalAlignment="Center"
+                                                 TextAlignment="Left"
+                                                 util:FocusOptions.SelectAll="True"
+                                                 util:KeyboardOptions.Enabled="True"
+                                                 util:KeyboardOptions.EnterAsTab="True"
+                                                 util:KeyboardOptions.LeftRightNavigation="True"
+                                                 util:KeyboardOptions.UpDownNavigation="True"
+                                                 Style="{StaticResource CommonTextBox}"
+                                                 FontFamily="{StaticResource THSarabun}"
+                                                 FontSize="{StaticResource FontSize20}"
+                                                 Text="{Binding CandidateSubGroup}" />
+                                    </StackPanel>
+                                </StackPanel>
+                                <!--  REMARK  -->
+                                <StackPanel Orientation="Horizontal" DockPanel.Dock="Top">
+                                    <!--  Remark  -->
+                                    <StackPanel Orientation="Vertical"
+                                                Width="660"
+                                                VerticalAlignment="Center">
+                                        <TextBlock Text="บันทึกเพิ่มเติม"
+                                                   Margin="5,0"
+                                                   DockPanel.Dock="Left"
+                                                   VerticalAlignment="Center"
+                                                   TextAlignment="Left"
+                                                   Foreground="WhiteSmoke" />
+                                        <TextBox x:Name="txtCandidateRemark"
+                                                 Margin="5,0"
+                                                 Height="150"
+                                                 VerticalAlignment="Center"
+                                                 TextAlignment="Left"
+                                                 Style="{StaticResource CommonTextBox}"
+                                                 FontFamily="{StaticResource THSarabun}"
+                                                 FontSize="{StaticResource FontSize20}"
+                                                 TextWrapping="Wrap"
+                                                 Text="{Binding CandidateRemark}" />
+                                    </StackPanel>
+                                </StackPanel>
+                            </StackPanel>
+                            <!--  PREV PARTY  -->
+                            <StackPanel Orientation="Vertical" DockPanel.Dock="Left" Width="270">
+                                <TextBlock Text="ต้นสังกัดเดิม"
+                                           Margin="5,0"
+                                           DockPanel.Dock="Left"
+                                           VerticalAlignment="Center"
+                                           TextAlignment="Left"
+                                           Foreground="WhiteSmoke" />
+                                <ComboBox x:Name="cbParties"
+                                          Margin="5,0"
+                                          FontFamily="{StaticResource THSarabun}"
+                                          FontSize="{StaticResource FontSize18}"
+                                          VerticalContentAlignment="Center"
+                                          HorizontalAlignment="Stretch"
+                                          HorizontalContentAlignment="Stretch"
+                                          IsSynchronizedWithCurrentItem="False"
+                                          DisplayMemberPath="PartyName"
+                                          SelectionChanged="cbParties_SelectionChanged" />
+                                <Border BorderBrush="Silver"
+                                        BorderThickness="1"
+                                        CornerRadius="3"
+                                        Margin="5"
+                                        Height="160"
+                                        Width="160">
+                                    <Image x:Name="imgParty"
+                                           Margin="5"
+                                           Stretch="UniformToFill"
+                                           Height="150"
+                                           Source="{Binding Image}" />
+                                </Border>
+                            </StackPanel>
+                            <Grid />
+                        </DockPanel>
+                    </DockPanel>
                 </DockPanel>
             </DockPanel>
         </Grid>

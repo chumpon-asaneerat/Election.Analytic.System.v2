@@ -18,7 +18,7 @@ using Newtonsoft.Json;
 
 namespace PPRP.Models
 {
-    #region  MParty
+    #region MParty
 
     /// <summary>
     /// The MParty class.
@@ -67,7 +67,6 @@ namespace PPRP.Models
         }
 
         #endregion
-
 
         #region Public Properties
 
@@ -491,6 +490,81 @@ namespace PPRP.Models
             }
 
             return ret;
+        }
+
+        #endregion
+    }
+
+    #endregion
+
+    #region MPartyName
+
+    /// <summary>
+    /// The MPartyName class.
+    /// </summary>
+    public class MPartyName
+    {
+        #region Public Properties
+
+        /// <summary>
+        /// Gets or sets Party Id.
+        /// </summary>
+        public int? PartyId { get; set; }
+        /// <summary>
+        /// Gets or sets Party Name.
+        /// </summary>
+        public string PartyName { get; set; }
+
+        #endregion
+
+        #region Static Methods
+
+        /// <summary>
+        /// Gets.
+        /// </summary>
+        /// <returns>Returns list of MPartyName.</returns>
+        public static NDbResult<List<MPartyName>> Gets()
+        {
+            MethodBase med = MethodBase.GetCurrentMethod();
+
+            NDbResult<List<MPartyName>> rets = new NDbResult<List<MPartyName>>();
+
+            IDbConnection cnn = DbServer.Instance.Db;
+            if (null == cnn || !DbServer.Instance.Connected)
+            {
+                string msg = "Connection is null or cannot connect to database server.";
+                med.Err(msg);
+                // Set error number/message
+                rets.ErrNum = 8000;
+                rets.ErrMsg = msg;
+
+                return rets;
+            }
+
+            var p = new DynamicParameters();
+
+            try
+            {
+                var items = cnn.Query<MPartyName>("GetMPartyNames", p,
+                    commandType: CommandType.StoredProcedure);
+                var data = (null != items) ? items.ToList() : null;
+                rets.Success(data);
+            }
+            catch (Exception ex)
+            {
+                med.Err(ex);
+                // Set error number/message
+                rets.ErrNum = 9999;
+                rets.ErrMsg = ex.Message;
+            }
+
+            if (null == rets.data)
+            {
+                // create empty list.
+                rets.data = new List<MPartyName>();
+            }
+
+            return rets;
         }
 
         #endregion

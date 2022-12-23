@@ -58,6 +58,7 @@ namespace PPRP.Controls
             _item = value;
             // set data context
             DataContext = _item;
+
             ctrlPrefix.Setup(_item);
             ctrlFirstName.Setup(_item);
             ctrlLastName.Setup(_item);

@@ -192,7 +192,7 @@ namespace PPRP.Windows
             if (null != _item)
             {
                 // keep original name to detect changed.
-                _item.WhenPartyNameChanged(_item.Prefix, _item.FirstName, _item.LastName, CheckPersonName);
+                _item.WhenPersonNameChanged(_item.Prefix, _item.FirstName, _item.LastName, CheckPersonName);
             }
 
             _addNew = addNew;

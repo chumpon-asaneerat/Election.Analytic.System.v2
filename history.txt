@@ -1,23 +1,119 @@
-﻿Election.Analytic.System.v2 - PPRP  #570
+﻿Election.Analytic.System.v2 - PPRP  #590
 - 
 
+Election.Analytic.System.v2 - PPRP  #589
+- 
+
+Election.Analytic.System.v2 - PPRP  #588
+- 
+
+Election.Analytic.System.v2 - PPRP  #587
+- 
+
+Election.Analytic.System.v2 - PPRP  #586
+- 
+
+Election.Analytic.System.v2 - PPRP  #585
+- 
+
+Election.Analytic.System.v2 - PPRP  #584
+- 
+
+Election.Analytic.System.v2 - PPRP  #583
+- 
+
+[commited]
+Election.Analytic.System.v2 - PPRP  #582
+- PPRP.Manangement.App project
+  - Implements Map system #179
+
+[commited]
+Election.Analytic.System.v2 - PPRP  #581
+- PPRP.Manangement.App project
+  - Implements Map system #178
+
+[commited]
+Election.Analytic.System.v2 - PPRP  #580
+- Prepare history.txt
+
+[commited]
+Election.Analytic.System.v2 - PPRP  #579
+- PPRP.Manangement.App project
+  - Implements Map system #177
+
+[commited]
+Election.Analytic.System.v2 - PPRP  #578
+- PPRP.Manangement.App project
+  - Implements Map system #176
+
+[commited]
+Election.Analytic.System.v2 - PPRP  #577
+- PPRP.Manangement.App project
+  - Implements Map system #175
+
+[commited]
+Election.Analytic.System.v2 - PPRP  #576
+- PPRP.Manangement.App project
+  - Implements Map system #174
+
+[commited]
+Election.Analytic.System.v2 - PPRP  #575
+- PPRP.Manangement.App project
+  - Implements Map system #173
+
+[commited]
+Election.Analytic.System.v2 - PPRP  #574
+- PPRP.Manangement.App project
+  - Implements Map system #172
+
+[commited]
+Election.Analytic.System.v2 - PPRP  #573
+- PPRP.Manangement.App project
+  - Implements Map system #171
+
+[commited]
+Election.Analytic.System.v2 - PPRP  #572
+- PPRP.Manangement.App project
+  - Implements Map system #170
+
+[commited]
+Election.Analytic.System.v2 - PPRP  #571
+- PPRP.Manangement.App project
+  - Implements Map system #169
+
+[commited]
+Election.Analytic.System.v2 - PPRP  #570
+- PPRP.Manangement.App project
+  - Implements Map system #168
+
+[commited]
 Election.Analytic.System.v2 - PPRP  #569
-- 
+- Prepare history.txt
 
+[commited]
 Election.Analytic.System.v2 - PPRP  #568
-- 
+- PPRP.Manangement.App project
+  - Implements Map system #167
 
+[commited]
 Election.Analytic.System.v2 - PPRP  #567
-- 
+- PPRP.Manangement.App project
+  - Implements Map system #166
 
+[commited]
 Election.Analytic.System.v2 - PPRP  #566
-- 
+- PPRP.Manangement.App project
+  - Implements Map system #165
 
+[commited]
 Election.Analytic.System.v2 - PPRP  #565
-- 
+- PPRP.Manangement.App project
+  - Implements Map system #164
 
+[commited]
 Election.Analytic.System.v2 - PPRP  #564
-- 
+- PPRP.Manangement.App project
+  - Implements Map system #163
 
 [commited]
 Election.Analytic.System.v2 - PPRP  #563

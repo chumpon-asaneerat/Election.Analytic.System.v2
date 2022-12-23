@@ -302,7 +302,7 @@ namespace PPRP.Models
         [ExcelColumn("จังหวัด", 1)]
         public string ProvinceNameTH { get; set; }
         // for print
-        public string ProvinceName { get { return ProvinceNameTH; } }
+        public string ProvinceName { get { return ProvinceNameTH; } set { } }
 
         /// <summary>
         /// Gets or sets PollingUnitNo.
@@ -340,7 +340,7 @@ namespace PPRP.Models
         [ExcelColumn("วุฒิการศึกษา", 6)]
         public string EducationName { get; set; }
         // for print
-        public string EducationLevel { get { return EducationName; } }
+        public string EducationLevel { get { return EducationName; } set { } }
 
         /// <summary>
         /// Gets or sets Candidate SubGroup
@@ -351,13 +351,16 @@ namespace PPRP.Models
         /// </summary>
         public string CandidateSubGroup { get; set; }
         // for print
-        public string SubGroup { get { return CandidateSubGroup; } }
+        public string SubGroup { get { return CandidateSubGroup; } set { } }
 
         [ExcelColumn("หมายเหตุ", 8)]
         public string CandidateRemark { get; set; }
         // for print
-        public string Remark { get { return CandidateRemark; } }
-
+        public string Remark 
+        { 
+            get { return CandidateRemark; } 
+            set { } 
+        }
         public byte[] Data { get; set; }
 
         public ImageSource Image
