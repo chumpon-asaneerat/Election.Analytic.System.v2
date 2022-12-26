@@ -246,7 +246,9 @@
                                 </StackPanel>
                             </StackPanel>
                             <!--  PREV PARTY  -->
-                            <StackPanel Orientation="Vertical" DockPanel.Dock="Left" Width="270">
+                            <StackPanel Orientation="Vertical"
+                                        DockPanel.Dock="Left"
+                                        Width="270">
                                 <TextBlock Text="ต้นสังกัดเดิม"
                                            Margin="5,0"
                                            DockPanel.Dock="Left"

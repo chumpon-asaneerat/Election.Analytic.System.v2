@@ -31,6 +31,7 @@
                    TextAlignment="{StaticResource LabelAlign}"
                    Text="วัน/เดือน/ปี เกิด" />
         <StackPanel Orientation="Horizontal">
+            <!--
             <xceed:DateTimePicker x:Name="dtDOB"
                                   Margin="5,0"
                                   VerticalAlignment="Center"
@@ -48,6 +49,15 @@
                                   TimePickerVisibility="Collapsed"
                                   Style="{DynamicResource PPRPDateTimePickerStyle}"
                                   ValueChanged="dtDOB_ValueChanged" />
+            -->
+            <DatePicker x:Name="dtDOB"
+                        Margin="5,0"
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Left"
+                        Width="{StaticResource InputWd}"
+                        FontFamily="{StaticResource THSarabun}"
+                        FontSize="{StaticResource FontSize18}"
+                        SelectedDateChanged="dtDOB_SelectedDateChanged" />
             <!--  AGE CALC  -->
             <TextBlock Margin="5,0"
                        VerticalAlignment="Center"
@@ -64,8 +74,8 @@
                        Width="{StaticResource LabelWd2}"
                        FontFamily="{StaticResource THSarabun}"
                        FontSize="{StaticResource FontSize18}"
-                       TextAlignment="Center" 
-                       Text="{Binding AgeEst}"/>
+                       TextAlignment="Center"
+                       Text="{Binding AgeEst}" />
             <TextBlock Margin="5,0"
                        VerticalAlignment="Center"
                        HorizontalAlignment="Stretch"

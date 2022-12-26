@@ -57,7 +57,7 @@ namespace PPRP.Controls.Elements
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
-            dtDOB.CultureInfo = culture;
+            //dtDOB.CultureInfo = culture;
             dtDOB.Language = language;
         }
 
@@ -72,9 +72,19 @@ namespace PPRP.Controls.Elements
 
         private void dtDOB_ValueChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
         {
+            /*
             if (null != _item)
             {
                 _item.DOB = dtDOB.Value;
+            }
+            */
+        }
+
+        private void dtDOB_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (null != _item)
+            {
+                _item.DOB = dtDOB.SelectedDate.HasValue ? dtDOB.SelectedDate.Value : new DateTime?();
             }
         }
 
@@ -86,11 +96,13 @@ namespace PPRP.Controls.Elements
         {
             if (null != _item)
             {
-                dtDOB.Value = _item.DOB;
+                //dtDOB.Value = _item.DOB;
+                dtDOB.SelectedDate = _item.DOB;
             }
             else
             {
-                dtDOB.Value = new DateTime?();
+                //dtDOB.Value = new DateTime?();
+                dtDOB.SelectedDate = new DateTime?();
             }
         }
 
