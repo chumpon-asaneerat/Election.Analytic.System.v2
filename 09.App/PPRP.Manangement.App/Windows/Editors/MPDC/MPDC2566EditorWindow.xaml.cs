@@ -187,6 +187,8 @@ namespace PPRP.Windows
             
             if (null != _person)
             {
+                #region Save Person
+
                 ret = MPerson.Save(_person);
                 if (ret.Failed)
                 {
@@ -200,10 +202,123 @@ namespace PPRP.Windows
                     return;
                 }
 
+                #endregion
+
+                #region Check Polling Unit No
+
+                string sPollingUnitNo = txtPollingUnitNo.Text;
+                if (string.IsNullOrWhiteSpace(sPollingUnitNo))
+                {
+                    var mbox = PPRPApp.Windows.MessageBox;
+                    mbox.Owner = this;
+                    string msg = string.Empty;
+                    msg += "กรุณาระบุหมายเลขเขต";
+                    mbox.Setup(msg, "PPRP");
+                    mbox.ShowDialog();
+
+                    txtPollingUnitNo.SelectAll();
+                    txtPollingUnitNo.Focus();
+
+                    return;
+                }
+                else
+                {
+                    int iNo;
+                    if (!int.TryParse(sPollingUnitNo, out iNo))
+                    {
+                        var mbox = PPRPApp.Windows.MessageBox;
+                        mbox.Owner = this;
+                        string msg = string.Empty;
+                        msg += "หมายเลขเขตต้องเป็นตัวเลขเท่านั้น";
+                        mbox.Setup(msg, "PPRP");
+                        mbox.ShowDialog();
+
+                        txtPollingUnitNo.SelectAll();
+                        txtPollingUnitNo.Focus();
+
+                        return;
+                    }
+                    else
+                    {
+                        if (iNo <= 0)
+                        {
+                            var mbox = PPRPApp.Windows.MessageBox;
+                            mbox.Owner = this;
+                            string msg = string.Empty;
+                            msg += "หมายเลขเขตต้องมากกว่า 0";
+                            mbox.Setup(msg, "PPRP");
+                            mbox.ShowDialog();
+
+                            txtPollingUnitNo.SelectAll();
+                            txtPollingUnitNo.Focus();
+
+                            return;
+                        }
+                    }
+                }
+
+                #endregion
+
+                #region Check Candidate No
+
+                string sCandidateNo = txtCandidateNo.Text;
+                if (string.IsNullOrWhiteSpace(sCandidateNo))
+                {
+                    var mbox = PPRPApp.Windows.MessageBox;
+                    mbox.Owner = this;
+                    string msg = string.Empty;
+                    msg += "กรุณาระบุลำดับที่ผู้สมัคร";
+                    mbox.Setup(msg, "PPRP");
+                    mbox.ShowDialog();
+
+                    txtCandidateNo.SelectAll();
+                    txtCandidateNo.Focus();
+
+                    return;
+                }
+                else
+                {
+                    int iNo;
+                    if (!int.TryParse(sCandidateNo, out iNo))
+                    {
+                        var mbox = PPRPApp.Windows.MessageBox;
+                        mbox.Owner = this;
+                        string msg = string.Empty;
+                        msg += "ลำดับที่ผู้สมัครต้องเป็นตัวเลขเท่านั้น";
+                        mbox.Setup(msg, "PPRP");
+                        mbox.ShowDialog();
+
+                        txtCandidateNo.SelectAll();
+                        txtCandidateNo.Focus();
+
+                        return;
+                    }
+                    else
+                    {
+                        if (iNo < 0)
+                        {
+                            var mbox = PPRPApp.Windows.MessageBox;
+                            mbox.Owner = this;
+                            string msg = string.Empty;
+                            msg += "หมายเลขเขตต้องมากกว่าหรือเท่ากับ 0";
+                            mbox.Setup(msg, "PPRP");
+                            mbox.ShowDialog();
+
+                            txtCandidateNo.SelectAll();
+                            txtCandidateNo.Focus();
+
+                            return;
+                        }
+                    }
+                }
+
+                #endregion
+
                 if (null != _item)
                 {
                     _item.ThaiYear = 2566; // Force thai year.
                     _item.PersonId = _person.PersonId;
+
                     ret = MPDC.Save(_item);
                     if (ret.Failed)
                     {
