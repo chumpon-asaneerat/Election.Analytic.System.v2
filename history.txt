@@ -7,8 +7,9 @@ Election.Analytic.System.v2 - PPRP  #589
 Election.Analytic.System.v2 - PPRP  #588
 - 
 
+[commited]
 Election.Analytic.System.v2 - PPRP  #587
-- 
+- Move PC 2023-01-01
 
 [commited]
 Election.Analytic.System.v2 - PPRP  #586
