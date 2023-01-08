@@ -58,7 +58,7 @@ namespace PPRP.Controls.Elements
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
             //dtDOB.CultureInfo = culture;
-            dtDOB.Language = language;
+            //dtDOB.Language = language;
         }
 
         private void UserControl_Unloaded(object sender, RoutedEventArgs e)
