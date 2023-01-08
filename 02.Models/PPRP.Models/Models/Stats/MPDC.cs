@@ -736,7 +736,7 @@ namespace PPRP.Models
         public int PollingUnitNo { get; set; }
         public int CandidateNo { get; set; }
         public string FullName { get; set; }
-        public string PrevPartyName { get; set; }
+        public string PartyName { get; set; }
         public DateTime? DOB { get; set; }
         /// <summary>
         /// Gets Age estiamate.

@@ -10,8 +10,10 @@ Election.Analytic.System.v2 - PPRP  #598
 Election.Analytic.System.v2 - PPRP  #597
 - 
 
+[commited]
 Election.Analytic.System.v2 - PPRP  #596
-- 
+- PPRP.Analytic.App project
+  - Fixed PrevPartyId not show.
 
 [commited]
 Election.Analytic.System.v2 - PPRP  #595
