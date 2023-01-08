@@ -15,6 +15,7 @@ using NLib.Reflection;
 using NLib.Services;
 
 using PPRP.Models;
+using System.Windows.Navigation;
 
 #endregion
 
@@ -43,6 +44,7 @@ namespace PPRP.Windows
         private MPDC _item = null;
         private MPerson _person = null;
         private MParty _defaultParty = new MParty();
+        private MProvince _defaultProvince = null;
 
         #endregion
 
@@ -87,7 +89,19 @@ namespace PPRP.Windows
             cbProvince.ItemsSource = (null != provinces) ? provinces : new List<MProvince>();
             if (null != provinces)
             {
-                cbProvince.SelectedIndex = 0;
+                if (null == _defaultProvince)
+                {
+                    cbProvince.SelectedIndex = 0;
+                }
+                else
+                {
+                    int idx = provinces.FindIndex((province) => 
+                    { 
+                        return province.ADM1Code == _defaultProvince.ADM1Code; 
+                    });
+
+                    cbProvince.SelectedIndex = (idx != -1) ? idx : 0;
+                }
             }
         }
 
@@ -345,7 +359,7 @@ namespace PPRP.Windows
                             DialogResult = true; // not add new mode so exit.
                         }
                         // in add new mode so clear screen and prepare empty item
-                        Setup(null, _addNew);
+                        Setup(null, _defaultProvince, _addNew);
                     }
                 }
             }
@@ -359,9 +373,12 @@ namespace PPRP.Windows
         /// Setup.
         /// </summary>
         /// <param name="value">The edit item instance.</param>
-        public void Setup(MPDC value, bool addNew = false)
+        /// <param name="province">Prefer province.</param>
+        /// <param name="addNew">Is Add New Mode.</param>
+        public void Setup(MPDC value, MProvince province, bool addNew = false)
         {
             _addNew = addNew;
+            _defaultProvince = province;
 
             personEditor.DataContext = null;
             imgParty.DataContext = _defaultParty;
@@ -378,8 +395,17 @@ namespace PPRP.Windows
                 // set callback.
                 if (null != _item)
                 {
-                    // keep original name to detect changed.
-                    //_item.WhenPartyNameChanged(_item.Prefix, _item.FirstName, _item.LastName, CheckPersonName);
+                    if (addNew)
+                    {
+                        // update default province
+                        if (null != _defaultProvince && !string.IsNullOrWhiteSpace(_defaultProvince.ADM1Code))
+                        {
+                            _item.ADM1Code = _defaultProvince.ADM1Code;
+                        }
+                        // init default data
+                        _item.ThaiYear = 2566;
+                        _item.PollingUnitNo = 1;
+                    }
 
                     // load person information.
                     _person = MPerson.Get(_item.PersonId).Value();

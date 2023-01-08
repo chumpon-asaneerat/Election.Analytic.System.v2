@@ -203,10 +203,12 @@ namespace PPRP.Pages
 
         private void AddNew()
         {
+            MProvince province = (null != cbProvince.SelectedItem) ? cbProvince.SelectedItem as MProvince : null;
+            
             MPDC item = new MPDC();
 
             var editor = PPRPApp.Windows.MPDC2566Editor;
-            editor.Setup(item, true);
+            editor.Setup(item, province, true);
             editor.ShowDialog();
 
                 Dispatcher.BeginInvoke(new Action(() =>
@@ -219,8 +221,11 @@ namespace PPRP.Pages
         {
             if (null == item)
                 return;
+
+            MProvince province = (null != cbProvince.SelectedItem) ? cbProvince.SelectedItem as MProvince : null;
+
             var editor = PPRPApp.Windows.MPDC2566Editor;
-            editor.Setup(item, false);
+            editor.Setup(item, province, false);
             editor.ShowDialog();
 
                 Dispatcher.BeginInvoke(new Action(() =>
