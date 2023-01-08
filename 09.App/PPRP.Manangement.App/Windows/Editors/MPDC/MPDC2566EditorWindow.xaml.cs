@@ -46,6 +46,8 @@ namespace PPRP.Windows
         private MParty _defaultParty = new MParty();
         private MProvince _defaultProvince = null;
 
+        private List<MPartyName> _partyNames = new List<MPartyName>();
+
         #endregion
 
         #region Button Handlers
@@ -108,13 +110,13 @@ namespace PPRP.Windows
         private void LoadParties()
         {
             cbParties.ItemsSource = null;
-            var parties = MPartyName.Gets().Value();
-            cbParties.ItemsSource = (null != parties) ? parties : new List<MPartyName>();
-            if (null != parties)
+            _partyNames = MPartyName.Gets().Value();
+            cbParties.ItemsSource = (null != _partyNames) ? _partyNames : new List<MPartyName>();
+            if (null != _partyNames)
             {
-                parties.Insert(0, new MPartyName { PartyId = new int?(), PartyName = "ไม่มี" });
+                _partyNames.Insert(0, new MPartyName { PartyId = new int?(), PartyName = "ไม่มี" });
             }
-            if (null != parties)
+            if (null != _partyNames)
             {
                 cbParties.SelectedIndex = 0;
             }
@@ -135,6 +137,15 @@ namespace PPRP.Windows
                 }
             }
             else imgParty.DataContext = _defaultParty;
+        }
+
+        private void SeleteParty(int partyId)
+        {
+            if (null == _partyNames) return;
+            int idx = _partyNames.FindIndex((party) => { return party.PartyId == partyId; });
+            if (idx < 0)
+                cbParties.SelectedIndex = 0;
+            else cbParties.SelectedIndex = idx;
         }
 
         private MPerson GetByName(string firstName, string lastName)
@@ -333,6 +344,13 @@ namespace PPRP.Windows
                     _item.ThaiYear = 2566; // Force thai year.
                     _item.PersonId = _person.PersonId;
 
+                    if (null != cbParties.SelectedItem)
+                    {
+                        var partyItem = cbParties.SelectedItem as MPartyName;
+                        var party = (null != partyItem) ? MParty.Get(partyItem.PartyName).Value() : null;
+                        _item.PrevPartyId = (null != party) ? party.PartyId : 0;
+                    }
+
                     ret = MPDC.Save(_item);
                     if (ret.Failed)
                     {
@@ -413,8 +431,10 @@ namespace PPRP.Windows
                     {
                         _person = new MPerson(); // no person found so create new one.
                     }
-
                     SetupPerson(_person, addNew);
+
+                    // load party information
+                    SeleteParty(_item.PrevPartyId);
                 }
                 // setup data context
                 DataContext = _item;

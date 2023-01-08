@@ -326,9 +326,9 @@ namespace PPRP.Models
         public string FullName { get; set; }
 
         /// <summary>
-        /// Gets or sets PartyId.
+        /// Gets or sets PrevPartyId.
         /// </summary>
-        public int PartyId { get; set; }
+        public int PrevPartyId { get; set; }
         /// <summary>
         /// Gets or sets Prev PartyName.
         /// </summary>
@@ -632,14 +632,14 @@ namespace PPRP.Models
             p.Add("@PollingUnitNo", value.PollingUnitNo);
             p.Add("@CandidateNo", value.CandidateNo);
             p.Add("@PersonId", value.PersonId);
-            p.Add("@PrevPartyId", value.PartyId);
+            int? partyId = (value.PrevPartyId > 0) ? value.PrevPartyId : new int?();
+            p.Add("@PrevPartyId", partyId);
             p.Add("@Remark", value.CandidateRemark);
             p.Add("@SubGroup", value.CandidateSubGroup);
 
             p.Add("@ADM1CodeOri", value.ADM1CodeOri);
             p.Add("@PollingUnitNoOri", value.PollingUnitNoOri);
             p.Add("@CandidateNoOri", value.CandidateNoOri);
-
 
             p.Add("@errNum", dbType: DbType.Int32, direction: ParameterDirection.Output);
             p.Add("@errMsg", dbType: DbType.String, direction: ParameterDirection.Output, size: -1);
