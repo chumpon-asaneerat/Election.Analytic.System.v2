@@ -80,6 +80,11 @@ namespace PPRP.Pages
             Print();
         }
 
+        private void cmdDeleteAll_Click(object sender, RoutedEventArgs e)
+        {
+            DeleteAll()
+        }
+
         private void cmdEdit_Click(object sender, RoutedEventArgs e)
         {
             var btn = sender as Button;
@@ -251,6 +256,11 @@ namespace PPRP.Pages
                     RefreshList(false);
                 }), DispatcherPriority.Render);
             }
+        }
+
+        private void DeleteAll()
+        {
+
         }
 
         private void LoadProvinces()

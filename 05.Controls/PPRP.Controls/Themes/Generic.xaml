@@ -1,8 +1,6 @@
-<ResourceDictionary
-    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <ResourceDictionary.MergedDictionaries>
-        <!-- Merge Local Resources -->
+        <!--  Merge Local Resources  -->
         <ResourceDictionary Source="pack://application:,,,/PPRP.Controls;component/Themes/CommonStyle.xaml" />
         <ResourceDictionary Source="pack://application:,,,/PPRP.Controls;component/Themes/XceedToolKitStyle.xaml" />
 

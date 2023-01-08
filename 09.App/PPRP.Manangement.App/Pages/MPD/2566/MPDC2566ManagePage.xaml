@@ -310,6 +310,24 @@
                                            VerticalAlignment="Center" />
                             </StackPanel>
                         </Button>
+                        <!--  DELETE ALL  -->
+                        <Button x:Name="cmdDeleteAll"
+                                Visibility="{StaticResource PrintButtonVisible}"
+                                DockPanel.Dock="Left"
+                                Style="{StaticResource InlineButton}"
+                                Margin="5,0"
+                                Width="150"
+                                Height="30"
+                                Click="cmdDeleteAll_Click">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Style="{StaticResource fa-remove}" FontSize="{StaticResource IBFSize}" />
+                                <TextBlock Margin="3,0"
+                                           FontFamily="{StaticResource THSarabun}"
+                                           FontSize="{StaticResource IBFSize}"
+                                           Text="ลบข้อมูลทั้งหมด"
+                                           VerticalAlignment="Center" />
+                            </StackPanel>
+                        </Button>
                         <!--  BACK  -->
                         <Button x:Name="cmdHome"
                                 Visibility="{StaticResource HomeButtonVisible}"
