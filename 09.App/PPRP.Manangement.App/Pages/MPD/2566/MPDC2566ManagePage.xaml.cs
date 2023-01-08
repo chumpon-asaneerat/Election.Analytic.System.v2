@@ -82,7 +82,7 @@ namespace PPRP.Pages
 
         private void cmdDeleteAll_Click(object sender, RoutedEventArgs e)
         {
-            DeleteAll()
+            DeleteAll();
         }
 
         private void cmdEdit_Click(object sender, RoutedEventArgs e)
@@ -260,7 +260,29 @@ namespace PPRP.Pages
 
         private void DeleteAll()
         {
+            int thaiYear = 2566;
+            string confitmMsg = string.Format("ต้องการลบข้อมูลว่าที่ผู้สมัครปี {0} ทั้งหมด ?", thaiYear);
+            var confirmWin = PPRPApp.Windows.MessageBoxOKCancel;
+            confirmWin.Setup(confitmMsg, "ยืนยันการลบข้อมูล");
 
+            if (confirmWin.ShowDialog() == true)
+            {
+                var ret = MPDC.DeleteAll(thaiYear);
+                if (null != ret && ret.HasError)
+                {
+                    string msg = string.Empty;
+                    msg += string.Format("ไม่สามารถลบข้อมูล ว่าที่ผู้สมัครปี '{0}' ได้", thaiYear) + Environment.NewLine;
+                    msg += ret.ErrMsg;
+                    var msgWin = PPRPApp.Windows.MessageBox;
+                    msgWin.Setup(msg, "PPRP");
+                    msgWin.ShowDialog();
+                }
+
+                Dispatcher.BeginInvoke(new Action(() =>
+                {
+                    RefreshList(false);
+                }), DispatcherPriority.Render);
+            }
         }
 
         private void LoadProvinces()

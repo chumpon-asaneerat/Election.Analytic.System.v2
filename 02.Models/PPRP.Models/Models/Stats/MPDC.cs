@@ -662,6 +662,53 @@ namespace PPRP.Models
 
             return ret;
         }
+        /// <summary>
+        /// Delete
+        /// </summary>
+        /// <param name="thaiYear"></param>
+        /// <returns></returns>
+        public static NDbResult DeleteAll(int thaiYear)
+        {
+            MethodBase med = MethodBase.GetCurrentMethod();
+
+            NDbResult ret = new NDbResult();
+
+            IDbConnection cnn = DbServer.Instance.Db;
+            if (null == cnn || !DbServer.Instance.Connected)
+            {
+                string msg = "Connection is null or cannot connect to database server.";
+                med.Err(msg);
+                // Set error number/message
+                ret.ErrNum = 8000;
+                ret.ErrMsg = msg;
+
+                return ret;
+            }
+
+            var p = new DynamicParameters();
+            p.Add("@ThaiYear", thaiYear);
+
+            p.Add("@errNum", dbType: DbType.Int32, direction: ParameterDirection.Output);
+            p.Add("@errMsg", dbType: DbType.String, direction: ParameterDirection.Output, size: -1);
+
+            try
+            {
+                cnn.Execute("DeleteAllMPDC", p, commandType: CommandType.StoredProcedure);
+                ret.Success();
+                // Set error number/message
+                ret.ErrNum = p.Get<int>("@errNum");
+                ret.ErrMsg = p.Get<string>("@errMsg");
+            }
+            catch (Exception ex)
+            {
+                med.Err(ex);
+                // Set error number/message
+                ret.ErrNum = 9999;
+                ret.ErrMsg = ex.Message;
+            }
+
+            return ret;
+        }
 
         #endregion
     }
