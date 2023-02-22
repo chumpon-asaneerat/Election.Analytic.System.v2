@@ -4,8 +4,9 @@
 Election.Analytic.System.v2 - PPRP  #599
 - 
 
+[commited]
 Election.Analytic.System.v2 - PPRP  #598
-- 
+- Recheck Git.
 
 [commited]
 Election.Analytic.System.v2 - PPRP  #597
