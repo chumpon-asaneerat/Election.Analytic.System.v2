@@ -7,8 +7,10 @@ Election.Analytic.System.v2 - PPRP  #599
 Election.Analytic.System.v2 - PPRP  #598
 - 
 
+[commited]
 Election.Analytic.System.v2 - PPRP  #597
-- 
+- PPRP.Analytic.App project
+  - Add SQL Server manuals.
 
 [commited]
 Election.Analytic.System.v2 - PPRP  #596

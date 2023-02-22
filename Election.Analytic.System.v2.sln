@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.33027.164
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33213.308
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "00.NLib", "00.NLib", "{4DFDBF82-4421-4040-8652-92EDCBF04DB7}"
 EndProject
@@ -59,6 +59,12 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Extended", "Extended", "{B2
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PPRP.ShapeMapDemo", "20.Samples\PPRP.ShapeMapDemo\PPRP.ShapeMapDemo.csproj", "{B0EFC873-329F-4A8E-A403-CB93CFE41420}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Manuals", "Manuals", "{4224751C-82CB-4121-9189-10A5237897B3}"
+	ProjectSection(SolutionItems) = preProject
+		Manuals\การ Restore Database ที่สำรองไว้ใน Microsoft SQL Server.docx = Manuals\การ Restore Database ที่สำรองไว้ใน Microsoft SQL Server.docx
+		Manuals\วิธีการ Backup Database ข้อมูลใน SQL Server.docx = Manuals\วิธีการ Backup Database ข้อมูลใน SQL Server.docx
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -118,6 +124,7 @@ Global
 		{C9BA9067-F4D5-4577-BCFF-2562D2C81603} = {7295E074-0CD7-40CC-A85F-21F880B8BE24}
 		{B2AE6116-D5B8-44BE-BD2C-C04A93869E46} = {C9BA9067-F4D5-4577-BCFF-2562D2C81603}
 		{B0EFC873-329F-4A8E-A403-CB93CFE41420} = {451DB8A0-796E-490E-8F30-2EDFF88FA1E8}
+		{4224751C-82CB-4121-9189-10A5237897B3} = {7295E074-0CD7-40CC-A85F-21F880B8BE24}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {FED4ECF3-40B5-4470-B84E-1E2C421EF10F}
