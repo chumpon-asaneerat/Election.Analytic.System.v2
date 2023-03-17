@@ -457,6 +457,49 @@ namespace PPRP.Models
 
             return ret;
         }
+        /// <summary>
+        /// Delete all by year.
+        /// </summary>
+        /// <param name="thaiYear">The thai year.</param>
+        /// <returns></returns>
+        public static NDbResult DeleteAll(int thaiYear)
+        {
+            MethodBase med = MethodBase.GetCurrentMethod();
+
+            NDbResult ret = new NDbResult();
+
+            IDbConnection cnn = DbServer.Instance.Db;
+            if (null == cnn || !DbServer.Instance.Connected)
+            {
+                string msg = "Connection is null or cannot connect to database server.";
+                med.Err(msg);
+                // Set error number/message
+                ret.ErrNum = 8000;
+                ret.ErrMsg = msg;
+
+                return ret;
+            }
+
+            try
+            {
+                string sql = "DELETE FROM PollingUnit WHERE ThaiYear = @ThaiYear";
+                
+                var p = new DynamicParameters();
+                p.Add("@ThaiYear", thaiYear);
+
+                cnn.Execute(sql, p, commandType: CommandType.Text);
+                ret.Success();
+            }
+            catch (Exception ex)
+            {
+                med.Err(ex);
+                // Set error number/message
+                ret.ErrNum = 9999;
+                ret.ErrMsg = ex.Message;
+            }
+
+            return ret;
+        }
 
         #endregion
     }

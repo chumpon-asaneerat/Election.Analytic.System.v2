@@ -160,7 +160,29 @@ namespace PPRP.Pages
 
         private void DeleteAll()
         {
+            int thaiYear = 2566;
+            string confitmMsg = string.Format("ต้องการลบข้อมูลหน่วยเลือกตั้งแบบแบ่งเขต {0} ทั้งหมด ?", thaiYear);
+            var confirmWin = PPRPApp.Windows.MessageBoxOKCancel;
+            confirmWin.Setup(confitmMsg, "ยืนยันการลบข้อมูล");
 
+            if (confirmWin.ShowDialog() == true)
+            {
+                var ret = PollingUnit.DeleteAll(thaiYear);
+                if (null != ret && ret.HasError)
+                {
+                    string msg = string.Empty;
+                    msg += string.Format("ไม่สามารถลบข้อมูลหน่วยเลือกตั้งแบบแบ่งเขต '{0}' ได้", thaiYear) + Environment.NewLine;
+                    msg += ret.ErrMsg;
+                    var msgWin = PPRPApp.Windows.MessageBox;
+                    msgWin.Setup(msg, "PPRP");
+                    msgWin.ShowDialog();
+                }
+
+                Dispatcher.BeginInvoke(new Action(() =>
+                {
+                    RefreshList();
+                }), DispatcherPriority.Render);
+            }
         }
 
         private void LoadProvinces()

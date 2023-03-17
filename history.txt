@@ -22,8 +22,10 @@ Election.Analytic.System.v2 - PPRP  #604
 Election.Analytic.System.v2 - PPRP  #603
 - 
 
+[commited]
 Election.Analytic.System.v2 - PPRP  #602
-- 
+- PPRP.Manangement.App project
+  - Add Delete all for PollingUnit.
 
 [commited]
 Election.Analytic.System.v2 - PPRP  #601
