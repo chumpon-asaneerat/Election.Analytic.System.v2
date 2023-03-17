@@ -24,6 +24,7 @@
         <Visibility x:Key="ExportButtonVisible">Visible</Visibility>
         <Visibility x:Key="PrintButtonVisible">Visible</Visibility>
         <Visibility x:Key="AddNewButtonVisible">Visible</Visibility>
+        <Visibility x:Key="DeleteAllButtonVisible">Visible</Visibility>
         <!--  DATA TEMPLATE  -->
         <DataTemplate x:Key="CandidateInfo">
             <Border BorderBrush="Silver"
@@ -312,7 +313,7 @@
                         </Button>
                         <!--  DELETE ALL  -->
                         <Button x:Name="cmdDeleteAll"
-                                Visibility="{StaticResource PrintButtonVisible}"
+                                Visibility="{StaticResource DeleteAllButtonVisible}"
                                 DockPanel.Dock="Left"
                                 Style="{StaticResource InlineButton}"
                                 Margin="5,0"

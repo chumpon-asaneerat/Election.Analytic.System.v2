@@ -22,6 +22,7 @@
         <Visibility x:Key="ExportButtonVisible">Visible</Visibility>
         <Visibility x:Key="PrintButtonVisible">Collapsed</Visibility>
         <Visibility x:Key="AddNewButtonVisible">Collapsed</Visibility>
+        <Visibility x:Key="DeleteAllButtonVisible">Visible</Visibility>
     </UserControl.Resources>
     <Grid Background="{StaticResource PageBG}">
         <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
@@ -177,6 +178,24 @@
                                            FontFamily="{StaticResource THSarabun}"
                                            FontSize="{StaticResource IBFSize}"
                                            Text="พิมพ์"
+                                           VerticalAlignment="Center" />
+                            </StackPanel>
+                        </Button>
+                        <!--  DELETE ALL  -->
+                        <Button x:Name="cmdDeleteAll"
+                                Visibility="{StaticResource DeleteAllButtonVisible}"
+                                DockPanel.Dock="Left"
+                                Style="{StaticResource InlineButton}"
+                                Margin="5,0"
+                                Width="150"
+                                Height="30"
+                                Click="cmdDeleteAll_Click">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Style="{StaticResource fa-remove}" FontSize="{StaticResource IBFSize}" />
+                                <TextBlock Margin="3,0"
+                                           FontFamily="{StaticResource THSarabun}"
+                                           FontSize="{StaticResource IBFSize}"
+                                           Text="ลบข้อมูลทั้งหมด"
                                            VerticalAlignment="Center" />
                             </StackPanel>
                         </Button>

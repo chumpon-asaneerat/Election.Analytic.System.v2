@@ -71,6 +71,11 @@ namespace PPRP.Pages
             Print();
         }
 
+        private void cmdDeleteAll_Click(object sender, RoutedEventArgs e)
+        {
+            DeleteAll();
+        }
+
         #endregion
 
         #region ComboBox Handlers
@@ -149,6 +154,11 @@ namespace PPRP.Pages
         }
 
         private void Print()
+        {
+
+        }
+
+        private void DeleteAll()
         {
 
         }

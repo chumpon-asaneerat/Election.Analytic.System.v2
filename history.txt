@@ -25,8 +25,10 @@ Election.Analytic.System.v2 - PPRP  #603
 Election.Analytic.System.v2 - PPRP  #602
 - 
 
+[commited]
 Election.Analytic.System.v2 - PPRP  #601
-- 
+- PPRP.Manangement.App project
+  - Add DeleteAllButtonVisible resource in all pages.
 
 [commited]
 Election.Analytic.System.v2 - PPRP  #600
