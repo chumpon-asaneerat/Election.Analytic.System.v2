@@ -1,8 +1,10 @@
 ﻿Election.Analytic.System.v2 - PPRP  #600
 - 
 
+[commited]
 Election.Analytic.System.v2 - PPRP  #599
-- 
+- PPRP.Analytic.App project
+  - Update Thailand Page -> change text
 
 [commited]
 Election.Analytic.System.v2 - PPRP  #598

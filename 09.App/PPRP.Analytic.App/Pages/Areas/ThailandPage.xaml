@@ -120,7 +120,7 @@
                        TextAlignment="Center">
                 <Run Text="การแบ่งภาคตามการบริหารพรรค" FontWeight="Normal" />
                 <LineBreak />
-                <Run Text="10 ภาค ตามเขตตำรวจ ดังนี้" FontWeight="Light" />
+                <Run Text="10 ภาค ตามเขตอำนาจศาล ดังนี้" FontWeight="Light" />
             </TextBlock>
             <menu:ThailandMenuControl x:Name="navPaks"
                                       DockPanel.Dock="Top"
