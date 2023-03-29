@@ -16,8 +16,10 @@ Election.Analytic.System.v2 - PPRP  #606
 Election.Analytic.System.v2 - PPRP  #605
 - 
 
+[commited]
 Election.Analytic.System.v2 - PPRP  #604
-- 
+- PPRP.Manangement.App project
+  - Add Delete all for MPDVoteSummary.
 
 [commited]
 Election.Analytic.System.v2 - PPRP  #603
