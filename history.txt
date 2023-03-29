@@ -13,8 +13,9 @@ Election.Analytic.System.v2 - PPRP  #607
 Election.Analytic.System.v2 - PPRP  #606
 - 
 
+[commited]
 Election.Analytic.System.v2 - PPRP  #605
-- 
+- Update App Version.
 
 [commited]
 Election.Analytic.System.v2 - PPRP  #604
