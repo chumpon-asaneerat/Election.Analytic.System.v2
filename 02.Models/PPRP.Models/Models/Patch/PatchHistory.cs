@@ -29,6 +29,8 @@ namespace PPRP.Models
 
         #endregion
 
+        #region Static Methods (private)
+
         private static void CreatePatchTable()
         {
             MethodBase med = MethodBase.GetCurrentMethod();
@@ -133,6 +135,10 @@ namespace PPRP.Models
             return ret;
         }
 
+        #endregion
+
+        #region Static Methods (Update Script by Version)
+
         private static void UpdateScriptV1()
         {
             MethodBase med = MethodBase.GetCurrentMethod();
@@ -188,10 +194,16 @@ namespace PPRP.Models
             UpdateScriptV1();
         }
 
+        #endregion
+
+        #region Static Methods (public)
+
         public static void ApplyPatch()
         {
             CheckPatchTable();
             UpdateScripts();
         }
+
+        #endregion
     }
 }
