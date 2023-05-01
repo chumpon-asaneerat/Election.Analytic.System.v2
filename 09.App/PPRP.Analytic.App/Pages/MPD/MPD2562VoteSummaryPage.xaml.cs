@@ -248,6 +248,10 @@ namespace PPRP.Pages
             // Show MPDC 2566 Official View Window
             if (null == _pullingUnitItem)
                 return;
+
+            var win = PPRPApp.Windows.MPDCOfficial;
+            win.Setup(_pullingUnitItem);
+            win.ShowDialog();
         }
 
         private void LoadSummary(PollingUnitMenuItem pollingUnit)
