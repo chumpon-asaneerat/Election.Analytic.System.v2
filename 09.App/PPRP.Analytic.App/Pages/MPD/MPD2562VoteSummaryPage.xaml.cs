@@ -100,6 +100,11 @@ namespace PPRP.Pages
             GotoPrintPreview();
         }
 
+        private void cmdMPDC2566OfficialInfo_Click(object sender, RoutedEventArgs e)
+        {
+            ShowMPDC2566OfficialView();
+        }
+
         #endregion
 
         #region lstPollingUnits Handlers
@@ -236,6 +241,13 @@ namespace PPRP.Pages
             var win = PPRPApp.Windows.MPDCAreaRemark;
             win.Setup(summary);
             win.ShowDialog();
+        }
+
+        private void ShowMPDC2566OfficialView()
+        {
+            // Show MPDC 2566 Official View Window
+            if (null == _pullingUnitItem)
+                return;
         }
 
         private void LoadSummary(PollingUnitMenuItem pollingUnit)

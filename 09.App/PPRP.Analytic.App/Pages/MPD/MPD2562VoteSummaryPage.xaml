@@ -122,6 +122,22 @@
                                     </StackPanel>
                                 </Button>
                                 <TextBlock DockPanel.Dock="Right" Width="5" />
+                                <Button x:Name="cmdMPDC2566OfficialInfo"
+                                        DockPanel.Dock="Right"
+                                        Margin="2"
+                                        Width="120"
+                                        Style="{StaticResource InlineButton}"
+                                        Click="cmdMPDC2566OfficialInfo_Click">
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Style="{StaticResource fa-info}" FontSize="{StaticResource IBFSize}" />
+                                        <TextBlock Margin="3,0"
+                                                   FontFamily="{StaticResource THSarabun}"
+                                                   FontSize="{StaticResource IBFSize}"
+                                                   Text="ข้อมูลคุ๋แข่ง"
+                                                   VerticalAlignment="Center" />
+                                    </StackPanel>
+                                </Button>
+                                <TextBlock DockPanel.Dock="Right" Width="5" />
                                 <TextBlock x:Name="txtPollingUnitInfo"
                                            Foreground="DimGray"
                                            FontSize="32"
@@ -375,12 +391,17 @@
                                   VirtualizingPanel.IsVirtualizing="True"
                                   VirtualizingPanel.VirtualizationMode="Recycling">
                         <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="107*"/>
+                                <ColumnDefinition Width="24*"/>
+                            </Grid.ColumnDefinitions>
+                            <!--  MPD 2562  -->
                             <ListBox x:Name="lstSummary"
                                      BorderThickness="0"
                                      VerticalContentAlignment="Stretch"
                                      HorizontalContentAlignment="Stretch"
                                      ItemContainerStyle="{StaticResource BASEHorizontalListBoxItemContainer}"
-                                     Style="{StaticResource SingleSelectHorizontalWrapListBox}">
+                                     Style="{StaticResource SingleSelectHorizontalWrapListBox}" Grid.ColumnSpan="2">
                                 <ListBox.ItemTemplate>
                                     <DataTemplate>
                                         <DockPanel LastChildFill="True" Width="270">
@@ -450,7 +471,7 @@
                                        VerticalAlignment="Center"
                                        TextAlignment="Center"
                                        Text="ไม่พบข้อมูล"
-                                       Visibility="Hidden" />
+                                       Visibility="Hidden" Grid.ColumnSpan="2" />
                         </Grid>
                     </ScrollViewer>
                 </Border>
