@@ -71,6 +71,11 @@ namespace PPRP.Pages
             Print();
         }
 
+        private void cmdDeleteAll_Click(object sender, RoutedEventArgs e)
+        {
+            DeleteAll();
+        }
+
         #endregion
 
         #region ComboBox Handlers
@@ -138,6 +143,33 @@ namespace PPRP.Pages
             {
                 RefreshList();
             }), DispatcherPriority.Render);
+        }
+
+        private void DeleteAll()
+        {
+            int thaiYear = 2562;
+            string confitmMsg = string.Format("ต้องการลบข้อมูลผู้ใช้สิทธิ 350 เขต ปี {0} ทั้งหมด ?", thaiYear);
+            var confirmWin = PPRPApp.Windows.MessageBoxOKCancel;
+            confirmWin.Setup(confitmMsg, "ยืนยันการลบข้อมูล");
+
+            if (confirmWin.ShowDialog() == true)
+            {
+                var ret = MPDStatVoter.DeleteAll(thaiYear);
+                if (null != ret && ret.HasError)
+                {
+                    string msg = string.Empty;
+                    msg += string.Format("ไม่สามารถลบข้อมูลผู้ใช้สิทธิ 350 เขต ปี '{0}' ได้", thaiYear) + Environment.NewLine;
+                    msg += ret.ErrMsg;
+                    var msgWin = PPRPApp.Windows.MessageBox;
+                    msgWin.Setup(msg, "PPRP");
+                    msgWin.ShowDialog();
+                }
+
+                Dispatcher.BeginInvoke(new Action(() =>
+                {
+                    RefreshList();
+                }), DispatcherPriority.Render);
+            }
         }
 
         private void Search()

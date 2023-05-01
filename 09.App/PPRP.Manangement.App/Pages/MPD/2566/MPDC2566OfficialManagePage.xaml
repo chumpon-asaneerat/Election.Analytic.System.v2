@@ -21,7 +21,7 @@
         <Visibility x:Key="HomeButtonVisible">Visible</Visibility>
         <Visibility x:Key="ImportButtonVisible">Visible</Visibility>
         <Visibility x:Key="ExportButtonVisible">Visible</Visibility>
-        <Visibility x:Key="PrintButtonVisible">Visible</Visibility>
+        <Visibility x:Key="PrintButtonVisible">Collapsed</Visibility>
         <Visibility x:Key="AddNewButtonVisible">Collapsed</Visibility>
         <Visibility x:Key="DeleteAllButtonVisible">Visible</Visibility>
     </UserControl.Resources>
