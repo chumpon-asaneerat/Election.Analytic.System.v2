@@ -153,6 +153,7 @@
     <Compile Include="Models\Parson.And.Party\MParty.cs" />
     <Compile Include="Models\Parson.And.Party\MPerson.cs" />
     <Compile Include="Models\Stats\MPDC.cs" />
+    <Compile Include="Models\Stats\MPDCOfficial.cs" />
     <Compile Include="Models\Stats\MPDStatVoter.cs" />
     <Compile Include="Models\Stats\MPDVoteSummary.cs" />
     <Compile Include="MsSqlDbServer.cs" />
