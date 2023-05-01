@@ -152,6 +152,7 @@
     <Compile Include="Models\MenuItems\MenuItem.cs" />
     <Compile Include="Models\Parson.And.Party\MParty.cs" />
     <Compile Include="Models\Parson.And.Party\MPerson.cs" />
+    <Compile Include="Models\Patch\PatchHistory.cs" />
     <Compile Include="Models\Stats\MPDC.cs" />
     <Compile Include="Models\Stats\MPDCOfficial.cs" />
     <Compile Include="Models\Stats\MPDStatVoter.cs" />
@@ -160,6 +161,7 @@
     <Compile Include="Models\Commons\Common.cs" />
     <Compile Include="Models\Commons\Defaults.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Scripts\PPRPScriptManager.cs" />
     <Compile Include="ShapeMapDbService.cs" />
     <Compile Include="Utils\Utils.cs" />
   </ItemGroup>
@@ -180,6 +182,13 @@
     <Resource Include="Images\Default\party.png" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Scripts\V001\07.InitMTitleData.sql" />
+    <EmbeddedResource Include="Scripts\V001\01.MPDCOfficial.sql" />
+    <EmbeddedResource Include="Scripts\V001\02.MPDCOfficialView.sql" />
+    <EmbeddedResource Include="Scripts\V001\03.ImportMPDCOfficial.sql" />
+    <EmbeddedResource Include="Scripts\V001\04.GetMPDCOfficials.sql" />
+    <EmbeddedResource Include="Scripts\V001\05.GetMPDCOfficialByFullName.sql" />
+    <EmbeddedResource Include="Scripts\V001\06.GetMPDCOfficialTopVoteSummaries.sql" />
     <Content Include="Views\ADMView.sql" />
     <Content Include="Views\LDM1View.sql" />
     <Content Include="Views\LDM2View.sql" />

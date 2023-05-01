@@ -14,6 +14,8 @@ using NLib;
 using NLib.Components;
 using NLib.Data;
 using NLib.IO;
+using System.Windows.Markup;
+using PPRP.Models;
 
 #endregion
 
@@ -161,6 +163,12 @@ namespace PPRP
             return cfg;
         }
 
+        private void CheckPatch()
+        {
+            // Check PatchHistoy Table
+            PatchHistory.ApplyPatch();
+        }
+
         #endregion
 
         #region Public Methods
@@ -194,6 +202,11 @@ namespace PPRP
                         _connection.Config = config;
 
                         _connection.Connect();
+
+                        if (null != _connection && _connection.IsConnected)
+                        {
+                            CheckPatch();
+                        }
                     }
                     catch (Exception ex)
                     {
