@@ -5,18 +5,15 @@
         xmlns:sys="clr-namespace:System;assembly=mscorlib"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         Title="ข้อมูลผู้สมัครสมาชิกสภาผู้แทนอย่างเป็นทางการ ปี 2566"
-        Height="500"
+        Height="900"
         MinHeight="500"
-        MaxHeight="900"
-        Width="900"
-        MinWidth="900"
-        MaxWidth="1550"
+        Width="650"
+        MinWidth="650"
         HorizontalAlignment="Center"
         VerticalAlignment="Center"
         ResizeMode="CanResizeWithGrip"
         ShowInTaskbar="False"
         WindowStartupLocation="CenterOwner"
-        SizeToContent="WidthAndHeight"
         mc:Ignorable="d">
     <Window.Resources>
         <!--  PAGE TITLE  -->
@@ -63,7 +60,90 @@
                        LastChildFill="True">
                 <!--  WORK AREA  -->
                 <DockPanel LastChildFill="True" Margin="20">
-                    <Grid />
+                    <!--  MPDC Official 2566  -->
+                    <ListBox x:Name="lstSummary"
+                             BorderThickness="0"
+                             VerticalContentAlignment="Stretch"
+                             HorizontalContentAlignment="Stretch"
+                             ItemContainerStyle="{StaticResource BASEListBoxItemContainer}"
+                             Style="{StaticResource SingleSelectWrapListBox}"
+                             Grid.ColumnSpan="2">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <DockPanel LastChildFill="True"
+                                           Width="270"
+                                           Margin="5">
+                                    <TextBlock DockPanel.Dock="Top" Height="10" />
+                                    <!--  PARTY LOGO  -->
+                                    <Border DockPanel.Dock="Top"
+                                            Height="100"
+                                            VerticalAlignment="Center"
+                                            HorizontalAlignment="Center">
+                                        <Image RenderOptions.BitmapScalingMode="LowQuality"
+                                               RenderOptions.EdgeMode="Aliased"
+                                               Source="{Binding PartyImageData}"
+                                               Width="100"
+                                               Height="100"
+                                               Stretch="Uniform" />
+                                    </Border>
+                                    <TextBlock DockPanel.Dock="Top" Height="10" />
+                                    <!--  PERSON PICTURE  -->
+                                    <Border DockPanel.Dock="Top"
+                                            Height="340"
+                                            VerticalAlignment="Center"
+                                            HorizontalAlignment="Center">
+                                        <Image RenderOptions.BitmapScalingMode="LowQuality"
+                                               RenderOptions.EdgeMode="Aliased"
+                                               Source="{Binding PersonImage}"
+                                               Width="260"
+                                               Height="340"
+                                               Stretch="Uniform" />
+                                    </Border>
+                                    <TextBlock DockPanel.Dock="Top" Height="10" />
+                                    <!--  PARTY NAME  -->
+                                    <TextBlock DockPanel.Dock="Top"
+                                               Foreground="{StaticResource BlueMediumBrush}"
+                                               FontSize="28"
+                                               Height="65"
+                                               VerticalAlignment="Center"
+                                               TextAlignment="Center"
+                                               TextWrapping="Wrap"
+                                               Text="{Binding PartyName}" />
+                                    <TextBlock DockPanel.Dock="Top" Height="2" />
+                                    <!--  FULL NAME  -->
+                                    <TextBlock DockPanel.Dock="Top"
+                                               Foreground="{StaticResource BlackBlush}"
+                                               FontSize="28"
+                                               Height="65"
+                                               VerticalAlignment="Center"
+                                               TextAlignment="Center"
+                                               TextWrapping="Wrap"
+                                               Text="{Binding FullName}" />
+                                    <TextBlock DockPanel.Dock="Top" Height="5" />
+                                    <!--  VOTE COUNT  -->
+                                    <TextBlock DockPanel.Dock="Top"
+                                               Foreground="{StaticResource BlackBlush}"
+                                               FontSize="48"
+                                               VerticalAlignment="Center"
+                                               TextAlignment="Center"
+                                               TextWrapping="Wrap"
+                                               Text="{Binding VoteCount, StringFormat={}{0:n0}}" />
+                                    <!--  PREV YEAR INFO  -->
+                                    <TextBlock DockPanel.Dock="Bottom" Height="10" />
+                                    <TextBlock DockPanel.Dock="Top"
+                                               Foreground="{StaticResource BlueHeavyBrush2}"
+                                               FontSize="18"
+                                               FontWeight="Bold"
+                                               VerticalAlignment="Center"
+                                               TextAlignment="Center"
+                                               TextWrapping="Wrap"
+                                               Text="{Binding PrevInfoText}" />
+                                    <TextBlock DockPanel.Dock="Bottom" Height="10" />
+                                    <Grid />
+                                </DockPanel>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
                 </DockPanel>
             </DockPanel>
         </Grid>

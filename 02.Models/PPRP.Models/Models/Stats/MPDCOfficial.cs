@@ -389,4 +389,199 @@ namespace PPRP.Models
     }
 
     #endregion
+
+    #region MPDCOfficialVoteSummary
+
+    public class MPDCOfficialVoteSummary : NInpc
+    {
+        #region Internal Variables
+
+        // for party logo
+        private byte[] _PartyImageData = null;
+        private bool _PartyImageLoading = false;
+        private ImageSource _PartyImage = null;
+        // for person image
+        private byte[] _PersonImageData = null;
+        private bool _PersonImageLoading = false;
+        private ImageSource _PersonImage = null;
+
+        #endregion
+
+        #region Public Properties
+
+        public int ThaiYear { get; set; }
+        public string ADM1Code { get; set; }
+        public string ProvinceNameTH { get; set; }
+        public int PollingUnitNo { get; set; }
+
+        public string FullName { get; set; }
+
+        public byte[] PersonImageData
+        {
+            get { return _PersonImageData; }
+            set
+            {
+                _PersonImageData = value;
+                if (null == _PersonImageData)
+                {
+                    _PersonImage = null;
+                }
+            }
+        }
+
+        public ImageSource PersonImage
+        {
+            get
+            {
+                if (null == _PersonImage && !_PersonImageLoading)
+                {
+                    _PersonImageLoading = true;
+
+                    Defaults.RunInBackground(() =>
+                    {
+                        ImageSource imgSrc;
+                        if (null == _PersonImageData)
+                        {
+                            imgSrc = Defaults.Person;
+                        }
+                        else
+                        {
+                            imgSrc = ByteUtils.GetImageSource(PersonImageData);
+                        }
+                        _PersonImage = imgSrc;
+
+                        _PersonImageLoading = false;
+                        Raise(() => PersonImage);
+                    });
+                }
+
+                return _PersonImage;
+            }
+            set { }
+        }
+
+        public string PartyId { get; set; }
+        public string PartyName { get; set; }
+
+        public byte[] PartyImageData
+        {
+            get { return _PartyImageData; }
+            set
+            {
+                _PartyImageData = value;
+                if (null == _PartyImageData)
+                {
+                    _PartyImageData = null;
+                }
+            }
+        }
+        public ImageSource PartyImage
+        {
+            get
+            {
+                if (null == _PartyImage && null != _PartyImage && !_PartyImageLoading)
+                {
+                    _PartyImageLoading = true;
+
+                    Defaults.RunInBackground(() =>
+                    {
+                        _PartyImage = ByteUtils.GetImageSource(_PartyImageData);
+                        _PartyImageLoading = false;
+                        Raise(() => PartyImage);
+                    });
+                }
+                return _PartyImage;
+            }
+            set { }
+        }
+
+        public int SortOrder { get; set; }
+        public int VoteCount { get; set; }
+
+        public string PrevADM1Code { get; set; }
+        public string PrevProvinceNameTH { get; set; }
+        public int? PrevPollingUnitNo { get; set; }
+
+        public string PrevPartyId { get; set; }
+        public string PrevPartyName { get; set; }
+        public int? PrevVoteCount { get; set; }
+        public int? PrevRankNo { get; set; }
+
+        public string PrevInfoText
+        {
+            get 
+            {
+                string txt = string.Empty;
+                if (PrevVoteCount.HasValue && PrevRankNo.HasValue)
+                {
+                    txt += "ข้อมูลปี 2562" + Environment.NewLine;
+                    txt += string.Format("คะแนน: {0:n0} (ลำดับที่ {1})", PrevVoteCount.Value, PrevRankNo.Value) + Environment.NewLine;
+                    txt += string.Format("พรรค: {0}", PrevPartyName) + Environment.NewLine;
+                    txt += string.Format("จังหวัด: {0} เขต {1}", PrevProvinceNameTH, PrevPollingUnitNo);
+                }
+
+                return txt;
+            }
+            set { }
+        }
+
+        #endregion
+
+        #region Static Methods
+
+        public static NDbResult<List<MPDCOfficialVoteSummary>> Gets(
+            int thaiYear, int prevThaiYear, 
+            string adm1Code,int pollingUnitNo, int top = 6)
+        {
+            MethodBase med = MethodBase.GetCurrentMethod();
+
+            NDbResult<List<MPDCOfficialVoteSummary>> rets = new NDbResult<List<MPDCOfficialVoteSummary>>();
+
+            IDbConnection cnn = DbServer.Instance.Db;
+            if (null == cnn || !DbServer.Instance.Connected)
+            {
+                string msg = "Connection is null or cannot connect to database server.";
+                med.Err(msg);
+                // Set error number/message
+                rets.ErrNum = 8000;
+                rets.ErrMsg = msg;
+
+                return rets;
+            }
+
+            var p = new DynamicParameters();
+            p.Add("@ThaiYear", thaiYear);
+            p.Add("@PrevThaiYear", prevThaiYear);
+            p.Add("@ADM1Code", adm1Code);
+            p.Add("@PollingUnitNo", pollingUnitNo);
+            p.Add("@Top", top);
+
+            try
+            {
+                var items = cnn.Query<MPDCOfficialVoteSummary>("GetMPDCOfficialTopVoteSummaries", p,
+                    commandType: CommandType.StoredProcedure);
+                var results = (null != items) ? items.ToList() : new List<MPDCOfficialVoteSummary>();
+                rets.Success(results);
+            }
+            catch (Exception ex)
+            {
+                med.Err(ex);
+                // Set error number/message
+                rets.ErrNum = 9999;
+                rets.ErrMsg = ex.Message;
+            }
+
+            if (null == rets.data)
+            {
+                // create empty list.
+                rets.data = new List<MPDCOfficialVoteSummary>();
+            }
+
+            return rets;
+        }
+
+        #endregion
+    }
+
+    #endregion
 }

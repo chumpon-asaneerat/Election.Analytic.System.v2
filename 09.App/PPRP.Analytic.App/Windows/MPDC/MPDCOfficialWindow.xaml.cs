@@ -46,6 +46,15 @@ namespace PPRP.Windows
         {
             _item = item;
             this.DataContext = _item;
+
+            int thaiYear = 2566;
+            int prevThaiYear = 2562;
+            lstSummary.ItemsSource = null;
+            if (null != _item)
+            {
+                lstSummary.ItemsSource = MPDCOfficialVoteSummary.Gets(
+                    thaiYear, prevThaiYear, _item.ADM1Code, _item.PollingUnitNo, 6).Value();
+            }
         }
 
         #endregion
