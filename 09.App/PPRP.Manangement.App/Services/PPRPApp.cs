@@ -770,6 +770,21 @@ namespace PPRP
             }
 
             #endregion
+
+            #region MPDC2566 Official Viewer
+
+            /// <summary>Gets MPD 2566 Official Viewer Window.</summary>
+            public static PPRP.Windows.MPDC2566OfficialViewWindow MPDC2566OfficialViewer
+            {
+                get
+                {
+                    var ret = new PPRP.Windows.MPDC2566OfficialViewWindow();
+                    ret.Owner = Application.Current.MainWindow;
+                    return ret;
+                }
+            }
+
+            #endregion
         }
     }
 }

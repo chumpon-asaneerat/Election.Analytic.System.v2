@@ -1,12 +1,12 @@
-﻿<Window x:Class="PPRP.Windows.MPD2562ViewWindow"
+﻿<Window x:Class="PPRP.Windows.MPDC2566OfficialViewWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:sys="clr-namespace:System;assembly=mscorlib"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        Title="ข้อมูลผู้สมัครสมาชิกสภาผู้แทน แบบแบ่งเขต ปี 2562"
+        Title="ข้อมูลผู้สมัครรับเลือกตั้งสมาชิกสภาผู้แทนแบบแบ่งเขต อย่างเป็นทางการ ปี 2566"
         Height="500"
-        Width="920"
+        Width="960"
         HorizontalAlignment="Center"
         VerticalAlignment="Center"
         ResizeMode="NoResize"
@@ -15,7 +15,7 @@
         mc:Ignorable="d">
     <Window.Resources>
         <!--  PAGE TITLE  -->
-        <sys:String x:Key="PageTitle">ข้อมูลผู้สมัครสมาชิกสภาผู้แทน แบบแบ่งเขต ปี 2562</sys:String>
+        <sys:String x:Key="PageTitle">ข้อมูลผู้สมัครรับเลือกตั้งสมาชิกสภาผู้แทนแบบแบ่งเขต อย่างเป็นทางการ ปี 2566</sys:String>
         <sys:Double x:Key="LabelWidth">150</sys:Double>
         <!--  INLINE BUTTON TEXT FONT SIZE  -->
         <sys:Double x:Key="IBFSize">18</sys:Double>
@@ -91,8 +91,8 @@
                            Margin="2"
                            Width="300"
                            Height="345"
-                           Stretch="Uniform"
-                           Source="{Binding Image}" />
+                           Stretch="Uniform" 
+                           Source="{Binding Image}"/>
                 </Border>
                 <TextBlock DockPanel.Dock="Left" Width="10" />
                 <!--  VOTE INFO  -->
@@ -127,6 +127,7 @@
                                        Width="40"
                                        TextAlignment="Left" />
                         </StackPanel>
+                        <!--
                         <TextBlock Height="5" />
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Foreground="{StaticResource BlackBlush}"
@@ -143,6 +144,7 @@
                                        Width="410"
                                        TextAlignment="Left" />
                         </StackPanel>
+                        -->
                         <TextBlock Height="5" />
                         <StackPanel Orientation="Horizontal">
                             <TextBlock x:Name="txtFullName"
@@ -169,6 +171,7 @@
                                        Width="485"
                                        TextAlignment="Left" />
                         </StackPanel>
+                        <!--
                         <TextBlock Height="5" />
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Foreground="{StaticResource BlackBlush}"
@@ -185,6 +188,7 @@
                                        Width="410"
                                        TextAlignment="Left" />
                         </StackPanel>
+                        -->
                         <TextBlock Height="5" />
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Foreground="{StaticResource BlackBlush}"

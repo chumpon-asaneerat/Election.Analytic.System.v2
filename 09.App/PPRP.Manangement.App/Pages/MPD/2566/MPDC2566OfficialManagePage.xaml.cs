@@ -310,14 +310,12 @@ namespace PPRP.Pages
 
         private void ViewDetail(MPDCOfficial item)
         {
-            /*
-            var win = PPRPApp.Windows.MPD2562Viewer;
+            var win = PPRPApp.Windows.MPDC2566OfficialViewer;
             win.Setup(item);
             if (win.ShowDialog() == false)
             {
                 return;
             }
-            */
         }
 
         #endregion

@@ -260,6 +260,9 @@
     <Compile Include="Windows\Viewer\MPD\MPD2562ViewWindow.xaml.cs">
       <DependentUpon>MPD2562ViewWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Windows\Viewer\MPD\MPDC2566OfficialViewWindow.xaml.cs">
+      <DependentUpon>MPDC2566OfficialViewWindow.xaml</DependentUpon>
+    </Compile>
     <None Include="Properties\DataSources\PPRP.Models.MPDPrintVoteSummary.datasource" />
     <None Include="Properties\DataSources\PPRP.Models.MPDStatVoterPrintSummary.datasource" />
     <None Include="Properties\DataSources\PPRP.Models.MPDC.datasource" />
@@ -474,6 +477,10 @@
     <Page Include="Windows\Viewer\MPD\MPD2562ViewWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Windows\Viewer\MPD\MPDC2566OfficialViewWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>

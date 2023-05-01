@@ -22,16 +22,16 @@ using PPRP.Models;
 namespace PPRP.Windows
 {
     /// <summary>
-    /// Interaction logic for MPD2562ViewWindow.xaml
+    /// Interaction logic for MPDC2566OfficialViewWindow.xaml
     /// </summary>
-    public partial class MPD2562ViewWindow : Window
+    public partial class MPDC2566OfficialViewWindow : Window
     {
         #region Constructor
 
         /// <summary>
         /// Constructor.
         /// </summary>
-        public MPD2562ViewWindow()
+        public MPDC2566OfficialViewWindow()
         {
             InitializeComponent();
         }
@@ -40,7 +40,7 @@ namespace PPRP.Windows
 
         #region Internal Variables
 
-        private MPDVoteSummary _item = null;
+        private MPDCOfficial _item = null;
 
         #endregion
 
@@ -55,7 +55,7 @@ namespace PPRP.Windows
 
         #region Public Methods
 
-        public void Setup(MPDVoteSummary item)
+        public void Setup(MPDCOfficial item)
         {
             _item = item;
             this.DataContext = _item;
