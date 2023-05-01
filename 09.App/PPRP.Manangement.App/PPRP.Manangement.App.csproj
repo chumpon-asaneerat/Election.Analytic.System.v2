@@ -184,6 +184,9 @@
     <Compile Include="Pages\ADM\MSubdistrictManagePage.xaml.cs">
       <DependentUpon>MSubdistrictManagePage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\MPD\2566\MPDC2566OfficialManagePage.xaml.cs">
+      <DependentUpon>MPDC2566OfficialManagePage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\Party\PartyManagePage.xaml.cs">
       <DependentUpon>PartyManagePage.xaml</DependentUpon>
     </Compile>
@@ -366,6 +369,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\ADM\MSubdistrictManagePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\MPD\2566\MPDC2566OfficialManagePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

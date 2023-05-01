@@ -371,7 +371,7 @@ namespace PPRP
 
             #endregion
 
-            #region MPDC2566 Preview Summary
+            #region MPDC 2566 Preview Summary
 
             private static MPDC2566PreviewSummaryPage _MPDC2566PreviewSummaryPage;
 
@@ -388,6 +388,28 @@ namespace PPRP
                         }
                     }
                     return _MPDC2566PreviewSummaryPage;
+                }
+            }
+
+            #endregion
+
+            #region MPDC 2566 Official
+
+            private static MPDC2566OfficialManagePage _MPDC2566OfficialManagePage;
+
+            /// <summary>Gets MPDC 2566 Official Manage Page.</summary>
+            public static MPDC2566OfficialManagePage MPDC2566OfficialManagePage
+            {
+                get
+                {
+                    if (null == _MPDC2566OfficialManagePage)
+                    {
+                        lock (typeof(PPRPApp))
+                        {
+                            _MPDC2566OfficialManagePage = new MPDC2566OfficialManagePage();
+                        }
+                    }
+                    return _MPDC2566OfficialManagePage;
                 }
             }
 

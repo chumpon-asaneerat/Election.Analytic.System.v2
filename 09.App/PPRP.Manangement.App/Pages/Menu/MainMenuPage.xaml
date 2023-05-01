@@ -59,11 +59,11 @@
                                 <ColumnDefinition Width="*" MinWidth="510" />
                                 <ColumnDefinition Width="*" MinWidth="510" />
                             </Grid.ColumnDefinitions>
-                            <!-- LEFT MENU PANEL -->
+                            <!--  LEFT MENU PANEL  -->
                             <StackPanel Grid.Column="0" Orientation="Vertical">
                                 <!--  การจัดการข้อมูลการเลือกตั้ง  -->
                                 <StackPanel Orientation="Vertical" Margin="5">
-                                    <!--  GROUP HEADER 1 การจัดการข้อมูลการเลือกตั้ง -->
+                                    <!--  GROUP HEADER 1 การจัดการข้อมูลการเลือกตั้ง  -->
                                     <Border CornerRadius="3"
                                             Background="{StaticResource MainMenuCaptionBackground}"
                                             Margin="3">
@@ -73,7 +73,7 @@
                                                    Margin="5"
                                                    Text="การจัดการข้อมูลการเลือกตั้ง" />
                                     </Border>
-                                    <!-- MPD Polling Station year 62  -->
+                                    <!--  MPD Polling Station year 62  -->
                                     <TextBlock FontFamily="{DynamicResource THSarabun}"
                                                FontSize="{StaticResource FontSize18}"
                                                Margin="15,5,5,5"
@@ -84,7 +84,7 @@
                                             ข้อมูลหน่วยเลือกตั้งแบบแบ่งเขต ปี 2562
                                         </Hyperlink>
                                     </TextBlock>
-                                    <!-- MPD Polling Station year 66-->
+                                    <!--  MPD Polling Station year 66  -->
                                     <TextBlock FontFamily="{DynamicResource THSarabun}"
                                                FontSize="{StaticResource FontSize18}"
                                                Margin="15,5,5,5"
@@ -95,7 +95,7 @@
                                             ข้อมูลหน่วยเลือกตั้งแบบแบ่งเขต ปี 2566
                                         </Hyperlink>
                                     </TextBlock>
-                                    <!-- MPD 2562 Vote Summary  -->
+                                    <!--  MPD 2562 Vote Summary  -->
                                     <TextBlock FontFamily="{DynamicResource THSarabun}"
                                                FontSize="{StaticResource FontSize18}"
                                                Margin="15,5,5,5"
@@ -106,7 +106,7 @@
                                             ข้อมูลผู้สมัครรับเลือกตั้งสมาชิกสภาผู้แทน แบบแบ่งเขต ปี 2562
                                         </Hyperlink>
                                     </TextBlock>
-                                    <!-- MPD 2562 User Stat Summary  -->
+                                    <!--  MPD 2562 User Stat Summary  -->
                                     <TextBlock FontFamily="{DynamicResource THSarabun}"
                                                FontSize="{StaticResource FontSize18}"
                                                Margin="15,5,5,5"
@@ -117,7 +117,7 @@
                                             ข้อมูลผู้ใช้สิทธิ 350 เขต ปี 2562
                                         </Hyperlink>
                                     </TextBlock>
-                                    <!-- MPD 2566 Candidate  -->
+                                    <!--  MPD 2566 Candidate  -->
                                     <TextBlock FontFamily="{DynamicResource THSarabun}"
                                                FontSize="{StaticResource FontSize18}"
                                                Margin="15,5,5,5"
@@ -128,9 +128,20 @@
                                             ข้อมูลว่าที่ผู้สมัครรับเลือกตั้งสมาชิกสภาผู้แทน แบบแบ่งเขต ปี 2566
                                         </Hyperlink>
                                     </TextBlock>
+                                    <!--  MPD 2566 Official  -->
+                                    <TextBlock FontFamily="{DynamicResource THSarabun}"
+                                               FontSize="{StaticResource FontSize18}"
+                                               Margin="15,5,5,5"
+                                               Cursor="Hand">
+                                        <Hyperlink x:Name="mnuMPDC2566OfficialManage"
+                                                   Foreground="{StaticResource MainMenuItemForeground}"
+                                                   Click="mnuMPDC2566OfficialManage_Click">
+                                            ข้อมูลว่าที่ผู้สมัครรับเลือกตั้งสมาชิกสภาผู้แทนอย่างเป็นทางการ แบบแบ่งเขต ปี 2566
+                                        </Hyperlink>
+                                    </TextBlock>
                                 </StackPanel>
                             </StackPanel>
-                            <!-- RIGHT MENU PANEL -->
+                            <!--  RIGHT MENU PANEL  -->
                             <StackPanel Grid.Column="1" Orientation="Vertical">
                                 <!--  ข้อมูลทางภูมิศาสตร์  -->
                                 <StackPanel Orientation="Vertical" Margin="5">
@@ -144,7 +155,7 @@
                                                    Margin="5"
                                                    Text="ข้อมูลทางภูมิศาสตร์" />
                                     </Border>
-                                    <!-- Province (ADM1)  -->
+                                    <!--  Province (ADM1)  -->
                                     <TextBlock FontFamily="{DynamicResource THSarabun}"
                                                FontSize="{StaticResource FontSize18}"
                                                Margin="15,5,5,5"
@@ -155,7 +166,7 @@
                                             ข้อมูลพื้นที่ (จังหวัด ESRI-ADM1)
                                         </Hyperlink>
                                     </TextBlock>
-                                    <!-- District (ADM2)  -->
+                                    <!--  District (ADM2)  -->
                                     <TextBlock FontFamily="{DynamicResource THSarabun}"
                                                FontSize="{StaticResource FontSize18}"
                                                Margin="15,5,5,5"
@@ -166,7 +177,7 @@
                                             ข้อมูลพื้นที่ (อำเภอ/เขต ESRI-ADM2)
                                         </Hyperlink>
                                     </TextBlock>
-                                    <!-- Subdistrict (ADM3)  -->
+                                    <!--  Subdistrict (ADM3)  -->
                                     <TextBlock FontFamily="{DynamicResource THSarabun}"
                                                FontSize="{StaticResource FontSize18}"
                                                Margin="15,5,5,5"
@@ -177,7 +188,7 @@
                                             ข้อมูลพื้นที่ (ตำบล/แขวง ESRI-ADM3)
                                         </Hyperlink>
                                     </TextBlock>
-                                    <!-- PAK (ADM PAK)  -->
+                                    <!--  PAK (ADM PAK)  -->
                                     <TextBlock FontFamily="{DynamicResource THSarabun}"
                                                FontSize="{StaticResource FontSize18}"
                                                Margin="15,5,5,5"
@@ -190,8 +201,10 @@
                                     </TextBlock>
                                 </StackPanel>
                                 <!--  ข้อมูลแผนที่  -->
-                                <StackPanel Orientation="Vertical" Margin="5" Visibility="Collapsed">
-                                    <!--  GROUP Header 3 ข้อมูลแผนที่ -->
+                                <StackPanel Orientation="Vertical"
+                                            Margin="5"
+                                            Visibility="Collapsed">
+                                    <!--  GROUP Header 3 ข้อมูลแผนที่  -->
                                     <Border CornerRadius="3"
                                             Background="{StaticResource MainMenuCaptionBackground}"
                                             Margin="3">
@@ -226,7 +239,7 @@
                                 </StackPanel>
                                 <!--  ข้อมูลหลัก  -->
                                 <StackPanel Orientation="Vertical" Margin="5">
-                                    <!--  GROUP Header 3 ข้อมูลหลัก -->
+                                    <!--  GROUP Header 3 ข้อมูลหลัก  -->
                                     <Border CornerRadius="3"
                                             Background="{StaticResource MainMenuCaptionBackground}"
                                             Margin="3">

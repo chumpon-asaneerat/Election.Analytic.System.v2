@@ -74,6 +74,11 @@ namespace PPRP.Pages
             GotoMPDC2566Manage();
         }
 
+        private void mnuMPDC2566OfficialManage_Click(object sender, RoutedEventArgs e)
+        {
+            GotoMPDC2566OfficialManage();
+        }
+
         #endregion
 
         #region Group 2 - ข้อมูลทางภูมิศาสตร์
@@ -170,6 +175,14 @@ namespace PPRP.Pages
         {
             // ข้อมูลว่าที่ผู้สมัครรับเลือกตั้งสมาชิกสภาผู้แทน แบบแบ่งเขต ปี 2566 - MPD (candidate)
             var page = PPRPApp.Pages.MPDC2566Manage;
+            page.Setup();
+            PageContentManager.Instance.Current = page;
+        }
+
+        private void GotoMPDC2566OfficialManage()
+        {
+            // ข้อมูลว่าที่ผู้สมัครรับเลือกตั้งสมาชิกสภาผู้แทนอย่างเป็นทางการ แบบแบ่งเขต ปี 2566 - MPDC (Official)
+            var page = PPRPApp.Pages.MPDC2566OfficialManagePage;
             page.Setup();
             PageContentManager.Instance.Current = page;
         }
