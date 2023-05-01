@@ -136,7 +136,7 @@
                                         <Hyperlink x:Name="mnuMPDC2566OfficialManage"
                                                    Foreground="{StaticResource MainMenuItemForeground}"
                                                    Click="mnuMPDC2566OfficialManage_Click">
-                                            ข้อมูลว่าที่ผู้สมัครรับเลือกตั้งสมาชิกสภาผู้แทนอย่างเป็นทางการ แบบแบ่งเขต ปี 2566
+                                            ข้อมูลผู้สมัครรับเลือกตั้งสมาชิกสภาผู้แทนแบบแบ่งเขต อย่างเป็นทางการ ปี 2566
                                         </Hyperlink>
                                     </TextBlock>
                                 </StackPanel>

@@ -181,7 +181,7 @@ namespace PPRP.Pages
 
         private void GotoMPDC2566OfficialManage()
         {
-            // ข้อมูลว่าที่ผู้สมัครรับเลือกตั้งสมาชิกสภาผู้แทนอย่างเป็นทางการ แบบแบ่งเขต ปี 2566 - MPDC (Official)
+            // ข้อมูลผู้สมัครรับเลือกตั้งสมาชิกสภาผู้แทนแบบแบ่งเขต อย่างเป็นทางการ ปี 2566 - MPDC (Official)
             var page = PPRPApp.Pages.MPDC2566OfficialManagePage;
             page.Setup();
             PageContentManager.Instance.Current = page;

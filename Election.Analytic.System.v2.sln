@@ -51,6 +51,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Excels", "Excels", "{C9BA90
 		Imports\Excels\07.ข้อมูลผลคะแนนทั่วไปแบบแบ่งเขตปี 2562 v7.xlsx = Imports\Excels\07.ข้อมูลผลคะแนนทั่วไปแบบแบ่งเขตปี 2562 v7.xlsx
 		Imports\Excels\08.ข้อมูลผู้ใช้สิทธิปี 2562 350 เขต.xlsx = Imports\Excels\08.ข้อมูลผู้ใช้สิทธิปี 2562 350 เขต.xlsx
 		Imports\Excels\09.รายชื่อว่าที่ผู้สมัครปี 2566 v5.0.xlsx = Imports\Excels\09.รายชื่อว่าที่ผู้สมัครปี 2566 v5.0.xlsx
+		Imports\Excels\10.ข้อมูลผู้สมัครรับเลือกตั้งสมาชิกสภาผู้แทนแบบแบ่งเขต อย่างเป็นทางการ ปี 2566_v8.xlsx = Imports\Excels\10.ข้อมูลผู้สมัครรับเลือกตั้งสมาชิกสภาผู้แทนแบบแบ่งเขต อย่างเป็นทางการ ปี 2566_v8.xlsx
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Extended", "Extended", "{B2AE6116-D5B8-44BE-BD2C-C04A93869E46}"

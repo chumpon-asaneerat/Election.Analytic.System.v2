@@ -82,7 +82,7 @@ namespace PPRP.Pages
         {
             var btn = sender as Button;
             if (null == btn) return;
-            var item = btn.DataContext as MPDVoteSummary;
+            var item = btn.DataContext as MPDCOfficial;
             ViewDetail(item);
         }
 
@@ -154,14 +154,13 @@ namespace PPRP.Pages
 
         private void Import()
         {
-            /*
-            var win = PPRPApp.Windows.ImportMPD2562VoteSummary;
+            var win = PPRPApp.Windows.ImportMPDC2566Official;
             win.Setup();
             if (win.ShowDialog() == false)
             {
                 return;
             }
-            */
+
             Dispatcher.BeginInvoke(new Action(() =>
             {
                 LoadProvinces();
@@ -170,12 +169,11 @@ namespace PPRP.Pages
 
         private void Export()
         {
-            /*
             string msg = string.Empty;
             int thaiYear = 2566;
             var items = MPDCOfficial.Gets(thaiYear).Value();
 
-            if (ExcelModel.SaveAs(items, "ข้อมูลผลคะแนนทั่วไปแบบแบ่งเขตปี " + thaiYear.ToString(), "ข้อมูลผลคะแนนทั่วไปแบบแบ่งเขตปี " + thaiYear + ".xlsx"))
+            if (ExcelModel.SaveAs(items, "ข้อมูลผู้สมัคร ส.ส อย่างเป็นทางการ ปี" + thaiYear.ToString(), "ข้อมูลผู้สมัคร ส.ส อย่างเป็นทางการปี " + thaiYear + ".xlsx"))
             {
                 msg += "ส่งออกข้อมูลสำเร็จ";
             }
@@ -190,7 +188,6 @@ namespace PPRP.Pages
             var msgBox = PPRPApp.Windows.MessageBox;
             msgBox.Setup(msg, "ผลการส่งออกข้อมูล");
             msgBox.ShowDialog();
-            */
         }
 
         private void Refresh()
@@ -203,9 +200,8 @@ namespace PPRP.Pages
 
         private void DeleteAll()
         {
-            /*
             int thaiYear = 2566;
-            string confitmMsg = string.Format("ต้องการลบข้อมูลผลการเลือกตั้งทั่วไปปี {0} ทั้งหมด ?", thaiYear);
+            string confitmMsg = string.Format("ต้องการลบข้อมูลผู้สมัครรับเลือกตั้งสมาชิกสภาผู้แทนแบบแบ่งเขต อย่างเป็นทางการปี {0} ทั้งหมด ?", thaiYear);
             var confirmWin = PPRPApp.Windows.MessageBoxOKCancel;
             confirmWin.Setup(confitmMsg, "ยืนยันการลบข้อมูล");
 
@@ -215,7 +211,7 @@ namespace PPRP.Pages
                 if (null != ret && ret.HasError)
                 {
                     string msg = string.Empty;
-                    msg += string.Format("ไม่สามารถลบข้อมูลผลการเลือกตั้งทั่วไปปี '{0}' ได้", thaiYear) + Environment.NewLine;
+                    msg += string.Format("ไม่สามารถลบข้อมูลผู้สมัครรับเลือกตั้งสมาชิกสภาผู้แทนแบบแบ่งเขต อย่างเป็นทางการปี '{0}' ได้", thaiYear) + Environment.NewLine;
                     msg += ret.ErrMsg;
                     var msgWin = PPRPApp.Windows.MessageBox;
                     msgWin.Setup(msg, "PPRP");
@@ -227,7 +223,6 @@ namespace PPRP.Pages
                     RefreshList();
                 }), DispatcherPriority.Render);
             }
-            */
         }
 
         private void Search()
@@ -303,7 +298,7 @@ namespace PPRP.Pages
                 provinceName = null;
             }
 
-            int thaiYear = 2562;
+            int thaiYear = 2566;
             lvMPDSummaries.ItemsSource = null;
             var summaries = MPDCOfficial.Gets(
                 thaiYear: thaiYear,
@@ -313,7 +308,7 @@ namespace PPRP.Pages
             lvMPDSummaries.ItemsSource = (null != summaries) ? summaries : new List<MPDCOfficial>();
         }
 
-        private void ViewDetail(MPDVoteSummary item)
+        private void ViewDetail(MPDCOfficial item)
         {
             /*
             var win = PPRPApp.Windows.MPD2562Viewer;

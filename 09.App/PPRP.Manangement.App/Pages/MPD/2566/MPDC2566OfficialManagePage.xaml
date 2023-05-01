@@ -10,7 +10,7 @@
              mc:Ignorable="d">
     <UserControl.Resources>
         <!--  PAGE TITLE  -->
-        <sys:String x:Key="PageTitle">ข้อมูลผลการเลือกตั้งทั่วไป ปี 2562</sys:String>
+        <sys:String x:Key="PageTitle">ข้อมูลผู้สมัครรับเลือกตั้งสมาชิกสภาผู้แทนแบบแบ่งเขต อย่างเป็นทางการ ปี 2566</sys:String>
         <!--  INLINE BUTTON TEXT FONT SIZE  -->
         <sys:Double x:Key="IBFSize">18</sys:Double>
         <!--  FILTER BAR VISIBLE STATES  -->
@@ -296,11 +296,11 @@
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
                                 </GridViewColumn>
-                                <GridViewColumn Header="หมายเลข">
+                                <GridViewColumn Header="ลำดับที่">
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
                                             <TextBlock Width="50"
-                                                       Text="{Binding CandidateNo}"
+                                                       Text="{Binding SortOrder}"
                                                        TextAlignment="Center" />
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>

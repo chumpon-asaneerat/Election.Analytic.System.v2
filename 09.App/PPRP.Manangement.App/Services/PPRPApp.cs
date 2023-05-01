@@ -606,6 +606,21 @@ namespace PPRP
 
             #endregion
 
+            #region Import MPDC 2566 Official
+
+            /// <summary>Gets MPDC 2566 Official Import Window.</summary>
+            public static PPRP.Windows.ImportMPDC2566OfficialWindow ImportMPDC2566Official
+            {
+                get
+                {
+                    var ret = new PPRP.Windows.ImportMPDC2566OfficialWindow();
+                    ret.Owner = Application.Current.MainWindow;
+                    return ret;
+                }
+            }
+
+            #endregion
+
             #region Import ADM1 - MProvince
 
             /// <summary>Gets MProvince Import Window.</summary>

@@ -239,6 +239,9 @@
     <Compile Include="Windows\Excels\Maps\ImportADMPakWindow.xaml.cs">
       <DependentUpon>ImportADMPakWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Windows\Excels\MPD\2566\ImportMPDC2566OfficialWindow.xaml.cs">
+      <DependentUpon>ImportMPDC2566OfficialWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\Images\Party\ImportPartyImageWindow.xaml.cs">
       <DependentUpon>ImportPartyImageWindow.xaml</DependentUpon>
     </Compile>
@@ -441,6 +444,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Windows\Excels\Maps\ImportADMPakWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\Excels\MPD\2566\ImportMPDC2566OfficialWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
