@@ -22,7 +22,7 @@ namespace PPRP.Windows
     /// </summary>
     public partial class MPDCAreaRemarkWindow : Window
     {
-        #region Constructor
+        #region Constructor (resize window related to screen resolution
 
         /// <summary>
         /// Constructor.
@@ -30,6 +30,8 @@ namespace PPRP.Windows
         public MPDCAreaRemarkWindow()
         {
             InitializeComponent();
+            this.Height = SystemParameters.PrimaryScreenHeight * 0.75;
+            this.Width = SystemParameters.PrimaryScreenWidth * 0.75;
         }
 
         #endregion
@@ -37,6 +39,15 @@ namespace PPRP.Windows
         #region Internal Variables
 
         private PollingUnit _item = null;
+
+        #endregion
+
+        #region Loaded
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+
+        }
 
         #endregion
 

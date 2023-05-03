@@ -12,7 +12,8 @@
         ResizeMode="CanResizeWithGrip"
         ShowInTaskbar="False"
         WindowStartupLocation="CenterOwner"
-        mc:Ignorable="d">
+        mc:Ignorable="d"
+        Loaded="Window_Loaded">
     <Window.Resources>
         <!--  PAGE TITLE  -->
         <sys:String x:Key="PageTitle">ข้อมูลผู้สมัครสมาชิกสภาผู้แทน ปี 2566</sys:String>

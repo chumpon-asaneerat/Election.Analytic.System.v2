@@ -22,8 +22,10 @@ Election.Analytic.System.v2 - PPRP  #624
 Election.Analytic.System.v2 - PPRP  #623
 - 
 
+[commited]
 Election.Analytic.System.v2 - PPRP  #622
-- 
+- MPDCOffifial fixed #2
+  - Set default windows size for small screen
 
 [commited]
 Election.Analytic.System.v2 - PPRP  #621

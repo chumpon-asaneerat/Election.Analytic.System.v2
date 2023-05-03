@@ -6,7 +6,6 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         Title="ข้อมูลพื้นที่"
         Height="650"
-        MinHeight="500"
         MaxHeight="900"
         Width="900"
         MinWidth="650"
@@ -17,7 +16,8 @@
         ShowInTaskbar="False"
         WindowStartupLocation="CenterOwner"
         SizeToContent="WidthAndHeight"
-        mc:Ignorable="d">
+        mc:Ignorable="d"
+        Loaded="Window_Loaded">
     <Window.Resources>
         <!--  PAGE TITLE  -->
         <sys:String x:Key="PageTitle">ข้อมูลพื้นที่</sys:String>
