@@ -58,7 +58,9 @@ namespace PPRP.Pages
         private GeneralSummary _generalSummary = null;
 
         private MPDCOfficialVoteSummary _currentEditItem = null;
-        private Control _target = null;
+        private Control _targetTextBox = null;
+        private Control _targetSaveButton = null;
+        private Control _targetCancelButton = null;
 
         #endregion
 
@@ -66,7 +68,10 @@ namespace PPRP.Pages
 
         private void cmdEdit_Click(object sender, RoutedEventArgs e)
         {
-            _target = null; // reset target
+            _targetTextBox = null; // reset target
+            _targetSaveButton = null;
+            _targetCancelButton = null; 
+
             ResetEditMode(); // reset prev item
 
             var btn = sender as Button;
@@ -98,7 +103,12 @@ namespace PPRP.Pages
 
             _currentEditItem = item; // keep item
 
-            _target = targetTextBox; // keep control for check in LostFocus method.
+            Button targetSaveButton = (Button)myDataTemplate.FindName("cmdSave", itemContentPresenter);
+            Button targetCancelButton = (Button)myDataTemplate.FindName("cmdCancel", itemContentPresenter);
+
+            _targetTextBox = targetTextBox; // // keep control for check in LostFocus method.
+            _targetSaveButton = targetSaveButton;
+            _targetCancelButton = targetCancelButton;
         }
 
         private void cmdSave_Click(object sender, RoutedEventArgs e)
@@ -112,7 +122,10 @@ namespace PPRP.Pages
             // save vote count.
             MPDCOfficialVoteSummary.UpdateVoteCount(item);
 
-            _target = null; // reset target
+            _targetTextBox = null; // reset target
+            _targetSaveButton = null;
+            _targetCancelButton = null;
+
             ResetEditMode(); // reset item
 
             LoadSummary(_pullingUnitItem); // reload.
@@ -127,7 +140,10 @@ namespace PPRP.Pages
             // change mode
             item.Mode = ItemMode.View;
 
-            _target = null; // reset target
+            _targetTextBox = null; // reset target
+            _targetSaveButton = null;
+            _targetCancelButton = null;
+
             ResetEditMode(); // reset item
         }
 
@@ -157,7 +173,7 @@ namespace PPRP.Pages
 
         private void lstSummary_LostFocus(object sender, RoutedEventArgs e)
         {
-            if (null != _target)
+            if (null == _targetTextBox && null == _targetSaveButton && null == _targetCancelButton)
             {
                 ResetEditMode();
             }

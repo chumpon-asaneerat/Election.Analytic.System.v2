@@ -7,8 +7,8 @@
         <Value>=First(Fields!Logo1.Value, "main")</Value>
         <MIMEType>image/jpeg</MIMEType>
         <Sizing>FitProportional</Sizing>
-        <Top>0.99667in</Top>
-        <Left>0.33833in</Left>
+        <Top>1.51334in</Top>
+        <Left>0.54666in</Left>
         <Height>0.60833in</Height>
         <Width>0.71667in</Width>
         <Style>
@@ -22,8 +22,8 @@
         <Value>=First(Fields!Logo2.Value, "main")</Value>
         <MIMEType>image/jpeg</MIMEType>
         <Sizing>FitProportional</Sizing>
-        <Top>0.99667in</Top>
-        <Left>1.29167in</Left>
+        <Top>1.51334in</Top>
+        <Left>2.45001in</Left>
         <Height>0.60833in</Height>
         <Width>0.71667in</Width>
         <ZIndex>1</ZIndex>
@@ -38,8 +38,8 @@
         <Value>=First(Fields!Logo3.Value, "main")</Value>
         <MIMEType>image/jpeg</MIMEType>
         <Sizing>FitProportional</Sizing>
-        <Top>0.99667in</Top>
-        <Left>2.19167in</Left>
+        <Top>1.51334in</Top>
+        <Left>3.35001in</Left>
         <Height>0.60833in</Height>
         <Width>0.71667in</Width>
         <ZIndex>2</ZIndex>
@@ -54,8 +54,8 @@
         <Value>=First(Fields!Logo4.Value, "main")</Value>
         <MIMEType>image/jpeg</MIMEType>
         <Sizing>FitProportional</Sizing>
-        <Top>0.99667in</Top>
-        <Left>3.08333in</Left>
+        <Top>1.51334in</Top>
+        <Left>4.24167in</Left>
         <Height>0.60833in</Height>
         <Width>0.71667in</Width>
         <ZIndex>3</ZIndex>
@@ -70,8 +70,8 @@
         <Value>=First(Fields!Logo5.Value, "main")</Value>
         <MIMEType>image/jpeg</MIMEType>
         <Sizing>FitProportional</Sizing>
-        <Top>0.99667in</Top>
-        <Left>3.98333in</Left>
+        <Top>1.51334in</Top>
+        <Left>5.14167in</Left>
         <Height>0.60833in</Height>
         <Width>0.71667in</Width>
         <ZIndex>4</ZIndex>
@@ -86,8 +86,8 @@
         <Value>=First(Fields!Logo6.Value, "main")</Value>
         <MIMEType>image/jpeg</MIMEType>
         <Sizing>FitProportional</Sizing>
-        <Top>0.99667in</Top>
-        <Left>4.925in</Left>
+        <Top>1.51334in</Top>
+        <Left>6.08334in</Left>
         <Height>0.60833in</Height>
         <Width>0.71667in</Width>
         <ZIndex>5</ZIndex>
@@ -217,8 +217,308 @@
           <PaddingBottom>2pt</PaddingBottom>
         </Style>
       </Textbox>
+      <Textbox Name="PrevProvinceName1">
+        <CanGrow>true</CanGrow>
+        <KeepTogether>true</KeepTogether>
+        <Paragraphs>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>=First(Fields!PrevProvinceName1.Value, "main")</Value>
+                <Style />
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+        </Paragraphs>
+        <rd:DefaultName>PrevProvinceName1</rd:DefaultName>
+        <Top>2.90777in</Top>
+        <Left>0.47167in</Left>
+        <Height>0.25in</Height>
+        <Width>1in</Width>
+        <ZIndex>10</ZIndex>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+      </Textbox>
+      <Textbox Name="PrevPollingUnitNo1">
+        <CanGrow>true</CanGrow>
+        <KeepTogether>true</KeepTogether>
+        <Paragraphs>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>=Sum(Fields!PrevPollingUnitNo1.Value, "main")</Value>
+                <Style />
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+        </Paragraphs>
+        <rd:DefaultName>PrevPollingUnitNo1</rd:DefaultName>
+        <Top>2.90777in</Top>
+        <Left>1.54112in</Left>
+        <Height>0.25in</Height>
+        <Width>1in</Width>
+        <ZIndex>11</ZIndex>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+      </Textbox>
+      <Textbox Name="PrevRankNo1">
+        <CanGrow>true</CanGrow>
+        <KeepTogether>true</KeepTogether>
+        <Paragraphs>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>=Sum(Fields!PrevRankNo1.Value, "main")</Value>
+                <Style />
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+        </Paragraphs>
+        <rd:DefaultName>PrevRankNo1</rd:DefaultName>
+        <Top>3.5411in</Top>
+        <Left>0.48834in</Left>
+        <Height>0.25in</Height>
+        <Width>1in</Width>
+        <ZIndex>12</ZIndex>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+      </Textbox>
+      <Textbox Name="PrevVoteCount1">
+        <CanGrow>true</CanGrow>
+        <KeepTogether>true</KeepTogether>
+        <Paragraphs>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>=Sum(Fields!PrevVoteCount1.Value, "main")</Value>
+                <Style />
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+        </Paragraphs>
+        <rd:DefaultName>PrevVoteCount1</rd:DefaultName>
+        <Top>3.5411in</Top>
+        <Left>1.54112in</Left>
+        <Height>0.25in</Height>
+        <Width>1in</Width>
+        <ZIndex>13</ZIndex>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+      </Textbox>
+      <Textbox Name="VoteCount1">
+        <CanGrow>true</CanGrow>
+        <KeepTogether>true</KeepTogether>
+        <Paragraphs>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>=Sum(Fields!VoteCount1.Value, "main")</Value>
+                <Style />
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+        </Paragraphs>
+        <rd:DefaultName>VoteCount1</rd:DefaultName>
+        <Top>2.58833in</Top>
+        <Left>0.47167in</Left>
+        <Height>0.25in</Height>
+        <Width>1in</Width>
+        <ZIndex>14</ZIndex>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+      </Textbox>
+      <Textbox Name="PrevProvinceName2">
+        <CanGrow>true</CanGrow>
+        <KeepTogether>true</KeepTogether>
+        <Paragraphs>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>=First(Fields!ProvinceName.Value, "main")</Value>
+                <Style />
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+        </Paragraphs>
+        <rd:DefaultName>PrevProvinceName1</rd:DefaultName>
+        <Top>1.04167in</Top>
+        <Left>0.66333in</Left>
+        <Height>0.25in</Height>
+        <Width>1in</Width>
+        <ZIndex>15</ZIndex>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+      </Textbox>
+      <Textbox Name="PrevProvinceName3">
+        <CanGrow>true</CanGrow>
+        <KeepTogether>true</KeepTogether>
+        <Paragraphs>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>=First(Fields!PollingUnitNo.Value, "main")</Value>
+                <Style />
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+        </Paragraphs>
+        <rd:DefaultName>PrevProvinceName1</rd:DefaultName>
+        <Top>1.04167in</Top>
+        <Left>1.84666in</Left>
+        <Height>0.25in</Height>
+        <Width>1in</Width>
+        <ZIndex>16</ZIndex>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+      </Textbox>
+      <Textbox Name="PartyName1">
+        <CanGrow>true</CanGrow>
+        <KeepTogether>true</KeepTogether>
+        <Paragraphs>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>=First(Fields!PartyName1.Value, "main")</Value>
+                <Style />
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+        </Paragraphs>
+        <rd:DefaultName>PartyName1</rd:DefaultName>
+        <Top>2.26889in</Top>
+        <Left>0.47167in</Left>
+        <Height>0.25in</Height>
+        <Width>1in</Width>
+        <ZIndex>17</ZIndex>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+      </Textbox>
+      <Textbox Name="FullName1">
+        <CanGrow>true</CanGrow>
+        <KeepTogether>true</KeepTogether>
+        <Paragraphs>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>=First(Fields!FullName1.Value, "main")</Value>
+                <Style />
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+        </Paragraphs>
+        <rd:DefaultName>FullName1</rd:DefaultName>
+        <Top>2.26889in</Top>
+        <Left>1.655in</Left>
+        <Height>0.25in</Height>
+        <Width>1in</Width>
+        <ZIndex>18</ZIndex>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+      </Textbox>
+      <Textbox Name="PrevPartyName1">
+        <CanGrow>true</CanGrow>
+        <KeepTogether>true</KeepTogether>
+        <Paragraphs>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>=First(Fields!PrevPartyName1.Value, "main")</Value>
+                <Style />
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+        </Paragraphs>
+        <rd:DefaultName>PrevPartyName1</rd:DefaultName>
+        <Top>3.22721in</Top>
+        <Left>0.48834in</Left>
+        <Height>0.25in</Height>
+        <Width>1in</Width>
+        <ZIndex>19</ZIndex>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+      </Textbox>
     </ReportItems>
-    <Height>2in</Height>
+    <Height>4.65833in</Height>
     <Style />
   </Body>
   <Width>7.055in</Width>
