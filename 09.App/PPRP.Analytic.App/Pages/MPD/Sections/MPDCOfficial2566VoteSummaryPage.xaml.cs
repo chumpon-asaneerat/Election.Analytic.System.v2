@@ -151,6 +151,12 @@ namespace PPRP.Pages
                         item.PartyName1 = "1." + p.PartyName;
                         item.FullName1 = p.FullName;
                         item.VoteCount1 = p.VoteCount;
+
+                        item.PrevPartyName1 = p.PrevPartyName;
+                        item.PrevProvinceName1 = p.PrevProvinceNameTH;
+                        item.PrevPollingUnitNo1 = (p.PrevPollingUnitNo.HasValue) ? p.PrevPollingUnitNo.Value : 0;
+                        item.PrevVoteCount1 = (p.PrevVoteCount.HasValue) ? p.PrevVoteCount.Value : 0;
+                        item.PrevRankNo1 = (p.PrevRankNo.HasValue) ? p.PrevRankNo.Value : 0;
                     }
                     // Person 2
                     if (null != _generalSummary.Top6[1])
@@ -161,6 +167,12 @@ namespace PPRP.Pages
                         item.PartyName2 = "2." + p.PartyName;
                         item.FullName2 = p.FullName;
                         item.VoteCount2 = p.VoteCount;
+
+                        item.PrevPartyName2 = p.PrevPartyName;
+                        item.PrevProvinceName2 = p.PrevProvinceNameTH;
+                        item.PrevPollingUnitNo2 = (p.PrevPollingUnitNo.HasValue) ? p.PrevPollingUnitNo.Value : 0;
+                        item.PrevVoteCount2 = (p.PrevVoteCount.HasValue) ? p.PrevVoteCount.Value : 0;
+                        item.PrevRankNo2 = (p.PrevRankNo.HasValue) ? p.PrevRankNo.Value : 0;
                     }
                     // Person 3
                     if (null != _generalSummary.Top6[2])
@@ -171,6 +183,12 @@ namespace PPRP.Pages
                         item.PartyName3 = "3." + p.PartyName;
                         item.FullName3 = p.FullName;
                         item.VoteCount3 = p.VoteCount;
+
+                        item.PrevPartyName3 = p.PrevPartyName;
+                        item.PrevProvinceName3 = p.PrevProvinceNameTH;
+                        item.PrevPollingUnitNo3 = (p.PrevPollingUnitNo.HasValue) ? p.PrevPollingUnitNo.Value : 0;
+                        item.PrevVoteCount3 = (p.PrevVoteCount.HasValue) ? p.PrevVoteCount.Value : 0;
+                        item.PrevRankNo3 = (p.PrevRankNo.HasValue) ? p.PrevRankNo.Value : 0;
                     }
                     // Person 4
                     if (null != _generalSummary.Top6[3])
@@ -181,6 +199,12 @@ namespace PPRP.Pages
                         item.PartyName4 = "4." + p.PartyName;
                         item.FullName4 = p.FullName;
                         item.VoteCount4 = p.VoteCount;
+
+                        item.PrevPartyName4 = p.PrevPartyName;
+                        item.PrevProvinceName4 = p.PrevProvinceNameTH;
+                        item.PrevPollingUnitNo4 = (p.PrevPollingUnitNo.HasValue) ? p.PrevPollingUnitNo.Value : 0;
+                        item.PrevVoteCount4 = (p.PrevVoteCount.HasValue) ? p.PrevVoteCount.Value : 0;
+                        item.PrevRankNo4 = (p.PrevRankNo.HasValue) ? p.PrevRankNo.Value : 0;
                     }
                     // Person 5
                     if (null != _generalSummary.Top6[4])
@@ -191,6 +215,12 @@ namespace PPRP.Pages
                         item.PartyName5 = "5." + p.PartyName;
                         item.FullName5 = p.FullName;
                         item.VoteCount5 = p.VoteCount;
+
+                        item.PrevPartyName5 = p.PrevPartyName;
+                        item.PrevProvinceName5 = p.PrevProvinceNameTH;
+                        item.PrevPollingUnitNo5 = (p.PrevPollingUnitNo.HasValue) ? p.PrevPollingUnitNo.Value : 0;
+                        item.PrevVoteCount5 = (p.PrevVoteCount.HasValue) ? p.PrevVoteCount.Value : 0;
+                        item.PrevRankNo5 = (p.PrevRankNo.HasValue) ? p.PrevRankNo.Value : 0;
                     }
                     // Person 6
                     if (null != _generalSummary.Top6[5])
@@ -201,6 +231,12 @@ namespace PPRP.Pages
                         item.PartyName6 = "6." + p.PartyName;
                         item.FullName6 = p.FullName;
                         item.VoteCount6 = p.VoteCount;
+
+                        item.PrevPartyName6 = p.PrevPartyName;
+                        item.PrevProvinceName6 = p.PrevProvinceNameTH;
+                        item.PrevPollingUnitNo6 = (p.PrevPollingUnitNo.HasValue) ? p.PrevPollingUnitNo.Value : 0;
+                        item.PrevVoteCount6 = (p.PrevVoteCount.HasValue) ? p.PrevVoteCount.Value : 0;
+                        item.PrevRankNo6 = (p.PrevRankNo.HasValue) ? p.PrevRankNo.Value : 0;
                     }
                 }
             }
