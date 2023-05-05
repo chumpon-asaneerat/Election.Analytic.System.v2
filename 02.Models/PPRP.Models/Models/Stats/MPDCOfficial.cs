@@ -627,11 +627,11 @@ namespace PPRP.Models
         public int VoteCount2 { get; set; }
 
         public string PrevProvinceName2 { get; set; }
-        public int? PrevPollingUnitNo2 { get; set; }
+        public int PrevPollingUnitNo2 { get; set; }
 
         public string PrevPartyName2 { get; set; }
-        public int? PrevVoteCount2 { get; set; }
-        public int? PrevRankNo2 { get; set; }
+        public int PrevVoteCount2 { get; set; }
+        public int PrevRankNo2 { get; set; }
 
         #endregion
 
@@ -644,11 +644,11 @@ namespace PPRP.Models
         public int VoteCount3 { get; set; }
 
         public string PrevProvinceName3 { get; set; }
-        public int? PrevPollingUnitNo3 { get; set; }
+        public int PrevPollingUnitNo3 { get; set; }
 
         public string PrevPartyName3 { get; set; }
-        public int? PrevVoteCount3 { get; set; }
-        public int? PrevRankNo3 { get; set; }
+        public int PrevVoteCount3 { get; set; }
+        public int PrevRankNo3 { get; set; }
 
         #endregion
 
@@ -661,11 +661,11 @@ namespace PPRP.Models
         public int VoteCount4 { get; set; }
 
         public string PrevProvinceName4 { get; set; }
-        public int? PrevPollingUnitNo4 { get; set; }
+        public int PrevPollingUnitNo4 { get; set; }
 
         public string PrevPartyName4 { get; set; }
-        public int? PrevVoteCount4 { get; set; }
-        public int? PrevRankNo4 { get; set; }
+        public int PrevVoteCount4 { get; set; }
+        public int PrevRankNo4 { get; set; }
 
         #endregion
 
@@ -678,11 +678,11 @@ namespace PPRP.Models
         public int VoteCount5 { get; set; }
 
         public string PrevProvinceName5 { get; set; }
-        public int? PrevPollingUnitNo5 { get; set; }
+        public int PrevPollingUnitNo5 { get; set; }
 
         public string PrevPartyName5 { get; set; }
-        public int? PrevVoteCount5 { get; set; }
-        public int? PrevRankNo5 { get; set; }
+        public int PrevVoteCount5 { get; set; }
+        public int PrevRankNo5 { get; set; }
 
         #endregion
 
@@ -695,11 +695,11 @@ namespace PPRP.Models
         public int VoteCount6 { get; set; }
 
         public string PrevProvinceName6 { get; set; }
-        public int? PrevPollingUnitNo6 { get; set; }
+        public int PrevPollingUnitNo6 { get; set; }
 
         public string PrevPartyName6 { get; set; }
-        public int? PrevVoteCount6 { get; set; }
-        public int? PrevRankNo6 { get; set; }
+        public int PrevVoteCount6 { get; set; }
+        public int PrevRankNo6 { get; set; }
 
         #endregion
 
