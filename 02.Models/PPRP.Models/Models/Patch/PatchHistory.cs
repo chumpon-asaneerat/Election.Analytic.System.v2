@@ -178,8 +178,53 @@ namespace PPRP.Models
 
                 // Update version
                 var p = new DynamicParameters();
-                p.Add("@PatchId", 1);
+                p.Add("@PatchId", id);
                 p.Add("@description", "Add MPDCOfficial supports");
+
+                cnn.Execute("INSERT INTO PatchHistory(PatchId, [Description]) VALUES(@patchId, @description);", p);
+            }
+            catch (Exception ex)
+            {
+                med.Err(ex);
+            }
+        }
+
+        private static void UpdateScriptV2()
+        {
+            MethodBase med = MethodBase.GetCurrentMethod();
+
+            IDbConnection cnn = DbServer.Instance.Db;
+            if (null == cnn || !DbServer.Instance.Connected)
+            {
+                string msg = "Connection is null or cannot connect to database server.";
+                med.Err(msg);
+            }
+
+            int id = 2;
+            var patch = Get(id).Value();
+            if (null != patch) return; // already apply patch.
+
+            try
+            {
+                string[] resourceNames = new string[]
+                {
+                    @"PPRP.Scripts.V001.01.UpdateMPDCOfficialVoteCount.sql",
+                    @"PPRP.Scripts.V001.02.GetMPDCOfficialTopVoteSummaries.sql"
+                };
+
+                foreach (string resourceName in resourceNames)
+                {
+                    string script = PPRPScriptManager.GetScript(resourceName);
+                    if (!string.IsNullOrEmpty(script))
+                    {
+                        cnn.ExecuteScalar(script);
+                    }
+                }
+
+                // Update version
+                var p = new DynamicParameters();
+                p.Add("@PatchId", id);
+                p.Add("@description", "Supports Edit MPDC Official Vote Count");
 
                 cnn.Execute("INSERT INTO PatchHistory(PatchId, [Description]) VALUES(@patchId, @description);", p);
             }
@@ -192,6 +237,7 @@ namespace PPRP.Models
         private static void UpdateScripts()
         {
             UpdateScriptV1();
+            UpdateScriptV2();
         }
 
         #endregion
