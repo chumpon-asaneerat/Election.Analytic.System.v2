@@ -189,6 +189,8 @@
     <EmbeddedResource Include="Scripts\V001\04.GetMPDCOfficials.sql" />
     <EmbeddedResource Include="Scripts\V001\05.GetMPDCOfficialByFullName.sql" />
     <EmbeddedResource Include="Scripts\V001\06.GetMPDCOfficialTopVoteSummaries.sql" />
+    <EmbeddedResource Include="Scripts\V002\01.UpdateMPDCOfficialVoteCount.sql" />
+    <EmbeddedResource Include="Scripts\V002\02.GetMPDCOfficialTopVoteSummaries.sql" />
     <Content Include="Views\ADMView.sql" />
     <Content Include="Views\LDM1View.sql" />
     <Content Include="Views\LDM2View.sql" />
