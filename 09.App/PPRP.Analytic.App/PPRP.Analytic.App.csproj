@@ -126,6 +126,12 @@
     <Compile Include="Pages\Areas\ThailandPage.xaml.cs">
       <DependentUpon>ThailandPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\MPD\MPDMainSummaryPage.xaml.cs">
+      <DependentUpon>MPDMainSummaryPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\MPD\MPDCOfficial2566VoteSummaryPage.xaml.cs">
+      <DependentUpon>MPDCOfficial2566VoteSummaryPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\MPD\MPD2562VoteSummaryPage.xaml.cs">
       <DependentUpon>MPD2562VoteSummaryPage.xaml</DependentUpon>
     </Compile>
@@ -202,6 +208,14 @@
     <Page Include="Pages\Areas\ThailandPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\MPD\MPDMainSummaryPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\MPD\MPDCOfficial2566VoteSummaryPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\MPD\MPD2562VoteSummaryPage.xaml">
       <Generator>MSBuild:Compile</Generator>

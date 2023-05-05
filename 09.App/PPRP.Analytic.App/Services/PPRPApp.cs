@@ -265,8 +265,29 @@ namespace PPRP
 
             #endregion
 
-            #region MPD2562VoteSummary
+            #region MPD Main Summary Page
 
+            private static MPDMainSummaryPage _MPDMainSummary;
+
+            /// <summary>Gets MPDMainSummary Page.</summary>
+            public static MPDMainSummaryPage MPDMainSummary
+            {
+                get
+                {
+                    if (null == _MPDMainSummary)
+                    {
+                        lock (typeof(MPDMainSummaryPage))
+                        {
+                            _MPDMainSummary = new MPDMainSummaryPage();
+                        }
+                    }
+                    return _MPDMainSummary;
+                }
+            }
+
+            #endregion
+
+            #region MPD2562VoteSummary
 
             private static MPD2562VoteSummaryPage _MPD2562VoteSummaryPage;
 
@@ -288,8 +309,29 @@ namespace PPRP
 
             #endregion
 
-            #region MPDPreviewVoteSummary
+            #region MPDCOfficial2566VoteSummaryPage
 
+            private static MPDCOfficial2566VoteSummaryPage _MPDCOfficial2566VoteSummary;
+
+            /// <summary>Gets MPDCOfficial2566VoteSummary Page.</summary>
+            public static MPDCOfficial2566VoteSummaryPage MPDCOfficial2566VoteSummary
+            {
+                get
+                {
+                    if (null == _MPDCOfficial2566VoteSummary)
+                    {
+                        lock (typeof(MPDCOfficial2566VoteSummaryPage))
+                        {
+                            _MPDCOfficial2566VoteSummary = new MPDCOfficial2566VoteSummaryPage();
+                        }
+                    }
+                    return _MPDCOfficial2566VoteSummary;
+                }
+            }
+
+            #endregion
+
+            #region MPDPreviewVoteSummary
 
             private static MPDPreviewVoteSummaryPage _MPDPreviewVoteSummary;
 
