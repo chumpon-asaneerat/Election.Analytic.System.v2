@@ -96,8 +96,11 @@
                      BorderThickness="0"
                      VerticalContentAlignment="Stretch"
                      HorizontalContentAlignment="Stretch"
+                     IsSynchronizedWithCurrentItem="True"
                      ItemContainerStyle="{StaticResource BASEListBoxItemContainer}"
-                     Style="{StaticResource SingleSelectWrapListBox}">
+                     Style="{StaticResource SingleSelectWrapListBox}"
+                     SelectionChanged="lstSummary_SelectionChanged"
+                     LostFocus="lstSummary_LostFocus">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <Border BorderBrush="{Binding TopBorder}"

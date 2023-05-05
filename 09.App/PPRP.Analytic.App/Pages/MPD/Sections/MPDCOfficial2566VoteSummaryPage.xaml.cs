@@ -13,6 +13,7 @@ using NLib.Services;
 
 using PPRP.Models;
 using System.Security.Policy;
+using PPRP.Utils;
 
 #endregion
 
@@ -56,17 +57,48 @@ namespace PPRP.Pages
         private PollingUnitMenuItem _pullingUnitItem = null;
         private GeneralSummary _generalSummary = null;
 
+        private MPDCOfficialVoteSummary _currentEditItem = null;
+        private Control _target = null;
+
         #endregion
 
         #region Button Handlers
 
         private void cmdEdit_Click(object sender, RoutedEventArgs e)
         {
+            _target = null; // reset target
+            ResetEditMode(); // reset prev item
+
             var btn = sender as Button;
             if (null == btn) return;
             var item = btn.DataContext as MPDCOfficialVoteSummary;
             if (null == item) return;
+            // change mode
             item.Mode = ItemMode.Edit;
+
+            // Getting the currently selected ListBoxItem
+            // Note that the ListBox must have
+            // IsSynchronizedWithCurrentItem set to True for this to work
+            ListBoxItem lstItem =
+                (ListBoxItem)(lstSummary.ItemContainerGenerator.ContainerFromItem(lstSummary.Items.CurrentItem));
+            // Getting the ContentPresenter of myListBoxItem
+            ContentPresenter itemContentPresenter = FindVisualChild<ContentPresenter>(lstItem);
+            if (null == itemContentPresenter) return;
+            
+            // Finding textBlock from the DataTemplate that is set on that ContentPresenter
+            DataTemplate myDataTemplate = itemContentPresenter.ContentTemplate;
+            if (null == myDataTemplate) return;
+
+            TextBox targetTextBox = (TextBox)myDataTemplate.FindName("txtVoteCount", itemContentPresenter);
+            if (null == targetTextBox) return;
+
+            // Do something to the DataTemplate-generated TextBlock
+            targetTextBox.Focus();
+            targetTextBox.SelectAll();
+
+            _currentEditItem = item; // keep item
+
+            _target = targetTextBox; // keep control for check in LostFocus method.
         }
 
         private void cmdSave_Click(object sender, RoutedEventArgs e)
@@ -75,9 +107,13 @@ namespace PPRP.Pages
             if (null == btn) return;
             var item = btn.DataContext as MPDCOfficialVoteSummary;
             if (null == item) return;
+            // change mode
             item.Mode = ItemMode.View;
             // save vote count.
             MPDCOfficialVoteSummary.UpdateVoteCount(item);
+
+            _target = null; // reset target
+            ResetEditMode(); // reset item
 
             LoadSummary(_pullingUnitItem); // reload.
         }
@@ -88,7 +124,11 @@ namespace PPRP.Pages
             if (null == btn) return;
             var item = btn.DataContext as MPDCOfficialVoteSummary;
             if (null == item) return;
+            // change mode
             item.Mode = ItemMode.View;
+
+            _target = null; // reset target
+            ResetEditMode(); // reset item
         }
 
         private void cmdAreaInfo_Click(object sender, RoutedEventArgs e)
@@ -108,7 +148,57 @@ namespace PPRP.Pages
 
         #endregion
 
+        #region ListBox Handlers
+
+        private void lstSummary_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            ResetEditMode();
+        }
+
+        private void lstSummary_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if (null != _target)
+            {
+                ResetEditMode();
+            }
+        }
+
+        #endregion
+
         #region Private Methods
+
+        #region WPF Helper
+
+        private childItem FindVisualChild<childItem>(DependencyObject obj)
+            where childItem : DependencyObject
+        {
+            for (int i = 0; i < VisualTreeHelper.GetChildrenCount(obj); i++)
+            {
+                DependencyObject child = VisualTreeHelper.GetChild(obj, i);
+                if (child != null && child is childItem)
+                {
+                    return (childItem)child;
+                }
+                else
+                {
+                    childItem childOfChild = FindVisualChild<childItem>(child);
+                    if (childOfChild != null)
+                        return childOfChild;
+                }
+            }
+            return null;
+        }
+
+        #endregion
+
+        private void ResetEditMode()
+        {
+            if (null != _currentEditItem)
+            {
+                _currentEditItem.Mode = ItemMode.View; // change to view mode.
+            }
+            _currentEditItem = null; // reset item
+        }
 
         private void ChangeView()
         {
