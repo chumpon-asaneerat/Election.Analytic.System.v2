@@ -140,9 +140,6 @@
     </Compile>
     <Compile Include="Services\AreaNavigator.cs" />
     <Compile Include="Services\PPRPApp.cs" />
-    <Compile Include="Windows\MPDC\MPDCOfficialWindow.xaml.cs">
-      <DependentUpon>MPDCOfficialWindow.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Windows\MPDC\MPDCAreaRemarkWindow.xaml.cs">
       <DependentUpon>MPDCAreaRemarkWindow.xaml</DependentUpon>
     </Compile>
@@ -224,10 +221,6 @@
     <Page Include="Pages\Preview\MPDPreviewVoteSummaryPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Windows\MPDC\MPDCOfficialWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Windows\MPDC\MPDCAreaRemarkWindow.xaml">
       <Generator>MSBuild:Compile</Generator>

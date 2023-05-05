@@ -340,6 +340,61 @@ namespace PPRP.Models
         /// <summary>
         /// Gets.
         /// </summary>
+        /// <param name="adm1code">The ADM1 Code.</param>
+        /// <param name="regionId">The region id.</param>
+        /// <returns>Returns list of MProvince instance.</returns>
+        public static NDbResult<List<PollingUnit>> Gets(
+            string adm1code = null,
+            int pollingUnitNo = 0)
+        {
+            MethodBase med = MethodBase.GetCurrentMethod();
+
+            NDbResult<List<PollingUnit>> rets = new NDbResult<List<PollingUnit>>();
+
+            IDbConnection cnn = DbServer.Instance.Db;
+            if (null == cnn || !DbServer.Instance.Connected)
+            {
+                string msg = "Connection is null or cannot connect to database server.";
+                med.Err(msg);
+                // Set error number/message
+                rets.ErrNum = 8000;
+                rets.ErrMsg = msg;
+
+                return rets;
+            }
+
+            int? pNo = pollingUnitNo == 0 ? new int?() : pollingUnitNo;
+
+            var p = new DynamicParameters();
+            p.Add("@ThaiYear", null);
+            p.Add("@ADM1Code", adm1code);
+            p.Add("@PollingUnitNo", pNo);
+
+            try
+            {
+                var data = cnn.Query<PollingUnit>("GetPollingUnit", p,
+                    commandType: CommandType.StoredProcedure).ToList();
+                rets.Success(data);
+            }
+            catch (Exception ex)
+            {
+                med.Err(ex);
+                // Set error number/message
+                rets.ErrNum = 9999;
+                rets.ErrMsg = ex.Message;
+            }
+
+            if (null == rets.data)
+            {
+                // create empty list.
+                rets.data = null;
+            }
+
+            return rets;
+        }
+        /// <summary>
+        /// Get.
+        /// </summary>
         /// <param name="thaiYear">The year in thai.</param>
         /// <param name="adm1code">The ADM1 Code.</param>
         /// <param name="regionId">The region id.</param>

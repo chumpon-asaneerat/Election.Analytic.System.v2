@@ -77,12 +77,7 @@ namespace PPRP.Pages
         {
             GotoPrintPreview();
         }
-        /*
-        private void cmdMPDC2566OfficialInfo_Click(object sender, RoutedEventArgs e)
-        {
-            ShowMPDC2566OfficialView();
-        }
-        */
+
         private void cmdSwitch2566_Click(object sender, RoutedEventArgs e)
         {
             ChangeView();

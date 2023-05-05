@@ -45,6 +45,11 @@ namespace PPRP.Pages
 
         #region Button Handlers
 
+        private void cmdAreaInfo_Click(object sender, RoutedEventArgs e)
+        {
+            ShowAreaInfo();
+        }
+
         private void cmdPrint_Click(object sender, RoutedEventArgs e)
         {
             GotoPrintPreview();
@@ -65,19 +70,33 @@ namespace PPRP.Pages
             _parent.ChangeView(MPDMainSummaryPage.View.MPD2562);
         }
 
-        private void GotoPrintPreview()
+        private void ShowAreaInfo()
         {
-            if (_parent == null) return;
+            PollingUnit summary = null;
 
-            // prepare report item.
-            MPDCOfficialPrintVoteSummary item = new MPDCOfficialPrintVoteSummary();
+            if (null != _pullingUnitItem)
+            {
+                int thaiYear = 2566;
+                summary = PollingUnit.Get(thaiYear,
+                    adm1code: _pullingUnitItem.ADM1Code,
+                    pollingUnitNo: _pullingUnitItem.PollingUnitNo).Value();
+            }
 
-            _parent.GotoMPD2566PrintPreview(item);
+            var win = PPRPApp.Windows.MPDCAreaRemark;
+            win.Setup(summary);
+            win.ShowDialog();
         }
 
         private void LoadSummary(PollingUnitMenuItem item)
         {
             _pullingUnitItem = item;
+            txtPollingUnitInfo.Text = "-";
+
+            if (null == _pullingUnitItem)
+                return;
+
+            txtPollingUnitInfo.Text = _pullingUnitItem.DisplayText;
+
             int thaiYear = 2566;
             int prevThaiYear = 2562;
             lstSummary.ItemsSource = null;
@@ -86,6 +105,16 @@ namespace PPRP.Pages
                 lstSummary.ItemsSource = MPDCOfficialVoteSummary.Gets(
                     thaiYear, prevThaiYear, _pullingUnitItem.ADM1Code, _pullingUnitItem.PollingUnitNo, 6).Value();
             }
+        }
+
+        private void GotoPrintPreview()
+        {
+            if (_parent == null) return;
+
+            // prepare report item.
+            MPDCOfficialPrintVoteSummary item = new MPDCOfficialPrintVoteSummary();
+
+            _parent.GotoMPD2566PrintPreview(item);
         }
 
         #endregion

@@ -424,21 +424,6 @@ namespace PPRP
             }
 
             #endregion
-
-            #region MPDC Official View
-
-            /// <summary>Gets MPDC Official View Window.</summary>
-            public static PPRP.Windows.MPDCOfficialWindow MPDCOfficial
-            {
-                get
-                {
-                    var ret = new PPRP.Windows.MPDCOfficialWindow();
-                    ret.Owner = Application.Current.MainWindow;
-                    return ret;
-                }
-            }
-
-            #endregion
         }
     }
 }

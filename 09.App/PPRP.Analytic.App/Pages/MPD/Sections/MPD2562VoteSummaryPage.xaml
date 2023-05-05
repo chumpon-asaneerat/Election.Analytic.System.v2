@@ -68,6 +68,14 @@
                                            VerticalAlignment="Center" />
                             </StackPanel>
                         </Button>
+                        <TextBlock DockPanel.Dock="Left" Width="5" />
+                        <TextBlock DockPanel.Dock="Left" 
+                                   Foreground="DimGray"
+                                   FontWeight="Bold"
+                                   FontSize="32"
+                                   VerticalAlignment="Center"
+                                   TextAlignment="Center"
+                                   Text="ปี 2562" />
                         <TextBlock DockPanel.Dock="Right" Width="5" />
                         <TextBlock x:Name="txtPollingUnitInfo"
                                    Foreground="DimGray"
