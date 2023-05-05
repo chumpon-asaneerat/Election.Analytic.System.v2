@@ -12,6 +12,7 @@ using NLib;
 using NLib.Services;
 
 using PPRP.Models;
+using System.Security.Policy;
 
 #endregion
 
@@ -74,6 +75,19 @@ namespace PPRP.Pages
             _parent.GotoMPD2566PrintPreview(item);
         }
 
+        private void LoadSummary(PollingUnitMenuItem item)
+        {
+            _pullingUnitItem = item;
+            int thaiYear = 2566;
+            int prevThaiYear = 2562;
+            lstSummary.ItemsSource = null;
+            if (null != _pullingUnitItem)
+            {
+                lstSummary.ItemsSource = MPDCOfficialVoteSummary.Gets(
+                    thaiYear, prevThaiYear, _pullingUnitItem.ADM1Code, _pullingUnitItem.PollingUnitNo, 6).Value();
+            }
+        }
+
         #endregion
 
         #region Public Methods
@@ -82,6 +96,7 @@ namespace PPRP.Pages
         {
             _parent = parent;
             _pullingUnitItem = value;
+            LoadSummary(value);
         }
 
         #endregion
