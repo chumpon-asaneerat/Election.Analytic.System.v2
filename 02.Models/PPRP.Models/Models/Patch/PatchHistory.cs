@@ -156,6 +156,8 @@ namespace PPRP.Models
 
             try
             {
+                Console.WriteLine("Update Patch {0}", id);
+
                 string[] resourceNames = new string[]
                 {
                     @"PPRP.Scripts.V001.01.MPDCOfficial.sql",
@@ -206,6 +208,8 @@ namespace PPRP.Models
 
             try
             {
+                Console.WriteLine("Update Patch {0}", id);
+
                 string[] resourceNames = new string[]
                 {
                     @"PPRP.Scripts.V001.01.UpdateMPDCOfficialVoteCount.sql",
