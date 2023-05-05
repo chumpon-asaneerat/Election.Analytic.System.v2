@@ -16,8 +16,9 @@ Election.Analytic.System.v2 - PPRP  #626
 Election.Analytic.System.v2 - PPRP  #625
 - 
 
+[commited]
 Election.Analytic.System.v2 - PPRP  #624
-- 
+- Implements MPDCOffifial #13
 
 [commited]
 Election.Analytic.System.v2 - PPRP  #623
