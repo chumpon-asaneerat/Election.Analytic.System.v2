@@ -212,8 +212,8 @@ namespace PPRP.Models
 
                 string[] resourceNames = new string[]
                 {
-                    @"PPRP.Scripts.V001.01.UpdateMPDCOfficialVoteCount.sql",
-                    @"PPRP.Scripts.V001.02.GetMPDCOfficialTopVoteSummaries.sql"
+                    @"PPRP.Scripts.V002.01.UpdateMPDCOfficialVoteCount.sql",
+                    @"PPRP.Scripts.V002.02.GetMPDCOfficialTopVoteSummaries.sql"
                 };
 
                 foreach (string resourceName in resourceNames)
