@@ -42,6 +42,8 @@ namespace PPRP.Pages
             public string ProvinceName { get; set; }
             public int PollingUnitNo { get; set; }
 
+            public string Area62 { get; set; }
+            public string Area66 { get; set; }  
             public List<MPDCOfficialVoteSummary> Top6 { get; set; }
         }
 
@@ -121,9 +123,19 @@ namespace PPRP.Pages
 
             // Create cache summary for print.
             _generalSummary = new GeneralSummary();
-
+            // province/polling unit.
             _generalSummary.ProvinceName = _pullingUnitItem.ProvinceNameTH;
             _generalSummary.PollingUnitNo = _pullingUnitItem.PollingUnitNo;
+            // area 62
+            var area62 = PollingUnit.Get(2562,
+                    adm1code: _pullingUnitItem.ADM1Code,
+                    pollingUnitNo: _pullingUnitItem.PollingUnitNo).Value();
+            if (null != area62) _generalSummary.Area62 = area62.AreaRemark;
+            // area 66
+            var area66 = PollingUnit.Get(2566,
+                    adm1code: _pullingUnitItem.ADM1Code,
+                    pollingUnitNo: _pullingUnitItem.PollingUnitNo).Value();
+            if (null != area66) _generalSummary.Area66 = area66.AreaRemark;
 
             _generalSummary.Top6 = top6;
         }
@@ -139,6 +151,8 @@ namespace PPRP.Pages
                 // Province Name/PollingUnitNo
                 item.ProvinceName = _generalSummary.ProvinceName;
                 item.PollingUnitNo = _generalSummary.PollingUnitNo;
+                item.AreaInfo62 = _generalSummary.Area62;
+                item.AreaInfo66 = _generalSummary.Area66;
 
                 if (null != _generalSummary.Top6 && _generalSummary.Top6.Count > 0)
                 {

@@ -135,8 +135,8 @@
     <Compile Include="Pages\MPD\Sections\MPD2562VoteSummaryPage.xaml.cs">
       <DependentUpon>MPD2562VoteSummaryPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\Preview\MPDCOfficialPreviewVoteSummary.xaml.cs">
-      <DependentUpon>MPDCOfficialPreviewVoteSummary.xaml</DependentUpon>
+    <Compile Include="Pages\Preview\MPDCOfficialPreviewVoteSummaryPage.xaml.cs">
+      <DependentUpon>MPDCOfficialPreviewVoteSummaryPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\Preview\MPDPreviewVoteSummaryPage.xaml.cs">
       <DependentUpon>MPDPreviewVoteSummaryPage.xaml</DependentUpon>
@@ -221,7 +221,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Pages\Preview\MPDCOfficialPreviewVoteSummary.xaml">
+    <Page Include="Pages\Preview\MPDCOfficialPreviewVoteSummaryPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -228,12 +228,10 @@ namespace PPRP.Pages
 
         public void GotoMPD2566PrintPreview(MPDCOfficialPrintVoteSummary item)
         {
-            /*
-            var page = PPRPApp.Pages.MPDPreviewVoteSummary;
+            var page = PPRPApp.Pages.MPDCOfficialPreviewVoteSummary;
             int idx = lstPollingUnits.SelectedIndex;
             page.Setup(_provinceItem, idx, item);
             PageContentManager.Instance.Current = page;
-            */
         }
 
         public void Setup(ProvinceMenuItem province)
