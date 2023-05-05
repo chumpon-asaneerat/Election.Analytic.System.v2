@@ -130,7 +130,7 @@ namespace PPRP.Pages
                 AreaNavi.Instance.GotoPak(province.RegionId);
             }
 
-            var page = PPRPApp.Pages.MPD2562VoteSummary;
+            var page = PPRPApp.Pages.MPDMainSummary;
             page.Setup(province);
             PageContentManager.Instance.Current = page;
         }

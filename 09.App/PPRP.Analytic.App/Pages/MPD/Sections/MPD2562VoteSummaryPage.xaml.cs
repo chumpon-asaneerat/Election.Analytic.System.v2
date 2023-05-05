@@ -53,41 +53,19 @@ namespace PPRP.Pages
 
         #region Internal Variables
 
-        private ProvinceMenuItem _provinceItem = null;
+        //private ProvinceMenuItem _provinceItem = null;
+        private MPDMainSummaryPage _parent = null;
         private PollingUnitMenuItem _pullingUnitItem = null;
         private GeneralSummary _generalSummary = null;
 
         #endregion
 
-        #region Helper Peroperties
-
-        private PakMenuItem Current
-        {
-            get { return AreaNavi.Instance.Current; }
-        }
-
-        private List<ProvinceMenuItem> Provinces
-        {
-            get
-            {
-                var provinces = (null != AreaNavi.Instance.Current && null != AreaNavi.Instance.Current.Provinces) ?
-                    AreaNavi.Instance.Current.Provinces : null;
-                return provinces;
-            }
-        }
-
-        #endregion
-
         #region Button Handlers
 
-        private void cmdGotoThailandPage_Click(object sender, RoutedEventArgs e)
+        private void ChangeView()
         {
-            GotoThailandPage();
-        }
-
-        private void cmdGotoPrev_Click(object sender, RoutedEventArgs e)
-        {
-            GotoPrevPage();
+            if (_parent == null) return;
+            _parent.ChangeView(MPDMainSummaryPage.View.MPD2566);
         }
 
         private void cmdAreaInfo_Click(object sender, RoutedEventArgs e)
@@ -99,20 +77,15 @@ namespace PPRP.Pages
         {
             GotoPrintPreview();
         }
-
+        /*
         private void cmdMPDC2566OfficialInfo_Click(object sender, RoutedEventArgs e)
         {
             ShowMPDC2566OfficialView();
         }
-
-        #endregion
-
-        #region lstPollingUnits Handlers
-
-        private void lstPollingUnits_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        */
+        private void cmdSwitch2566_Click(object sender, RoutedEventArgs e)
         {
-            var pollingUnit = lstPollingUnits.SelectedItem as PollingUnitMenuItem;
-            LoadSummary(pollingUnit);
+            ChangeView();
         }
 
         #endregion
@@ -140,83 +113,6 @@ namespace PPRP.Pages
 
         #region Private Methods
 
-        private void GotoThailandPage()
-        {
-            var page = PPRPApp.Pages.Thailand;
-            page.Setup();
-            PageContentManager.Instance.Current = page;
-        }
-
-        private void GotoPrevPage()
-        {
-            string regionId = (null != Current) ? Current.RegionId : string.Empty;
-            AreaNavi.Instance.GotoPak(regionId);
-
-            if (!string.IsNullOrWhiteSpace(regionId))
-            {
-                if (regionId == "01")
-                {
-                    var page = PPRPApp.Pages.Pak01;
-                    page.Setup();
-                    PageContentManager.Instance.Current = page;
-                }
-                else if (regionId == "02")
-                {
-                    var page = PPRPApp.Pages.Pak02;
-                    page.Setup();
-                    PageContentManager.Instance.Current = page;
-                }
-                else if (regionId == "03")
-                {
-                    var page = PPRPApp.Pages.Pak03;
-                    page.Setup();
-                    PageContentManager.Instance.Current = page;
-                }
-                else if (regionId == "04")
-                {
-                    var page = PPRPApp.Pages.Pak04;
-                    page.Setup();
-                    PageContentManager.Instance.Current = page;
-                }
-                else if (regionId == "05")
-                {
-                    var page = PPRPApp.Pages.Pak05;
-                    page.Setup();
-                    PageContentManager.Instance.Current = page;
-                }
-                else if (regionId == "06")
-                {
-                    var page = PPRPApp.Pages.Pak06;
-                    page.Setup();
-                    PageContentManager.Instance.Current = page;
-                }
-                else if (regionId == "07")
-                {
-                    var page = PPRPApp.Pages.Pak07;
-                    page.Setup();
-                    PageContentManager.Instance.Current = page;
-                }
-                else if (regionId == "08")
-                {
-                    var page = PPRPApp.Pages.Pak08;
-                    page.Setup();
-                    PageContentManager.Instance.Current = page;
-                }
-                else if (regionId == "09")
-                {
-                    var page = PPRPApp.Pages.Pak09;
-                    page.Setup();
-                    PageContentManager.Instance.Current = page;
-                }
-                else if (regionId == "10")
-                {
-                    var page = PPRPApp.Pages.Pak10;
-                    page.Setup();
-                    PageContentManager.Instance.Current = page;
-                }
-            }
-        }
-
         private void ShowPreview(MPDCSummary inst)
         {
             if (null == inst) return;
@@ -240,17 +136,6 @@ namespace PPRP.Pages
 
             var win = PPRPApp.Windows.MPDCAreaRemark;
             win.Setup(summary);
-            win.ShowDialog();
-        }
-
-        private void ShowMPDC2566OfficialView()
-        {
-            // Show MPDC 2566 Official View Window
-            if (null == _pullingUnitItem)
-                return;
-
-            var win = PPRPApp.Windows.MPDCOfficial;
-            win.Setup(_pullingUnitItem);
             win.ShowDialog();
         }
 
@@ -360,6 +245,8 @@ namespace PPRP.Pages
 
         private void GotoPrintPreview()
         {
+            if (_parent == null) return;
+
             // prepare report item.
             MPDPrintVoteSummary2 item = new MPDPrintVoteSummary2();
             if (null != _generalSummary)
@@ -477,74 +364,17 @@ namespace PPRP.Pages
                     item.VoteCount7toLast = _generalSummary.VoteCount7toLast;
                 }
             }
-
-            var page = PPRPApp.Pages.MPDPreviewVoteSummary;
-            int idx = lstPollingUnits.SelectedIndex;
-            page.Setup(_provinceItem, idx, item);
-            PageContentManager.Instance.Current = page;
+            _parent.GotoMPD2562PrintPreview(item);
         }
 
         #endregion
 
         #region Public Methods
 
-        public void Setup(ProvinceMenuItem province)
+        public void Setup(MPDMainSummaryPage parent, PollingUnitMenuItem value)
         {
-            txtProvinceName.Text = "จ.";
-            _pullingUnitItem = null;
-            lstPollingUnits.SelectedIndex = -1;
-            lstPollingUnits.SelectedItem = null;
-            lstPollingUnits.ItemsSource = null;
-
-            _provinceItem = province;
-            _generalSummary = null;
-
-            if (null == province)
-                return;
-
-            txtProvinceName.Text = "จ." + province.ProvinceNameTH;
-            var items = PollingUnitMenuItem.Gets(province.RegionId, province.ADM1Code).Value();
-            lstPollingUnits.ItemsSource = items;
-            if (null != items && items.Count > 0)
-            {
-                lstPollingUnits.SelectedIndex = 0; // auto select first item.
-                lstPollingUnits.ScrollIntoView(items[0]);
-                LoadSummary(items[0]); // update display
-            }
-        }
-
-        public void Setup(ProvinceMenuItem province, int selectIndex)
-        {
-            txtProvinceName.Text = "จ.";
-            _pullingUnitItem = null;
-            lstPollingUnits.SelectedIndex = -1;
-            lstPollingUnits.SelectedItem = null;
-            lstPollingUnits.ItemsSource = null;
-
-            _provinceItem = province;
-            _generalSummary = null;
-
-            if (null == province)
-                return;
-
-            txtProvinceName.Text = "จ." + province.ProvinceNameTH;
-            var items = PollingUnitMenuItem.Gets(province.RegionId, province.ADM1Code).Value();
-            lstPollingUnits.ItemsSource = items;
-            if (null != items && items.Count > 0)
-            {
-                if (selectIndex > -1 && selectIndex < items.Count)
-                {
-                    lstPollingUnits.SelectedIndex = selectIndex; // auto select first item.
-                    lstPollingUnits.ScrollIntoView(items[selectIndex]);
-                    LoadSummary(items[selectIndex]); // update display
-                }
-                else
-                {
-                    lstPollingUnits.SelectedIndex = 0; // auto select first item.
-                    lstPollingUnits.ScrollIntoView(items[0]);
-                    LoadSummary(items[0]); // update display
-                }
-            }
+            _parent = parent;
+            LoadSummary(value);
         }
 
         #endregion

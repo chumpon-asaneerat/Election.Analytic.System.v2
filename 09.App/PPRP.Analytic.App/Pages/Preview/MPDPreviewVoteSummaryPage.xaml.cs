@@ -51,7 +51,7 @@ namespace PPRP.Pages
 
         private void cmdCancel_Click(object sender, RoutedEventArgs e)
         {
-            GotoMPD2562VoteSummary();
+            GotoMainVoteSummary();
         }
 
         #endregion
@@ -60,10 +60,10 @@ namespace PPRP.Pages
 
         #region Navigate Methods
 
-        private void GotoMPD2562VoteSummary()
+        private void GotoMainVoteSummary()
         {
             // Report Menu Page
-            var page = PPRPApp.Pages.MPD2562VoteSummary;
+            var page = PPRPApp.Pages.MPDMainSummary;
             page.Setup(_provinceMenuItem, _PollingItemIndex);
             PageContentManager.Instance.Current = page;
         }
@@ -87,7 +87,7 @@ namespace PPRP.Pages
 
             cmdPrint.Visibility = Visibility.Visible;
 
-            GotoMPD2562VoteSummary();
+            GotoMainVoteSummary();
         }
 
         #endregion
