@@ -60,6 +60,37 @@ namespace PPRP.Pages
 
         #region Button Handlers
 
+        private void cmdEdit_Click(object sender, RoutedEventArgs e)
+        {
+            var btn = sender as Button;
+            if (null == btn) return;
+            var item = btn.DataContext as MPDCOfficialVoteSummary;
+            if (null == item) return;
+            item.Mode = ItemMode.Edit;
+        }
+
+        private void cmdSave_Click(object sender, RoutedEventArgs e)
+        {
+            var btn = sender as Button;
+            if (null == btn) return;
+            var item = btn.DataContext as MPDCOfficialVoteSummary;
+            if (null == item) return;
+            item.Mode = ItemMode.View;
+            // save vote count.
+            MPDCOfficialVoteSummary.UpdateVoteCount(item);
+
+            LoadSummary(_pullingUnitItem); // reload.
+        }
+
+        private void cmdCancel_Click(object sender, RoutedEventArgs e)
+        {
+            var btn = sender as Button;
+            if (null == btn) return;
+            var item = btn.DataContext as MPDCOfficialVoteSummary;
+            if (null == item) return;
+            item.Mode = ItemMode.View;
+        }
+
         private void cmdAreaInfo_Click(object sender, RoutedEventArgs e)
         {
             ShowAreaInfo();

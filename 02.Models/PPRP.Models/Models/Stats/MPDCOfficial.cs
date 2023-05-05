@@ -13,6 +13,7 @@ using NLib;
 
 using Dapper;
 using Newtonsoft.Json;
+using OfficeOpenXml.ConditionalFormatting;
 
 #endregion
 
@@ -392,9 +393,25 @@ namespace PPRP.Models
 
     #region MPDCOfficialVoteSummary
 
+    public enum ItemMode
+    {
+        View,
+        Edit
+    }
+
     public class MPDCOfficialVoteSummary : NInpc
     {
+        #region Static Brush and Color
+
+        private static readonly SolidColorBrush TransparentBrush = new SolidColorBrush(Colors.Transparent);
+        private static readonly SolidColorBrush Top1BorderBrush = new SolidColorBrush(Colors.Red);
+        private static readonly SolidColorBrush Top1BackgroundBrush = new SolidColorBrush(Colors.AliceBlue);
+
+        #endregion
+
         #region Internal Variables
+
+        private ItemMode _mode = ItemMode.View;
 
         // for party logo
         private byte[] _PartyImageData = null;
@@ -409,11 +426,26 @@ namespace PPRP.Models
 
         #region Public Properties
 
+        public ItemMode Mode
+        {
+            get { return _mode; }
+            set
+            {
+                if (_mode != value)
+                {
+                    _mode = value;
+                    Raise(() => Mode);
+                }
+            }
+        }
+
         public int ThaiYear { get; set; }
         public string ADM1Code { get; set; }
         public string ProvinceNameTH { get; set; }
         public int PollingUnitNo { get; set; }
+        public int RevoteNo { get; set; }
 
+        public int PersonId { get; set; }
         public string FullName { get; set; }
 
         public byte[] PersonImageData
@@ -460,7 +492,7 @@ namespace PPRP.Models
             set { }
         }
 
-        public string PartyId { get; set; }
+        public int PartyId { get; set; }
         public string PartyName { get; set; }
 
         public byte[] PartyImageData
@@ -525,6 +557,24 @@ namespace PPRP.Models
             set { }
         }
 
+        public Brush TopBorder
+        {
+            get 
+            {
+                return (PrevRankNo.HasValue && PrevRankNo.Value == 1) ? Top1BorderBrush : TransparentBrush;
+            }
+            set { }
+        }
+
+        public Brush TopBackground
+        {
+            get
+            {
+                return (PrevRankNo.HasValue && PrevRankNo.Value == 1) ? Top1BackgroundBrush : TransparentBrush;
+            }
+            set { }
+        }
+
         #endregion
 
         #region Static Methods
@@ -578,6 +628,68 @@ namespace PPRP.Models
             }
 
             return rets;
+        }
+
+        public static NDbResult UpdateVoteCount(MPDCOfficialVoteSummary value)
+        {
+            MethodBase med = MethodBase.GetCurrentMethod();
+
+            NDbResult ret = new NDbResult();
+
+            IDbConnection cnn = DbServer.Instance.Db;
+            if (null == cnn || !DbServer.Instance.Connected)
+            {
+                string msg = "Connection is null or cannot connect to database server.";
+                med.Err(msg);
+                // Set error number/message
+                ret.ErrNum = 8000;
+                ret.ErrMsg = msg;
+
+                return ret;
+            }
+
+            if (null == value)
+            {
+                string msg = "Value is null.";
+                med.Err(msg);
+                // Set error number/message
+                ret.ErrNum = 8000;
+                ret.ErrMsg = msg;
+
+                return ret;
+            }
+            // checks
+            if (value.VoteCount <= 0) value.VoteCount = 0;
+
+            var p = new DynamicParameters();
+            p.Add("@ThaiYear", value.ThaiYear);
+            p.Add("@ADM1Code", value.ADM1Code);
+            p.Add("@PollingUnitNo", value.PollingUnitNo);
+            p.Add("@RevoteNo", value.RevoteNo);
+            p.Add("@PartyId", value.PartyId);
+            p.Add("@PersonId", value.PersonId);
+            p.Add("@VoteCount", value.VoteCount);
+
+            p.Add("@errNum", dbType: DbType.Int32, direction: ParameterDirection.Output);
+            p.Add("@errMsg", dbType: DbType.String, direction: ParameterDirection.Output, size: -1);
+
+            try
+            {
+                cnn.Execute("UpdateMPDCOfficialVoteCount", p, commandType: CommandType.StoredProcedure);
+                ret.Success();
+                // Set error number/message
+                ret.ErrNum = p.Get<int>("@errNum");
+                ret.ErrMsg = p.Get<string>("@errMsg");
+            }
+            catch (Exception ex)
+            {
+                med.Err(ex);
+                // Set error number/message
+                ret.ErrNum = 9999;
+                ret.ErrMsg = ex.Message;
+            }
+
+            return ret;
         }
 
         #endregion
