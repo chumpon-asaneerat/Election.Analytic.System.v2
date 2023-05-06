@@ -99,8 +99,12 @@
                      IsSynchronizedWithCurrentItem="True"
                      ItemContainerStyle="{StaticResource BASEListBoxItemContainer}"
                      Style="{StaticResource SingleSelectWrapListBox}"
-                     SelectionChanged="lstSummary_SelectionChanged"
-                     LostFocus="lstSummary_LostFocus">
+                     SelectionChanged="lstSummary_SelectionChanged">
+                <ListBox.Resources>
+                    <Style TargetType="{x:Type ListBoxItem}">
+                        <Setter Property="IsSelected" Value="{Binding Selected}" />
+                    </Style>
+                </ListBox.Resources>
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <Border BorderBrush="{Binding TopBorder}"
@@ -168,6 +172,7 @@
                                                Visibility="Visible"
                                                Margin="5">
                                         <Button x:Name="cmdEdit"
+                                                Focusable="False"
                                                 DockPanel.Dock="Right"
                                                 Style="{StaticResource InlineButton}"
                                                 Width="35"
@@ -190,6 +195,7 @@
                                                Visibility="Collapsed"
                                                Margin="5">
                                         <Button x:Name="cmdCancel"
+                                                Focusable="False"
                                                 DockPanel.Dock="Right"
                                                 Style="{StaticResource InlineButton}"
                                                 Width="35"
@@ -199,6 +205,7 @@
                                         </Button>
                                         <TextBlock Width="5" DockPanel.Dock="Right" />
                                         <Button x:Name="cmdSave"
+                                                Focusable="False"
                                                 DockPanel.Dock="Right"
                                                 Style="{StaticResource InlineButton}"
                                                 Width="35"
@@ -210,7 +217,8 @@
                                         <TextBlock Width="5" DockPanel.Dock="Right" />
                                         <TextBox x:Name="txtVoteCount"
                                                  FontSize="48"
-                                                 Text="{Binding VoteCount}"
+                                                 Text=""
+                                                 MinWidth="100"
                                                  Style="{StaticResource CommonTextBox}" />
                                     </DockPanel>
                                 </DockPanel>
@@ -229,14 +237,39 @@
                             </DockPanel>
                         </Border>
                         <DataTemplate.Triggers>
-                            <DataTrigger Binding="{Binding Mode}" Value="Edit">
-                                <Setter TargetName="paView" Property="Visibility" Value="Collapsed" />
-                                <Setter TargetName="paEdit" Property="Visibility" Value="Visible" />
-                            </DataTrigger>
-                            <DataTrigger Binding="{Binding Mode}" Value="View">
+                            <DataTrigger Binding="{Binding Path=IsSelected, RelativeSource={RelativeSource AncestorType={x:Type ListBoxItem}}}" Value="False">
                                 <Setter TargetName="paView" Property="Visibility" Value="Visible" />
                                 <Setter TargetName="paEdit" Property="Visibility" Value="Collapsed" />
+
+                                <Setter TargetName="cmdEdit" Property="Visibility" Value="Collapsed" />
+                                <Setter TargetName="cmdSave" Property="Visibility" Value="Collapsed" />
+                                <Setter TargetName="cmdCancel" Property="Visibility" Value="Collapsed" />
                             </DataTrigger>
+                            <MultiDataTrigger>
+                                <MultiDataTrigger.Conditions>
+                                    <Condition Binding="{Binding Path=IsSelected, RelativeSource={RelativeSource AncestorType={x:Type ListBoxItem}}}" Value="True" />
+                                    <Condition Binding="{Binding Mode}" Value="Edit" />
+                                </MultiDataTrigger.Conditions>
+                                <Setter TargetName="paView" Property="Visibility" Value="Collapsed" />
+                                <Setter TargetName="paEdit" Property="Visibility" Value="Visible" />
+
+                                <Setter TargetName="cmdEdit" Property="Visibility" Value="Collapsed" />
+                                <Setter TargetName="cmdSave" Property="Visibility" Value="Visible" />
+                                <Setter TargetName="cmdCancel" Property="Visibility" Value="Visible" />
+                            </MultiDataTrigger>
+                            <MultiDataTrigger>
+                                <MultiDataTrigger.Conditions>
+                                    <Condition Binding="{Binding Path=IsSelected, RelativeSource={RelativeSource AncestorType={x:Type ListBoxItem}}}" Value="True" />
+                                    <Condition Binding="{Binding Mode}" Value="View" />
+                                </MultiDataTrigger.Conditions>
+                                <Setter TargetName="paView" Property="Visibility" Value="Visible" />
+                                <Setter TargetName="paEdit" Property="Visibility" Value="Collapsed" />
+
+                                <Setter TargetName="paView" Property="Visibility" Value="Visible" />
+                                <Setter TargetName="cmdEdit" Property="Visibility" Value="Visible" />
+                                <Setter TargetName="cmdSave" Property="Visibility" Value="Collapsed" />
+                                <Setter TargetName="cmdCancel" Property="Visibility" Value="Collapsed" />
+                            </MultiDataTrigger>
                         </DataTemplate.Triggers>
                     </DataTemplate>
                 </ListBox.ItemTemplate>

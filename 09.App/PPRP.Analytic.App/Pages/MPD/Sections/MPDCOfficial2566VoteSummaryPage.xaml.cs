@@ -58,9 +58,7 @@ namespace PPRP.Pages
         private GeneralSummary _generalSummary = null;
 
         private MPDCOfficialVoteSummary _currentEditItem = null;
-        private Control _targetTextBox = null;
-        private Control _targetSaveButton = null;
-        private Control _targetCancelButton = null;
+        private TextBox _targetTextBox = null;
 
         #endregion
 
@@ -68,24 +66,19 @@ namespace PPRP.Pages
 
         private void cmdEdit_Click(object sender, RoutedEventArgs e)
         {
-            _targetTextBox = null; // reset target
-            _targetSaveButton = null;
-            _targetCancelButton = null; 
-
             ResetEditMode(); // reset prev item
 
             var btn = sender as Button;
             if (null == btn) return;
             var item = btn.DataContext as MPDCOfficialVoteSummary;
             if (null == item) return;
-            // change mode
-            item.Mode = ItemMode.Edit;
 
             // Getting the currently selected ListBoxItem
             // Note that the ListBox must have
             // IsSynchronizedWithCurrentItem set to True for this to work
             ListBoxItem lstItem =
                 (ListBoxItem)(lstSummary.ItemContainerGenerator.ContainerFromItem(lstSummary.Items.CurrentItem));
+
             // Getting the ContentPresenter of myListBoxItem
             ContentPresenter itemContentPresenter = FindVisualChild<ContentPresenter>(lstItem);
             if (null == itemContentPresenter) return;
@@ -97,18 +90,19 @@ namespace PPRP.Pages
             TextBox targetTextBox = (TextBox)myDataTemplate.FindName("txtVoteCount", itemContentPresenter);
             if (null == targetTextBox) return;
 
-            // Do something to the DataTemplate-generated TextBlock
-            targetTextBox.Focus();
-            targetTextBox.SelectAll();
+            // change to edit mode
+            item.BeginEdit();
 
             _currentEditItem = item; // keep item
-
-            Button targetSaveButton = (Button)myDataTemplate.FindName("cmdSave", itemContentPresenter);
-            Button targetCancelButton = (Button)myDataTemplate.FindName("cmdCancel", itemContentPresenter);
-
             _targetTextBox = targetTextBox; // // keep control for check in LostFocus method.
-            _targetSaveButton = targetSaveButton;
-            _targetCancelButton = targetCancelButton;
+
+            // Do something to the DataTemplate-generated TextBlock
+            Dispatcher.Invoke(() =>
+            {
+                targetTextBox.Text = item.VoteCount.ToString();
+                targetTextBox.Focus();
+                targetTextBox.SelectAll();
+            });
         }
 
         private void cmdSave_Click(object sender, RoutedEventArgs e)
@@ -117,16 +111,25 @@ namespace PPRP.Pages
             if (null == btn) return;
             var item = btn.DataContext as MPDCOfficialVoteSummary;
             if (null == item) return;
-            // change mode
-            item.Mode = ItemMode.View;
+
+            int voteCnt;
+            string sVal = _targetTextBox.Text;
+            if (int.TryParse(sVal, out voteCnt))
+            {
+                // commit changes
+                item.VoteCount = voteCnt;
+                item.Commit();
+            }
+            else
+            {
+                // invalid value so cancel.
+                item.CancelEdit();
+            }
             // save vote count.
             MPDCOfficialVoteSummary.UpdateVoteCount(item);
 
+            _currentEditItem = null;
             _targetTextBox = null; // reset target
-            _targetSaveButton = null;
-            _targetCancelButton = null;
-
-            ResetEditMode(); // reset item
 
             LoadSummary(_pullingUnitItem); // reload.
         }
@@ -137,14 +140,11 @@ namespace PPRP.Pages
             if (null == btn) return;
             var item = btn.DataContext as MPDCOfficialVoteSummary;
             if (null == item) return;
-            // change mode
-            item.Mode = ItemMode.View;
+            // Cancel Edit
+            item.CancelEdit();
 
+            _currentEditItem = null;
             _targetTextBox = null; // reset target
-            _targetSaveButton = null;
-            _targetCancelButton = null;
-
-            ResetEditMode(); // reset item
         }
 
         private void cmdAreaInfo_Click(object sender, RoutedEventArgs e)
@@ -169,14 +169,6 @@ namespace PPRP.Pages
         private void lstSummary_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             ResetEditMode();
-        }
-
-        private void lstSummary_LostFocus(object sender, RoutedEventArgs e)
-        {
-            if (null == _targetTextBox && null == _targetSaveButton && null == _targetCancelButton)
-            {
-                ResetEditMode();
-            }
         }
 
         #endregion
@@ -211,9 +203,10 @@ namespace PPRP.Pages
         {
             if (null != _currentEditItem)
             {
-                _currentEditItem.Mode = ItemMode.View; // change to view mode.
+                _currentEditItem.CancelEdit();
             }
             _currentEditItem = null; // reset item
+            _targetTextBox = null; // reset target
         }
 
         private void ChangeView()

@@ -413,6 +413,8 @@ namespace PPRP.Models
 
         private ItemMode _mode = ItemMode.View;
 
+        private int _lastVoteCount = 0;
+
         // for party logo
         private byte[] _PartyImageData = null;
         private bool _PartyImageLoading = false;
@@ -424,19 +426,48 @@ namespace PPRP.Models
 
         #endregion
 
+        #region Public Methods
+
+        public void BeginEdit()
+        {
+            if (_mode != ItemMode.Edit)
+            {
+                _mode = ItemMode.Edit;
+                Raise(() => Mode);
+            }
+            _lastVoteCount = VoteCount;
+        }
+
+        public void CancelEdit()
+        {
+            if (_mode != ItemMode.View)
+            {
+                VoteCount = _lastVoteCount;
+                _mode = ItemMode.View;
+                Raise(() => Mode);
+                Raise(() => VoteCount);
+            }
+        }
+
+        public void Commit()
+        {
+            if (_mode != ItemMode.View)
+            {
+                _mode = ItemMode.View;
+                Raise(() => Mode);
+                Raise(() => VoteCount);
+            }
+            _lastVoteCount = VoteCount;
+        }
+
+        #endregion
+
         #region Public Properties
 
         public ItemMode Mode
         {
             get { return _mode; }
-            set
-            {
-                if (_mode != value)
-                {
-                    _mode = value;
-                    Raise(() => Mode);
-                }
-            }
+            set { }
         }
 
         public int ThaiYear { get; set; }
