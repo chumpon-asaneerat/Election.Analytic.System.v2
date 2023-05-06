@@ -108,7 +108,7 @@
                                 BorderThickness="2"
                                 CornerRadius="2">
                             <DockPanel LastChildFill="True"
-                                       Width="270"
+                                       Width="255"
                                        Margin="5">
                                 <TextBlock DockPanel.Dock="Top" Height="10" />
                                 <!--  PARTY LOGO  -->
