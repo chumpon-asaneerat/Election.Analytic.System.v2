@@ -64,7 +64,7 @@
                                 <TextBlock Margin="3,0"
                                            FontFamily="{StaticResource THSarabun}"
                                            FontSize="{StaticResource IBFSize}"
-                                           Text="ข้อมูลคุ๋แข่ง"
+                                           Text="ข้อมูลคู่แข่ง"
                                            VerticalAlignment="Center" />
                             </StackPanel>
                         </Button>
