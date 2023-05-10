@@ -284,10 +284,11 @@ namespace PPRP.Pages
                 item.AreaInfo62 = _generalSummary.Area62;
                 item.AreaInfo66 = _generalSummary.Area66;
 
-                if (null != _generalSummary.Top6 && _generalSummary.Top6.Count > 0)
+                int iCnt = _generalSummary.Top6.Count;
+                if (null != _generalSummary.Top6 && iCnt > 0)
                 {
                     // Person 1
-                    if (null != _generalSummary.Top6[0])
+                    if (iCnt >= 1 && null != _generalSummary.Top6[0])
                     {
                         var p = _generalSummary.Top6[0];
                         item.Logo1 = p.PartyImageData;
@@ -303,7 +304,7 @@ namespace PPRP.Pages
                         item.PrevRankNo1 = (p.PrevRankNo.HasValue) ? p.PrevRankNo.Value : 0;
                     }
                     // Person 2
-                    if (null != _generalSummary.Top6[1])
+                    if (iCnt >= 2 && null != _generalSummary.Top6[1])
                     {
                         var p = _generalSummary.Top6[1];
                         item.Logo2 = p.PartyImageData;
@@ -319,7 +320,7 @@ namespace PPRP.Pages
                         item.PrevRankNo2 = (p.PrevRankNo.HasValue) ? p.PrevRankNo.Value : 0;
                     }
                     // Person 3
-                    if (null != _generalSummary.Top6[2])
+                    if (iCnt >= 3 && null != _generalSummary.Top6[2])
                     {
                         var p = _generalSummary.Top6[2];
                         item.Logo3 = p.PartyImageData;
@@ -335,7 +336,7 @@ namespace PPRP.Pages
                         item.PrevRankNo3 = (p.PrevRankNo.HasValue) ? p.PrevRankNo.Value : 0;
                     }
                     // Person 4
-                    if (null != _generalSummary.Top6[3])
+                    if (iCnt >= 4 && null != _generalSummary.Top6[3])
                     {
                         var p = _generalSummary.Top6[3];
                         item.Logo4 = p.PartyImageData;
@@ -351,7 +352,7 @@ namespace PPRP.Pages
                         item.PrevRankNo4 = (p.PrevRankNo.HasValue) ? p.PrevRankNo.Value : 0;
                     }
                     // Person 5
-                    if (null != _generalSummary.Top6[4])
+                    if (iCnt >= 6 && null != _generalSummary.Top6[4])
                     {
                         var p = _generalSummary.Top6[4];
                         item.Logo5 = p.PartyImageData;
@@ -367,7 +368,7 @@ namespace PPRP.Pages
                         item.PrevRankNo5 = (p.PrevRankNo.HasValue) ? p.PrevRankNo.Value : 0;
                     }
                     // Person 6
-                    if (null != _generalSummary.Top6[5])
+                    if (iCnt >= 6 && null != _generalSummary.Top6[5])
                     {
                         var p = _generalSummary.Top6[5];
                         item.Logo6 = p.PartyImageData;

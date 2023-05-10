@@ -250,10 +250,11 @@ namespace PPRP.Pages
                 item.ProvinceName = _generalSummary.ProvinceName;
                 item.PollingUnitNo = _generalSummary.PollingUnitNo;
 
-                if (null != _generalSummary.Top6 && _generalSummary.Top6.Count > 0)
+                int iCnt = _generalSummary.Top6.Count;
+                if (null != _generalSummary.Top6 && iCnt > 0)
                 {
                     // Person 1
-                    if (null != _generalSummary.Top6[0])
+                    if (iCnt >= 1 && null != _generalSummary.Top6[0])
                     {
                         var p = _generalSummary.Top6[0];
                         item.Logo1 = p.PartyImageData;
@@ -263,7 +264,7 @@ namespace PPRP.Pages
                         item.VoteCount1 = p.VoteCount;
                     }
                     // Person 2
-                    if (null != _generalSummary.Top6[1])
+                    if (iCnt >= 2 && null != _generalSummary.Top6[1])
                     {
                         var p = _generalSummary.Top6[1];
                         item.Logo2 = p.PartyImageData;
@@ -273,7 +274,7 @@ namespace PPRP.Pages
                         item.VoteCount2 = p.VoteCount;
                     }
                     // Person 3
-                    if (null != _generalSummary.Top6[2])
+                    if (iCnt >= 3 && null != _generalSummary.Top6[2])
                     {
                         var p = _generalSummary.Top6[2];
                         item.Logo3 = p.PartyImageData;
@@ -283,7 +284,7 @@ namespace PPRP.Pages
                         item.VoteCount3 = p.VoteCount;
                     }
                     // Person 4
-                    if (null != _generalSummary.Top6[3])
+                    if (iCnt >= 4 && null != _generalSummary.Top6[3])
                     {
                         var p = _generalSummary.Top6[3];
                         item.Logo4 = p.PartyImageData;
@@ -293,7 +294,7 @@ namespace PPRP.Pages
                         item.VoteCount4 = p.VoteCount;
                     }
                     // Person 5
-                    if (null != _generalSummary.Top6[4])
+                    if (iCnt >= 5 && null != _generalSummary.Top6[4])
                     {
                         var p = _generalSummary.Top6[4];
                         item.Logo5 = p.PartyImageData;
@@ -303,7 +304,7 @@ namespace PPRP.Pages
                         item.VoteCount5 = p.VoteCount;
                     }
                     // Person 6
-                    if (null != _generalSummary.Top6[5])
+                    if (iCnt >= 6 && null != _generalSummary.Top6[5])
                     {
                         var p = _generalSummary.Top6[5];
                         item.Logo6 = p.PartyImageData;
